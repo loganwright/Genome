@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8030FC901AE41702004803C2 /* GitHubClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030FC8F1AE41702004803C2 /* GitHubClasses.swift */; };
+		8030FC921AE41737004803C2 /* GitHubTransformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030FC911AE41737004803C2 /* GitHubTransformers.swift */; };
+		8030FC961AE41D8E004803C2 /* GitHubExampleJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030FC951AE41D8E004803C2 /* GitHubExampleJson.swift */; };
 		8079A8721AE33A9900DF83FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8711AE33A9900DF83FA /* AppDelegate.swift */; };
 		8079A8741AE33A9900DF83FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8731AE33A9900DF83FA /* ViewController.swift */; };
 		8079A8771AE33A9900DF83FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8079A8751AE33A9900DF83FA /* Main.storyboard */; };
@@ -31,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8030FC8F1AE41702004803C2 /* GitHubClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubClasses.swift; path = Example/GitHubClasses.swift; sourceTree = "<group>"; };
+		8030FC911AE41737004803C2 /* GitHubTransformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubTransformers.swift; path = Example/GitHubTransformers.swift; sourceTree = "<group>"; };
+		8030FC951AE41D8E004803C2 /* GitHubExampleJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubExampleJson.swift; path = Example/GitHubExampleJson.swift; sourceTree = "<group>"; };
 		8079A86C1AE33A9900DF83FA /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8079A8701AE33A9900DF83FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8079A8711AE33A9900DF83FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +80,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8030FC8E1AE416EA004803C2 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				8030FC8F1AE41702004803C2 /* GitHubClasses.swift */,
+				8030FC911AE41737004803C2 /* GitHubTransformers.swift */,
+				8030FC951AE41D8E004803C2 /* GitHubExampleJson.swift */,
+			);
+			name = Example;
+			sourceTree = "<group>";
+		};
 		8079A8631AE33A9900DF83FA = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +111,7 @@
 		8079A86E1AE33A9900DF83FA /* Genome */ = {
 			isa = PBXGroup;
 			children = (
+				8030FC8E1AE416EA004803C2 /* Example */,
 				8079A8911AE33AAB00DF83FA /* Source */,
 				8079A8711AE33A9900DF83FA /* AppDelegate.swift */,
 				8079A8731AE33A9900DF83FA /* ViewController.swift */,
@@ -252,12 +269,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8079A8A21AE33AAB00DF83FA /* NSObject+GenomeMapping.m in Sources */,
+				8030FC961AE41D8E004803C2 /* GitHubExampleJson.swift in Sources */,
 				8079A89F1AE33AAB00DF83FA /* NSArray+GenomeMapping.m in Sources */,
 				8079A8741AE33A9900DF83FA /* ViewController.swift in Sources */,
 				8079A8A11AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m in Sources */,
 				8079A89E1AE33AAB00DF83FA /* GenomeTransformer.m in Sources */,
 				8079A8A01AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m in Sources */,
 				8079A8721AE33A9900DF83FA /* AppDelegate.swift in Sources */,
+				8030FC901AE41702004803C2 /* GitHubClasses.swift in Sources */,
+				8030FC921AE41737004803C2 /* GitHubTransformers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +471,7 @@
 				8079A88D1AE33A9900DF83FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8079A88E1AE33A9900DF83FA /* Build configuration list for PBXNativeTarget "GenomeTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +480,7 @@
 				8079A8901AE33A9900DF83FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -25,15 +25,15 @@ Genome is featured in a networking library that uses genome as its mapping core.
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#basic-mapping">Basic Mapping</a>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#object-properties">Object Properties</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#object-properties">Object Properties</a>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#object-arrays">Object Arrays</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#object-arrays">Object Arrays</a>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#transforming-values">Transforming Values</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#transforming-values">Transforming Values</a>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#specialized-mapping">Specialized Mapping</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#specialized-mapping">Specialized Mapping</a>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#default-properties">Default Properties</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#default-properties">Default Properties</a>
 <br>
 <a href="https://github.com/LoganWright/Genome#genome-transformer">Genome Transformer</a>
 <br>
@@ -86,19 +86,7 @@ Let's look at an example of some Json that we might want to model.  Here's what 
     "actor": {
       "login": "octocat",
       "id": 1,
-      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
-      "gravatar_id": "",
       "url": "https://api.github.com/users/octocat",
-      "html_url": "https://github.com/octocat",
-      "followers_url": "https://api.github.com/users/octocat/followers",
-      "following_url": "https://api.github.com/users/octocat/following{/other_user}",
-      "gists_url": "https://api.github.com/users/octocat/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/octocat/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/octocat/subscriptions",
-      "organizations_url": "https://api.github.com/users/octocat/orgs",
-      "repos_url": "https://api.github.com/users/octocat/repos",
-      "events_url": "https://api.github.com/users/octocat/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/octocat/received_events",
       "type": "User",
       "site_admin": false
     },
@@ -177,7 +165,8 @@ class GHEvent : NSObject, GenomeObject {
     class func mapping() -> [NSObject : AnyObject]! {
         var mapping: [String : String] = [:]
         mapping["identifier"] = "id"
-        mapping["url"] = "url"
+        // Swift seems to be unable to convert string to url automatically
+        mapping["url@StringToUrlTransformer"] = "url"
         mapping["actor"] = "actor"
         mapping["eventDescription"] = "event"
         mapping["commitId"] = "commit_id"
@@ -276,7 +265,7 @@ class GHEvent : NSObject, GenomeObject {
     class func mapping() -> [NSObject : AnyObject]! {
         var mapping: [String : String] = [:]
         mapping["identifier"] = "id"
-        mapping["url"] = "url"
+        mapping["url@StringToUrlTransformer"] = "url"
         mapping["actor"] = "actor"
         mapping["eventDescription"] = "event"
         mapping["commitId"] = "commit_id"
@@ -294,19 +283,7 @@ class GHUser : NSObject, GenomeObject {
 
     var login: String?
     var identifier: NSInteger = 0
-    var avatarUrl: NSURL?
-    var gravatarUrl: NSURL?
     var apiUrl: NSURL?
-    var htmlUrl: NSURL?
-    var followersUrl: NSURL?
-    var followingUrl: NSURL?
-    var gistsUrl: NSURL?
-    var starredUrl: NSURL?
-    var subscriptionsUrl: NSURL?
-    var organizationsUrl: NSURL?
-    var reposUrl: NSURL?
-    var eventsUrl: NSURL?
-    var receivedEventsUrl: NSURL?
     var type: String?
     var admin: Bool = false
 
@@ -314,19 +291,7 @@ class GHUser : NSObject, GenomeObject {
         var mapping: [String : String] = [:]
         mapping["login"] = "login"
         mapping["identifier"] = "id"
-        mapping["avatarUrl"] = "avatar_url"
-        mapping["gravatarUrl"] = "gravatar_url"
-        mapping["apiUrl"] = "url"
-        mapping["htmlUrl"] = "html_url"
-        mapping["followersUrl"] = "followers_url"
-        mapping["followingUrl"] = "following_url"
-        mapping["gistsUrl"] = "gists_url"
-        mapping["starredUrl"] = "starred_url"
-        mapping["subscriptionsUrl"] = "subscriptions_url"
-        mapping["organizationsUrl"] = "organizations_url"
-        mapping["reposUrl"] = "repos_url"
-        mapping["eventsUrl"] = "events_url"
-        mapping["receivedEventsUrl"] = "received_events_url"
+        mapping["apiUrl@StringToUrlTransformer"] = "url"
         mapping["type"] = "type"
         mapping["admin"] = "site_admin"
         return mapping
