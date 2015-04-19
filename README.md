@@ -2,6 +2,10 @@
 
 Welcome to Genome!  This library is meant to simplify the process of mapping JSON to models by providing a clean and flexible api that binds mapping to their models.
 
+###Polymer
+
+Genome is featured in a networking library that uses genome as its mapping core.  Check it out here: <a href="https://github.com/loganwright/polymer">Polymer</a>
+
 ---
 
 <!-- [![CI Status](http://img.shields.io/travis/hunk/SlideMenu3D.svg?style=flat)](https://travis-ci.org/hunk/SlideMenu3D) -->
