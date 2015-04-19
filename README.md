@@ -17,7 +17,47 @@ Welcome to Genome!  This library is meant to simplify the process of mapping JSO
 <br>
 <a href="https://github.com/LoganWright/Genome#getting-started">Getting Started</a>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#genome-object">Genome Object</a>
+<a href="https://github.com/LoganWright/Genome#genome-object">Genome Object</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#basic-mapping">Basic Mapping</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#object-properties">Object Properties</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#object-arrays">Object Arrays</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#transforming-values">Transforming Values</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#specialized-mapping">Specialized Mapping</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#default-properties">Default Properties</a>
+<br>
+<a href="https://github.com/LoganWright/Genome#genome-transformer">Genome Transformer</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#from-json">From Json</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#to-json">To Json</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#response-context">Response Context</a>
+<br>
+<a href="https://github.com/LoganWright/Genome#genome-mapping">Genome Mapping</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#initialization">Initialization</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#with-representation">With Representation</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#response-context-1">Response Context</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#mapped-objects">Mapped Objects</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#individual-objects">Individual Objects</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#arrays">Arrays</a>
+<br>
+<a href="https://github.com/LoganWright/Genome#debugging">Debugging</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#mappable-description">Mappable Description</a>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/LoganWright/Genome#logging">Logging</a>
 
 ---
 
@@ -380,7 +420,7 @@ The transformer is a class designed to make transforming values from one type to
 
 > Note: No mapping operations will occur if a transformer is provided.  This means that whatever you return in a transformer will be set directly to the property (assuming non-null).  This means if your transformation is dependent on subsequent mappings, these will need to be called within the transformer.
 
-##Simple Transform
+##From Json
 
 Let's look at an extremely basic implementation of a `GenomeTransformer`.
 
@@ -459,7 +499,7 @@ class GHEvent : NSObject, GenomeObject {
 
 You'll notice that our transformers are declared with the same mapping syntax we use to specify types for an object property.  These are not to be used together, and a transformer always takes precedence.  It is assumed that if you need to call a transformer that will eventually result in a mapping, you will need to call the mapping operation manually within the transformer using: `gm_mappedObjectWithJsonRepresentation:` for objects and `gm_mapToGenomeObjectClass:` for arrays respectively.
 
-##Back To Json
+##To Json
 
 Sometimes we'll need to convert our object back to Json.  If that's the case, you'll also want to provide a reverse transformer by overriding `transformToJsonValue:`.  If we wanted to convert our `NSDate` back to an ISO8601 date string above, our full date string transformer would look like this:
 
@@ -587,3 +627,29 @@ NSArray *eventsJson = [events gm_mapToJSONRepresentation];
 ```Swift
 let eventsJsonArray: [AnyObject] = (events as NSArray).gm_mapToJSONRepresentation()
 ```
+
+##Debugging
+
+###Mappable Description
+
+You can use `gm_mappableDescription` to help when debugging.  It prints our the current values for properties specified in `mapping`.  It is called like so:
+
+######ObjC
+
+```ObjC
+[ob gm_mappableDescription];
+```
+
+######Swift
+
+```Swift
+ob.gm_mappableDescription()
+```
+
+###Logging
+
+In `NSObject+GenomeMapping.m` set the flag on `static BOOL LOG = NO;` to `YES` in order to enable logging.
+
+
+
+Feel free to browse the <a href="http://loganwright.github.io/Genome/#">Documentation</a> for more information.
