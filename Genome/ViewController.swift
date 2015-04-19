@@ -91,7 +91,7 @@ class GHEvent : NSObject, GenomeObject {
         var mapping: [String : String] = [:]
         mapping["identifier"] = "id"
         mapping["url"] = "url"
-        mapping["actor"] = "actor"
+        mapping["actor@GHUser"] = "actor"
         mapping["eventDescription"] = "event"
         mapping["commitId"] = "commit_id"
         mapping[gm_propertyMap("createdAt", ISO8601DateTransformer.self)] = "created_at"
@@ -101,7 +101,7 @@ class GHEvent : NSObject, GenomeObject {
 }
 
 class ISO8601DateTransformer : GenomeTransformer {
-    override class func transformFromJSONValue(fromVal: AnyObject) -> AnyObject? {
+    override class func transformFromJsonValue(fromVal: AnyObject) -> AnyObject? {
         if let dateString = fromVal as? String {
             return NSDate.dateWithISO8601String(dateString)
         } else {
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         
         let event = GHEvent.gm_mappedObjectWithJsonRepresentation(GITHUB_EVENT_EXAMPLE_JSON)
         println(event.gm_mappableDescription())
-        println(event.actor!.gm_mappableDescription())
+        println(event.actor?.gm_mappableDescription())
     }
 
     override func didReceiveMemoryWarning() {

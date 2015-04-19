@@ -35,14 +35,6 @@
 + (instancetype)gm_mappedObjectWithJsonRepresentation:(NSDictionary *)jsonRepresentation
                                     inResponseContext:(id)responseContext;
 
-/*!
- *  This is where the actual json mapping operation occurs.
- *
- *  @param jsonRepresentation the json representation to be modeled
- *  @param responseContext    the response context surrounding the modeling
- */
-- (void)gm_mapWithJSONRepresentation:(NSDictionary *)jsonRepresentation inResponseContext:(id)responseContext;
-
 #pragma mark - To Json
 
 /*!

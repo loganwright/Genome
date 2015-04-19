@@ -12,16 +12,14 @@
  */
 typedef NS_ENUM(NSUInteger, GenomeOperation){
     /*!
-     *  <#Description#>
+     *  Currently mapping from Json to GenomeObject
      */
     GenomeOperationFromJson,
     /*!
-     *  <#Description#>
+     *  Currently mapping from GenomeObject to Json
      */
     GenomeOperationToJson
 };
-
-@class NSManagedObjectContext;
 
 @protocol GenomeObject <NSObject>
 

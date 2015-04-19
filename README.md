@@ -215,7 +215,7 @@ class User : NSObject, GenomeObject {
 
 By specifying the countries json path as `address.country`, we fetch the value at that key path and our object would populate properly.
 
-##Object Properties
+###Object Properties
 
 It's not uncommon to receive nested Json like our GitHub example in Getting Started.  Let's refresh ourselves with the event model:
 
@@ -312,9 +312,9 @@ mapping[gm_propertyMap("actor", GHUser.self)] = @"actor";
 
 > This mapping strips the name space in Swift in its current implementation.  This means that if multiple libraries within your project conform to GenomeObject AND have the same class name, there may be problems.  If you want to use classes in the different namespaces, make sure to ONLY declare mappings explicitly via the `gm_propertyMap()` function.  Otherwise the system can't infer the mapping.
 
-##Genome Object Arrays
+###Object Arrays
 
-It was mentioned above that properties defined as conforming to `GenomeObject` are inferred and mapped at runtime.  Unfortunately, it's not possible to infer what model that array will hold via objective-c runtime.  In these situations, you'll need to specify what class the array should be mapped to.  It is suggested to use the `gm_propertyMap` function specified above.
+It was mentioned above that properties defined as conforming to `GenomeObject` are inferred and mapped at runtime.  Unfortunately, it's not possible to infer what model that array will hold via objective-c runtime.  In these situations, you'll need to specify what class the array should be mapped to.  If you're worried about it, it is suggested to use the `gm_propertyMap` function specified above.
 
 ######ObjC
 
@@ -322,8 +322,268 @@ It was mentioned above that properties defined as conforming to `GenomeObject` a
 mapping[gm_propertyMap(@"array", [MyModel class])] = @"jsonArrayPath";
 ```
 
+-- Or --
+
+```ObjC
+mapping[@"array@MyModel"] = @"jsonArrayPath";
+```
+
 ######Swift
 
 ```Swift
-mapping[gm_propertyMap(@"array", MyModel.self)] = "jsonArrayPath";
+mapping[gm_propertyMap("array", MyModel.self)] = "jsonArrayPath";
+```
+
+-- Or --
+
+```Swift
+mapping["array@MyModel"] = "jsonArrayPath";
+```
+
+###Transforming Values
+
+Quite often when receiving Json there are values we'd like to transform.  Some common examples of this are converting an `ISO8601` string to an `NSDate`, or a Hex String to a `UIColor`.  In Genome, this is done by creating classes that conform to `GenomeTransformer`.  Let's go back to our event model to look at an example.  Here's a refresher of the raw json:
+
+```
+[
+  {
+    "id": 1,
+    "url": "https://api.github.com/repos/octocat/Hello-World/issues/events/1",
+    "actor": {
+      // ... actor values
+    },
+    "event": "closed",
+    "commit_id": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "created_at": "2011-04-14T16:00:49Z"
+  }
+]
+```
+
+As we can see, `created_at` corresponds to an `ISO8601` date format.  It would be nice if we could make a transformer to convert these strings to an NSDate in a way that can easily be used across all of our models needing conversion.  Look at the <a href="https://github.com/LoganWright/Genome#genome-transformer">Genome Transformer</a> section below, or check the <a href="http://loganwright.github.io/Genome/Classes/GenomeTransformer/index.html#//apple_ref/occ/cl/GenomeTransformer">documentation</a>
+
+###Specialized Mapping
+
+If you need a different mapping depending on whether or not the operation is from or to json, you can override `mappingForOperation:` instead.  This allows greater flexibility in defining your mapping.
+
+##Default Properties
+
+If genome finds `nil` or `NSNull` for a given Json key path, you can use this to define a default value that should exist.  It is defined through the following syntax:
+
+```
+defaults["<#propertyName#>"] = "<#defaultValue#>"
+```
+
+
+#Genome Transformer
+
+The transformer is a class designed to make transforming values from one type to another easy to implement without repeating a lot of code across our models.  We will demonstrate how to convert a date string to an `NSDate`; however, you can override this method anytime you find a situation where the mapping's current implementation is not practical.
+
+> Note: No mapping operations will occur if a transformer is provided.  This means that whatever you return in a transformer will be set directly to the property (assuming non-null).  This means if your transformation is dependent on subsequent mappings, these will need to be called within the transformer.
+
+##Simple Transform
+
+Let's look at an extremely basic implementation of a `GenomeTransformer`.
+
+######ObjC
+
+`ISO8601DateTransformer.h`
+
+```ObjC
+@interface ISO8601DateTransformer : GenomeTransformer
+@end
+```
+
+`ISO8601DateTransformer.m`
+
+```ObjC
+@implementation ISO8601DateTransformer
+
++ (id)transformFromJsonValue:(id)fromVal {
+  return [NSDate dateWithISO8601String:fromVal];
+}
+
+@end
+```
+
+######Swift
+
+```Swift
+class ISO8601DateTransformer : GenomeTransformer {
+    override class func transformFromJsonValue(fromVal: AnyObject) -> AnyObject? {
+        if let dateString = fromVal as? String {
+            return NSDate.dateWithISO8601String(dateString)
+        } else {
+            return nil
+        }
+    }
+}
+```
+
+This would now replace or `GHEvent` object so that it looks like this:
+
+######ObjC
+
+```ObjC
+@implementation GHEvent
+
++ (NSDictionary *)mapping {
+      // other mappings
+      mapping[@"createdAt@ISO8601DateTransformer"] = @"created_at";
+      return mapping;
+}
+
+@end
+```
+
+######Swift
+
+```Swift
+class GHEvent : NSObject, GenomeObject {
+
+    // ... other properties
+    var createdAt: NSDate?
+
+    class func mapping() -> [NSObject : AnyObject]! {
+        var mapping: [String : String] = [:]
+        // ... other mappings
+        mapping["createdAt@ISO8601DateTransformer"] = "created_at"
+        return mapping
+    }
+
+}
+```
+
+> Remember that if you're worried about name spacing, you could use the propertyMap function like so: `mapping[gm_propertyMap("createdAt", ISO8601DateTransformer.self)]`
+
+####Warning
+
+You'll notice that our transformers are declared with the same mapping syntax we use to specify types for an object property.  These are not to be used together, and a transformer always takes precedence.  It is assumed that if you need to call a transformer that will eventually result in a mapping, you will need to call the mapping operation manually within the transformer using: `gm_mappedObjectWithJsonRepresentation:` for objects and `gm_mapToGenomeObjectClass:` for arrays respectively.
+
+##Back To Json
+
+Sometimes we'll need to convert our object back to Json.  If that's the case, you'll also want to provide a reverse transformer by overriding `transformToJsonValue:`.  If we wanted to convert our `NSDate` back to an ISO8601 date string above, our full date string transformer would look like this:
+
+######ObjC
+
+```ObjC
+@implementation ISO8601DateTransformer
+
++ (id)transformFromJsonValue:(id)fromVal {
+  return [NSDate dateWithISO8601String:fromVal];
+}
+
++ (id)transformToJsonValue:(id)fromVal {
+  return [(NSDate *)fromVal iso8601String];
+}
+
+@end
+```
+
+######Swift
+
+```Swift
+class ISO8601DateTransformer : GenomeTransformer {
+    override class func transformFromJsonValue(fromVal: AnyObject) -> AnyObject? {
+        if let dateString = fromVal as? String {
+            return NSDate.dateWithISO8601String(dateString)
+        } else {
+            return nil
+        }
+    }
+    override class func transformToJSONValue(fromVal: AnyObject) -> AnyObject? {
+        if let date = fromVal as? NSDate {
+            return date.iso8601String
+        } else {
+            return nil
+        }
+    }
+}
+```
+
+##Response Context
+
+For advanced or specialized transformer behavior, we provide an additional hook when parsing from json.  This takes the form of `transformFromJsonValue:inResponseContext:` and it passes in the greatest context initialized.  This means that when a property is being initialized, it can have access to the greater context.
+
+#Genome Mapping
+
+##Initialization
+
+By default, genome will call `alloc] init];` on an object before mapping the Json to it.  In some situations, particularly when interfacing with core data, a more specific initialization is required.  In these situations, you can override `gm_newInstance`.
+
+> Note: This will happen BEFORE the object is mapped.
+
+####With Representation
+
+Sometimes you might need access to the surrounding Json being used to initialize, if that's the case, you can override `gm_newInstanceForJsonRepresentation:`.
+
+> Note:  Again, this will happen BEFORE the object is mapped and you should not override this method to do the entirety of the mapping.
+
+####Response Context
+
+If you're parsing a large Json response, sub-objects will receive the global response context for specialized behavior.  You can also access this response context during initialization.
+
+> Note:  Again, this will happen BEFORE the object is mapped and you should not override this method to do the entirety of the mapping. Yes, I realize the redundancy, but sometimes people skip along and it's helpful to repeat oneself.
+
+##Mapped Objects
+
+To initialize an object with a Json Representation, you should use the following methods.
+
+###Individual Objects
+
+An individual object is mapped using `gm_mappedObjectWithJsonRepresentation:`.  You can call it like so once your model is properly declared:
+
+######ObjC
+
+```ObjC
+GHEvent *event = [GHEvent gm_mappedObjectWithJsonRepresentation:eventJson];
+```
+
+######Swift
+
+```Swift
+let event = GHEvent.gm_mappedObjectWithJsonRepresentation(eventJson);
+```
+
+To convert these objects back to Json, you can use the following:
+
+######ObjC
+
+```ObjC
+NSDictionary *eventJson = [event gm_jsonRepresentation];
+```
+
+######Swift
+
+```Swift
+let eventJson: [NSObject : AnyObject] = event.gm_jsonRepresentation()
+```
+
+###Arrays
+
+For arrays, you should use the methods declared in `NSArray+GenomeMapping.h`. For mapping from Json, you should use `gm_mapToGenomeObjectClass` and pass the class to map each object to:
+
+######ObjC
+
+```ObjC
+NSArray *events = [eventsJsonArray gm_mapToGenomeObjectClass:[GHEvent class]];
+```
+
+######Swift
+
+```Swift
+let events: [GHEvent] = eventsJsonArray.gm_mapToGenomeObjectClass(GHEvent.self) as? [GHEvent] ?? []
+```
+
+As with individual objects, arrays can be converted back to Json as well using `gm_mapToJSONRepresentation`:
+
+######ObjC
+
+```ObjC
+NSArray *eventsJson = [events gm_mapToJSONRepresentation];
+```
+
+######Swift
+
+```Swift
+let eventsJsonArray: [AnyObject] = (events as NSArray).gm_mapToJSONRepresentation()
 ```

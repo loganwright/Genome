@@ -89,7 +89,7 @@ static NSString * const GenomeSeparatorCharacter = @"@";
         
         // Transformer class takes precedence.
         if (transformerClass) {
-            associatedValue = [transformerClass transformFromJSONValue:associatedValue inResponseContext:responseContext];
+            associatedValue = [transformerClass transformFromJsonValue:associatedValue inResponseContext:responseContext];
         } else if (mappableClass) {
             if ([associatedValue isKindOfClass:[NSArray class]]) {
                 associatedValue = [associatedValue gm_mapToGenomeObjectClass:mappableClass inResponseContext:responseContext];

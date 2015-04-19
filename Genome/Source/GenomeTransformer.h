@@ -19,7 +19,7 @@
  *
  *  @return the value to set to the object
  */
-+ (id)transformFromJSONValue:(id)fromJSONValue;
++ (id)transformFromJsonValue:(id)fromJSONValue;
 
 /*!
  *  In some situations, particularly, side loaded responses, it is necessary to access the greater response context when parsing.
@@ -30,7 +30,7 @@
  *
  *  @return the value to set for the given property
  */
-+ (id)transformFromJSONValue:(id)fromJSONValue inResponseContext:(id)responseContext;
++ (id)transformFromJsonValue:(id)fromJSONValue inResponseContext:(id)responseContext;
 
 /*!
  *  When parsing back to json, occasionally values will need to be transformed.  use this to describe how

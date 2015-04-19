@@ -9,15 +9,15 @@
 
 @implementation GenomeTransformer
 
-+ (id)transformFromJSONValue:(id)fromVal {
++ (id)transformFromJsonValue:(id)fromVal {
     @throw [NSException exceptionWithName:@"Transform"
                                    reason:@"Must be overriden by subclass!"
                                  userInfo:nil];
 }
 
-+ (id)transformFromJSONValue:(id)fromJSONValue inResponseContext:(id)responseContext {
++ (id)transformFromJsonValue:(id)fromJsonValue inResponseContext:(id)responseContext {
     // If this is overridden, it should not run.  If it is not overridden, call standard transform in subclass.
-    return [self transformFromJSONValue:fromJSONValue];
+    return [self transformFromJsonValue:fromJsonValue];
 }
 
 + (id)transformToJSONValue:(id)fromVal {
