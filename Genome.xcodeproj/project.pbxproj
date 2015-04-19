@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8079A8721AE33A9900DF83FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8711AE33A9900DF83FA /* AppDelegate.swift */; };
+		8079A8741AE33A9900DF83FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8731AE33A9900DF83FA /* ViewController.swift */; };
+		8079A8771AE33A9900DF83FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8079A8751AE33A9900DF83FA /* Main.storyboard */; };
+		8079A8791AE33A9900DF83FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8079A8781AE33A9900DF83FA /* Images.xcassets */; };
+		8079A87C1AE33A9900DF83FA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8079A87A1AE33A9900DF83FA /* LaunchScreen.xib */; };
+		8079A8881AE33A9900DF83FA /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8871AE33A9900DF83FA /* GenomeTests.swift */; };
+		8079A89E1AE33AAB00DF83FA /* GenomeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8951AE33AAB00DF83FA /* GenomeTransformer.m */; };
+		8079A89F1AE33AAB00DF83FA /* NSArray+GenomeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8971AE33AAB00DF83FA /* NSArray+GenomeMapping.m */; };
+		8079A8A01AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079A8991AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m */; };
+		8079A8A11AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079A89B1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m */; };
+		8079A8A21AE33AAB00DF83FA /* NSObject+GenomeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079A89D1AE33AAB00DF83FA /* NSObject+GenomeMapping.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8079A8821AE33A9900DF83FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8079A8641AE33A9900DF83FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8079A86B1AE33A9900DF83FA;
+			remoteInfo = Genome;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8079A86C1AE33A9900DF83FA /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8079A8701AE33A9900DF83FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8079A8711AE33A9900DF83FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8079A8731AE33A9900DF83FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8079A8761AE33A9900DF83FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8079A8781AE33A9900DF83FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8079A87B1AE33A9900DF83FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8079A8811AE33A9900DF83FA /* GenomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8079A8861AE33A9900DF83FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8079A8871AE33A9900DF83FA /* GenomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenomeTests.swift; sourceTree = "<group>"; };
+		8079A8921AE33AAB00DF83FA /* Genome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genome.h; sourceTree = "<group>"; };
+		8079A8931AE33AAB00DF83FA /* GenomeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenomeObject.h; sourceTree = "<group>"; };
+		8079A8941AE33AAB00DF83FA /* GenomeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenomeTransformer.h; sourceTree = "<group>"; };
+		8079A8951AE33AAB00DF83FA /* GenomeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenomeTransformer.m; sourceTree = "<group>"; };
+		8079A8961AE33AAB00DF83FA /* NSArray+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GenomeMapping.h"; sourceTree = "<group>"; };
+		8079A8971AE33AAB00DF83FA /* NSArray+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GenomeMapping.m"; sourceTree = "<group>"; };
+		8079A8981AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+GenomeMapping.h"; sourceTree = "<group>"; };
+		8079A8991AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+GenomeMapping.m"; sourceTree = "<group>"; };
+		8079A89A1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GenomeIntrospection.h"; sourceTree = "<group>"; };
+		8079A89B1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GenomeIntrospection.m"; sourceTree = "<group>"; };
+		8079A89C1AE33AAB00DF83FA /* NSObject+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GenomeMapping.h"; sourceTree = "<group>"; };
+		8079A89D1AE33AAB00DF83FA /* NSObject+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GenomeMapping.m"; sourceTree = "<group>"; };
+		8079A8A31AE33AE100DF83FA /* Genome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Genome-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8079A8691AE33A9900DF83FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8079A87E1AE33A9900DF83FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8079A8631AE33A9900DF83FA = {
+			isa = PBXGroup;
+			children = (
+				8079A86E1AE33A9900DF83FA /* Genome */,
+				8079A8841AE33A9900DF83FA /* GenomeTests */,
+				8079A86D1AE33A9900DF83FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8079A86D1AE33A9900DF83FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8079A86C1AE33A9900DF83FA /* Genome.app */,
+				8079A8811AE33A9900DF83FA /* GenomeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8079A86E1AE33A9900DF83FA /* Genome */ = {
+			isa = PBXGroup;
+			children = (
+				8079A8911AE33AAB00DF83FA /* Source */,
+				8079A8711AE33A9900DF83FA /* AppDelegate.swift */,
+				8079A8731AE33A9900DF83FA /* ViewController.swift */,
+				8079A8751AE33A9900DF83FA /* Main.storyboard */,
+				8079A8781AE33A9900DF83FA /* Images.xcassets */,
+				8079A87A1AE33A9900DF83FA /* LaunchScreen.xib */,
+				8079A86F1AE33A9900DF83FA /* Supporting Files */,
+				8079A8A31AE33AE100DF83FA /* Genome-Bridging-Header.h */,
+			);
+			path = Genome;
+			sourceTree = "<group>";
+		};
+		8079A86F1AE33A9900DF83FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8079A8701AE33A9900DF83FA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8079A8841AE33A9900DF83FA /* GenomeTests */ = {
+			isa = PBXGroup;
+			children = (
+				8079A8871AE33A9900DF83FA /* GenomeTests.swift */,
+				8079A8851AE33A9900DF83FA /* Supporting Files */,
+			);
+			path = GenomeTests;
+			sourceTree = "<group>";
+		};
+		8079A8851AE33A9900DF83FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8079A8861AE33A9900DF83FA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8079A8911AE33AAB00DF83FA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8079A8921AE33AAB00DF83FA /* Genome.h */,
+				8079A8931AE33AAB00DF83FA /* GenomeObject.h */,
+				8079A8941AE33AAB00DF83FA /* GenomeTransformer.h */,
+				8079A8951AE33AAB00DF83FA /* GenomeTransformer.m */,
+				8079A8961AE33AAB00DF83FA /* NSArray+GenomeMapping.h */,
+				8079A8971AE33AAB00DF83FA /* NSArray+GenomeMapping.m */,
+				8079A8981AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.h */,
+				8079A8991AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m */,
+				8079A89A1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.h */,
+				8079A89B1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m */,
+				8079A89C1AE33AAB00DF83FA /* NSObject+GenomeMapping.h */,
+				8079A89D1AE33AAB00DF83FA /* NSObject+GenomeMapping.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8079A86B1AE33A9900DF83FA /* Genome */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8079A88B1AE33A9900DF83FA /* Build configuration list for PBXNativeTarget "Genome" */;
+			buildPhases = (
+				8079A8681AE33A9900DF83FA /* Sources */,
+				8079A8691AE33A9900DF83FA /* Frameworks */,
+				8079A86A1AE33A9900DF83FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Genome;
+			productName = Genome;
+			productReference = 8079A86C1AE33A9900DF83FA /* Genome.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8079A8801AE33A9900DF83FA /* GenomeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8079A88E1AE33A9900DF83FA /* Build configuration list for PBXNativeTarget "GenomeTests" */;
+			buildPhases = (
+				8079A87D1AE33A9900DF83FA /* Sources */,
+				8079A87E1AE33A9900DF83FA /* Frameworks */,
+				8079A87F1AE33A9900DF83FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8079A8831AE33A9900DF83FA /* PBXTargetDependency */,
+			);
+			name = GenomeTests;
+			productName = GenomeTests;
+			productReference = 8079A8811AE33A9900DF83FA /* GenomeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8079A8641AE33A9900DF83FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = lowriDevs;
+				TargetAttributes = {
+					8079A86B1AE33A9900DF83FA = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					8079A8801AE33A9900DF83FA = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 8079A86B1AE33A9900DF83FA;
+					};
+				};
+			};
+			buildConfigurationList = 8079A8671AE33A9900DF83FA /* Build configuration list for PBXProject "Genome" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8079A8631AE33A9900DF83FA;
+			productRefGroup = 8079A86D1AE33A9900DF83FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8079A86B1AE33A9900DF83FA /* Genome */,
+				8079A8801AE33A9900DF83FA /* GenomeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8079A86A1AE33A9900DF83FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8079A8771AE33A9900DF83FA /* Main.storyboard in Resources */,
+				8079A87C1AE33A9900DF83FA /* LaunchScreen.xib in Resources */,
+				8079A8791AE33A9900DF83FA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8079A87F1AE33A9900DF83FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8079A8681AE33A9900DF83FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8079A8A21AE33AAB00DF83FA /* NSObject+GenomeMapping.m in Sources */,
+				8079A89F1AE33AAB00DF83FA /* NSArray+GenomeMapping.m in Sources */,
+				8079A8741AE33A9900DF83FA /* ViewController.swift in Sources */,
+				8079A8A11AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m in Sources */,
+				8079A89E1AE33AAB00DF83FA /* GenomeTransformer.m in Sources */,
+				8079A8A01AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m in Sources */,
+				8079A8721AE33A9900DF83FA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8079A87D1AE33A9900DF83FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8079A8881AE33A9900DF83FA /* GenomeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8079A8831AE33A9900DF83FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8079A86B1AE33A9900DF83FA /* Genome */;
+			targetProxy = 8079A8821AE33A9900DF83FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8079A8751AE33A9900DF83FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8079A8761AE33A9900DF83FA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8079A87A1AE33A9900DF83FA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8079A87B1AE33A9900DF83FA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8079A8891AE33A9900DF83FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8079A88A1AE33A9900DF83FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8079A88C1AE33A9900DF83FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Genome/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Genome/Genome-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		8079A88D1AE33A9900DF83FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Genome/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Genome/Genome-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8079A88F1AE33A9900DF83FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GenomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Genome.app/Genome";
+			};
+			name = Debug;
+		};
+		8079A8901AE33A9900DF83FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GenomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Genome.app/Genome";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8079A8671AE33A9900DF83FA /* Build configuration list for PBXProject "Genome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8079A8891AE33A9900DF83FA /* Debug */,
+				8079A88A1AE33A9900DF83FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8079A88B1AE33A9900DF83FA /* Build configuration list for PBXNativeTarget "Genome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8079A88C1AE33A9900DF83FA /* Debug */,
+				8079A88D1AE33A9900DF83FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8079A88E1AE33A9900DF83FA /* Build configuration list for PBXNativeTarget "GenomeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8079A88F1AE33A9900DF83FA /* Debug */,
+				8079A8901AE33A9900DF83FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8079A8641AE33A9900DF83FA /* Project object */;
+}
