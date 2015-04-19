@@ -8,10 +8,11 @@ Genome is featured in a networking library that uses genome as its mapping core.
 
 ---
 
-<!-- [![CI Status](http://img.shields.io/travis/hunk/SlideMenu3D.svg?style=flat)](https://travis-ci.org/hunk/SlideMenu3D) -->
-[![Version](https://img.shields.io/cocoapods/v/Genome.svg?style=flat)](http://cocoapods.org/pods/Genome)
-[![License](https://img.shields.io/cocoapods/l/Genome.svg?style=flat)](http://cocoapods.org/pods/Genome)
-[![Platform](https://img.shields.io/cocoapods/p/Genome.svg?style=flat)](http://cocoapods.org/pods/Genome)
+<!-- [![CI Status](http://img.shields.io/travis/hunk/Genome.svg?style=flat-square)](https://travis-ci.org/hunk/Genome) -->
+[![Version](https://img.shields.io/cocoapods/v/Genome.svg?style=flat-square)](http://cocoapods.org/pods/Genome)
+[![License](https://img.shields.io/cocoapods/l/Genome.svg?style=flat-square)](http://cocoapods.org/pods/Genome)
+[![Platform](https://img.shields.io/cocoapods/p/Genome.svg?style=flat-square)](https://cocoapods.org/pods/Genome)
+![Platform](https://img.shields.io/badge/language-Swift%20%7C%20ObjC-green.svg?style=flat-square)
 
 ---
 
