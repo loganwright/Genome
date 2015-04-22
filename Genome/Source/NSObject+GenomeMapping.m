@@ -145,7 +145,7 @@ static NSString * const GenomeSeparatorCharacter = @"@";
         
         if (val) {
             if (transformerClass) {
-                val = [transformerClass transformToJSONValue:val];
+                val = [transformerClass transformToJsonValue:val];
             } else if ([val conformsToProtocol:@protocol(GenomeObject)]) {
                 val = [val gm_jsonRepresentation];
             } else if ([val isKindOfClass:[NSArray class]]) {

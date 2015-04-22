@@ -20,7 +20,7 @@
     return [self transformFromJsonValue:fromJsonValue];
 }
 
-+ (id)transformToJSONValue:(id)fromVal {
++ (id)transformToJsonValue:(id)fromVal {
     // Not all operations need to be reversed, if that's the case, just return the raw value.
     return fromVal;
 }

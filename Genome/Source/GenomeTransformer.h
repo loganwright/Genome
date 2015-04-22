@@ -39,6 +39,6 @@
  *
  *  @return the value to set as json
  */
-+ (id)transformToJSONValue:(id)fromVal;
++ (id)transformToJsonValue:(id)fromVal;
 
 @end

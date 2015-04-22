@@ -9,7 +9,7 @@ public class StringToUrlTransformer : GenomeTransformer {
             return nil
         }
     }
-    override public class func transformToJSONValue(fromVal: AnyObject) -> AnyObject? {
+    override public class func transformToJsonValue(fromVal: AnyObject) -> AnyObject? {
         if let urlString = fromVal as? String {
             return urlString
         } else if let url = fromVal as? NSURL {
@@ -28,7 +28,7 @@ public class ISO8601DateTransformer : GenomeTransformer {
             return nil
         }
     }
-    override public class func transformToJSONValue(fromVal: AnyObject) -> AnyObject? {
+    override public class func transformToJsonValue(fromVal: AnyObject) -> AnyObject? {
         if let date = fromVal as? NSDate {
             return date.iso8601String
         } else {
