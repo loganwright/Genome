@@ -36,29 +36,29 @@
 /* Begin PBXFileReference section */
 		8030FC8F1AE41702004803C2 /* GitHubClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubClasses.swift; path = Example/GitHubClasses.swift; sourceTree = "<group>"; };
 		8030FC911AE41737004803C2 /* GitHubTransformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubTransformers.swift; path = Example/GitHubTransformers.swift; sourceTree = "<group>"; };
-		8030FC951AE41D8E004803C2 /* GitHubExampleJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubExampleJson.swift; path = Example/GitHubExampleJson.swift; sourceTree = "<group>"; };
+		8030FC951AE41D8E004803C2 /* GitHubExampleJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = GitHubExampleJson.swift; path = Example/GitHubExampleJson.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8079A86C1AE33A9900DF83FA /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8079A8701AE33A9900DF83FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8079A8711AE33A9900DF83FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8079A8731AE33A9900DF83FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8079A8731AE33A9900DF83FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8079A8761AE33A9900DF83FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8079A8781AE33A9900DF83FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8079A87B1AE33A9900DF83FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8079A8811AE33A9900DF83FA /* GenomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8079A8861AE33A9900DF83FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8079A8871AE33A9900DF83FA /* GenomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenomeTests.swift; sourceTree = "<group>"; };
+		8079A8871AE33A9900DF83FA /* GenomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GenomeTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8079A8921AE33AAB00DF83FA /* Genome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genome.h; sourceTree = "<group>"; };
-		8079A8931AE33AAB00DF83FA /* GenomeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenomeObject.h; sourceTree = "<group>"; };
-		8079A8941AE33AAB00DF83FA /* GenomeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenomeTransformer.h; sourceTree = "<group>"; };
+		8079A8931AE33AAB00DF83FA /* GenomeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GenomeObject.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8079A8941AE33AAB00DF83FA /* GenomeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GenomeTransformer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8079A8951AE33AAB00DF83FA /* GenomeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenomeTransformer.m; sourceTree = "<group>"; };
-		8079A8961AE33AAB00DF83FA /* NSArray+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GenomeMapping.h"; sourceTree = "<group>"; };
-		8079A8971AE33AAB00DF83FA /* NSArray+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GenomeMapping.m"; sourceTree = "<group>"; };
+		8079A8961AE33AAB00DF83FA /* NSArray+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSArray+GenomeMapping.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8079A8971AE33AAB00DF83FA /* NSArray+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+GenomeMapping.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8079A8981AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+GenomeMapping.h"; sourceTree = "<group>"; };
 		8079A8991AE33AAB00DF83FA /* NSMutableDictionary+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+GenomeMapping.m"; sourceTree = "<group>"; };
 		8079A89A1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GenomeIntrospection.h"; sourceTree = "<group>"; };
 		8079A89B1AE33AAB00DF83FA /* NSObject+GenomeIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GenomeIntrospection.m"; sourceTree = "<group>"; };
-		8079A89C1AE33AAB00DF83FA /* NSObject+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GenomeMapping.h"; sourceTree = "<group>"; };
-		8079A89D1AE33AAB00DF83FA /* NSObject+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GenomeMapping.m"; sourceTree = "<group>"; };
+		8079A89C1AE33AAB00DF83FA /* NSObject+GenomeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSObject+GenomeMapping.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8079A89D1AE33AAB00DF83FA /* NSObject+GenomeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+GenomeMapping.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8079A8A31AE33AE100DF83FA /* Genome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Genome-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

@@ -26,7 +26,7 @@
     return [NSArray arrayWithArray:mapped];
 }
 
-- (NSArray *)gm_mapToJSONRepresentation {
+- (NSArray *)gm_mapToJsonRepresentation {
     NSMutableArray *jsonArray = [NSMutableArray array];
     for (id ob in self) {
         if ([ob conformsToProtocol:@protocol(GenomeObject)]) {
@@ -45,7 +45,7 @@
  */
 - (void)assertClassIsMappable:(Class)classForMap {
     NSAssert([classForMap conformsToProtocol:@protocol(GenomeObject)],
-             @"This method requires a class that conforms to JSONMappableObject!");
+             @"This method requires a class that conforms to GenomeObject!");
 }
 
 @end

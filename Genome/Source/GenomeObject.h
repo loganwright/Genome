@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, GenomeOperation){
 @protocol GenomeObject <NSObject>
 
 /*!
- *  How to map the object with the following format ['propertyName' : 'associatedJSONKeyPath'].  Also supports key paths, ie: ['property.path' : 'associatedJSONKeyPath'].  To map to arrays of a class, use ['arrayPropertyName@JPTypeOfClass' : 'associatedJSONKeyPath'].
+ *  How to map the object with the following format ['propertyName' : 'associatedJsonKeyPath'].  Also supports key paths, ie: ['property.path' : 'associatedJsonKeyPath'].  To map to arrays of a class, use ['arrayPropertyName@JPTypeOfClass' : 'associatedJsonKeyPath'].
  *
  *  @return the mapping defined by the user
  */

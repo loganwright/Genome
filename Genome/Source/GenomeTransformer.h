@@ -19,18 +19,18 @@
  *
  *  @return the value to set to the object
  */
-+ (id)transformFromJsonValue:(id)fromJSONValue;
++ (id)transformFromJsonValue:(id)fromJsonValue;
 
 /*!
  *  In some situations, particularly, side loaded responses, it is necessary to access the greater response context when parsing.
  *  Use this context to pass the initial response for aided parsing
  *
- *  @param fromJSONValue   the value received from Json
+ *  @param fromJsonValue   the value received from Json
  *  @param responseContext the raw received from the response
  *
  *  @return the value to set for the given property
  */
-+ (id)transformFromJsonValue:(id)fromJSONValue inResponseContext:(id)responseContext;
++ (id)transformFromJsonValue:(id)fromJsonValue inResponseContext:(id)responseContext;
 
 /*!
  *  When parsing back to json, occasionally values will need to be transformed.  use this to describe how

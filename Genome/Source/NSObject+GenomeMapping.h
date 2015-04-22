@@ -17,20 +17,20 @@
 #pragma mark - Mapping
 
 /*!
- *  The initializer used to map from a Json dictionary.  If initializing objects in a Json Array, use `[NSArray mapToJSONMappableClass:]`
+ *  The initializer used to map from a Json dictionary.  If initializing objects in a Json Array, use `[NSArray gm_mapToGenomeObjectClass:]`
  *
  *  @param jsonRepresentation ...
  *
- *  @return an object initialized with the values of the JSON Representation
+ *  @return an object initialized with the values of the Json Representation
  */
 + (instancetype)gm_mappedObjectWithJsonRepresentation:(NSDictionary *)jsonRepresentation;
 
 /*!
- *  The initializer used to map from a Json dictionary.  If initializing objects in a Json Array, use `[NSArray mapToJSONMappableClass:]`
+ *  The initializer used to map from a Json dictionary.  If initializing objects in a Json Array, use `[NSArray mapToGenomeObjectClass:]`
  *
  *  @param jsonRepresentation ...
  *
- *  @return an object initialized with the values of the JSON Representation
+ *  @return an object initialized with the values of the Json Representation
  */
 + (instancetype)gm_mappedObjectWithJsonRepresentation:(NSDictionary *)jsonRepresentation
                                     inResponseContext:(id)responseContext;

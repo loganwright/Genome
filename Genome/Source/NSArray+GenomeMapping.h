@@ -40,6 +40,6 @@
  *
  *  @return an array with json representations of genome objects
  */
-- (NSArray *)gm_mapToJSONRepresentation;
+- (NSArray *)gm_mapToJsonRepresentation;
 
 @end

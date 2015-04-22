@@ -27,18 +27,18 @@ static NSString * const GenomeSeparatorCharacter = @"@";
 
 + (instancetype)gm_mappedObjectWithJsonRepresentation:(NSDictionary *)jsonRepresentation inResponseContext:(id)responseContext {
     id new = [self gm_newInstanceForJsonRepresentation:jsonRepresentation inResponseContext:responseContext];
-    [new gm_mapWithJSONRepresentation:jsonRepresentation inResponseContext:responseContext];
+    [new gm_mapWithJsonRepresentation:jsonRepresentation inResponseContext:responseContext];
     return new;
 }
 
 #pragma mark - Mapping: From Json
 
-- (void)gm_mapWithJSONRepresentation:(NSDictionary *)jsonRepresentation inResponseContext:(id)responseContext {
+- (void)gm_mapWithJsonRepresentation:(NSDictionary *)jsonRepresentation inResponseContext:(id)responseContext {
     NSDictionary *mapping = [[self class] mappingForOperation:GenomeOperationFromJson];
     NSDictionary *defaults = [[self class] defaultPropertyValues];
     for (NSString *propertyNameKey in mapping.allKeys) {
-        NSString *associatedJSONKeyPath = mapping[propertyNameKey];
-        id associatedValue = [jsonRepresentation valueForKeyPath:associatedJSONKeyPath];
+        NSString *associatedJsonKeyPath = mapping[propertyNameKey];
+        id associatedValue = [jsonRepresentation valueForKeyPath:associatedJsonKeyPath];
         NSArray *components = [propertyNameKey componentsSeparatedByString:GenomeSeparatorCharacter];
         NSString *propertyNamePath = components.firstObject;
         
@@ -149,7 +149,7 @@ static NSString * const GenomeSeparatorCharacter = @"@";
             } else if ([val conformsToProtocol:@protocol(GenomeObject)]) {
                 val = [val gm_jsonRepresentation];
             } else if ([val isKindOfClass:[NSArray class]]) {
-                val = [val gm_mapToJSONRepresentation];
+                val = [val gm_mapToJsonRepresentation];
             }
             
             if (val) {
@@ -196,7 +196,7 @@ static NSString * const GenomeSeparatorCharacter = @"@";
 #pragma mark - Mapping Overrides
 
 /*
- These are declared to allow for calls in this class.  These will be overridden in JSONMappableObject protocol objects
+ These are declared to allow for calls in this class.  These will be overridden in GenomeObject protocol objects
  */
 
 + (NSDictionary *)mapping {
