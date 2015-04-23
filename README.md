@@ -1,6 +1,6 @@
 #Genome
 
-Welcome to Genome!  This library is meant to simplify the process of mapping JSON to models by providing a clean and flexible api that binds mapping to their models.
+Welcome to Genome!  This library is meant to simplify the process of mapping JSON to models by providing a clean and flexible API that binds mapping to their models.
 
 ###Polymer
 
@@ -77,7 +77,7 @@ Podfile: `pod 'Genome'`
 
 #Getting Started
 
-Let's look at an example of some Json that we might want to model.  Here's what a response from the GitHub API looks like for a `GitHubEvent`.
+Let's look at an example of some JSON that we might want to model.  Here's what a response from the GitHub API looks like for a `GitHubEvent`.
 
 ```
 [
@@ -130,7 +130,7 @@ class GHEvent : NSObject, GenomeObject {
 }
 ```
 
-The question is how do we get that json parsed into our models, well that's where we define a mapping like so:
+The question is: How do we get that JSON parsed into our models?  Well, that's where we define a mapping like so:
 
 ######ObjC
 
@@ -212,13 +212,13 @@ mapping[@"<#propertyKeyPath#>"] = @"<#associatedJsonKeyPath#>";
 mapping["<#propertyKeyPath#>"] = "<#associatedJsonKeyPath#>"
 ```
 
-If you're unfamiliar with keyPath syntax, you can read about Key-Value Coding <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html">here</a>.  At it's simplist, it can be thought of as:
+If you're unfamiliar with keyPath syntax, you can read about Key-Value Coding <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html">here</a>.  At it's simplest, it can be thought of as:
 
 ```
 mapping["propertyName"] = "associatedJsonKey"
 ```
 
-However, by utilizing key paths, we can create more complex behavior.  For example, if we have a json response that looks like this:
+However, by utilizing key paths, we can create more complex behavior.  For example, if we have a JSON response that looks like this:
 
 ```
 [
@@ -247,7 +247,7 @@ class User : NSObject, GenomeObject {
 }
 ```
 
-By specifying the countries json path as `address.country`, we fetch the value at that key path and our object would populate properly.
+By specifying the countries JSON path as `address.country`, we fetch the value at that key path and our object would populate properly.
 
 ###Object Properties
 
@@ -352,7 +352,7 @@ mapping["array@MyModel"] = "jsonArrayPath";
 
 ###Transforming Values
 
-Quite often when receiving Json there are values we'd like to transform.  Some common examples of this are converting an `ISO8601` string to an `NSDate`, or a Hex String to a `UIColor`.  In Genome, this is done by creating classes that conform to `GenomeTransformer`.  Let's go back to our event model to look at an example.  Here's a refresher of the raw json:
+Quite often when receiving Json there are values we'd like to transform.  Some common examples of this are converting an `ISO8601` string to an `NSDate`, or a Hex String to a `UIColor`.  In Genome, this is done by creating classes that conform to `GenomeTransformer`.  Let's go back to our event model to look at an example.  Here's a refresher of the raw JSON:
 
 ```
 [
@@ -390,7 +390,7 @@ The transformer is a class designed to make transforming values from one type to
 
 > Note: No mapping operations will occur if a transformer is provided.  This means that whatever you return in a transformer will be set directly to the property (assuming non-null).  This means if your transformation is dependent on subsequent mappings, these will need to be called within the transformer.
 
-##From Json
+##From JSON
 
 Let's look at an extremely basic implementation of a `GenomeTransformer`.
 
@@ -512,13 +512,13 @@ class ISO8601DateTransformer : GenomeTransformer {
 
 ##Response Context
 
-For advanced or specialized transformer behavior, we provide an additional hook when parsing from json.  This takes the form of `transformFromJsonValue:inResponseContext:` and it passes in the greatest context initialized.  This means that when a property is being initialized, it can have access to the greater context.
+For advanced or specialized transformer behavior, we provide an additional hook when parsing from JSON.  This takes the form of `transformFromJsonValue:inResponseContext:` and it passes in the greatest context initialized.  This means that when a property is being initialized, it can have access to the greater context.
 
 #Genome Mapping
 
 ##Initialization
 
-By default, genome will call `alloc] init];` on an object before mapping the Json to it.  In some situations, particularly when interfacing with core data, a more specific initialization is required.  In these situations, you can override `gm_newInstance`.
+By default, genome will call `alloc] init];` on an object before mapping the JSON to it.  In some situations, particularly when interfacing with core data, a more specific initialization is required.  In these situations, you can override `gm_newInstance`.
 
 > Note: This will happen BEFORE the object is mapped.
 
@@ -530,13 +530,13 @@ Sometimes you might need access to the surrounding Json being used to initialize
 
 ####Response Context
 
-If you're parsing a large Json response, sub-objects will receive the global response context for specialized behavior.  You can also access this response context during initialization.
+If you're parsing a large JSON response, sub-objects will receive the global response context for specialized behavior.  You can also access this response context during initialization.
 
 > Note:  Again, this will happen BEFORE the object is mapped and you should not override this method to do the entirety of the mapping. Yes, I realize the redundancy, but sometimes people skip along and it's helpful to repeat oneself.
 
 ##Mapped Objects
 
-To initialize an object with a Json Representation, you should use the following methods.
+To initialize an object with a JSON Representation, you should use the following methods.
 
 ###Individual Objects
 
@@ -554,7 +554,7 @@ GHEvent *event = [GHEvent gm_mappedObjectWithJsonRepresentation:eventJson];
 let event = GHEvent.gm_mappedObjectWithJsonRepresentation(eventJson);
 ```
 
-To convert these objects back to Json, you can use the following:
+To convert these objects back to JSON, you can use the following:
 
 ######ObjC
 
@@ -570,7 +570,7 @@ let eventJson: [NSObject : AnyObject] = event.gm_jsonRepresentation()
 
 ###Arrays
 
-For arrays, you should use the methods declared in `NSArray+GenomeMapping.h`. For mapping from Json, you should use `gm_mapToGenomeObjectClass` and pass the class to map each object to:
+For arrays, you should use the methods declared in `NSArray+GenomeMapping.h`. For mapping from JSON, you should use `gm_mapToGenomeObjectClass` and pass the class to map each object to:
 
 ######ObjC
 
