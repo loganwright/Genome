@@ -623,3 +623,7 @@ In `NSObject+GenomeMapping.m` set the flag on `static BOOL LOG = NO;` to `YES` i
 
 
 Feel free to browse the <a href="http://loganwright.github.io/Genome/#">Documentation</a> for more information.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/LoganWright/genome/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
