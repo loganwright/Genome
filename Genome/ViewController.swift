@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         let event = GHEvent.gm_mappedObjectWithJsonRepresentation(GITHUB_EVENT_EXAMPLE_JSON)
         println(event.gm_mappableDescription())
         println(event.actor?.gm_mappableDescription())
-        println("\n\nYou can find more by runnint `GenomeTests` with CMD + U\n\n")
+        println("\n\nYou can find more by running `GenomeTests` with CMD + U\n\n")
     }
 
     override func didReceiveMemoryWarning() {
