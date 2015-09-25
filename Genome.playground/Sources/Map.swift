@@ -1,0 +1,112 @@
+//
+//  Map.swift
+//  Genome
+//
+//  Created by Logan Wright on 9/19/15.
+//  Copyright © 2015 lowriDevs. All rights reserved.
+//
+
+import Foundation
+
+public enum MappingError : ErrorType {
+    case UnableToMap(String)
+    case UnexpectedOperationType(String)
+}
+
+// MARK: Map
+
+/// This class is designed to serve as an adaptor between the raw json and the values.  In this way we can interject behavior that assists in mapping between the two.
+public final class Map {
+    
+    // MARK: Map Type
+    
+    /**
+    The representative type of mapping operation
+    
+    - ToJson:   transforming the object into a json dictionary representation
+    - FromJson: transforming a json dictionary representation into an object
+    */
+    public enum OperationType {
+        case ToJson
+        case FromJson
+    }
+    
+    /// The type of operation for the current map
+    public /*internal(set)*/ var type: OperationType = .FromJson
+    
+    /// If the mapping operation were converted to JSON (Type.ToJson)
+    public private(set) var toJson: JSON = [:]
+    
+    /// The backing JSON being mapped
+    public let json: JSON
+    
+    /// The greater context in which the mapping takes place
+    public let context: JSON
+    
+    // MARK: Private
+    
+    /// The key to link from (for json)
+    internal private(set) var linkFrom = ""
+    
+    /// The key to link to (array of objects in `context` at this key)
+    internal private(set) var linkTo = ""
+    
+    /// The last key accessed -- Used to reverse JSON Operations
+    internal private(set) var lastKeyPath = ""
+    
+    /// The last retrieved result.  Used in operators to set value
+    internal private(set) var result: AnyObject?
+    
+    // MARK: Initialization
+    
+    /**
+    The designated initializer
+    
+    :param: json    the json that will be used in the mapping
+    :param: context the context that will be used in the mapping
+    
+    :returns: an initialized map
+    */
+    public init(json: JSON = [:], context: JSON = [:]) {
+        self.json = json
+        self.context = context
+    }
+    
+    // MARK: Subscript
+    
+    /**
+    Basic subscripting
+    
+    :param: keyPath the keypath to use when getting the value from the backing json
+    
+    :returns: returns an instance of self that can be passed to the mappable operator
+    */
+    public subscript(keyPath: String) -> Map {
+        lastKeyPath = keyPath
+        result = json.gnm_valueForKeyPath(keyPath)
+        return self
+    }
+    
+    // MARK: To JSON
+    
+    /**
+    Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Json Dict and pass a cast to 'AnyObject'
+    
+    :param: any the value to set to the json for the value of the last key
+    */
+    internal func setToLastKey<T>(any: T?) throws -> Void {
+        if let a = any as? AnyObject {
+            toJson.gnm_setValue(a, forKeyPath: lastKeyPath)
+        } else if any != nil {
+            throw MappingError.UnableToMap("Unable to set: \(any!) to key: \(lastKeyPath) because type: \(any!.dynamicType) can't be cast to type AnyObject")
+        }
+    }
+    
+    internal func setToLastKey<T : MappableObject>(any: T?) throws -> Void {
+        try setToLastKey(any?.jsonRepresentation())
+    }
+    
+    internal func setToLastKey<T : MappableObject>(any: [T]?) throws -> Void {
+        try setToLastKey(any?.jsonRepresentation())
+    }
+}

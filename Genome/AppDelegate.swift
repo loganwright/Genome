@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Genome
 //
-//  Created by Logan Wright on 4/18/15.
-//  Copyright (c) 2015 lowriDevs. All rights reserved.
+//  Created by Logan Wright on 6/27/15.
+//  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        print("\n\n****** RUN TESTS WITH CMD + U *******\n\n")
         return true
     }
 

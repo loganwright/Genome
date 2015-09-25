@@ -1,15 +1,15 @@
 //
-//  GenomeTests.swift
-//  GenomeTests
+//  DictionaryKeyPathTests.swift
+//  Genome
 //
-//  Created by Logan Wright on 9/25/15.
+//  Created by Logan Wright on 7/2/15.
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
 import XCTest
-@testable import Genome
+import Genome
 
-class GenomeTests: XCTestCase {
+class DictionaryKeyPathTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -22,13 +22,22 @@ class GenomeTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        var TestDictionary: [NSObject : AnyObject] = [
+            "one" : [
+                "two" : "Found me!"
+            ]
+        ]
+        
+        let value: String! = TestDictionary.gnm_valueForKeyPath("one.two")
+        XCTAssert(value == "Found me!")
+        TestDictionary.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
+        let setVal: String! = TestDictionary.gnm_valueForKeyPath("path.to.new.value")
+        XCTAssert(setVal == "Hello!")
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measureBlock() {
             // Put the code you want to measure the time of here.
         }
     }
