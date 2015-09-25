@@ -8,36 +8,36 @@ prefix operator *? {}
 // MARK: Optional Casters
 
 public prefix func *? <T>(map: Map) throws -> T? {
-    assert(map.type == .FromJson)
     guard
-        let _ = map.result
+        try enforceMapType(map, expectedType: .FromJson),
+        let _ = map.result /// We want to ensure that the result is non nil before we attempt to map.  nil is ok in optionals
         else {
             return nil
-    }
+        }
     
     let nonOptional: T = try *map
     return nonOptional
 }
 
 public prefix func *? <T: MappableObject>(map: Map) throws -> T? {
-    assert(map.type == .FromJson)
     guard
-        let _ = map.result
+        try enforceMapType(map, expectedType: .FromJson),
+        let _ = map.result /// We want to ensure that the result is non nil before we attempt to map.  nil is ok in optionals
         else {
             return nil
-    }
+        }
     
     let nonOptional: T = try *map
     return nonOptional
 }
 
 public prefix func *? <T: MappableObject>(map: Map) throws -> [T]? {
-    assert(map.type == .FromJson)
     guard
-        let _ = map.result
+        try enforceMapType(map, expectedType: .FromJson),
+        let _ = map.result /// We want to ensure that the result is non nil before we attempt to map.  nil is ok in optionals
         else {
             return nil
-    }
+        }
     
     let nonOptional: [T] = try *map
     return nonOptional
@@ -46,8 +46,8 @@ public prefix func *? <T: MappableObject>(map: Map) throws -> [T]? {
 // MARK: Non-Optional Casters
 
 public prefix func * <T>(map: Map) throws -> T! {
-    assert(map.type == .FromJson)
     guard
+        try enforceMapType(map, expectedType: .FromJson),
         let result = map.result
         else {
             throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
@@ -62,8 +62,8 @@ public prefix func * <T>(map: Map) throws -> T! {
 }
 
 public prefix func * <T: MappableObject>(map: Map) throws -> T! {
-    assert(map.type == .FromJson)
     guard
+        try enforceMapType(map, expectedType: .FromJson),
         let result = map.result
         else {
             throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
@@ -78,8 +78,8 @@ public prefix func * <T: MappableObject>(map: Map) throws -> T! {
 }
 
 public prefix func * <T: MappableObject>(map: Map) throws -> [T]! {
-    assert(map.type == .FromJson)
     guard
+        try enforceMapType(map, expectedType: .FromJson),
         let result = map.result
         else {
             throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
@@ -101,5 +101,13 @@ public prefix func * <T: MappableObject>(map: Map) throws -> [T]! {
 // MARK: Transformables
 
 public prefix func * <JsonInputType, T>(transformer: FromJsonTransformer<JsonInputType, T>) throws -> T {
+    try enforceMapType(transformer.map, expectedType: .FromJson)
     return try transformer.transformValue(transformer.map.result)
+}
+
+internal func enforceMapType(map: Map, expectedType: Map.OperationType) throws -> Bool {
+    if map.type != expectedType {
+        throw logError(MappingError.UnexpectedOperationType("Received mapping operation of type: \(map.type) expected: \(expectedType)"))
+    }
+    return true
 }
