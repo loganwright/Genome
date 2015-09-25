@@ -50,13 +50,14 @@ public prefix func * <T>(map: Map) throws -> T! {
     guard
         let result = map.result
         else {
-            throw SequenceError.FoundNil("Key: \(map.lastKeyPath)")
+            throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
         }
     
     if let value = result as? T {
         return value
     } else {
-        throw SequenceError.UnexpectedValue("\nFound: \(result) \nof type: \(result.dynamicType) \nexpected: \(T.self) \nforKeyPath: \(map.lastKeyPath)\n\n")
+        let error = SequenceError.UnexpectedValue("Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(map.lastKeyPath) ObjectType: \(T!.self)")
+        throw logError(error)
     }
 }
 
@@ -65,13 +66,14 @@ public prefix func * <T: MappableObject>(map: Map) throws -> T! {
     guard
         let result = map.result
         else {
-            throw SequenceError.FoundNil("Key: \(map.lastKeyPath)")
+            throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
         }
     
     if let json = result as? JSON {
         return try T.mappedInstance(json, context: map.context)
     } else {
-        throw SequenceError.UnexpectedValue("\nFound: \(result) \nof type: \(result.dynamicType) \nexpected: \(T.self) \nforKeyPath: \(map.lastKeyPath)\n\n")
+        let error = SequenceError.UnexpectedValue("Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(map.lastKeyPath) ObjectType: \([T].self)")
+        throw logError(error)
     }
 }
 
@@ -80,7 +82,7 @@ public prefix func * <T: MappableObject>(map: Map) throws -> [T]! {
     guard
         let result = map.result
         else {
-            throw SequenceError.FoundNil("Key: \(map.lastKeyPath)")
+            throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
         }
     
     let jsonArray: [JSON]
@@ -89,7 +91,8 @@ public prefix func * <T: MappableObject>(map: Map) throws -> [T]! {
     } else if let j = result as? JSON {
         jsonArray = [j]
     } else {
-        throw SequenceError.UnexpectedValue("\nFound: \(result) \nof type: \(result.dynamicType) \nexpected: \(T.self) \nforKeyPath: \(map.lastKeyPath)\n\n")
+        let error = SequenceError.UnexpectedValue("Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(map.lastKeyPath) ObjectType: \([T].self)")
+        throw logError(error)
     }
     
     return try [T].mappedInstance(jsonArray, context: map.context)

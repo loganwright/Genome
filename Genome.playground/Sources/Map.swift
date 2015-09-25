@@ -8,11 +8,6 @@
 
 import Foundation
 
-public enum MappingError : ErrorType {
-    case UnableToMap(String)
-    case UnexpectedOperationType(String)
-}
-
 // MARK: Map
 
 /// This class is designed to serve as an adaptor between the raw json and the values.  In this way we can interject behavior that assists in mapping between the two.
@@ -94,19 +89,20 @@ public final class Map {
     
     :param: any the value to set to the json for the value of the last key
     */
-    internal func setToLastKey<T>(any: T?) throws -> Void {
+    internal func setToLastKey<T>(any: T?) throws {
         if let a = any as? AnyObject {
             toJson.gnm_setValue(a, forKeyPath: lastKeyPath)
         } else if any != nil {
-            throw MappingError.UnableToMap("Unable to set: \(any!) to key: \(lastKeyPath) because type: \(any!.dynamicType) can't be cast to type AnyObject")
+            let error = MappingError.UnableToMap("Unable to convert: \(any!) forKeyPath: \(lastKeyPath) to JSON because type: \(any!.dynamicType) can't be cast to type AnyObject")
+            throw logError(error)
         }
     }
     
-    internal func setToLastKey<T : MappableObject>(any: T?) throws -> Void {
+    internal func setToLastKey<T : MappableObject>(any: T?) throws {
         try setToLastKey(any?.jsonRepresentation())
     }
     
-    internal func setToLastKey<T : MappableObject>(any: [T]?) throws -> Void {
+    internal func setToLastKey<T : MappableObject>(any: [T]?) throws {
         try setToLastKey(any?.jsonRepresentation())
     }
 }

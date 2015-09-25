@@ -27,6 +27,8 @@
 		8052E7A91BB58C96004E08F6 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A11BB58C96004E08F6 /* SettableOperator.swift */; settings = {ASSET_TAGS = (); }; };
 		8052E7AA1BB58C96004E08F6 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A21BB58C96004E08F6 /* StandardOperators.swift */; settings = {ASSET_TAGS = (); }; };
 		8052E7AB1BB58C96004E08F6 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; settings = {ASSET_TAGS = (); }; };
+		80C3654D1BB5BE58006DE82E /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; settings = {ASSET_TAGS = (); }; };
+		80C3654F1BB5C279006DE82E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		8052E7A11BB58C96004E08F6 /* SettableOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettableOperator.swift; path = Genome.playground/Sources/SettableOperator.swift; sourceTree = SOURCE_ROOT; };
 		8052E7A21BB58C96004E08F6 /* StandardOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StandardOperators.swift; path = Genome.playground/Sources/StandardOperators.swift; sourceTree = SOURCE_ROOT; };
 		8052E7A31BB58C96004E08F6 /* Transformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformers.swift; path = Genome.playground/Sources/Transformers.swift; sourceTree = SOURCE_ROOT; };
+		80C3654C1BB5BE58006DE82E /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Genome.playground/Sources/Logging.swift; sourceTree = SOURCE_ROOT; };
+		80C3654E1BB5C279006DE82E /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Genome.playground/Sources/Errors.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */,
+				80C3654E1BB5C279006DE82E /* Errors.swift */,
+				80C3654C1BB5BE58006DE82E /* Logging.swift */,
 				8052E79D1BB58C96004E08F6 /* Initializers.swift */,
 				8052E79E1BB58C96004E08F6 /* JsonRepresentation.swift */,
 				8052E79F1BB58C96004E08F6 /* Map.swift */,
@@ -249,6 +255,8 @@
 				8052E7A51BB58C96004E08F6 /* Initializers.swift in Sources */,
 				8052E7A91BB58C96004E08F6 /* SettableOperator.swift in Sources */,
 				8052E7A61BB58C96004E08F6 /* JsonRepresentation.swift in Sources */,
+				80C3654D1BB5BE58006DE82E /* Logging.swift in Sources */,
+				80C3654F1BB5C279006DE82E /* Errors.swift in Sources */,
 				8052E7AB1BB58C96004E08F6 /* Transformers.swift in Sources */,
 				8052E7A81BB58C96004E08F6 /* Protocols.swift in Sources */,
 				8052E7AA1BB58C96004E08F6 /* StandardOperators.swift in Sources */,

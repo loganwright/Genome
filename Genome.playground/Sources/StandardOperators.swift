@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum SequenceError : ErrorType {
-    case FoundNil(String)
-    case UnexpectedValue(String)
-}
-
 // MARK: ToJson
 
 public func ~> <T>(reference: T!, map: Map) throws {

@@ -8,10 +8,6 @@
 
 import Foundation
 
-public enum TransformationError : ErrorType {
-    case UnexpectedInputType(String)
-}
-
 // MARK: Transformer Base
 
 public class Transformer<InputType, OutputType> {
@@ -27,7 +23,8 @@ public class Transformer<InputType, OutputType> {
         guard
             let input = value as? InputType
             else {
-                throw TransformationError.UnexpectedInputType("Unexpected input: \(value) of type: \(value.dynamicType) expected: \(InputType.self) for key: \(map.lastKeyPath)")
+                let error = TransformationError.UnexpectedInputType("Unexpected Input: \(value) ofType: \(value.dynamicType) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)")
+                throw logError(error)
         }
         
         return try transformer(input)
@@ -37,7 +34,8 @@ public class Transformer<InputType, OutputType> {
         guard
             let input = value as? InputType
             else {
-                throw TransformationError.UnexpectedInputType("Unexpected input: \(value) of type: \(value.dynamicType) expected: \(InputType.self) for key: \(map.lastKeyPath)")
+                let error = TransformationError.UnexpectedInputType("Unexpected Input: \(value) ofType: \(value.dynamicType) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)")
+                throw logError(error)
         }
         
         return try transformer(input)
