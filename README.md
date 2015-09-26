@@ -257,3 +257,143 @@ Nasa.fetchPictureOfTheDay { [weak self] result in
 ```
 
 Enjoy :)
+
+### Initialization Options
+
+One of the key components of this library is the ability to customize your objects initialization paradigm.  You can choose which protocol you'd like to conform to, or define your own if you'd like to, depending on your initialization requirements.
+
+The library provides three protocol options for you:
+
+>NOTE: Although each of these protocols defines a throwable initializer, you are not required to conform to this if your initializer won't throw.  This means that the requirement `init() throws` can be satisfied by `init()`. This applies to all throwable requirements.
+
+#### `BasicMappable`
+
+This protocol has the requirement:
+
+```Swift
+init() throws
+```
+
+This often applies to very simple objects that don't have any customization in the initializer that requires access to the `Map` object.
+
+Quick Sample:
+
+```Swift
+struct Book : BasicMappable {
+    var title = ""
+    var releaseYear = 0
+
+    mutating func sequence(map: Map) throws {
+        try title <~> map["title"]
+        try releaseYear <~> map["release_year"]
+            .transformFromJson { (input: String) in
+                return Int(input)!
+            }
+            .transformToJson {
+                return "\($0)"
+            }
+    }
+}
+```
+
+#### `StandardMappable`
+
+This protocol has the requirement:
+
+```Swift
+init(map: Map) throws
+```
+
+This applies to objects who may want to access the `Map` object during initialization.  This could be for a number of reasons, but most commonly it's to take advantage of `let` constant variables.
+
+Here's how our `Book` object might look with `StandardMappable` conformance.
+
+```Swift
+struct Book : StandardMappable {
+    let title: String
+    let releaseYear: Int
+
+    init(map: Map) throws {
+        try title = <~map["title"]
+        try releaseYear = <~map["release_year"]
+            .transformFromJson  { (input: String) -> Int in
+                return Int(input)!
+            }
+    }
+
+    func sequence(map: Map) throws {
+        try title ~> map["title"]
+        try releaseYear ~> map["release_year"]
+            .transformToJson {
+                return "\($0)"
+            }
+    }
+}
+```
+
+>NOTE: Notice that above, `sequence(map: Map)` isn't marked `mutating`.  If we're only sequencing one way, it's not necessary to keep this marked `mutating`
+
+#### `CustomMappable`
+
+This protocol has the requirement:
+
+```Swift
+static func newInstance(map: Map) throws -> Self
+```
+
+This is good for objects that may need to check a database first to see if they still exist before we map a new one.  Let's stick with the `Book` example from above for clarity.  When we're creating an object, we'll see if one already exists in our database.
+
+```Swift
+struct Book : CustomMappable {
+    var title: String = ""
+    var releaseYear: Int = 0
+    var id: String = ""
+
+    static func newInstance(map: Map) throws -> Book {
+        let id: String = try <~map["id"]
+        return existingBookWithId(id) ?? Book()
+    }
+
+    mutating func sequence(map: Map) throws {
+        try title <~> map["title"]
+        try id <~> map["id"]
+        try releaseYear <~> map["release_year"]
+            .transformFromJson  { (input: String) -> Int in
+                return Int(input)!
+            }
+            .transformToJson {
+                return "\($0)"
+            }
+    }
+}
+```
+
+#### Custom Implementation
+
+Feel free to implement your own protocol by inheriting from `MappableObject` and defining the initializer.  Look at the implementations of the provided protocols for information on how to do this.
+
+### Inheritance
+
+For some types of architecture, you may want to utilize inheritance.  In these situations, you'll need to mark the initializer you're conforming to `required`.  For example, if our basic book from above was a class, we'd need to add the following:
+
+```Swift
+class Book : BasicMappable {
+    var title = ""
+    var releaseYear = 0
+
+    required init() {}
+
+    func sequence(map: Map) throws {
+        try title <~> map["title"]
+        try releaseYear <~> map["release_year"]
+            .transformFromJson { (input: String) in
+                return Int(input)!
+            }
+            .transformToJson {
+                return "\($0)"
+            }
+    }
+}
+```
+
+If you want classes, but aren't using inheritance, you can optionally mark a class `final`

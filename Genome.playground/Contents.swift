@@ -113,6 +113,41 @@ joe.pet.type
 joe.pet.name
 joe.birthday
 
+struct Book : CustomMappable {
+    var title: String = ""
+    var releaseYear: Int = 0
+    var id: String = ""
+    
+    static func newInstance(map: Map) throws -> Book {
+        let id: String = try <~map["id"]
+        return existingBookWithId(id) ?? Book()
+    }
+    
+    mutating func sequence(map: Map) throws {
+        try title <~> map["title"]
+        try id <~> map["id"]
+        try releaseYear <~> map["release_year"]
+            .transformFromJson  { (input: String) -> Int in
+                return Int(input)!
+            }
+            .transformToJson {
+                return "\($0)"
+            }
+    }
+}
 
 
+func existingBookWithId(id: String) -> Book? {
+    return nil
+}
 
+let json_book: JSON = [
+    "title" : "Title",
+    "release_year" : "2009",
+    "id" : "asd9fj20m"
+]
+
+let book = try! Book.mappedInstance(json_book)
+book.title
+book.releaseYear
+book.id
