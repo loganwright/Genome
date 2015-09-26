@@ -11,41 +11,67 @@
 public class Transformer<InputType, OutputType> {
     
     internal let map: Map
-    internal let transformer: InputType throws -> OutputType
+    internal let transformer: InputType? throws -> OutputType
+
+    private var allowsNil: Bool
     
     public init(map: Map, transformer: InputType throws -> OutputType) {
         self.map = map
+        self.transformer = { input in
+            return try transformer(input!)
+        }
+        self.allowsNil = false
+    }
+    
+    public init(map: Map, transformer: InputType? throws -> OutputType) {
+        self.map = map
         self.transformer = transformer
+        self.allowsNil = true
     }
     
     internal func transformValue<T>(value: T) throws -> OutputType {
         if let input = value as? InputType {
             return try transformer(input)
         } else {
-            let error = unexpectedInput(value)
-            throw logError(error)
+            throw logError(unexpectedInput(value))
         }
     }
     
     internal func transformValue<T>(value: T?) throws -> OutputType {
-        if let input = value as? InputType {
-            return try transformer(input)
+        if allowsNil {
+            guard let unwrapped = value else { return try transformer(nil) }
+            return try transformValue(unwrapped)
         } else {
-            let error = unexpectedInput(value)
-            throw logError(error)
+            let unwrapped = try enforceValueExists(value)
+            return try transformValue(unwrapped)
         }
+        
     }
     
     private func unexpectedInput<ValueType>(value: ValueType) -> ErrorType {
         let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)"
         return TransformationError.UnexpectedInputType(message)
     }
+    
+    private func enforceValueExists<T>(value: T?) throws -> T {
+        if let unwrapped = value {
+            return unwrapped
+        } else {
+            let error = TransformationError.UnexpectedInputType("Unexpectedly found nil input.  KeyPath: \(map.lastKeyPath) Expected: \(InputType.self)")
+            throw logError(error)
+        }
+    }
 }
+
 
 // MARK: From Json
 
 public final class FromJsonTransformer<JsonType, TransformedType> : Transformer<JsonType, TransformedType> {
     override public init(map: Map, transformer: JsonType throws -> TransformedType) {
+        super.init(map: map, transformer: transformer)
+    }
+    
+    override public init(map: Map, transformer: JsonType? throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
@@ -63,6 +89,11 @@ public final class ToJsonTransformer<ValueType, OutputJsonType> : Transformer<Va
     }
     
     func transformFromJson<InputJsonType>(transformer: InputJsonType throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputJsonType> {
+        let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
+    }
+    
+    func transformFromJson<InputJsonType>(transformer: InputJsonType? throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputJsonType> {
         let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
     }
@@ -90,6 +121,10 @@ public final class TwoWayTransformer<InputJsonType, TransformedType, OutputJsonT
 
 public extension Map {
     public func transformFromJson<JsonType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
+        return FromJsonTransformer(map: self, transformer: transformer)
+    }
+    
+    public func transformFromJson<JsonType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
         return FromJsonTransformer(map: self, transformer: transformer)
     }
     

@@ -13,22 +13,23 @@
 		8052E7671BB58102004E08F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7661BB58102004E08F6 /* Assets.xcassets */; };
 		8052E76A1BB58102004E08F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7681BB58102004E08F6 /* LaunchScreen.storyboard */; };
 		8052E7751BB58102004E08F6 /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
-		8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7871BB58178004E08F6 /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7891BB58178004E08F6 /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E78A1BB58178004E08F6 /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7A41BB58C96004E08F6 /* Dictionary+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7A51BB58C96004E08F6 /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79D1BB58C96004E08F6 /* Initializers.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7A61BB58C96004E08F6 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79E1BB58C96004E08F6 /* JsonRepresentation.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7A71BB58C96004E08F6 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79F1BB58C96004E08F6 /* Map.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7A81BB58C96004E08F6 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7A91BB58C96004E08F6 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A11BB58C96004E08F6 /* SettableOperator.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7AA1BB58C96004E08F6 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A21BB58C96004E08F6 /* StandardOperators.swift */; settings = {ASSET_TAGS = (); }; };
-		8052E7AB1BB58C96004E08F6 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; settings = {ASSET_TAGS = (); }; };
-		80C3654D1BB5BE58006DE82E /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; settings = {ASSET_TAGS = (); }; };
-		80C3654F1BB5C279006DE82E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; settings = {ASSET_TAGS = (); }; };
+		8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
+		8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
+		8052E7871BB58178004E08F6 /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; };
+		8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; };
+		8052E7891BB58178004E08F6 /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
+		8052E78A1BB58178004E08F6 /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
+		8052E7A41BB58C96004E08F6 /* Dictionary+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */; };
+		8052E7A51BB58C96004E08F6 /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79D1BB58C96004E08F6 /* Initializers.swift */; };
+		8052E7A61BB58C96004E08F6 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79E1BB58C96004E08F6 /* JsonRepresentation.swift */; };
+		8052E7A71BB58C96004E08F6 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79F1BB58C96004E08F6 /* Map.swift */; };
+		8052E7A81BB58C96004E08F6 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; };
+		8052E7A91BB58C96004E08F6 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A11BB58C96004E08F6 /* SettableOperator.swift */; };
+		8052E7AA1BB58C96004E08F6 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A21BB58C96004E08F6 /* StandardOperators.swift */; };
+		8052E7AB1BB58C96004E08F6 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; };
+		80C3654D1BB5BE58006DE82E /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
+		80C3654F1BB5C279006DE82E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
+		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		8052E7A31BB58C96004E08F6 /* Transformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformers.swift; path = Genome.playground/Sources/Transformers.swift; sourceTree = SOURCE_ROOT; };
 		80C3654C1BB5BE58006DE82E /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Genome.playground/Sources/Logging.swift; sourceTree = SOURCE_ROOT; };
 		80C3654E1BB5C279006DE82E /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Genome.playground/Sources/Errors.swift; sourceTree = SOURCE_ROOT; };
+		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */,
 				8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */,
 				8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */,
+				80FC8F191BB6CEE30069CC5A /* TransformTests.swift */,
 				8052E7741BB58102004E08F6 /* GenomeTests.swift */,
 				8052E7761BB58102004E08F6 /* Info.plist */,
 			);
@@ -196,6 +199,7 @@
 		8052E7541BB58102004E08F6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = lowriDevs;
 				TargetAttributes = {
@@ -277,6 +281,7 @@
 				8052E7751BB58102004E08F6 /* GenomeTests.swift in Sources */,
 				8052E7891BB58178004E08F6 /* SettableOperatorTest.swift in Sources */,
 				8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */,
+				80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */,
 				8052E7871BB58178004E08F6 /* FromJsonOperatorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

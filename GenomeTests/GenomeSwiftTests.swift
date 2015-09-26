@@ -93,10 +93,10 @@ extension Array where Element : Equatable {
 }
 
 extension NSDate {
-    class func dateWithBirthdayString(string: String) -> NSDate? {
+    class func dateWithBirthdayString(string: String?) -> NSDate? {
         let df = NSDateFormatter()
         df.dateFormat = "mm-d-yy"
-        return df.dateFromString(string)!
+        return df.dateFromString(string!)!
     }
     
     class func birthdayStringWithDate(date: NSDate?) -> String {
