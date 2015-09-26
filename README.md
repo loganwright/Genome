@@ -468,3 +468,42 @@ let mappedString1: String? = try <~map["key"]
         return "Hello \(input)"
     }
 ```
+
+### Logging
+
+All errors are passed through a logging system before being thrown.  This allows for helpful debugging and allows the potential to add remote logging to your project.
+
+#### Adding Loggers
+
+You can add any logger by conforming to `ErrorType -> Void`.  Here's a quick example of how we might implement this:
+
+```Swift
+func reportErrorToServer(error: ErrorType) {
+    // ... handle the error here
+}
+```
+
+Then, add it to the loggers:
+
+```Swift
+loggers.append(reportErrorToServer)
+```
+
+If you're using `Genome` through modules, it can be more clear to acknowledge the namespace:
+
+
+```Swift
+Genome.loggers.append(reportErrorToServer)
+```
+
+#### Turning Loggers Off
+
+Just set `loggers` to an empty array and the system will no longer print to the console.
+
+```Swift
+loggers = []
+
+// or namespaced
+
+Genome.loggers = []
+```
