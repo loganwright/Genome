@@ -26,7 +26,7 @@ public prefix func <~? <T: MappableObject>(map: Map) throws -> [T]? {
 
 // MARK: Non-Optional Casters
 
-public prefix func <~ <T>(map: Map) throws -> T! {
+public prefix func <~ <T>(map: Map) throws -> T {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: [T].self)
     
@@ -38,7 +38,7 @@ public prefix func <~ <T>(map: Map) throws -> T! {
     }
 }
 
-public prefix func <~ <T: MappableObject>(map: Map) throws -> T! {
+public prefix func <~ <T: MappableObject>(map: Map) throws -> T {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: T.self)
     
@@ -50,7 +50,7 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> T! {
     }
 }
 
-public prefix func <~ <T: MappableObject>(map: Map) throws -> [T]! {
+public prefix func <~ <T: MappableObject>(map: Map) throws -> [T] {
     try enforceMapType(map, expectedType: .FromJson)
     let jsonArray = try expectJsonArrayWithMap(map, targetType: [T].self)
     return try [T].mappedInstance(jsonArray, context: map.context)

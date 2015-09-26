@@ -61,13 +61,13 @@ class SettableOperatorTest: XCTestCase {
         let int: Int = try! <~map["int"]
         XCTAssert(int == 272)
         
-        let optionalInt: Int? = try! <~map["int"]
+        let optionalInt: Int? = try! <~?map["int"]
         XCTAssert(optionalInt! == 272)
         
         let strings: [String] = try! <~map["strings"]
         XCTAssert(strings == self.strings)
         
-        let optionalStrings: [String]? = try! <~map["strings"]
+        let optionalStrings: [String]? = try! <~?map["strings"]
         XCTAssert(optionalStrings! == self.strings)
         
         let stringInt: String = try! <~map["int"]
@@ -80,12 +80,12 @@ class SettableOperatorTest: XCTestCase {
         XCTAssert(person.firstName == "Joe")
         XCTAssert(person.lastName == "Fish")
         
-        let optionalPerson: Person? = try! <~map["person"]
+        let optionalPerson: Person? = try! <~?map["person"]
         XCTAssert(optionalPerson!.firstName == "Joe")
         XCTAssert(optionalPerson!.lastName == "Fish")
         
         let people: [Person] = try! <~map["people"]
-        let optionalPeople: [Person]? = try! <~map["people"]
+        let optionalPeople: [Person]? = try! <~?map["people"]
         
         for peopleArray in [people, optionalPeople!] {
             XCTAssert(peopleArray.count == 2)
