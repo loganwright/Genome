@@ -36,7 +36,7 @@ The <a href="/GenomePlayground.playground">playground</a> provided by this proje
 
 With the introduction of Swift 2.0, we were given an entirely new error handling system, and a new keyword `try`.  In mapping json to models, there are, unfortunately, many points of failure.  By being very explicit about the failability of these operations, we can be confident that our code will run as expected, and gain clarity into error messages earlier in the process.  This means that we're going to have to write the word `try` quite a bit in the name of safety.
 
-#Initial Setup
+### Initial Setup
 
 If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/tree/master/GenomePlayground.playground/sources">sources</a>  directory.
 
