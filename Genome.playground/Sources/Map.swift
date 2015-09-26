@@ -27,7 +27,7 @@ public final class Map {
     }
     
     /// The type of operation for the current map
-    public /*internal(set)*/ var type: OperationType = .FromJson
+    public var type: OperationType = .FromJson
     
     /// If the mapping operation were converted to JSON (Type.ToJson)
     public private(set) var toJson: JSON = [:]

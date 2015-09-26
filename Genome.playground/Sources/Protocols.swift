@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: Alias
 
-public typealias JSON = [NSObject : AnyObject]
+public typealias JSON = [String : AnyObject]
 
 /// I am using this typealias as a workaround.  It should be considered type `Map -> Self` for wherever it is required
 //public typealias Initializer = Map -> MappableObject

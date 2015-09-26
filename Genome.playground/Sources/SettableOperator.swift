@@ -8,93 +8,50 @@ prefix operator *? {}
 // MARK: Optional Casters
 
 public prefix func *? <T>(map: Map) throws -> T? {
-    guard
-        try enforceMapType(map, expectedType: .FromJson),
-        let _ = map.result /// We want to ensure that the result is non nil before we attempt to map.  nil is ok in optionals
-        else {
-            return nil
-        }
-    
-    let nonOptional: T = try *map
-    return nonOptional
+    try enforceMapType(map, expectedType: .FromJson)
+    guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
+    return try *map as T
 }
 
 public prefix func *? <T: MappableObject>(map: Map) throws -> T? {
-    guard
-        try enforceMapType(map, expectedType: .FromJson),
-        let _ = map.result /// We want to ensure that the result is non nil before we attempt to map.  nil is ok in optionals
-        else {
-            return nil
-        }
-    
-    let nonOptional: T = try *map
-    return nonOptional
+    try enforceMapType(map, expectedType: .FromJson)
+    guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
+    return try *map as T
 }
 
 public prefix func *? <T: MappableObject>(map: Map) throws -> [T]? {
-    guard
-        try enforceMapType(map, expectedType: .FromJson),
-        let _ = map.result /// We want to ensure that the result is non nil before we attempt to map.  nil is ok in optionals
-        else {
-            return nil
-        }
-    
-    let nonOptional: [T] = try *map
-    return nonOptional
+    try enforceMapType(map, expectedType: .FromJson)
+    guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
+    return try *map as [T]
 }
 
 // MARK: Non-Optional Casters
 
 public prefix func * <T>(map: Map) throws -> T! {
-    guard
-        try enforceMapType(map, expectedType: .FromJson),
-        let result = map.result
-        else {
-            throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
-        }
+    try enforceMapType(map, expectedType: .FromJson)
+    let result = try enforceResultExists(map, type: [T].self)
     
     if let value = result as? T {
         return value
     } else {
-        let error = SequenceError.UnexpectedValue("Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(map.lastKeyPath) ObjectType: \(T!.self)")
-        throw logError(error)
+        throw unexpectedResult(result, expected: T.self, keyPath: map.lastKeyPath, targetType: T.self)
     }
 }
 
 public prefix func * <T: MappableObject>(map: Map) throws -> T! {
-    guard
-        try enforceMapType(map, expectedType: .FromJson),
-        let result = map.result
-        else {
-            throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
-        }
+    try enforceMapType(map, expectedType: .FromJson)
+    let result = try enforceResultExists(map, type: T.self)
     
     if let json = result as? JSON {
         return try T.mappedInstance(json, context: map.context)
     } else {
-        let error = SequenceError.UnexpectedValue("Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(map.lastKeyPath) ObjectType: \([T].self)")
-        throw logError(error)
+        throw unexpectedResult(result, expected: JSON.self, keyPath: map.lastKeyPath, targetType: T.self)
     }
 }
 
 public prefix func * <T: MappableObject>(map: Map) throws -> [T]! {
-    guard
-        try enforceMapType(map, expectedType: .FromJson),
-        let result = map.result
-        else {
-            throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) ObjectType: \(T.self)"))
-        }
-    
-    let jsonArray: [JSON]
-    if let j = result as? [JSON] {
-        jsonArray = j
-    } else if let j = result as? JSON {
-        jsonArray = [j]
-    } else {
-        let error = SequenceError.UnexpectedValue("Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(map.lastKeyPath) ObjectType: \([T].self)")
-        throw logError(error)
-    }
-    
+    try enforceMapType(map, expectedType: .FromJson)
+    let jsonArray = try expectJsonArrayWithMap(map, targetType: [T].self)
     return try [T].mappedInstance(jsonArray, context: map.context)
 }
 
@@ -105,9 +62,35 @@ public prefix func * <JsonInputType, T>(transformer: FromJsonTransformer<JsonInp
     return try transformer.transformValue(transformer.map.result)
 }
 
-internal func enforceMapType(map: Map, expectedType: Map.OperationType) throws -> Bool {
+// MARK:
+
+private func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
     if map.type != expectedType {
         throw logError(MappingError.UnexpectedOperationType("Received mapping operation of type: \(map.type) expected: \(expectedType)"))
     }
-    return true
+}
+
+private func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject {
+    if let result = map.result {
+        return result
+    } else {
+        throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) TargetType: \(T.self)"))
+    }
+}
+
+private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: String, targetType: U.Type) -> ErrorType {
+    let message = "Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
+    let error = SequenceError.UnexpectedValue(message)
+    return logError(error)
+}
+
+private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [JSON] {
+    let result = try enforceResultExists(map, type: T.self)
+    if let j = result as? [JSON] {
+        return j
+    } else if let j = result as? JSON {
+        return [j]
+    } else {
+        throw unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+    }
 }
