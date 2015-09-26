@@ -171,3 +171,89 @@ This is the function that should be used to initialize new mapped objects for a 
 ### More
 
 Feel free to check out and interact with the <a href="/GenomePlayground.playground">playground</a> provided in this repo!
+
+### Alamofire
+
+Here's a quick example of using Genome alongside <a href="https://github.com/Alamofire/Alamofire">Alamofire</a> (3.0)
+
+```Swift
+import Alamofire
+import Genome
+
+struct NasaPhoto : BasicMappable {
+    private(set) var title: String = ""
+    private(set) var mediaType: String = ""
+    private(set) var explanation: String = ""
+    private(set) var concepts: [String] = []
+
+    private(set) var imageUrl: NSURL!
+
+    mutating func sequence(map: Map) throws {
+        try title <~ map["title"]
+        try mediaType <~ map ["media_type"]
+        try explanation <~ map["explanation"]
+        try concepts <~ map["concepts"]
+        try imageUrl <~ map["url"]
+            .transformFromJson {
+                return NSURL(string: $0)
+            }
+    }
+}
+
+enum NasaResult<T> {
+    case Success(T)
+    case Failure(ErrorType)
+}
+
+struct Nasa {
+
+    enum NasaError : ErrorType {
+        case UnableToConvertJson
+    }
+
+    static func fetchPictureOfTheDay(completion: NasaResult<NasaPhoto> -> Void) {
+        let url = "https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=DEMO_KEY"
+        Alamofire.request(.GET, url)
+            .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    do {
+                        let json = try toJson(value)
+                        let photo = try NasaPhoto.mappedInstance(json)
+                        completion(.Success(photo))
+                    } catch {
+                        completion(.Failure(error))
+                    }
+                case .Failure(let error):
+                    completion(.Failure(error))
+                }
+        }
+    }
+
+    private static func toJson(value: AnyObject) throws -> JSON {
+        if let json = value as? JSON {
+            return json
+        } else {
+            throw NasaError.UnableToConvertJson
+        }
+    }
+
+}
+```
+
+Now, when we want to use our `NasaPhoto` object, we can use it knowing that it will be safe.
+
+```Swift
+Nasa.fetchPictureOfTheDay { [weak self] result in
+    switch result {
+    case .Success(let photo):
+        self?.navigationItem.title = photo.title
+        self?.descriptionLabel.text = photo.explanation
+        self?.imageView.sd_setImageWithURL(photo.imageUrl)
+    case .Failure(let error):
+        print("Error: \(error)")
+    }
+}
+```
+
+Enjoy :)
