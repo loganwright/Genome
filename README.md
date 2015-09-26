@@ -397,3 +397,74 @@ class Book : BasicMappable {
 ```
 
 If you want classes, but aren't using inheritance, you can optionally mark a class `final`
+
+### Setting Constants
+
+Sometimes, for various reasons we don't want to pass a variable as an `inout`.  Because of limitations in the generic type system when using prefix operators, we need to be explicit when we're setting an optional value.
+
+Note that these operators fall under the same failure driven development that the infix operators do, and the `try` keyword will still be required.  This looks a little funny at first, but is a much safer code base in the long run.
+
+>NOTE: These operators should look familiar to the infix operators from earlier.  Remember that `~` still represents a flow of values, and `<` still acknowledges the direction of that flow.  We're just positioning them a bit differently.
+
+#### `<~`
+
+This operator is used for **non-optional** values.  You can use this for properties, or inline variables as desired:
+
+```Swift
+let someNumber: Int = try <~map["some_number"]
+```
+
+Or in an initializer:
+
+```Swift
+let someNumber: Int
+
+init(map: Map) throws {
+  someNumber = try <~map["some_number"]
+}
+```
+
+>NOTE: Optional mappings will fail when using this operator.  See `<~?` for more on how it should be used.
+
+#### `<~?`
+
+The `?` extends our operator to symbolize the possibility that the value received can be `nil`.
+
+This operator is used for **optional** values. At this time, Swift is unable to infer generic optionality through overloading the way it can with infix operators.  This means that we need to be explicit about our mapping when objects are optional.
+
+```Swift
+let possibleValue: String? = try <~?map["possible_value"]
+```
+
+Or in an initializer:
+
+```Swift
+
+let possibleValue: String?
+
+init(map: Map) throws {
+  possibleValue = try <~?map["possible_value"]
+}
+```
+
+#### Transforming Settables
+
+When attaching a transformer via these operators, use the `<~` prefix regardless of the optionality of the target.  In this case, optionality can be inferred through the provided transformation function.
+
+##### Non-Optional
+
+```Swift
+let mappedString2: String = try <~map["key"]
+    .transformFromJson { (input: String) -> String in
+        return "Hello NonOptional \(input)"
+    }
+```
+
+##### Optional
+
+```Swift
+let mappedString1: String? = try <~map["key"]
+    .transformFromJson { (input: String?) -> String? in
+        return "Hello \(input)"
+    }
+```

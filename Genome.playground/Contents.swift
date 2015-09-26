@@ -151,3 +151,18 @@ let book = try! Book.mappedInstance(json_book)
 book.title
 book.releaseYear
 book.id
+
+// MARK:
+
+let map = Map(json: ["key" : "value"])
+
+let mappedString1: String? = try <~map["key"]
+    .transformFromJson { (input: String?) -> String? in
+        return "Hello \(input)"
+    }
+
+let mappedString2: String = try <~map["key"]
+    .transformFromJson { (input: String) -> String in
+        return "Hello NonOptional \(input)"
+    }
+
