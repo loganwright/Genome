@@ -26,6 +26,8 @@ The goal of this library is to satisfy the following constraints:
 
 >\- Constants (`let`)
 
+>\- Independent of Foundation Framework
+
 ### Playground
 
 The <a href="/GenomePlayground.playground">playground</a> provided by this project can be used to test the library.  It also provides more detail into how to use the library.  
@@ -34,7 +36,7 @@ The <a href="/GenomePlayground.playground">playground</a> provided by this proje
 
 With the introduction of Swift 2.0, we were given an entirely new error handling system, and a new keyword `try`.  In mapping json to models, there are, unfortunately, many points of failure.  By being very explicit about the failability of these operations, we can be confident that our code will run as expected, and gain clarity into error messages earlier in the process.  This means that we're going to have to write the word `try` quite a bit in the name of safety.
 
-#Initial Setup
+### Initial Setup
 
 If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/tree/master/GenomePlayground.playground/sources">sources</a>  directory.
 
@@ -169,3 +171,89 @@ This is the function that should be used to initialize new mapped objects for a 
 ### More
 
 Feel free to check out and interact with the <a href="/GenomePlayground.playground">playground</a> provided in this repo!
+
+### Alamofire
+
+Here's a quick example of using Genome alongside <a href="https://github.com/Alamofire/Alamofire">Alamofire</a> (3.0)
+
+```Swift
+import Alamofire
+import Genome
+
+struct NasaPhoto : BasicMappable {
+    private(set) var title: String = ""
+    private(set) var mediaType: String = ""
+    private(set) var explanation: String = ""
+    private(set) var concepts: [String] = []
+
+    private(set) var imageUrl: NSURL!
+
+    mutating func sequence(map: Map) throws {
+        try title <~ map["title"]
+        try mediaType <~ map ["media_type"]
+        try explanation <~ map["explanation"]
+        try concepts <~ map["concepts"]
+        try imageUrl <~ map["url"]
+            .transformFromJson {
+                return NSURL(string: $0)
+            }
+    }
+}
+
+enum NasaResult<T> {
+    case Success(T)
+    case Failure(ErrorType)
+}
+
+struct Nasa {
+
+    enum NasaError : ErrorType {
+        case UnableToConvertJson
+    }
+
+    static func fetchPictureOfTheDay(completion: NasaResult<NasaPhoto> -> Void) {
+        let url = "https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=DEMO_KEY"
+        Alamofire.request(.GET, url)
+            .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    do {
+                        let json = try toJson(value)
+                        let photo = try NasaPhoto.mappedInstance(json)
+                        completion(.Success(photo))
+                    } catch {
+                        completion(.Failure(error))
+                    }
+                case .Failure(let error):
+                    completion(.Failure(error))
+                }
+        }
+    }
+
+    private static func toJson(value: AnyObject) throws -> JSON {
+        if let json = value as? JSON {
+            return json
+        } else {
+            throw NasaError.UnableToConvertJson
+        }
+    }
+
+}
+```
+
+Now, when we want to use our `NasaPhoto` object, we can use it knowing that it will be safe.
+
+```Swift
+Nasa.fetchPictureOfTheDay { [weak self] result in
+    switch result {
+    case .Success(let photo):
+        self?.navigationItem.title = photo.title
+        self?.descriptionLabel.text = photo.explanation
+        self?.imageView.sd_setImageWithURL(photo.imageUrl)
+    case .Failure(let error):
+        print("Error: \(error)")
+    }
+}
+```
+
+Enjoy :)

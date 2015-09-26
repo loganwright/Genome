@@ -141,16 +141,16 @@
 		8052E78B1BB5817B004E08F6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */,
 				80C3654E1BB5C279006DE82E /* Errors.swift */,
 				80C3654C1BB5BE58006DE82E /* Logging.swift */,
+				8052E7A01BB58C96004E08F6 /* Protocols.swift */,
 				8052E79D1BB58C96004E08F6 /* Initializers.swift */,
 				8052E79E1BB58C96004E08F6 /* JsonRepresentation.swift */,
-				8052E79F1BB58C96004E08F6 /* Map.swift */,
-				8052E7A01BB58C96004E08F6 /* Protocols.swift */,
 				8052E7A11BB58C96004E08F6 /* SettableOperator.swift */,
 				8052E7A21BB58C96004E08F6 /* StandardOperators.swift */,
 				8052E7A31BB58C96004E08F6 /* Transformers.swift */,
+				8052E79F1BB58C96004E08F6 /* Map.swift */,
+				8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";

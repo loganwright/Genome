@@ -77,7 +77,7 @@ extension Pet : BasicMappable {
             }
             .transformToJson {
                 return $0.rawValue
-        }
+            }
     }
 }
 
