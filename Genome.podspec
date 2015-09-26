@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => 'https://github.com/LoganWright/Genome.git', :tag => '1.0' }
   spec.source_files = 'Genome.playground/Sources/*.{swift}'
   spec.ios.deployment_target = "8.0"
-  spec.osx.deployment_target = "10.8"
+  spec.osx.deployment_target = "10.9"
   spec.requires_arc = true
   spec.social_media_url = 'https://twitter.com/logmaestro'
 end

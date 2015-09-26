@@ -18,7 +18,7 @@ The goal of this library is to satisfy the following constraints:
 
 >\- Simple To Use
 
->\- Easy Two-Way Serialization
+>\- Two-Way Serialization
 
 >\- Transformable Values
 
