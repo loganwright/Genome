@@ -6,8 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-import Foundation
-
 // MARK: Alias
 
 public typealias JSON = [String : AnyObject]

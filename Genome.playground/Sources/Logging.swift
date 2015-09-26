@@ -1,4 +1,3 @@
-import Foundation
 
 public var loggers: [ErrorType -> Void] = [defaultLogger]
 

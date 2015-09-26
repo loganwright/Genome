@@ -6,8 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-import Foundation
-
 // MARK: ToJson
 
 public func ~> <T>(reference: T!, map: Map) throws {

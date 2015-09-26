@@ -6,8 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-import Foundation
-
 // MARK: Transformer Base
 
 public class Transformer<InputType, OutputType> {

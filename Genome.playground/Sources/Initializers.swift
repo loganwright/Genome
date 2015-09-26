@@ -6,8 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-import Foundation
-
 // MARK: MappableObject Initialization
 
 public extension MappableObject {

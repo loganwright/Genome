@@ -6,8 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-import Foundation
-
 // MARK: Map
 
 /// This class is designed to serve as an adaptor between the raw json and the values.  In this way we can interject behavior that assists in mapping between the two.
