@@ -9,6 +9,7 @@
 // MARK: Transformer Base
 
 public class Transformer<InputType, OutputType> {
+    
     internal let map: Map
     internal let transformer: InputType throws -> OutputType
     
@@ -18,25 +19,26 @@ public class Transformer<InputType, OutputType> {
     }
     
     internal func transformValue<T>(value: T) throws -> OutputType {
-        guard
-            let input = value as? InputType
-            else {
-                let error = TransformationError.UnexpectedInputType("Unexpected Input: \(value) ofType: \(value.dynamicType) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)")
-                throw logError(error)
+        if let input = value as? InputType {
+            return try transformer(input)
+        } else {
+            let error = unexpectedInput(value)
+            throw logError(error)
         }
-        
-        return try transformer(input)
     }
     
     internal func transformValue<T>(value: T?) throws -> OutputType {
-        guard
-            let input = value as? InputType
-            else {
-                let error = TransformationError.UnexpectedInputType("Unexpected Input: \(value) ofType: \(value.dynamicType) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)")
-                throw logError(error)
+        if let input = value as? InputType {
+            return try transformer(input)
+        } else {
+            let error = unexpectedInput(value)
+            throw logError(error)
         }
-        
-        return try transformer(input)
+    }
+    
+    private func unexpectedInput<ValueType>(value: ValueType) -> ErrorType {
+        let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)"
+        return TransformationError.UnexpectedInputType(message)
     }
 }
 
@@ -52,6 +54,8 @@ public final class FromJsonTransformer<JsonType, TransformedType> : Transformer<
         return TwoWayTransformer(fromJsonTransformer: self, toJsonTransformer: toJsonTransformer)
     }
 }
+
+// MARK: To Json
 
 public final class ToJsonTransformer<ValueType, OutputJsonType> : Transformer<ValueType, OutputJsonType> {
     override public init(map: Map, transformer: ValueType throws -> OutputJsonType) {

@@ -33,7 +33,8 @@ public prefix func * <T>(map: Map) throws -> T! {
     if let value = result as? T {
         return value
     } else {
-        throw unexpectedResult(result, expected: T.self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: T.self, keyPath: map.lastKeyPath, targetType: T.self)
+        throw logError(error)
     }
 }
 
@@ -44,7 +45,8 @@ public prefix func * <T: MappableObject>(map: Map) throws -> T! {
     if let json = result as? JSON {
         return try T.mappedInstance(json, context: map.context)
     } else {
-        throw unexpectedResult(result, expected: JSON.self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: JSON.self, keyPath: map.lastKeyPath, targetType: T.self)
+        throw logError(error)
     }
 }
 
@@ -80,7 +82,7 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject 
 private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: String, targetType: U.Type) -> ErrorType {
     let message = "Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
-    return logError(error)
+    return error
 }
 
 private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [JSON] {
@@ -90,6 +92,7 @@ private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [
     } else if let j = result as? JSON {
         return [j]
     } else {
-        throw unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        throw logError(error)
     }
 }
