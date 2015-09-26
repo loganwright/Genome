@@ -91,7 +91,8 @@ public final class Map {
         if let a = any as? AnyObject {
             toJson.gnm_setValue(a, forKeyPath: lastKeyPath)
         } else if any != nil {
-            let error = MappingError.UnableToMap("Unable to convert: \(any!) forKeyPath: \(lastKeyPath) to JSON because type: \(any!.dynamicType) can't be cast to type AnyObject")
+            let message = "Unable to convert: \(any!) forKeyPath: \(lastKeyPath) to JSON because type: \(any!.dynamicType) can't be cast to type AnyObject"
+            let error = MappingError.UnableToMap(message)
             throw logError(error)
         }
     }
