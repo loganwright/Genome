@@ -26,6 +26,8 @@ The goal of this library is to satisfy the following constraints:
 
 >\- Constants (`let`)
 
+>\- Independent of Foundation Framework
+
 ### Playground
 
 The <a href="/GenomePlayground.playground">playground</a> provided by this project can be used to test the library.  It also provides more detail into how to use the library.  
