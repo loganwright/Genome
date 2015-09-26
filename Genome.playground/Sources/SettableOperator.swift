@@ -2,23 +2,23 @@
 // MARK: Casting
 
 prefix operator <~ {}
-prefix operator *? {}
+prefix operator <~? {}
 
 // MARK: Optional Casters
 
-public prefix func *? <T>(map: Map) throws -> T? {
+public prefix func <~? <T>(map: Map) throws -> T? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
-public prefix func *? <T: MappableObject>(map: Map) throws -> T? {
+public prefix func <~? <T: MappableObject>(map: Map) throws -> T? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
-public prefix func *? <T: MappableObject>(map: Map) throws -> [T]? {
+public prefix func <~? <T: MappableObject>(map: Map) throws -> [T]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
     return try <~map as [T]

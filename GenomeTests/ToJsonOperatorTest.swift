@@ -42,9 +42,9 @@ class ToJsonOperatorTest: XCTestCase {
             foundedYear = try! <~map["founded_in"]
             locations = try! <~map["locations"]
             employees = try! <~map["employees"]
-            employeesOptional = try! *?map["employees"]
+            employeesOptional = try! <~?map["employees"]
             owner = try! <~map["owner"]
-            ownerOptional = try! *?map["owner"]
+            ownerOptional = try! <~?map["owner"]
             
             optionalNil = nil
             optionalNotNil = "not nil"
