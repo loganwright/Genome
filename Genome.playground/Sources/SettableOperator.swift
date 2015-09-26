@@ -75,7 +75,9 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject 
     if let result = map.result {
         return result
     } else {
-        throw logError(SequenceError.FoundNil("Key: \(map.lastKeyPath) TargetType: \(T.self)"))
+        let message = "Key: \(map.lastKeyPath) TargetType: \(T.self)"
+        let error = SequenceError.FoundNil(message)
+        throw logError(error)
     }
 }
 

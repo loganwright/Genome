@@ -51,15 +51,13 @@ class SettableOperatorTest: XCTestCase {
         ]
     ]
     
-    lazy var map: Map = Map(json: self.json)
+    lazy var map: Map! = Map(json: self.json)
 
-    func test() {
-        self.measureBlock {
-            self._test()
-        }
+    override func tearDown() {
+        map = nil
     }
     
-    func _test() {
+    func test() {
         let int: Int = try! <~map["int"]
         XCTAssert(int == 272)
         
@@ -71,6 +69,12 @@ class SettableOperatorTest: XCTestCase {
         
         let optionalStrings: [String]? = try! <~map["strings"]
         XCTAssert(optionalStrings! == self.strings)
+        
+        let stringInt: String = try! <~map["int"]
+            .transformFromJson { (jsonValue: Int) in
+                return "\(jsonValue)"
+        }
+        XCTAssert(stringInt == "272")
         
         let person: Person = try! <~map["person"]
         XCTAssert(person.firstName == "Joe")
@@ -95,15 +99,188 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(jane.lastName == "Bear")
         }
         
+        let singleValueToArray: [Person] = try! <~map["person"]
+        XCTAssert(singleValueToArray.count == 1)
+        let joe = singleValueToArray.first!
+        XCTAssert(joe.firstName == "Joe")
+        XCTAssert(joe.lastName == "Fish")
         
-        let emptyInt: Int? = try? <~map["i_dont_exist"]
+        let emptyInt: Int? = try! <~?map["i_dont_exist"]
         XCTAssert(emptyInt == nil)
-        let emptyStrings: [String]? = try? <~map["i_dont_exist"]
+        let emptyStrings: [String]? = try! <~?map["i_dont_exist"]
         XCTAssert(emptyStrings == nil)
-        let emptyPerson: Person? = try? <~map["i_dont_exist"]
+        let emptyPerson: Person? = try! <~?map["i_dont_exist"]
         XCTAssert(emptyPerson == nil)
-        let emptyPersons: [Person]? = try? <~map["i_dont_exist"]
+        let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
+        
+        map == nil
     }
     
+    
+    func testThatValueExistsButIsNotTheTypeExpectedNonOptional() {
+        
+        // Unexpected Type - BASIC
+        do {
+            /*
+            Test that a value in json exists, but is not the type expected
+            */
+            let _: String = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Type - MAPPABLE
+        do {
+            let _: Person = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Type - MAPPABLE ARRAY
+        do {
+            let _: [Person] = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Type - TRANSFORMABLE
+        do {
+            // Transformer expects string, but is passed an int
+            let _: String = try <~map["int"]
+                .transformFromJson { (input: String) in
+                    return "Hello: \(input)"
+                }
+            XCTFail("Incorrect type should throw error")
+        } catch TransformationError.UnexpectedInputType(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+        }
+    }
+    
+    // If a value exists, but is the wrong type, it should throw error
+    func testThatValueExistsButIsNotTheTypeExpectedOptional() {
+        
+        // Unexpected Type - BASIC
+        do {
+            /*
+            Test that a value in json exists, but is not the type expected
+            */
+            let _: String? = try <~?map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Type - MAPPABLE
+        do {
+            let _: Person? = try <~?map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Type - MAPPABLE ARRAY
+        do {
+            let _: [Person]? = try <~?map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Expected Non-Nil - TRANFORMABLE
+        do {
+            // Transformer expects string, but is passed an int
+            let _: String? = try <~map["int"]
+                .transformFromJson { (input: String?) in
+                    return "Hello: \(input)"
+            }
+            XCTFail("Incorrect type should throw error")
+        } catch TransformationError.UnexpectedInputType(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+        }
+        
+    }
+    
+    // Expected Something, Got Nothing
+    func testThatValueDoesNotExistNonOptional() {
+        // Expected Non-Nil - BASIC
+        do {
+            /*
+            Test that a value in json exists, but is not the type expected
+            */
+            let _: String = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - MAPPABLE
+        do {
+            let _: Person = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - MAPPABLE ARRAY
+        do {
+            let _: [Person] = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - TRANFORMABLE
+        do {
+            // Transformer expects string, but is passed an int
+            let _: String = try <~map["asdf"]
+                .transformFromJson { (input: String) in
+                    return "Hello: \(input)"
+                }
+            XCTFail("nil value should throw error")
+        } catch TransformationError.UnexpectedInputType(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+        }
+    }
+    
+    func testMapType() {
+        do {
+            map.type = .ToJson
+            let _: String = try <~map["a"]
+            XCTFail("Inproper map type should throw error")
+        } catch MappingError.UnexpectedOperationType(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(MappingError.UnexpectedOperationType)")
+        }
+        
+    }
+
 }
