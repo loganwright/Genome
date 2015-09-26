@@ -16,8 +16,8 @@ class SettableOperatorTest: XCTestCase {
         let lastName: String
 
         init(map: Map) throws {
-            try firstName = *map["first_name"]
-            try lastName = *map["last_name"]
+            try firstName = <~map["first_name"]
+            try lastName = <~map["last_name"]
         }
         
         mutating func sequence(map: Map) throws -> Void {
@@ -60,28 +60,28 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func _test() {
-        let int: Int = try! *map["int"]
+        let int: Int = try! <~map["int"]
         XCTAssert(int == 272)
         
-        let optionalInt: Int? = try! *map["int"]
+        let optionalInt: Int? = try! <~map["int"]
         XCTAssert(optionalInt! == 272)
         
-        let strings: [String] = try! *map["strings"]
+        let strings: [String] = try! <~map["strings"]
         XCTAssert(strings == self.strings)
         
-        let optionalStrings: [String]? = try! *map["strings"]
+        let optionalStrings: [String]? = try! <~map["strings"]
         XCTAssert(optionalStrings! == self.strings)
         
-        let person: Person = try! *map["person"]
+        let person: Person = try! <~map["person"]
         XCTAssert(person.firstName == "Joe")
         XCTAssert(person.lastName == "Fish")
         
-        let optionalPerson: Person? = try! *map["person"]
+        let optionalPerson: Person? = try! <~map["person"]
         XCTAssert(optionalPerson!.firstName == "Joe")
         XCTAssert(optionalPerson!.lastName == "Fish")
         
-        let people: [Person] = try! *map["people"]
-        let optionalPeople: [Person]? = try! *map["people"]
+        let people: [Person] = try! <~map["people"]
+        let optionalPeople: [Person]? = try! <~map["people"]
         
         for peopleArray in [people, optionalPeople!] {
             XCTAssert(peopleArray.count == 2)
@@ -96,13 +96,13 @@ class SettableOperatorTest: XCTestCase {
         }
         
         
-        let emptyInt: Int? = try? *map["i_dont_exist"]
+        let emptyInt: Int? = try? <~map["i_dont_exist"]
         XCTAssert(emptyInt == nil)
-        let emptyStrings: [String]? = try? *map["i_dont_exist"]
+        let emptyStrings: [String]? = try? <~map["i_dont_exist"]
         XCTAssert(emptyStrings == nil)
-        let emptyPerson: Person? = try? *map["i_dont_exist"]
+        let emptyPerson: Person? = try? <~map["i_dont_exist"]
         XCTAssert(emptyPerson == nil)
-        let emptyPersons: [Person]? = try? *map["i_dont_exist"]
+        let emptyPersons: [Person]? = try? <~map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     

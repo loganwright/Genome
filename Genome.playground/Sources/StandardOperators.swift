@@ -44,7 +44,7 @@ public func <~ <T>(inout reference: T, map: Map) throws {
     case .ToJson:
         break
     case .FromJson:
-        reference = try *map
+        reference = try <~map
     }
 }
 
@@ -71,7 +71,7 @@ public func <~ <T: MappableObject>(inout reference: T, map: Map) throws {
     case .ToJson:
         break
     case .FromJson:
-        reference = try *map
+        reference = try <~map
     }
 }
 
@@ -98,7 +98,7 @@ public func <~ <T: MappableObject>(inout reference: [T], map: Map) throws {
     case .ToJson:
         break
     case .FromJson:
-        reference = try *map
+        reference = try <~map
     }
 }
 

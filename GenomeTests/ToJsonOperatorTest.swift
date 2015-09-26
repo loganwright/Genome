@@ -17,7 +17,7 @@ class ToJsonOperatorTest: XCTestCase {
             let name: String
             
             init(map: Map) {
-                name = try! *map["name"]
+                name = try! <~map["name"]
             }
             
             mutating func sequence(map: Map) throws -> Void {
@@ -38,12 +38,12 @@ class ToJsonOperatorTest: XCTestCase {
         let optionalNotNil: String?
         
         init(map: Map) {
-            name = try! *map["name"]
-            foundedYear = try! *map["founded_in"]
-            locations = try! *map["locations"]
-            employees = try! *map["employees"]
+            name = try! <~map["name"]
+            foundedYear = try! <~map["founded_in"]
+            locations = try! <~map["locations"]
+            employees = try! <~map["employees"]
             employeesOptional = try! *?map["employees"]
-            owner = try! *map["owner"]
+            owner = try! <~map["owner"]
             ownerOptional = try! *?map["owner"]
             
             optionalNil = nil
