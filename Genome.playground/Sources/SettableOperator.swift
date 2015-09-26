@@ -8,19 +8,19 @@ prefix operator <~? {}
 
 public prefix func <~? <T>(map: Map) throws -> T? {
     try enforceMapType(map, expectedType: .FromJson)
-    guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
+    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
 public prefix func <~? <T: MappableObject>(map: Map) throws -> T? {
     try enforceMapType(map, expectedType: .FromJson)
-    guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
+    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
 public prefix func <~? <T: MappableObject>(map: Map) throws -> [T]? {
     try enforceMapType(map, expectedType: .FromJson)
-    guard let _ = try? enforceResultExists(map, type: T.self) else { return nil } // Ok for Optionals to return nil
+    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [T]
 }
 

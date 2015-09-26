@@ -83,11 +83,11 @@ extension Pet : BasicMappable {
 
 extension Person : StandardMappable {
     init(map: Map) throws {
-        try pet = *map["pet"]
-        try name = *map["name"]
-        try birthday = *map["birthday"]
+        try pet = <~map["pet"]
+        try name = <~map["name"]
+        try birthday = <~map["birthday"]
             .transformFromJson(NSDate.dateWithBirthdayString)
-        try favoriteFood = *?map["favorite_food"]
+        try favoriteFood = <~?map["favorite_food"]
     }
     
     mutating func sequence(map: Map) throws {

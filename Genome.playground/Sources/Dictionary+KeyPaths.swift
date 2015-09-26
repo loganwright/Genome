@@ -6,6 +6,8 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
+import Foundation
+
 public extension Dictionary {
     mutating func gnm_setValue(val: AnyObject, forKeyPath keyPath: String) {
         var keys = keyPath.componentsSeparatedByString(".")
