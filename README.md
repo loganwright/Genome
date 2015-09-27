@@ -411,7 +411,7 @@ Sometimes, for various reasons we don't want to pass a variable as an `inout`.  
 
 Note that these operators fall under the same failure driven development that the infix operators do, and the `try` keyword will still be required.  This looks a little funny at first, but is a much safer code base in the long run.
 
->NOTE: These operators should look familiar to the infix operators from earlier.  Remember that `~` still represents a flow of values, and `<` still acknowledges the direction of that flow.  We're just positioning them a bit differently.
+>NOTE: These operators should look familiar to the infix operators from earlier.  Remember that `~` still represents a connection, and `<` still symbolizes the flow of values.  We're just positioning them a bit differently.
 
 #### `<~`
 
