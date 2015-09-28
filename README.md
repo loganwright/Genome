@@ -31,7 +31,7 @@ The goal of this library is to satisfy the following constraints:
 
 >\- Constants (`let`)
 
->\- Independent of Foundation Framework
+>\- Independent of Foundation Framework (Supports Linux)
 
 >\- Struct Friendly
 
