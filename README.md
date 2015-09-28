@@ -45,7 +45,7 @@ With the introduction of Swift 2.0, we were given an entirely new error handling
 
 ### Initial Setup
 
-If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/tree/master/GenomePlayground.playground/sources">sources</a>  directory.
+If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/Genome.playground/Sources">sources</a>  directory.
 
 It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">cocoapods.</a>  Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
 
