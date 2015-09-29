@@ -53,6 +53,14 @@ It is highly recommended that you install Genome through <a href="https://www.co
 pod 'Genome'
 ```
 
+You can also install Genome using [Carthage](https://github.com/Carthage/Carthage). Just add the line below to your `Cartfile`:
+
+```
+github "LoganWright/Genome"
+```
+
+And execute `carthage update` to download and compile the framework.
+
 ### Quick Start
 
 Let's take the following hypothetical JSON
