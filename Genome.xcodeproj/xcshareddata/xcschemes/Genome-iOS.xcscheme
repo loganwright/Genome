@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3DCE37361BB9D9A300D0100C"
-               BuildableName = "Genome-iOS.framework"
+               BuildableName = "Genome.framework"
                BlueprintName = "Genome-iOS"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3DCE373F1BB9D9A300D0100C"
-               BuildableName = "Genome-iOSTests.xctest"
-               BlueprintName = "Genome-iOSTests"
+               BuildableName = "Genome-iOS Tests.xctest"
+               BlueprintName = "Genome-iOS Tests"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3DCE37361BB9D9A300D0100C"
-            BuildableName = "Genome-iOS.framework"
+            BuildableName = "Genome.framework"
             BlueprintName = "Genome-iOS"
             ReferencedContainer = "container:Genome.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3DCE37361BB9D9A300D0100C"
-            BuildableName = "Genome-iOS.framework"
+            BuildableName = "Genome.framework"
             BlueprintName = "Genome-iOS"
             ReferencedContainer = "container:Genome.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3DCE37361BB9D9A300D0100C"
-            BuildableName = "Genome-iOS.framework"
+            BuildableName = "Genome.framework"
             BlueprintName = "Genome-iOS"
             ReferencedContainer = "container:Genome.xcodeproj">
          </BuildableReference>
