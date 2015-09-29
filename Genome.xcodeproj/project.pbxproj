@@ -811,6 +811,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Genome/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-iOS";
 				PRODUCT_NAME = Genome;
@@ -831,6 +832,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Genome/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-iOS";
 				PRODUCT_NAME = Genome;
@@ -998,6 +1000,7 @@
 				3D5396DF1BBA89D600791B49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D5396E01BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX Tests" */ = {
 			isa = XCConfigurationList;
@@ -1006,6 +1009,7 @@
 				3D5396E21BBA89D600791B49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D5396ED1BBA8A2800791B49 /* Build configuration list for PBXNativeTarget "Genome-watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1014,6 +1018,7 @@
 				3D5396EF1BBA8A2800791B49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3DCE374C1BB9D9A300D0100C /* Build configuration list for PBXNativeTarget "Genome-iOS" */ = {
 			isa = XCConfigurationList;
