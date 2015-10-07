@@ -28,7 +28,7 @@ public prefix func <~? <T: MappableObject>(map: Map) throws -> [T]? {
 
 public prefix func <~ <T>(map: Map) throws -> T {
     try enforceMapType(map, expectedType: .FromJson)
-    let result = try enforceResultExists(map, type: [T].self)
+    let result = try enforceResultExists(map, type: T.self)
     
     if let value = result as? T {
         return value
