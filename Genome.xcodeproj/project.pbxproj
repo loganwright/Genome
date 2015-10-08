@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D5396D61BBA89D600791B49 /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5396CC1BBA89D600791B49 /* Genome.framework */; };
 		3D5396F01BBA8A7300791B49 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
 		3D5396F11BBA8A7300791B49 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
 		3D5396F21BBA8A7300791B49 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; };
@@ -28,15 +27,6 @@
 		3D5397011BBA8A7900791B49 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; };
 		3D5397021BBA8A7900791B49 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79F1BB58C96004E08F6 /* Map.swift */; };
 		3D5397031BBA8A7900791B49 /* Dictionary+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */; };
-		3D5397041BBA8A8100791B49 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
-		3D5397051BBA8A8100791B49 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
-		3D5397061BBA8A8100791B49 /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; };
-		3D5397071BBA8A8100791B49 /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; };
-		3D5397081BBA8A8100791B49 /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
-		3D5397091BBA8A8100791B49 /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
-		3D53970A1BBA8A8100791B49 /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
-		3D53970B1BBA8A8100791B49 /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
-		3DCE37411BB9D9A300D0100C /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCE37371BB9D9A300D0100C /* Genome.framework */; };
 		3DCE374E1BB9D9C100D0100C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
 		3DCE374F1BB9D9C100D0100C /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
 		3DCE37501BB9D9C100D0100C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; };
@@ -47,14 +37,6 @@
 		3DCE37551BB9D9C100D0100C /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; };
 		3DCE37561BB9D9C100D0100C /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79F1BB58C96004E08F6 /* Map.swift */; };
 		3DCE37571BB9D9C100D0100C /* Dictionary+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */; };
-		3DCE37581BB9D9D500D0100C /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
-		3DCE37591BB9D9D500D0100C /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
-		3DCE375A1BB9D9D500D0100C /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; };
-		3DCE375B1BB9D9D500D0100C /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; };
-		3DCE375C1BB9D9D500D0100C /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
-		3DCE375D1BB9D9D500D0100C /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
-		3DCE375E1BB9D9D500D0100C /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
-		3DCE375F1BB9D9D500D0100C /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
 		68088BF71BC5F5D000B5A733 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
 		68088BF81BC5F5D000B5A733 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
 		68088BF91BC5F5D000B5A733 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; };
@@ -91,20 +73,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3D5396D71BBA89D600791B49 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8052E7541BB58102004E08F6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D5396CB1BBA89D600791B49;
-			remoteInfo = "Genome-OSX";
-		};
-		3DCE37421BB9D9A300D0100C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8052E7541BB58102004E08F6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3DCE37361BB9D9A300D0100C;
-			remoteInfo = "Genome-iOS";
-		};
 		8052E7711BB58102004E08F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8052E7541BB58102004E08F6 /* Project object */;
@@ -116,10 +84,8 @@
 
 /* Begin PBXFileReference section */
 		3D5396CC1BBA89D600791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D5396D51BBA89D600791B49 /* Genome-OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Genome-OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5396E81BBA8A2800791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCE37371BB9D9A300D0100C /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DCE37401BB9D9A300D0100C /* Genome-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Genome-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68088C071BC5F5D000B5A733 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8052E75C1BB58102004E08F6 /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8052E75F1BB58102004E08F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,14 +124,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D5396D21BBA89D600791B49 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D5396D61BBA89D600791B49 /* Genome.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D5396E41BBA8A2800791B49 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,14 +135,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE373D1BB9D9A300D0100C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DCE37411BB9D9A300D0100C /* Genome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,9 +177,7 @@
 				8052E75C1BB58102004E08F6 /* Genome.app */,
 				8052E7701BB58102004E08F6 /* GenomeTests.xctest */,
 				3DCE37371BB9D9A300D0100C /* Genome.framework */,
-				3DCE37401BB9D9A300D0100C /* Genome-iOS Tests.xctest */,
 				3D5396CC1BBA89D600791B49 /* Genome.framework */,
-				3D5396D51BBA89D600791B49 /* Genome-OSX Tests.xctest */,
 				3D5396E81BBA8A2800791B49 /* Genome.framework */,
 				68088C071BC5F5D000B5A733 /* Genome.framework */,
 			);
@@ -335,24 +283,6 @@
 			productReference = 3D5396CC1BBA89D600791B49 /* Genome.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3D5396D41BBA89D600791B49 /* Genome-OSX Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D5396E01BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX Tests" */;
-			buildPhases = (
-				3D5396D11BBA89D600791B49 /* Sources */,
-				3D5396D21BBA89D600791B49 /* Frameworks */,
-				3D5396D31BBA89D600791B49 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D5396D81BBA89D600791B49 /* PBXTargetDependency */,
-			);
-			name = "Genome-OSX Tests";
-			productName = "Genome-OSXTests";
-			productReference = 3D5396D51BBA89D600791B49 /* Genome-OSX Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		3D5396E71BBA8A2800791B49 /* Genome-watchOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D5396ED1BBA8A2800791B49 /* Build configuration list for PBXNativeTarget "Genome-watchOS" */;
@@ -388,24 +318,6 @@
 			productName = "Genome-iOS";
 			productReference = 3DCE37371BB9D9A300D0100C /* Genome.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		3DCE373F1BB9D9A300D0100C /* Genome-iOS Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3DCE374D1BB9D9A300D0100C /* Build configuration list for PBXNativeTarget "Genome-iOS Tests" */;
-			buildPhases = (
-				3DCE373C1BB9D9A300D0100C /* Sources */,
-				3DCE373D1BB9D9A300D0100C /* Frameworks */,
-				3DCE373E1BB9D9A300D0100C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3DCE37431BB9D9A300D0100C /* PBXTargetDependency */,
-			);
-			name = "Genome-iOS Tests";
-			productName = "Genome-iOSTests";
-			productReference = 3DCE37401BB9D9A300D0100C /* Genome-iOS Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		68088BF51BC5F5D000B5A733 /* Genome-tvOS */ = {
 			isa = PBXNativeTarget;
@@ -473,16 +385,10 @@
 					3D5396CB1BBA89D600791B49 = {
 						CreatedOnToolsVersion = 7.0;
 					};
-					3D5396D41BBA89D600791B49 = {
-						CreatedOnToolsVersion = 7.0;
-					};
 					3D5396E71BBA8A2800791B49 = {
 						CreatedOnToolsVersion = 7.0;
 					};
 					3DCE37361BB9D9A300D0100C = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					3DCE373F1BB9D9A300D0100C = {
 						CreatedOnToolsVersion = 7.0;
 					};
 					8052E75B1BB58102004E08F6 = {
@@ -510,9 +416,7 @@
 				8052E75B1BB58102004E08F6 /* Genome */,
 				8052E76F1BB58102004E08F6 /* GenomeTests */,
 				3DCE37361BB9D9A300D0100C /* Genome-iOS */,
-				3DCE373F1BB9D9A300D0100C /* Genome-iOS Tests */,
 				3D5396CB1BBA89D600791B49 /* Genome-OSX */,
-				3D5396D41BBA89D600791B49 /* Genome-OSX Tests */,
 				3D5396E71BBA8A2800791B49 /* Genome-watchOS */,
 				68088BF51BC5F5D000B5A733 /* Genome-tvOS */,
 			);
@@ -527,13 +431,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D5396D31BBA89D600791B49 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D5396E61BBA8A2800791B49 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -542,13 +439,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3DCE37351BB9D9A300D0100C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE373E1BB9D9A300D0100C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -599,20 +489,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D5396D11BBA89D600791B49 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D5397041BBA8A8100791B49 /* BasicTypes.swift in Sources */,
-				3D5397051BBA8A8100791B49 /* DictionaryKeyPathTests.swift in Sources */,
-				3D5397061BBA8A8100791B49 /* FromJsonOperatorTest.swift in Sources */,
-				3D5397071BBA8A8100791B49 /* GenomeSwiftTests.swift in Sources */,
-				3D5397081BBA8A8100791B49 /* SettableOperatorTest.swift in Sources */,
-				3D5397091BBA8A8100791B49 /* ToJsonOperatorTest.swift in Sources */,
-				3D53970A1BBA8A8100791B49 /* TransformTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D5396E31BBA8A2800791B49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -644,20 +520,6 @@
 				3DCE37551BB9D9C100D0100C /* Transformers.swift in Sources */,
 				3DCE37561BB9D9C100D0100C /* Map.swift in Sources */,
 				3DCE37571BB9D9C100D0100C /* Dictionary+KeyPaths.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE373C1BB9D9A300D0100C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DCE37581BB9D9D500D0100C /* BasicTypes.swift in Sources */,
-				3DCE37591BB9D9D500D0100C /* DictionaryKeyPathTests.swift in Sources */,
-				3DCE375A1BB9D9D500D0100C /* FromJsonOperatorTest.swift in Sources */,
-				3DCE375B1BB9D9D500D0100C /* GenomeSwiftTests.swift in Sources */,
-				3DCE375C1BB9D9D500D0100C /* SettableOperatorTest.swift in Sources */,
-				3DCE375D1BB9D9D500D0100C /* ToJsonOperatorTest.swift in Sources */,
-				3DCE375E1BB9D9D500D0100C /* TransformTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,16 +577,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3D5396D81BBA89D600791B49 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D5396CB1BBA89D600791B49 /* Genome-OSX */;
-			targetProxy = 3D5396D71BBA89D600791B49 /* PBXContainerItemProxy */;
-		};
-		3DCE37431BB9D9A300D0100C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3DCE37361BB9D9A300D0100C /* Genome-iOS */;
-			targetProxy = 3DCE37421BB9D9A300D0100C /* PBXContainerItemProxy */;
-		};
 		8052E7721BB58102004E08F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8052E75B1BB58102004E08F6 /* Genome */;
@@ -795,32 +647,6 @@
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3D5396E11BBA89D600791B49 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GenomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-OSXTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		3D5396E21BBA89D600791B49 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GenomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-OSXTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -910,26 +736,6 @@
 			};
 			name = Release;
 		};
-		3DCE374A1BB9D9A300D0100C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = GenomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3DCE374B1BB9D9A300D0100C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = GenomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		68088C051BC5F5D000B5A733 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1015,6 +821,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1053,6 +860,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1117,15 +925,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D5396E01BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D5396E11BBA89D600791B49 /* Debug */,
-				3D5396E21BBA89D600791B49 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3D5396ED1BBA8A2800791B49 /* Build configuration list for PBXNativeTarget "Genome-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1140,15 +939,6 @@
 			buildConfigurations = (
 				3DCE37481BB9D9A300D0100C /* Debug */,
 				3DCE37491BB9D9A300D0100C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3DCE374D1BB9D9A300D0100C /* Build configuration list for PBXNativeTarget "Genome-iOS Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3DCE374A1BB9D9A300D0100C /* Debug */,
-				3DCE374B1BB9D9A300D0100C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
