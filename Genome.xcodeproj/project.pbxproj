@@ -35,6 +35,7 @@
 		3D5397081BBA8A8100791B49 /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
 		3D5397091BBA8A8100791B49 /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
 		3D53970A1BBA8A8100791B49 /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
+		3D53970B1BBA8A8100791B49 /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
 		3DCE37411BB9D9A300D0100C /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCE37371BB9D9A300D0100C /* Genome.framework */; };
 		3DCE374E1BB9D9C100D0100C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
 		3DCE374F1BB9D9C100D0100C /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
@@ -53,6 +54,17 @@
 		3DCE375C1BB9D9D500D0100C /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
 		3DCE375D1BB9D9D500D0100C /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
 		3DCE375E1BB9D9D500D0100C /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
+		3DCE375F1BB9D9D500D0100C /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
+		68088BF71BC5F5D000B5A733 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
+		68088BF81BC5F5D000B5A733 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
+		68088BF91BC5F5D000B5A733 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; };
+		68088BFA1BC5F5D000B5A733 /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79D1BB58C96004E08F6 /* Initializers.swift */; };
+		68088BFB1BC5F5D000B5A733 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79E1BB58C96004E08F6 /* JsonRepresentation.swift */; };
+		68088BFC1BC5F5D000B5A733 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A11BB58C96004E08F6 /* SettableOperator.swift */; };
+		68088BFD1BC5F5D000B5A733 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A21BB58C96004E08F6 /* StandardOperators.swift */; };
+		68088BFE1BC5F5D000B5A733 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; };
+		68088BFF1BC5F5D000B5A733 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79F1BB58C96004E08F6 /* Map.swift */; };
+		68088C001BC5F5D000B5A733 /* Dictionary+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */; };
 		8052E7601BB58102004E08F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E75F1BB58102004E08F6 /* AppDelegate.swift */; };
 		8052E7621BB58102004E08F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7611BB58102004E08F6 /* ViewController.swift */; };
 		8052E7651BB58102004E08F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7631BB58102004E08F6 /* Main.storyboard */; };
@@ -108,6 +120,7 @@
 		3D5396E81BBA8A2800791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCE37371BB9D9A300D0100C /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCE37401BB9D9A300D0100C /* Genome-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Genome-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68088C071BC5F5D000B5A733 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8052E75C1BB58102004E08F6 /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8052E75F1BB58102004E08F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8052E7611BB58102004E08F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +188,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68088C011BC5F5D000B5A733 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8052E7591BB58102004E08F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +231,7 @@
 				3D5396CC1BBA89D600791B49 /* Genome.framework */,
 				3D5396D51BBA89D600791B49 /* Genome-OSX Tests.xctest */,
 				3D5396E81BBA8A2800791B49 /* Genome.framework */,
+				68088C071BC5F5D000B5A733 /* Genome.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,6 +301,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3DCE37341BB9D9A300D0100C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68088C021BC5F5D000B5A733 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -379,6 +407,24 @@
 			productReference = 3DCE37401BB9D9A300D0100C /* Genome-iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		68088BF51BC5F5D000B5A733 /* Genome-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68088C041BC5F5D000B5A733 /* Build configuration list for PBXNativeTarget "Genome-tvOS" */;
+			buildPhases = (
+				68088BF61BC5F5D000B5A733 /* Sources */,
+				68088C011BC5F5D000B5A733 /* Frameworks */,
+				68088C021BC5F5D000B5A733 /* Headers */,
+				68088C031BC5F5D000B5A733 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Genome-tvOS";
+			productName = "Genome-watchOS";
+			productReference = 68088C071BC5F5D000B5A733 /* Genome.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8052E75B1BB58102004E08F6 /* Genome */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8052E7791BB58102004E08F6 /* Build configuration list for PBXNativeTarget "Genome" */;
@@ -468,6 +514,7 @@
 				3D5396CB1BBA89D600791B49 /* Genome-OSX */,
 				3D5396D41BBA89D600791B49 /* Genome-OSX Tests */,
 				3D5396E71BBA8A2800791B49 /* Genome-watchOS */,
+				68088BF51BC5F5D000B5A733 /* Genome-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -502,6 +549,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3DCE373E1BB9D9A300D0100C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68088C031BC5F5D000B5A733 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -604,6 +658,23 @@
 				3DCE375C1BB9D9D500D0100C /* SettableOperatorTest.swift in Sources */,
 				3DCE375D1BB9D9D500D0100C /* ToJsonOperatorTest.swift in Sources */,
 				3DCE375E1BB9D9D500D0100C /* TransformTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68088BF61BC5F5D000B5A733 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68088BF71BC5F5D000B5A733 /* Errors.swift in Sources */,
+				68088BF81BC5F5D000B5A733 /* Logging.swift in Sources */,
+				68088BF91BC5F5D000B5A733 /* Protocols.swift in Sources */,
+				68088BFA1BC5F5D000B5A733 /* Initializers.swift in Sources */,
+				68088BFB1BC5F5D000B5A733 /* JsonRepresentation.swift in Sources */,
+				68088BFC1BC5F5D000B5A733 /* SettableOperator.swift in Sources */,
+				68088BFD1BC5F5D000B5A733 /* StandardOperators.swift in Sources */,
+				68088BFE1BC5F5D000B5A733 /* Transformers.swift in Sources */,
+				68088BFF1BC5F5D000B5A733 /* Map.swift in Sources */,
+				68088C001BC5F5D000B5A733 /* Dictionary+KeyPaths.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +930,54 @@
 			};
 			name = Release;
 		};
+		68088C051BC5F5D000B5A733 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = Genome/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOS";
+				PRODUCT_NAME = Genome;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		68088C061BC5F5D000B5A733 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = Genome/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOS";
+				PRODUCT_NAME = Genome;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		8052E7771BB58102004E08F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1030,6 +1149,15 @@
 			buildConfigurations = (
 				3DCE374A1BB9D9A300D0100C /* Debug */,
 				3DCE374B1BB9D9A300D0100C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68088C041BC5F5D000B5A733 /* Build configuration list for PBXNativeTarget "Genome-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68088C051BC5F5D000B5A733 /* Debug */,
+				68088C061BC5F5D000B5A733 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
