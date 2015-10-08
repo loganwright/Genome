@@ -48,7 +48,13 @@ public final class Map {
     internal private(set) var lastKeyPath = ""
     
     /// The last retrieved result.  Used in operators to set value
-    internal private(set) var result: AnyObject?
+    internal private(set) var result: AnyObject? {
+        didSet {
+            if result is NSNull {
+                result = nil
+            }
+        }
+    }
     
     // MARK: Initialization
     
