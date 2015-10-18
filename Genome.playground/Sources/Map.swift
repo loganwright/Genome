@@ -50,7 +50,10 @@ public final class Map {
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: AnyObject? {
         didSet {
-            if result is NSNull {
+            /*
+            This is a temporary fix for the issue of receiving NSNull in JSON.  I want this library to be platform agnostic which means I can't do a check using `is NSNull`. 
+            */
+            if let unwrapped = result where "\(unwrapped.dynamicType)" == "NSNull" {
                 result = nil
             }
         }
