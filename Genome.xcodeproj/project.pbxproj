@@ -843,6 +843,7 @@
 				PRODUCT_NAME = Genome;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = tvOS;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -865,6 +866,7 @@
 				PRODUCT_NAME = Genome;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = tvOS;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1211,6 +1213,7 @@
 				23E785441BDA3EF700B7564A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		23E785481BDA3EF700B7564A /* Build configuration list for PBXNativeTarget "Genome-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1219,6 +1222,7 @@
 				23E785461BDA3EF700B7564A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D5396DD1BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX" */ = {
 			isa = XCConfigurationList;
