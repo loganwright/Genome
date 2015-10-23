@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23E7853C1BDA3EF700B7564A /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E785321BDA3EF700B7564A /* Genome.framework */; };
+		23E785491BDA3F3500B7564A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
+		23E7854A1BDA3F3500B7564A /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
+		23E7854B1BDA3F3500B7564A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* Protocols.swift */; };
+		23E7854C1BDA3F3500B7564A /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79D1BB58C96004E08F6 /* Initializers.swift */; };
+		23E7854D1BDA3F3500B7564A /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79E1BB58C96004E08F6 /* JsonRepresentation.swift */; };
+		23E7854E1BDA3F3500B7564A /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A11BB58C96004E08F6 /* SettableOperator.swift */; };
+		23E7854F1BDA3F3500B7564A /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A21BB58C96004E08F6 /* StandardOperators.swift */; };
+		23E785501BDA3F3500B7564A /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A31BB58C96004E08F6 /* Transformers.swift */; };
+		23E785511BDA3F3500B7564A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79F1BB58C96004E08F6 /* Map.swift */; };
+		23E785521BDA3F3500B7564A /* Dictionary+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */; };
+		23E785531BDA3F3D00B7564A /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
+		23E785541BDA3F3D00B7564A /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
+		23E785551BDA3F3D00B7564A /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; };
+		23E785561BDA3F3D00B7564A /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; };
+		23E785571BDA3F3D00B7564A /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
+		23E785581BDA3F3D00B7564A /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
+		23E785591BDA3F3D00B7564A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
+		23E7855A1BDA3F3D00B7564A /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
 		3D5396D61BBA89D600791B49 /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5396CC1BBA89D600791B49 /* Genome.framework */; };
 		3D5396F01BBA8A7300791B49 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
 		3D5396F11BBA8A7300791B49 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
@@ -79,6 +98,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		23E7853D1BDA3EF700B7564A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8052E7541BB58102004E08F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23E785311BDA3EF700B7564A;
+			remoteInfo = "Genome-tvOS";
+		};
 		3D5396D71BBA89D600791B49 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8052E7541BB58102004E08F6 /* Project object */;
@@ -103,6 +129,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23E785321BDA3EF700B7564A /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23E7853B1BDA3EF700B7564A /* Genome-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Genome-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5396CC1BBA89D600791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5396D51BBA89D600791B49 /* Genome-OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Genome-OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5396E81BBA8A2800791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +166,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		23E7852E1BDA3EF700B7564A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23E785381BDA3EF700B7564A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23E7853C1BDA3EF700B7564A /* Genome.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D5396C81BBA89D600791B49 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +254,8 @@
 				3D5396CC1BBA89D600791B49 /* Genome.framework */,
 				3D5396D51BBA89D600791B49 /* Genome-OSX Tests.xctest */,
 				3D5396E81BBA8A2800791B49 /* Genome.framework */,
+				23E785321BDA3EF700B7564A /* Genome.framework */,
+				23E7853B1BDA3EF700B7564A /* Genome-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +310,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		23E7852F1BDA3EF700B7564A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D5396C91BBA89D600791B49 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,6 +341,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		23E785311BDA3EF700B7564A /* Genome-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23E785471BDA3EF700B7564A /* Build configuration list for PBXNativeTarget "Genome-tvOS" */;
+			buildPhases = (
+				23E7852D1BDA3EF700B7564A /* Sources */,
+				23E7852E1BDA3EF700B7564A /* Frameworks */,
+				23E7852F1BDA3EF700B7564A /* Headers */,
+				23E785301BDA3EF700B7564A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Genome-tvOS";
+			productName = "Genome-tvOS";
+			productReference = 23E785321BDA3EF700B7564A /* Genome.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		23E7853A1BDA3EF700B7564A /* Genome-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23E785481BDA3EF700B7564A /* Build configuration list for PBXNativeTarget "Genome-tvOSTests" */;
+			buildPhases = (
+				23E785371BDA3EF700B7564A /* Sources */,
+				23E785381BDA3EF700B7564A /* Frameworks */,
+				23E785391BDA3EF700B7564A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23E7853E1BDA3EF700B7564A /* PBXTargetDependency */,
+			);
+			name = "Genome-tvOSTests";
+			productName = "Genome-tvOSTests";
+			productReference = 23E7853B1BDA3EF700B7564A /* Genome-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3D5396CB1BBA89D600791B49 /* Genome-OSX */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D5396DD1BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX" */;
@@ -424,6 +512,12 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = lowriDevs;
 				TargetAttributes = {
+					23E785311BDA3EF700B7564A = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					23E7853A1BDA3EF700B7564A = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					3D5396CB1BBA89D600791B49 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -468,11 +562,27 @@
 				3D5396CB1BBA89D600791B49 /* Genome-OSX */,
 				3D5396D41BBA89D600791B49 /* Genome-OSX Tests */,
 				3D5396E71BBA8A2800791B49 /* Genome-watchOS */,
+				23E785311BDA3EF700B7564A /* Genome-tvOS */,
+				23E7853A1BDA3EF700B7564A /* Genome-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		23E785301BDA3EF700B7564A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23E785391BDA3EF700B7564A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D5396CA1BBA89D600791B49 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -528,6 +638,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		23E7852D1BDA3EF700B7564A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23E785491BDA3F3500B7564A /* Errors.swift in Sources */,
+				23E7854A1BDA3F3500B7564A /* Logging.swift in Sources */,
+				23E7854B1BDA3F3500B7564A /* Protocols.swift in Sources */,
+				23E7854C1BDA3F3500B7564A /* Initializers.swift in Sources */,
+				23E7854D1BDA3F3500B7564A /* JsonRepresentation.swift in Sources */,
+				23E7854E1BDA3F3500B7564A /* SettableOperator.swift in Sources */,
+				23E7854F1BDA3F3500B7564A /* StandardOperators.swift in Sources */,
+				23E785501BDA3F3500B7564A /* Transformers.swift in Sources */,
+				23E785511BDA3F3500B7564A /* Map.swift in Sources */,
+				23E785521BDA3F3500B7564A /* Dictionary+KeyPaths.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23E785371BDA3EF700B7564A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23E785531BDA3F3D00B7564A /* BasicTypes.swift in Sources */,
+				23E785541BDA3F3D00B7564A /* DictionaryKeyPathTests.swift in Sources */,
+				23E785551BDA3F3D00B7564A /* FromJsonOperatorTest.swift in Sources */,
+				23E785561BDA3F3D00B7564A /* GenomeSwiftTests.swift in Sources */,
+				23E785571BDA3F3D00B7564A /* SettableOperatorTest.swift in Sources */,
+				23E785581BDA3F3D00B7564A /* ToJsonOperatorTest.swift in Sources */,
+				23E785591BDA3F3D00B7564A /* TransformTests.swift in Sources */,
+				23E7855A1BDA3F3D00B7564A /* GenomeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D5396C71BBA89D600791B49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -644,6 +786,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		23E7853E1BDA3EF700B7564A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23E785311BDA3EF700B7564A /* Genome-tvOS */;
+			targetProxy = 23E7853D1BDA3EF700B7564A /* PBXContainerItemProxy */;
+		};
 		3D5396D81BBA89D600791B49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3D5396CB1BBA89D600791B49 /* Genome-OSX */;
@@ -681,6 +828,76 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		23E785431BDA3EF700B7564A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Genome/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOS";
+				PRODUCT_NAME = Genome;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		23E785441BDA3EF700B7564A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Genome/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOS";
+				PRODUCT_NAME = Genome;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		23E785451BDA3EF700B7564A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GenomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		23E785461BDA3EF700B7564A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GenomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		3D5396DE1BBA89D600791B49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -989,6 +1206,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		23E785471BDA3EF700B7564A /* Build configuration list for PBXNativeTarget "Genome-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23E785431BDA3EF700B7564A /* Debug */,
+				23E785441BDA3EF700B7564A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23E785481BDA3EF700B7564A /* Build configuration list for PBXNativeTarget "Genome-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23E785451BDA3EF700B7564A /* Debug */,
+				23E785461BDA3EF700B7564A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3D5396DD1BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
