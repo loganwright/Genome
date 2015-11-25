@@ -52,7 +52,6 @@
 		8052E7651BB58102004E08F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7631BB58102004E08F6 /* Main.storyboard */; };
 		8052E7671BB58102004E08F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7661BB58102004E08F6 /* Assets.xcassets */; };
 		8052E76A1BB58102004E08F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7681BB58102004E08F6 /* LaunchScreen.storyboard */; };
-		8052E7751BB58102004E08F6 /* GenomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7741BB58102004E08F6 /* GenomeTests.swift */; };
 		8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
 		8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
 		8052E7871BB58178004E08F6 /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; };
@@ -95,7 +94,6 @@
 		8052E7691BB58102004E08F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8052E76B1BB58102004E08F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8052E7701BB58102004E08F6 /* GenomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8052E7741BB58102004E08F6 /* GenomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenomeTests.swift; sourceTree = "<group>"; };
 		8052E7761BB58102004E08F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8052E77F1BB58177004E08F6 /* BasicTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
 		8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
@@ -208,7 +206,6 @@
 				8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */,
 				8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */,
 				80FC8F191BB6CEE30069CC5A /* TransformTests.swift */,
-				8052E7741BB58102004E08F6 /* GenomeTests.swift */,
 				8052E7761BB58102004E08F6 /* Info.plist */,
 			);
 			path = GenomeTests;
@@ -566,7 +563,6 @@
 				8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */,
 				8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */,
 				8052E78A1BB58178004E08F6 /* ToJsonOperatorTest.swift in Sources */,
-				8052E7751BB58102004E08F6 /* GenomeTests.swift in Sources */,
 				8052E7891BB58178004E08F6 /* SettableOperatorTest.swift in Sources */,
 				8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */,
 				80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */,
