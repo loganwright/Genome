@@ -124,4 +124,8 @@ public final class Map {
         }
         try setToLastKey(json)
     }
+    
+    internal func setToLastKey<T : MappableObject>(any: Set<T>?) throws {
+        try setToLastKey(any?.jsonRepresentation())
+    }
 }

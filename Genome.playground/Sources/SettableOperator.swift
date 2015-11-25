@@ -30,6 +30,13 @@ public prefix func <~? <T: MappableObject>(map: Map) throws -> [String : T]? {
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : T]
 }
+
+public prefix func <~? <T: MappableObject>(map: Map) throws -> Set<T>? {
+    try enforceMapType(map, expectedType: .FromJson)
+    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
+    return try <~map as Set<T>
+}
+
 // MARK: Non-Optional Casters
 
 public prefix func <~ <T>(map: Map) throws -> T {
@@ -74,6 +81,13 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> [String : T] {
     }
     return mappedDictionary
 }
+
+public prefix func <~ <T: MappableObject>(map: Map) throws -> Set<T> {
+    try enforceMapType(map, expectedType: .FromJson)
+    let jsonArray = try expectJsonArrayWithMap(map, targetType: Set<T>.self)
+    return try Set<T>.mappedInstance(jsonArray, context: map.context)
+}
+
 // MARK: Transformables
 
 public prefix func <~ <JsonInputType, T>(transformer: FromJsonTransformer<JsonInputType, T>) throws -> T {

@@ -27,3 +27,11 @@ public extension Array where Element: MappableObject {
         return try map { try $0.jsonRepresentation() }
     }
 }
+
+public extension Set where Element: MappableObject {
+    
+    /// Used to convert the set of mappable objects to an array of their json representations
+    func jsonRepresentation() throws -> [JSON] {
+        return try map { try $0.jsonRepresentation() }
+    }
+}
