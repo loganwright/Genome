@@ -24,6 +24,11 @@ public prefix func <~? <T: MappableObject>(map: Map) throws -> [T]? {
     return try <~map as [T]
 }
 
+public prefix func <~? <T: MappableObject>(map: Map) throws -> [[T]]? {
+    try enforceMapType(map, expectedType: .FromJson)
+    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
+    return try <~map as [[T]]
+}
 
 public prefix func <~? <T: MappableObject>(map: Map) throws -> [String : T]? {
     try enforceMapType(map, expectedType: .FromJson)
@@ -69,6 +74,17 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> [T] {
     return try [T].mappedInstance(jsonArray, context: map.context)
 }
 
+public prefix func <~ <T: MappableObject>(map: Map) throws -> [[T]] {
+    try enforceMapType(map, expectedType: .FromJson)
+    let jsonArrayOfArrays = try expectJsonArrayOfArraysWithMap(map, targetType: [[T]].self)
+    
+    var mappedArrayOfArrays: [[T]] = []
+    for jsonArray in jsonArrayOfArrays {
+        let mappedArray = try [T].mappedInstance(jsonArray, context: map.context)
+        mappedArrayOfArrays.append(mappedArray)
+    }
+    return mappedArrayOfArrays
+}
 
 public prefix func <~ <T: MappableObject>(map: Map) throws -> [String : T] {
     try enforceMapType(map, expectedType: .FromJson)
@@ -124,6 +140,18 @@ private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [
     if let j = result as? [JSON] {
         return j
     } else if let j = result as? JSON {
+        return [j]
+    } else {
+        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        throw logError(error)
+    }
+}
+
+private func expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [[JSON]] {
+    let result = try enforceResultExists(map, type: T.self)
+    if let j = result as? [[JSON]] {
+        return j
+    } else if let j = result as? [JSON] {
         return [j]
     } else {
         let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)

@@ -114,6 +114,17 @@ public final class Map {
         try setToLastKey(any?.jsonRepresentation())
     }
     
+    internal func setToLastKey<T : MappableObject>(any: [[T]]?) throws {
+        var json: [[JSON]]?
+        if let any = any {
+            json = []
+            for array in any {
+                json!.append(try array.jsonRepresentation())
+            }
+        }
+        try setToLastKey(json)
+    }
+    
     internal func setToLastKey<T : MappableObject>(any: [String : T]?) throws {
         var json: [String : JSON]?
         if let any = any {
