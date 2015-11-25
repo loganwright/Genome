@@ -36,6 +36,12 @@ public prefix func <~? <T: MappableObject>(map: Map) throws -> [String : T]? {
     return try <~map as [String : T]
 }
 
+public prefix func <~? <T: MappableObject>(map: Map) throws -> [String : [T]]? {
+    try enforceMapType(map, expectedType: .FromJson)
+    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
+    return try <~map as [String : [T]]
+}
+
 public prefix func <~? <T: MappableObject>(map: Map) throws -> Set<T>? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
@@ -96,6 +102,18 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> [String : T] {
         mappedDictionary[key] = mappedValue
     }
     return mappedDictionary
+}
+
+public prefix func <~ <T: MappableObject>(map: Map) throws -> [String : [T]] {
+    try enforceMapType(map, expectedType: .FromJson)
+    let jsonDictionaryOfArrays = try expectJsonDictionaryOfArraysWithMap(map, targetType: [String : [T]].self)
+    
+    var mappedDictionaryOfArrays: [String : [T]] = [:]
+    for (key, value) in jsonDictionaryOfArrays {
+        let mappedValue = try [T].mappedInstance(value, context: map.context)
+        mappedDictionaryOfArrays[key] = mappedValue
+    }
+    return mappedDictionaryOfArrays
 }
 
 public prefix func <~ <T: MappableObject>(map: Map) throws -> Set<T> {
@@ -162,6 +180,16 @@ private func expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) thr
 private func expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : JSON] {
     let result = try enforceResultExists(map, type: T.self)
     if let j = result as? [String : JSON] {
+        return j
+    } else {
+        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        throw logError(error)
+    }
+}
+
+private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [JSON]] {
+    let result = try enforceResultExists(map, type: T.self)
+    if let j = result as? [String : [JSON]] {
         return j
     } else {
         let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
