@@ -114,7 +114,7 @@ class SettableOperatorTest: XCTestCase {
         let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
         
-        map == nil
+        map = nil
     }
     
     

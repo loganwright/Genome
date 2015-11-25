@@ -49,7 +49,7 @@ public class Transformer<InputType, OutputType> {
     }
     
     private func unexpectedInput<ValueType>(value: ValueType) -> ErrorType {
-        let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKeyPath)"
+        let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKey)"
         return TransformationError.UnexpectedInputType(message)
     }
     
@@ -57,7 +57,7 @@ public class Transformer<InputType, OutputType> {
         if let unwrapped = value {
             return unwrapped
         } else {
-            let error = TransformationError.UnexpectedInputType("Unexpectedly found nil input.  KeyPath: \(map.lastKeyPath) Expected: \(InputType.self)")
+            let error = TransformationError.UnexpectedInputType("Unexpectedly found nil input.  KeyPath: \(map.lastKey) Expected: \(InputType.self)")
             throw logError(error)
         }
     }

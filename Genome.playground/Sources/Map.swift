@@ -8,6 +8,22 @@
 
 // MARK: Map
 
+public enum KeyType {
+    case KeyPath(String)
+    case Key(String)
+}
+
+extension KeyType : CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case let .Key(key):
+            return ".Key(\(key))"
+        case let .KeyPath(keyPath):
+            return ".KeyPath(\(keyPath))"
+        }
+    }
+}
+
 /// This class is designed to serve as an adaptor between the raw json and the values.  In this way we can interject behavior that assists in mapping between the two.
 public final class Map {
     
@@ -45,7 +61,7 @@ public final class Map {
     internal private(set) var linkTo = ""
     
     /// The last key accessed -- Used to reverse JSON Operations
-    internal private(set) var lastKeyPath = ""
+    internal private(set) var lastKey: KeyType = .KeyPath("")
     
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: AnyObject? {
@@ -84,8 +100,17 @@ public final class Map {
     :returns: returns an instance of self that can be passed to the mappable operator
     */
     public subscript(keyPath: String) -> Map {
-        lastKeyPath = keyPath
-        result = json.gnm_valueForKeyPath(keyPath)
+        return self[.KeyPath(keyPath)]
+    }
+    
+    public subscript(keyType: KeyType) -> Map {
+        lastKey = keyType
+        switch keyType {
+        case let .Key(key):
+            result = json[key]
+        case let .KeyPath(keyPath):
+            result = json.gnm_valueForKeyPath(keyPath)
+        }
         return self
     }
     
@@ -98,9 +123,14 @@ public final class Map {
     */
     internal func setToLastKey<T>(any: T?) throws {
         if let a = any as? AnyObject {
-            toJson.gnm_setValue(a, forKeyPath: lastKeyPath)
+            switch lastKey {
+            case let .Key(key):
+                toJson[key] = a
+            case let .KeyPath(keyPath):
+                toJson.gnm_setValue(a, forKeyPath: keyPath)
+            }
         } else if any != nil {
-            let message = "Unable to convert: \(any!) forKeyPath: \(lastKeyPath) to JSON because type: \(any!.dynamicType) can't be cast to type AnyObject"
+            let message = "Unable to convert: \(any!) forKeyPath: \(lastKey) to JSON because type: \(any!.dynamicType) can't be cast to type AnyObject"
             let error = MappingError.UnableToMap(message)
             throw logError(error)
         }
@@ -114,3 +144,4 @@ public final class Map {
         try setToLastKey(any?.jsonRepresentation())
     }
 }
+ 

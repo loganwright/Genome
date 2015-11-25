@@ -166,3 +166,22 @@ let mappedString2: String = try <~map["key"]
         return "Hello NonOptional \(input)"
     }
 
+struct __Person : StandardMappable {
+    let firstName: String
+    let secondName: String?
+    let age: Int
+    let description: String
+    let hobbies: [String]
+    
+    init(map: Map) throws {
+        firstName = try <~map["firstName"]
+        secondName = try <~?map["secondName"]
+        age = try <~map["age"]
+        description = try <~map["description"]
+        hobbies = try <~map["hobbies"]
+    }
+    
+    mutating func sequence(map: Map) throws {}
+}
+
+[__Person].mappedInstance([])
