@@ -83,13 +83,7 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> [T] {
 public prefix func <~ <T: MappableObject>(map: Map) throws -> [[T]] {
     try enforceMapType(map, expectedType: .FromJson)
     let jsonArrayOfArrays = try expectJsonArrayOfArraysWithMap(map, targetType: [[T]].self)
-    
-    var mappedArrayOfArrays: [[T]] = []
-    for jsonArray in jsonArrayOfArrays {
-        let mappedArray = try [T].mappedInstance(jsonArray, context: map.context)
-        mappedArrayOfArrays.append(mappedArray)
-    }
-    return mappedArrayOfArrays
+    return try jsonArrayOfArrays.map { try [T].mappedInstance($0, context: map.context) }
 }
 
 public prefix func <~ <T: MappableObject>(map: Map) throws -> [String : T] {
