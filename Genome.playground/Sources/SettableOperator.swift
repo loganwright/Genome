@@ -57,7 +57,7 @@ public prefix func <~ <T>(map: Map) throws -> T {
     if let value = result as? T {
         return value
     } else {
-        let error = unexpectedResult(result, expected: T.self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: T.self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
@@ -69,7 +69,7 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> T {
     if let json = result as? JSON {
         return try T.mappedInstance(json, context: map.context)
     } else {
-        let error = unexpectedResult(result, expected: JSON.self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: JSON.self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
@@ -83,13 +83,7 @@ public prefix func <~ <T: MappableObject>(map: Map) throws -> [T] {
 public prefix func <~ <T: MappableObject>(map: Map) throws -> [[T]] {
     try enforceMapType(map, expectedType: .FromJson)
     let jsonArrayOfArrays = try expectJsonArrayOfArraysWithMap(map, targetType: [[T]].self)
-    
-    var mappedArrayOfArrays: [[T]] = []
-    for jsonArray in jsonArrayOfArrays {
-        let mappedArray = try [T].mappedInstance(jsonArray, context: map.context)
-        mappedArrayOfArrays.append(mappedArray)
-    }
-    return mappedArrayOfArrays
+    return try jsonArrayOfArrays.map { try [T].mappedInstance($0, context: map.context) }
 }
 
 public prefix func <~ <T: MappableObject>(map: Map) throws -> [String : T] {
@@ -141,13 +135,13 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject 
     if let result = map.result {
         return result
     } else {
-        let message = "Key: \(map.lastKeyPath) TargetType: \(T.self)"
+        let message = "Key: \(map.lastKey) TargetType: \(T.self)"
         let error = SequenceError.FoundNil(message)
         throw logError(error)
     }
 }
 
-private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: String, targetType: U.Type) -> ErrorType {
+private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
     let message = "Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
     return error
@@ -160,7 +154,7 @@ private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [
     } else if let j = result as? JSON {
         return [j]
     } else {
-        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
@@ -172,7 +166,7 @@ private func expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) thr
     } else if let j = result as? [JSON] {
         return [j]
     } else {
-        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
@@ -182,7 +176,7 @@ private func expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws
     if let j = result as? [String : JSON] {
         return j
     } else {
-        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
@@ -192,7 +186,7 @@ private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type
     if let j = result as? [String : [JSON]] {
         return j
     } else {
-        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKeyPath, targetType: T.self)
+        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
