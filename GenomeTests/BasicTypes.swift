@@ -67,15 +67,7 @@ class BasicTypeTexts: XCTestCase {
         }
     }
     
-    func test() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            self._testBasic()
-            self._testBasicArrays()
-        }
-    }
-    
-    func _testBasic() {
+    func testBasic() {
         let basic = try! Basic.mappedInstance(BasicTestJson)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
@@ -96,7 +88,7 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(string == "hello")
     }
     
-    func _testBasicArrays() {
+    func testBasicArrays() {
         let basic = try! BasicArrays.mappedInstance(BasicArraysTestJson)
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])

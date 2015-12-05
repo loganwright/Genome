@@ -121,16 +121,6 @@ extension Person : CustomStringConvertible {
 
 class GenomeSideLoadTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testSideLoad() {
         let jsonArrayOfPeople = SideLoadTestJson["people"]!
         let single: Person! = try! Person.mappedInstance(jsonArrayOfPeople.first as! JSON)
@@ -166,13 +156,6 @@ class GenomeSideLoadTests: XCTestCase {
         print("mjs: \(m.toJson)")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
 
 // MARK: Standard Operator Tests
@@ -183,16 +166,6 @@ let StandardOperatorJson = [
 ]
 
 class StandardOperatorTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
     
     func testSideLoad() {
         let map = Map(json: StandardOperatorJson)
@@ -205,13 +178,6 @@ class StandardOperatorTests: XCTestCase {
         try! intsOptional <~> map["ints"]
         XCTAssert(intsOptional! == Ints)
         print("IntsOptional: \(intsOptional)")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
     }
     
 }
@@ -234,16 +200,6 @@ let ComplexOperatorJson: JSON = [
 
 class ComplexOperatorTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testSideLoad() {
         let peeeeps: [Person]? = try! [Person].mappedInstance(SideLoadTestJson["people"] as! [JSON])
 //        let peeeeps: [Person]? = Sequence(SideLoadTestJson["people"] as! [JSON])
@@ -258,13 +214,6 @@ class ComplexOperatorTests: XCTestCase {
         try! peepsOptional <~> map["peeps"]
 //        XCTAssert(peepsOptional! == Ints)
         print("PeepsOptional: \(peepsOptional)")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
     }
     
 }

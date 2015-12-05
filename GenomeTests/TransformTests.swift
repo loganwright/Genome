@@ -16,12 +16,6 @@ class TransformTest: XCTestCase {
     ]
     
     func test() {
-        self.measureBlock {
-            self._test()
-        }
-    }
-    
-    func _test() {
         let map = Map(json: testJson)
         var settableString: String? = nil
         try! settableString <~ map["hello"]

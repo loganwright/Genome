@@ -11,16 +11,6 @@ import Genome
 
 class DictionaryKeyPathTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testExample() {
         var TestDictionary: [NSObject : AnyObject] = [
             "one" : [
@@ -33,13 +23,6 @@ class DictionaryKeyPathTests: XCTestCase {
         TestDictionary.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
         let setVal: String! = TestDictionary.gnm_valueForKeyPath("path.to.new.value")
         XCTAssert(setVal == "Hello!")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
     }
     
 }

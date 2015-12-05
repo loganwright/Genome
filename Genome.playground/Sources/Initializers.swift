@@ -48,3 +48,20 @@ public extension Array where Element : MappableObject {
     }
     
 }
+
+public extension Set where Element : MappableObject {
+    /**
+     Use this method to initialize a set of objects from a json array
+     
+     :example: let foods = Set<Food>.mappedInstance(jsonArray)
+     
+     :param: js      the array of json
+     :param: context the context to use when mapping the individual objects
+     
+     :returns: a set of objects initialized from the json array in the provided context
+     */
+    static func mappedInstance(js: [JSON], context: JSON = [:]) throws -> Set {
+        return Set<Element>(try js.map { try Element.mappedInstance($0, context: context) })
+    }
+    
+}
