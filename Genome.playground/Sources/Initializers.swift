@@ -21,13 +21,9 @@ public extension MappableObject {
     */
     static func mappedInstance(js: JSON, context: JSON = [:]) throws -> Self {
         let map = Map(json: js, context: context)
-        let initialization = initializer()
-        var instance = try initialization(map)
-        assert(instance is Self,
-            "Unfortunately, in order to support flexible subclassing, while also not enforcing a specific initializer, I need to be lenient with my type specifications in MappableObject protocol.  Otherwise, an error is thrown 'You are unable to 'use Self in a non-parameter, non-result type position`.  This means that although `Initializer` is of type `Map -> MappableObject`, it should really be considered `Map -> Self`!"
-        )
+        var instance = try newInstance(map)
         try instance.sequence(map)
-        return instance as! Self
+        return instance
     }
     
 }

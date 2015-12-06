@@ -10,10 +10,10 @@
 
 public typealias JSON = [String : AnyObject]
 
-/// I am using this typealias as a workaround.  It should be considered type `Map -> Self` for wherever it is required
-//public typealias Initializer = Map -> MappableObject
-//public typealias ThrowableInitializer = Map throws -> MappableObject
-public typealias Initializer = Map throws -> MappableObject
+///// I am using this typealias as a workaround.  It should be considered type `Map -> Self` for wherever it is required
+////public typealias Initializer = Map -> MappableObject
+////public typealias ThrowableInitializer = Map throws -> MappableObject
+//public typealias Initializer = Map throws -> MappableObject
 
 
 // MARK: MappableObject
@@ -45,8 +45,7 @@ public protocol MappableObject {
     :param: map the adaptor between the json to use when sequencing the object
     */
     mutating func sequence(map: Map) throws -> Void
-    
-    static func initializer() -> Initializer
+    static func newInstance(map: Map) throws -> Self
 }
 
 // MARK: Basic Mappable
@@ -60,8 +59,8 @@ public protocol BasicMappable: MappableObject {
 }
 
 public extension BasicMappable {
-    static func initializer() -> Initializer {
-        return { _ in return try self.init() }
+    static func newInstance(_: Map) throws -> Self {
+        return try self.init()
     }
 }
 
@@ -77,23 +76,7 @@ public protocol StandardMappable: MappableObject {
 }
 
 public extension StandardMappable {
-    static func initializer() -> Initializer {
-        return { try self.init(map: $0) }
-    }
-}
-
-// MARK: Custom Mappable
-
-/**
- *  If your object has custom behavior that requires its initialization 
- *  to be performed by a class level initializer, conform to this protocol
- */
-public protocol CustomMappable : MappableObject {
-    static func newInstance(map: Map) throws -> Self
-}
-
-public extension CustomMappable {
-    static func initializer() -> Initializer {
-        return { try newInstance($0) }
+    static func newInstance(map: Map) throws -> Self {
+        return try self.init(map: map)
     }
 }
