@@ -1,6 +1,6 @@
 
 public enum MappingError : ErrorType {
-    case _UnableToMap(key: KeyType, message: String)
+    case _UnableToMap(key: KeyType, error: ErrorType)
     case UnableToMap(String)
     case UnexpectedOperationType(String)
 }

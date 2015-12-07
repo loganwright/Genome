@@ -5,17 +5,25 @@ prefix operator <~ {}
 prefix operator <~? {}
 
 extension Map {
+    
+    public func extract<T : JSONDataType>(key: KeyType) throws -> T? {
+        self.setKeyType(key)
+        try enforceMapType(self, expectedType: .FromJson)
+        guard let _ = result else { return nil } // Ok for Optionals to return nil
+        return try extract(key) as T
+    }
+    
     public func extract<T : JSONDataType>(key: KeyType) throws -> T {
+        // TODO: Look into getting rid of this w/ new extract paradigm?
         self.setKeyType(key)
         try enforceMapType(self, expectedType: .FromJson)
         let result = try enforceResultExists(self, type: T.self)
-        return try T.newInstance(result, context: context)
-//        if let value = result as? T {
-//            return value
-//        } else {
-//            let error = unexpectedResult(result, expected: T.self, keyPath: self.lastKey, targetType: T.self)
-//            throw logError(error)
-//        }
+        do {
+            return try T.newInstance(result, context: context)
+        } catch {
+            let error = MappingError._UnableToMap(key: key, error: error)
+            throw logError(error)
+        }
     }
 }
 
