@@ -128,15 +128,7 @@ public final class Map {
     
     :returns: returns an instance of self that can be passed to the mappable operator
     */
-    public subscript(keyPath: String) -> Map {
-        return self[.KeyPath(keyPath)]
-    }
-    
     public subscript(keyType: KeyType) -> Map {
-        return setKeyType(keyType)
-    }
-    
-    internal func setKeyType(keyType: KeyType) -> Map {
         lastKey = keyType
         switch keyType {
         case let .Key(key):
