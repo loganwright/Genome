@@ -8,10 +8,10 @@
 
 // MARK: To Json
 
-public extension MappableObject {
+extension MappableObject {
     
     /// Used to convert an object back into json
-    func jsonRepresentation() throws -> JSON {
+    public func jsonRepresentation() throws -> JSON {
         let map = Map()
         map.type = .ToJson
         var ob = self
@@ -20,18 +20,34 @@ public extension MappableObject {
     }
 }
 
-public extension Array where Element: MappableObject {
+extension Array where Element: MappableObject {
     
     /// Used to convert the array of mappable objects to an array of their json representations
-    func jsonRepresentation() throws -> [JSON] {
+    public func jsonRepresentation() throws -> [JSON] {
         return try map { try $0.jsonRepresentation() }
     }
 }
 
-public extension Set where Element: MappableObject {
+extension Array where Element: JSONDataType {
+    
+    /// Used to convert the array of mappable objects to an array of their json representations
+    public func rawRepresentation() throws -> [AnyObject] {
+        return try map { try $0.rawRepresentation() }
+    }
+}
+
+extension Set where Element: MappableObject {
     
     /// Used to convert the set of mappable objects to an array of their json representations
-    func jsonRepresentation() throws -> [JSON] {
+    public func jsonRepresentation() throws -> [JSON] {
         return try map { try $0.jsonRepresentation() }
+    }
+}
+
+extension Set where Element: JSONDataType {
+    
+    /// Used to convert the array of mappable objects to an array of their json representations
+    public func rawRepresentation() throws -> [AnyObject] {
+        return try map { try $0.rawRepresentation() }
     }
 }

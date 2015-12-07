@@ -135,6 +135,18 @@ public extension Map {
 
 // MARK: Operators
 
+//public prefix func <~ <T : JSONDataType>(map: Map) throws -> T {
+//    try enforceMapType(map, expectedType: .FromJson)
+//    let result = try enforceResultExists(map, type: T.self)
+//
+//    if let value = result as? T {
+//        return value
+//    } else {
+//        let error = unexpectedResult(result, expected: T.self, keyPath: map.lastKey, targetType: T.self)
+//        throw logError(error)
+//    }
+//}
+
 public func <~> <T, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
     switch rhs.map.type {
     case .FromJson:

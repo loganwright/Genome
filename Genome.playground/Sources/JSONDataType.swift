@@ -1,6 +1,9 @@
 
 
 extension String : JSONDataType {}
+extension Bool : JSONDataType {}
+
+// MARK: Integer Type
 
 extension Int : JSONDataIntegerType {}
 extension Int8 : JSONDataIntegerType {}
@@ -8,11 +11,15 @@ extension Int16 : JSONDataIntegerType {}
 extension Int32 : JSONDataIntegerType {}
 extension Int64 : JSONDataIntegerType {}
 
+// MARK: Unsigned Integer Type
+
 extension UInt : JSONDataIntegerType {}
 extension UInt8 : JSONDataIntegerType {}
 extension UInt16 : JSONDataIntegerType {}
 extension UInt32 : JSONDataIntegerType {}
 extension UInt64 : JSONDataIntegerType {}
+
+// MARK: Floating Point
 
 extension Double : JSONDataFloatingPointType {}
 
@@ -110,3 +117,5 @@ extension JSONDataFloatingPointType {
         }
     }
 }
+
+

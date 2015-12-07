@@ -140,49 +140,49 @@ public final class Map {
         }
     }
     
-    internal func setToLastKey<T : MappableObject>(any: T?) throws {
-        try setToLastKey(any?.jsonRepresentation())
+    internal func setToLastKey<T : JSONDataType>(any: T?) throws {
+        try setToLastKey(any?.rawRepresentation())
     }
     
-    internal func setToLastKey<T : MappableObject>(any: [T]?) throws {
-        try setToLastKey(any?.jsonRepresentation())
+    internal func setToLastKey<T : JSONDataType>(any: [T]?) throws {
+        try setToLastKey(any?.rawRepresentation())
     }
     
-    internal func setToLastKey<T : MappableObject>(any: [[T]]?) throws {
-        var json: [[JSON]]?
+    internal func setToLastKey<T : JSONDataType>(any: [[T]]?) throws {
+        var json: [[AnyObject]]?
         if let any = any {
             json = []
             for array in any {
-                json!.append(try array.jsonRepresentation())
+                json!.append(try array.rawRepresentation())
             }
         }
         try setToLastKey(json)
     }
     
-    internal func setToLastKey<T : MappableObject>(any: [String : T]?) throws {
-        var json: [String : JSON]?
+    internal func setToLastKey<T : JSONDataType>(any: [String : T]?) throws {
+        var json: [String : AnyObject]?
         if let any = any {
             json = [:]
             for (key, value) in any {
-                json![key] = try value.jsonRepresentation()
+                json![key] = try value.rawRepresentation()
             }
         }
         try setToLastKey(json)
     }
     
-    internal func setToLastKey<T : MappableObject>(any: [String : [T]]?) throws {
-        var json: [String : [JSON]]?
+    internal func setToLastKey<T : JSONDataType>(any: [String : [T]]?) throws {
+        var json: [String : [AnyObject]]?
         if let any = any {
             json = [:]
             for (key, value) in any {
-                json![key] = try value.jsonRepresentation()
+                json![key] = try value.rawRepresentation()
             }
         }
         try setToLastKey(json)
     }
     
-    internal func setToLastKey<T : MappableObject>(any: Set<T>?) throws {
-        try setToLastKey(any?.jsonRepresentation())
+    internal func setToLastKey<T : JSONDataType>(any: Set<T>?) throws {
+        try setToLastKey(any?.rawRepresentation())
     }
 }
  

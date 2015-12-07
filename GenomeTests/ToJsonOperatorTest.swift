@@ -58,11 +58,14 @@ class ToJsonOperatorTest: XCTestCase {
             name = try! <~map["name"]
             foundedYear = try! <~map["founded_in"]
             
-            locations = try! <~map["locations"]
-            locationsOptional = try! <~?map["locations"]
+            locations = try! map["locations"]
+                .extract()
+            locationsOptional = try! map["locations"]
+                .extract()
             
             owner = try! <~map["owner"]
-            ownerOptional = try! <~?map["owner"]
+            ownerOptional = try! map["owner"]
+                .extract()
             
             employees = try! <~map["employees"]
             employeesOptional = try! <~?map["employees"]

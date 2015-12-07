@@ -42,6 +42,14 @@ public extension Array where Element : MappableObject {
     static func mappedInstance(js: [JSON], context: JSON = [:]) throws -> Array {
         return try js.map { try Element.mappedInstance($0, context: context) }
     }
+}
+
+
+public extension Array where Element : JSONDataType {
+    public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Array {
+        return try convertAnyObjectToRawArray(rawValue)
+            .map { try Element.newInstance($0, context: context) }
+    }
     
 }
 
