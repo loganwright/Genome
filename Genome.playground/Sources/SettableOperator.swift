@@ -9,7 +9,7 @@ extension Map {
         self.setKeyType(key)
         try enforceMapType(self, expectedType: .FromJson)
         let result = try enforceResultExists(self, type: T.self)
-        return try T.newInstance(result, rawContext: context)
+        return try T.newInstance(result, context: context)
 //        if let value = result as? T {
 //            return value
 //        } else {
@@ -159,13 +159,13 @@ public prefix func <~ <JsonInputType, T>(transformer: FromJsonTransformer<JsonIn
 
 // MARK: Enforcers
 
-private func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
+internal func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
     if map.type != expectedType {
         throw logError(MappingError.UnexpectedOperationType("Received mapping operation of type: \(map.type) expected: \(expectedType)"))
     }
 }
 
-private func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject {
+internal func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject {
     if let result = map.result {
         return result
     } else {

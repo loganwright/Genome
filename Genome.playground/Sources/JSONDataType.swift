@@ -23,18 +23,28 @@ extension Float80 : JSONDataFloatingPointType {}
 
 public protocol JSONDataType {
     func rawRepresentation() throws -> AnyObject
-    static func newInstance(rawValue: AnyObject) throws -> Self
+    static func newInstance(rawValue: AnyObject, context: JSON) throws -> Self
 }
 
 extension JSONDataType {
     public func rawRepresentation() throws -> AnyObject {
-        return self as! AnyObject
+        if let raw = self as? AnyObject {
+            return raw
+        } else {
+            let error = RawConversionError
+                .UnableToConvertToJSON
+            throw logError(error)
+        }
     }
     
-    public static func newInstance(rawValue: AnyObject, _: JSON = [:], currentKey: KeyType? = nil) throws -> Self {
-//        guard let value = rawValue as? Self else { throw 
-        // TODO: Throw
-        return rawValue as! Self
+    public static func newInstance(rawValue: AnyObject, context _: JSON) throws -> Self {
+        if let value = rawValue as? Self {
+            return value
+        } else {
+            let error = RawConversionError
+                .UnableToConvertFromJSON(raw: rawValue, ofType: "\(rawValue.dynamicType)", expected: "\(Self.self)")
+            throw logError(error)
+        }
     }
 }
 
@@ -51,17 +61,22 @@ extension JSONDataIntegerType {
     }
     
     public func rawRepresentation() throws -> AnyObject {
-        return self as! Int
-    }
-    
-    public static func newInstance(rawValue: AnyObject, _: JSON = [:], currentKey: KeyType? = nil) throws -> Self {
-        guard let intValue = rawValue as? Int else {
-            let error = unexpectedResult(rawValue, expected: Int.self, keyPath: self.lastKey, targetType: Int.self)
+        // HAX: I don't want to do a bunch of type checking for converting up, consider alternatives
+        guard let int = Int("\(self)") else {
+            let error = RawConversionError.UnableToConvertToJSON
             throw logError(error)
         }
-        
-        print("Self: \(Self.self)")
-        return Self(intValue)
+        return int
+    }
+    
+    public static func newInstance(rawValue: AnyObject, context _: JSON = [:]) throws -> Self {
+        if let value = rawValue as? Int {
+            return Self(value)
+        } else {
+            let error = RawConversionError
+                .UnableToConvertFromJSON(raw: rawValue, ofType: "\(rawValue.dynamicType)", expected: "\(Self.self)")
+            throw logError(error)
+        }
     }
 }
 
@@ -77,16 +92,21 @@ extension JSONDataFloatingPointType {
     }
     
     public func rawRepresentation() throws -> AnyObject {
-        return self as! Double
+        // HAX: I don't want to do a bunch of type checking for converting up, consider alternatives
+        guard let int = Double("\(self)") else {
+            let error = RawConversionError.UnableToConvertToJSON
+            throw logError(error)
+        }
+        return int
     }
     
-    public static func newInstance(rawValue: AnyObject, _: JSON = [:]) throws -> Self {
-        guard let intValue = rawValue as? Double else {
-            throw
-                MappingError
-                    .UnableToMap("jsonValue: \(rawValue) ofType: \(rawValue.dynamicType) expected: \(Self.self)")
+    public static func newInstance(rawValue: AnyObject, context _: JSON = [:]) throws -> Self {
+        if let value = rawValue as? Double {
+            return Self(value)
+        } else {
+            let error = RawConversionError
+                .UnableToConvertFromJSON(raw: rawValue, ofType: "\(rawValue.dynamicType)", expected: "\(Self.self)")
+            throw logError(error)
         }
-        
-        return Self(intValue)
     }
 }
