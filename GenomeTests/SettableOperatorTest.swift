@@ -141,21 +141,21 @@ class SettableOperatorTest: XCTestCase {
         let people: [Person] = try! map["people"].extract()
         XCTAssert(people == [self.joeObject, self.janeObject])
         
-        let optionalPeople: [Person]? = try! <~?map["people"]
+        let optionalPeople: [Person]? = try! <~map["people"]
         XCTAssert(optionalPeople! == [self.joeObject, self.janeObject])
         
         let singleValueToArray: [Person] = try! map["person"]
         .extract()
         XCTAssert(singleValueToArray == [self.joeObject])
         
-        let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
+        let emptyPersons: [Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     
     func testMappableArrayOfArrays() {
         let orderedGroups: [[Person]] = try! map["ordered_groups"]
         .extract()
-        let optionalOrderedGroups: [[Person]]? = try! <~?map["ordered_groups"]
+        let optionalOrderedGroups: [[Person]]? = try! <~map["ordered_groups"]
         
         for orderGroupsArray in [orderedGroups, optionalOrderedGroups!] {
             XCTAssert(orderGroupsArray.count == 2)
@@ -172,7 +172,7 @@ class SettableOperatorTest: XCTestCase {
         XCTAssert(arrayValueToArrayOfArrays.count == 1)
         XCTAssert(arrayValueToArrayOfArrays.first! == [self.joeObject, self.janeObject])
         
-        let emptyArrayOfArrays: [[Person]]? = try! <~?map["i_dont_exist"]
+        let emptyArrayOfArrays: [[Person]]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyArrayOfArrays == nil)
     }
     
@@ -185,16 +185,16 @@ class SettableOperatorTest: XCTestCase {
         let relationships: [String : Person] = try! map["relationships"].extract()
         XCTAssert(relationships == expectedRelationships)
         
-        let optionalRelationships: [String : Person]? = try! <~?map["relationships"]
+        let optionalRelationships: [String : Person]? = try! <~map["relationships"]
         XCTAssert(optionalRelationships! == expectedRelationships)
         
-        let emptyDictionary: [String : Person]? = try! <~?map["i_dont_exist"]
+        let emptyDictionary: [String : Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyDictionary == nil)
     }
     
     func testMappableDictionaryOfArrays() {
         let groups: [String : [Person]] = try! map["groups"].extract()
-        let optionalGroups: [String : [Person]]? = try! <~?map["groups"]
+        let optionalGroups: [String : [Person]]? = try! <~map["groups"]
         
         for groupsArray in [groups, optionalGroups!] {
             XCTAssert(groupsArray.count == 2)
@@ -206,13 +206,13 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(girls == [self.janeObject])
         }
         
-        let emptyDictionaryOfArrays: [String : [Person]]? = try! <~?map["i_dont_exist"]
+        let emptyDictionaryOfArrays: [String : [Person]]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyDictionaryOfArrays == nil)
     }
     
     func testMappableSet() {
         let people: Set<Person> = try! map["duplicated_people"].extract()
-        let optionalPeople: Set<Person>? = try! <~?map["duplicated_people"]
+        let optionalPeople: Set<Person>? = try! <~map["duplicated_people"]
         
         for peopleSet in [people, optionalPeople!] {
             XCTAssert(peopleSet.count == 2)
@@ -224,7 +224,7 @@ class SettableOperatorTest: XCTestCase {
         XCTAssert(singleValueToSet.count == 1)
         XCTAssert(singleValueToSet.contains(self.joeObject))
         
-        let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
+        let emptyPersons: [Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     

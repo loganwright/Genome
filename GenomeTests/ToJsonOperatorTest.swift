@@ -68,19 +68,19 @@ class ToJsonOperatorTest: XCTestCase {
                 .extract()
             
             employees = try! map["employees"].extract()
-            employeesOptional = try! <~?map["employees"]
+            employeesOptional = try! <~map["employees"]
             
             employeesArray = try! map["employeesArray"].extract()
-            employeesOptionalArray = try! <~?map["employeesArray"]
+            employeesOptionalArray = try! <~map["employeesArray"]
             
             employeesDictionary = try! map["employeesDictionary"].extract()
-            employeesOptionalDictionary = try! <~?map["employeesDictionary"]
+            employeesOptionalDictionary = try! <~map["employeesDictionary"]
             
             employeesDictionaryArray = try! map["employeesDictionaryArray"].extract()
-            employeesOptionalDictionaryArray = try! <~?map["employeesDictionaryArray"]
+            employeesOptionalDictionaryArray = try! <~map["employeesDictionaryArray"]
             
             employeesSet = try! map["employees"].extract()
-            employeesOptionalSet = try! <~?map["employees"]
+            employeesOptionalSet = try! <~map["employees"]
         }
         
         mutating func sequence(map: Map) throws -> Void {

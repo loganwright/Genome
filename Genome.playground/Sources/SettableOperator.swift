@@ -6,31 +6,41 @@ prefix operator <~? {}
 
 extension Map {
     
-    public func extract<T : JSONDataType>() throws -> T? {
+    private func _setKeyType(keyType: KeyType?) {
+        guard let keyType = keyType else { return }
+        setKeyType(keyType)
+    }
+    
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> T? {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         guard let _ = self.result else { return nil } // Ok for Optionals to return nil
         return try self.extract() as T
     }
     
-    public func extract<T : JSONDataType>() throws -> [[T]]? {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [[T]]? {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         guard let _ = self.result else { return nil } // Ok for Optionals to return nil
         return try self.extract() as [[T]]
     }
     
-    public func extract<T : JSONDataType>() throws -> [String : T]? {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [String : T]? {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         guard let _ = self.result else { return nil } // Ok for Optionals to return nil
         return try self.extract() as [String : T]
     }
     
-    public func extract<T : JSONDataType>() throws -> [String : [T]]? {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [String : [T]]? {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         guard let _ = self.result else { return nil } // Ok for Optionals to return nil
         return try self.extract() as [String : [T]]
     }
     
-    public func extract<T : JSONDataType>() throws -> Set<T>? {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> Set<T>? {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         guard let _ = self.result else { return nil } // Ok for Optionals to return nil
         return try self.extract() as Set<T>
@@ -38,7 +48,8 @@ extension Map {
     
     // MARK: Non Optional
     
-    public func extract<T : JSONDataType>() throws -> T {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> T {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         let result = try enforceResultExists(self, type: T.self)
         do {
@@ -49,26 +60,30 @@ extension Map {
         }
     }
     
-    public func extract<T : JSONDataType>() throws -> [T]? {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [T]? {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         guard let _ = self.result else { return nil } // Ok for Optionals to return nil
         return try extract() as [T]
     }
     
-    public func extract<T : JSONDataType>() throws -> [T] {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [T] {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         let result = try enforceResultExists(self, type: T.self)
         let rawArray = convertAnyObjectToRawArray(result)
         return try [T].newInstance(rawArray, context: context)
     }
     
-    public func extract<T : JSONDataType>() throws -> [[T]] {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [[T]] {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         let jsonArrayOfArrays = try _expectJsonArrayOfArraysWithMap(self, targetType: [[T]].self)
         return try jsonArrayOfArrays.map { try [T].newInstance($0, context: context) }
     }
     
-    public func extract<T : JSONDataType>() throws -> [String : T] {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [String : T] {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         let jsonDictionary = try _expectJsonDictionaryWithMap(self, targetType: [String : T].self)
         
@@ -80,7 +95,8 @@ extension Map {
         return mappedDictionary
     }
     
-    public func extract<T : JSONDataType>() throws -> [String : [T]] {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> [String : [T]] {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         let jsonDictionaryOfArrays = try _expectJsonDictionaryOfArraysWithMap(self, targetType: [String : [T]].self)
         
@@ -92,7 +108,8 @@ extension Map {
         return mappedDictionaryOfArrays
     }
     
-    public func extract<T : JSONDataType>() throws -> Set<T> {
+    public func extract<T : JSONDataType>(keyType: KeyType? = nil) throws -> Set<T> {
+        _setKeyType(keyType)
         try enforceMapType(self, expectedType: .FromJson)
         let jsonArray = try _expectJsonArrayWithMap(self, targetType: Set<T>.self)
         return try Set<T>.newInstance(jsonArray, context: context)
@@ -108,27 +125,54 @@ extension Map {
 //    return try <~map as T
 //}
 
+@available(*, deprecated=1.0.9, renamed="<~")
 public prefix func <~? <T: JSONDataType>(map: Map) throws -> T? {
     return try map.extract()
 }
 
+@available(*, deprecated=1.0.9, renamed="<~")
 public prefix func <~? <T: JSONDataType>(map: Map) throws -> [T]? {
     return try map.extract()
 }
 
+@available(*, deprecated=1.0.9, renamed="<~")
 public prefix func <~? <T: JSONDataType>(map: Map) throws -> [[T]]? {
     return try map.extract()
 }
 
+@available(*, deprecated=1.0.9, renamed="<~")
 public prefix func <~? <T: JSONDataType>(map: Map) throws -> [String : T]? {
     return try map.extract()
 }
 
+@available(*, deprecated=1.0.9, renamed="<~")
 public prefix func <~? <T: JSONDataType>(map: Map) throws -> [String : [T]]? {
     return try map.extract()
 }
 
+@available(*, deprecated=1.0.9, renamed="<~")
 public prefix func <~? <T: JSONDataType>(map: Map) throws -> Set<T>? {
+    return try map.extract()
+}
+
+/// ****
+
+public prefix func <~ <T: JSONDataType>(map: Map) throws -> T? {
+    return try map.extract()
+}
+public prefix func <~ <T: JSONDataType>(map: Map) throws -> [T]? {
+    return try map.extract()
+}
+public prefix func <~ <T: JSONDataType>(map: Map) throws -> [[T]]? {
+    return try map.extract()
+}
+public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : T]? {
+    return try map.extract()
+}
+public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : [T]]? {
+    return try map.extract()
+}
+public prefix func <~ <T: JSONDataType>(map: Map) throws -> Set<T>? {
     return try map.extract()
 }
 
@@ -159,32 +203,26 @@ public prefix func <~? <T: JSONDataType>(map: Map) throws -> Set<T>? {
 //    }
 //}
 
-@available(*, deprecated=1.1.0)
 public prefix func <~ <T: JSONDataType>(map: Map) throws -> T {
     return try map.extract()
 }
 
-@available(*, deprecated=1.1.0)
 public prefix func <~ <T: JSONDataType>(map: Map) throws -> [T] {
     return try map.extract()
 }
 
-@available(*, deprecated=1.1.0)
 public prefix func <~ <T: MappableObject>(map: Map) throws -> [[T]] {
     return try map.extract()
 }
 
-@available(*, deprecated=1.1.0)
 public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : T] {
     return try map.extract()
 }
 
-@available(*, deprecated=1.1.0)
 public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : [T]] {
     return try map.extract()
 }
 
-@available(*, deprecated=1.1.0)
 public prefix func <~ <T: MappableObject>(map: Map) throws -> Set<T> {
     return try map.extract()
 }

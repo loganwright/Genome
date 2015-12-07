@@ -24,6 +24,35 @@ extension KeyType : CustomStringConvertible {
     }
 }
 
+extension KeyType : StringLiteralConvertible {
+    public typealias RawValue = StringLiteralType
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+    
+    // MARK: Initializers
+    
+    public init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
+        self.init(value)
+    }
+    
+    public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
+        self.init(value)
+    }
+    
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(value)
+    }
+    
+    public init?(rawValue: RawValue) {
+        self.init(rawValue)
+    }
+    
+    init(_ string: String) {
+        // defaults to keypath
+        self = .KeyPath(string)
+    }
+}
+
 /// This class is designed to serve as an adaptor between the raw json and the values.  In this way we can interject behavior that assists in mapping between the two.
 public final class Map {
     
