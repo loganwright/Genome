@@ -4,7 +4,29 @@
 prefix operator <~ {}
 prefix operator <~? {}
 
+extension Map {
+    public func extract<T : JSONDataType>(key: KeyType) throws -> T {
+        self.setKeyType(key)
+        try enforceMapType(self, expectedType: .FromJson)
+        let result = try enforceResultExists(self, type: T.self)
+        return try T.newInstance(result, rawContext: context)
+//        if let value = result as? T {
+//            return value
+//        } else {
+//            let error = unexpectedResult(result, expected: T.self, keyPath: self.lastKey, targetType: T.self)
+//            throw logError(error)
+//        }
+    }
+}
+
 // MARK: Optional Casters
+
+//public prefix func <~? <T : JSONDataType>(map: Map) throws -> T? {
+//    fatalError()
+//    try enforceMapType(map, expectedType: .FromJson)
+//    guard let _ = map.result else { return nil } // Ok for Optionals to return nil
+//    return try <~map as T
+//}
 
 public prefix func <~? <T>(map: Map) throws -> T? {
     try enforceMapType(map, expectedType: .FromJson)
@@ -49,6 +71,18 @@ public prefix func <~? <T: MappableObject>(map: Map) throws -> Set<T>? {
 }
 
 // MARK: Non-Optional Casters
+
+//public prefix func <~ <T : JSONDataType>(map: Map) throws -> T {
+//    try enforceMapType(map, expectedType: .FromJson)
+//    let result = try enforceResultExists(map, type: T.self)
+//    
+//    if let value = result as? T {
+//        return value
+//    } else {
+//        let error = unexpectedResult(result, expected: T.self, keyPath: map.lastKey, targetType: T.self)
+//        throw logError(error)
+//    }
+//}
 
 public prefix func <~ <T>(map: Map) throws -> T {
     try enforceMapType(map, expectedType: .FromJson)
@@ -141,7 +175,7 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject 
     }
 }
 
-private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
+internal func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
     let message = "Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
     return error
@@ -190,3 +224,9 @@ private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type
         throw logError(error)
     }
 }
+
+//internal func expectMap(anyObject: AnyObject) throws -> Map {
+//    guard let map = anyObject as? Map {
+//        
+//    }
+//}

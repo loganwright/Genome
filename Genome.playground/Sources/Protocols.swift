@@ -28,7 +28,7 @@ public typealias JSON = [String : AnyObject]
 *  NOTE: You can always use this purely and declare a 
 *  custom Initializer implementation
 */
-public protocol MappableObject {
+public protocol MappableObject : JSONDataType {
     
     /**
     This function will be called in two situations:
@@ -46,6 +46,28 @@ public protocol MappableObject {
     */
     mutating func sequence(map: Map) throws -> Void
     static func newInstance(map: Map) throws -> Self
+}
+
+func convertAnyObjectToJson(anyObject: AnyObject) throws -> JSON {
+    if let json = anyObject as? JSON {
+        return json
+    } else {
+        let error = MappingError
+            .UnableToMap("Couldn't convert object: \(anyObject) ofType: \(anyObject.dynamicType), expected: \(JSON.self)")
+        throw logError(error)
+    }
+}
+
+
+extension MappableObject {
+    public func rawRepresentation() throws -> AnyObject {
+        return try self.jsonRepresentation()
+    }
+    
+    public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Self {
+        let json = try convertAnyObjectToJson(rawValue)
+        return try mappedInstance(json, context: context)
+    }
 }
 
 // MARK: Basic Mappable

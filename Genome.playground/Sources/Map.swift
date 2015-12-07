@@ -104,6 +104,10 @@ public final class Map {
     }
     
     public subscript(keyType: KeyType) -> Map {
+        return setKeyType(keyType)
+    }
+    
+    internal func setKeyType(keyType: KeyType) -> Map {
         lastKey = keyType
         switch keyType {
         case let .Key(key):
