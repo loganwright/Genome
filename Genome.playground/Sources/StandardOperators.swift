@@ -8,14 +8,14 @@
 
 // MARK: ToJson
 
-public func ~> <T>(reference: T!, map: Map) throws {
-    switch map.type {
-    case .ToJson:
-        try map.setToLastKey(reference)
-    case .FromJson:
-        break
-    }
-}
+//public func ~> <T>(reference: T!, map: Map) throws {
+//    switch map.type {
+//    case .ToJson:
+//        try map.setToLastKey(reference)
+//    case .FromJson:
+//        break
+//    }
+//}
 
 public func ~> <T : JSONDataType>(reference: T!, map: Map) throws {
     switch map.type {
@@ -75,32 +75,32 @@ public func ~> <T : MappableObject>(reference: Set<T>!, map: Map) throws {
 
 infix operator <~ {}
 
-public func <~ <T>(inout reference: T, map: Map) throws {
-    switch map.type {
-    case .ToJson:
-        break
-    case .FromJson:
-        reference = try map.extract()
-    }
-}
-
-public func <~ <T>(inout reference: T!, map: Map) throws {
-    switch map.type {
-    case .ToJson:
-        break
-    case .FromJson:
-        reference = try map.extractOptional()
-    }
-}
-
-public func <~ <T>(inout reference: T?, map: Map) throws {
-    switch map.type {
-    case .ToJson:
-        break
-    case .FromJson:
-        reference = try map.extractOptional()
-    }
-}
+//public func <~ <T>(inout reference: T, map: Map) throws {
+//    switch map.type {
+//    case .ToJson:
+//        break
+//    case .FromJson:
+//        reference = try map.extract()
+//    }
+//}
+//
+//public func <~ <T>(inout reference: T!, map: Map) throws {
+//    switch map.type {
+//    case .ToJson:
+//        break
+//    case .FromJson:
+//        reference = try map.extractOptional()
+//    }
+//}
+//
+//public func <~ <T>(inout reference: T?, map: Map) throws {
+//    switch map.type {
+//    case .ToJson:
+//        break
+//    case .FromJson:
+//        reference = try map.extractOptional()
+//    }
+//}
 
 public func <~ <T: JSONDataType>(inout reference: T, map: Map) throws {
     switch map.type {
@@ -161,7 +161,7 @@ public func <~ <T: MappableObject>(inout reference: [[T]], map: Map) throws {
     case .ToJson:
         break
     case .FromJson:
-        reference = try <~map
+        reference = try map.extract()
     }
 }
 
@@ -188,7 +188,7 @@ public func <~ <T: MappableObject>(inout reference: [String : T], map: Map) thro
     case .ToJson:
         break
     case .FromJson:
-        reference = try <~map
+        reference = try map.extract()
     }
 }
 
@@ -215,7 +215,7 @@ public func <~ <T: MappableObject>(inout reference: [String : [T]], map: Map) th
     case .ToJson:
         break
     case .FromJson:
-        reference = try <~map
+        reference = try map.extract()
     }
 }
 
@@ -242,7 +242,7 @@ public func <~ <T: MappableObject>(inout reference: Set<T>, map: Map) throws {
     case .ToJson:
         break
     case .FromJson:
-        reference = try <~map
+        reference = try map.extract()
     }
 }
 

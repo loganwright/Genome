@@ -55,31 +55,31 @@ class ToJsonOperatorTest: XCTestCase {
         var optionalNotNil: String? = "not nil"
         
         init(map: Map) {
-            name = try! <~map["name"]
-            foundedYear = try! <~map["founded_in"]
+            name = try! map["name"].extract()
+            foundedYear = try! map["founded_in"].extract()
             
             locations = try! map["locations"]
                 .extract()
             locationsOptional = try! map["locations"]
                 .extract()
             
-            owner = try! <~map["owner"]
+            owner = try! map["owner"].extract()
             ownerOptional = try! map["owner"]
                 .extract()
             
-            employees = try! <~map["employees"]
+            employees = try! map["employees"].extract()
             employeesOptional = try! <~?map["employees"]
             
-            employeesArray = try! <~map["employeesArray"]
+            employeesArray = try! map["employeesArray"].extract()
             employeesOptionalArray = try! <~?map["employeesArray"]
             
-            employeesDictionary = try! <~map["employeesDictionary"]
+            employeesDictionary = try! map["employeesDictionary"].extract()
             employeesOptionalDictionary = try! <~?map["employeesDictionary"]
             
-            employeesDictionaryArray = try! <~map["employeesDictionaryArray"]
+            employeesDictionaryArray = try! map["employeesDictionaryArray"].extract()
             employeesOptionalDictionaryArray = try! <~?map["employeesDictionaryArray"]
             
-            employeesSet = try! <~map["employees"]
+            employeesSet = try! map["employees"].extract()
             employeesOptionalSet = try! <~?map["employees"]
         }
         

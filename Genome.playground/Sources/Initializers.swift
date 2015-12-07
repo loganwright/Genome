@@ -44,13 +44,11 @@ public extension Array where Element : MappableObject {
     }
 }
 
-
 public extension Array where Element : JSONDataType {
     public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Array {
         return try convertAnyObjectToRawArray(rawValue)
             .map { try Element.newInstance($0, context: context) }
     }
-    
 }
 
 public extension Set where Element : MappableObject {
@@ -68,4 +66,13 @@ public extension Set where Element : MappableObject {
         return Set<Element>(try js.map { try Element.mappedInstance($0, context: context) })
     }
     
+}
+
+
+public extension Set where Element : JSONDataType {
+    public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Set {
+        let array = try convertAnyObjectToRawArray(rawValue)
+            .map { try Element.newInstance($0, context: context) }
+        return Set(array)
+    }
 }

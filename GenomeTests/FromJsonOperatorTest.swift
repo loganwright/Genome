@@ -27,8 +27,9 @@ class FromJsonOperatorTest: XCTestCase {
         }
         
         init(map: Map) throws {
-            try firstName = <~map["first_name"]
-            try lastName = <~map["last_name"]
+            try firstName = map["first_name"]
+            .extract()
+            try lastName = map["last_name"].extract()
         }
         
         mutating func sequence(map: Map) throws -> Void {

@@ -135,19 +135,7 @@ public extension Map {
 
 // MARK: Operators
 
-//public prefix func <~ <T : JSONDataType>(map: Map) throws -> T {
-//    try enforceMapType(map, expectedType: .FromJson)
-//    let result = try enforceResultExists(map, type: T.self)
-//
-//    if let value = result as? T {
-//        return value
-//    } else {
-//        let error = unexpectedResult(result, expected: T.self, keyPath: map.lastKey, targetType: T.self)
-//        throw logError(error)
-//    }
-//}
-
-public func <~> <T, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~> <T: JSONDataType, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
     switch rhs.map.type {
     case .FromJson:
         try lhs <~ rhs
@@ -156,7 +144,7 @@ public func <~> <T, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonIn
     }
 }
 
-public func <~> <T, JsonOutputType>(inout lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func <~> <T: JSONDataType, JsonOutputType>(inout lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
     switch rhs.map.type {
     case .FromJson:
         try lhs <~ rhs.map
@@ -168,9 +156,9 @@ public func <~> <T, JsonOutputType>(inout lhs: T, rhs: ToJsonTransformer<T, Json
 public func <~> <JsonInput, TransformedType, JsonOutput>(inout lhs: TransformedType, rhs: TwoWayTransformer<JsonInput, TransformedType, JsonOutput>) throws {
     switch rhs.map.type {
     case .FromJson:
-        try lhs <~> rhs.fromJsonTransformer
+        try lhs <~ rhs.fromJsonTransformer
     case .ToJson:
-        try lhs <~> rhs.toJsonTransformer
+        try lhs ~> rhs.toJsonTransformer
     }
 }
 

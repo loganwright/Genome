@@ -22,8 +22,8 @@ class SettableOperatorTest: XCTestCase {
         }
         
         init(map: Map) throws {
-            try firstName = <~map["first_name"]
-            try lastName = <~map["last_name"]
+            try firstName = map["first_name"].extract()
+            try lastName = map["last_name"].extract()
         }
         
         mutating func sequence(map: Map) throws -> Void {
@@ -94,7 +94,7 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testBasicTypes() {
-        let int: Int = try! <~map["int"]
+        let int: Int = try! map["int"].extract()
         XCTAssert(int == 272)
         
         let optionalInt: Int? = try! map["int"]
@@ -125,7 +125,7 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testMappableObject() {
-        let person: Person = try! <~map["person"]
+        let person: Person = try! map["person"].extract()
         XCTAssert(person == self.joeObject)
         
         let optionalPerson: Person? = try! map["person"]
@@ -138,13 +138,14 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testMappableArray() {
-        let people: [Person] = try! <~map["people"]
+        let people: [Person] = try! map["people"].extract()
         XCTAssert(people == [self.joeObject, self.janeObject])
         
         let optionalPeople: [Person]? = try! <~?map["people"]
         XCTAssert(optionalPeople! == [self.joeObject, self.janeObject])
         
-        let singleValueToArray: [Person] = try! <~map["person"]
+        let singleValueToArray: [Person] = try! map["person"]
+        .extract()
         XCTAssert(singleValueToArray == [self.joeObject])
         
         let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
@@ -152,7 +153,8 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testMappableArrayOfArrays() {
-        let orderedGroups: [[Person]] = try! <~map["ordered_groups"]
+        let orderedGroups: [[Person]] = try! map["ordered_groups"]
+        .extract()
         let optionalOrderedGroups: [[Person]]? = try! <~?map["ordered_groups"]
         
         for orderGroupsArray in [orderedGroups, optionalOrderedGroups!] {
@@ -165,7 +167,8 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(secondGroup == [self.janeObject])
         }
         
-        let arrayValueToArrayOfArrays: [[Person]] = try! <~map["people"]
+        let arrayValueToArrayOfArrays: [[Person]] = try! map["people"]
+        .extract()
         XCTAssert(arrayValueToArrayOfArrays.count == 1)
         XCTAssert(arrayValueToArrayOfArrays.first! == [self.joeObject, self.janeObject])
         
@@ -179,7 +182,7 @@ class SettableOperatorTest: XCTestCase {
             "cousin": self.justinObject
         ]
         
-        let relationships: [String : Person] = try! <~map["relationships"]
+        let relationships: [String : Person] = try! map["relationships"].extract()
         XCTAssert(relationships == expectedRelationships)
         
         let optionalRelationships: [String : Person]? = try! <~?map["relationships"]
@@ -190,7 +193,7 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testMappableDictionaryOfArrays() {
-        let groups: [String : [Person]] = try! <~map["groups"]
+        let groups: [String : [Person]] = try! map["groups"].extract()
         let optionalGroups: [String : [Person]]? = try! <~?map["groups"]
         
         for groupsArray in [groups, optionalGroups!] {
@@ -208,7 +211,7 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testMappableSet() {
-        let people: Set<Person> = try! <~map["duplicated_people"]
+        let people: Set<Person> = try! map["duplicated_people"].extract()
         let optionalPeople: Set<Person>? = try! <~?map["duplicated_people"]
         
         for peopleSet in [people, optionalPeople!] {
@@ -217,7 +220,7 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(peopleSet.contains(self.janeObject))
         }
         
-        let singleValueToSet: Set<Person> = try! <~map["person"]
+        let singleValueToSet: Set<Person> = try! map["person"].extract()
         XCTAssert(singleValueToSet.count == 1)
         XCTAssert(singleValueToSet.contains(self.joeObject))
         
