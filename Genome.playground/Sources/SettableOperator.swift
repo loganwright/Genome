@@ -150,7 +150,12 @@ public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [[T]] {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: T.self)
     let array = result.arrayValue ?? [result]
-    return try array.map { try [T].newInstance($0, context: map.context) }
+    
+    // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
+    let possibleArrayOfArrays = array.flatMap { $0.arrayValue }
+    let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
+    let arrayOfArrays: [[Json]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
+    return try arrayOfArrays.map { try [T].newInstance($0, context: map.context) }
 }
 
 public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [String : T] {
