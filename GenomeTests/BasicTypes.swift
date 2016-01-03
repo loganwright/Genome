@@ -7,16 +7,17 @@
 //
 
 import XCTest
-import Genome
+import Foundation
+@testable import Genome
 
 class BasicTypeTexts: XCTestCase {
 
-    let BasicTestJson = [
-        "int" : 1,
-        "float" : 1.5,
-        "double" : 2.5,
-        "bool" : true,
-        "string" : "hello"
+    let BasicTestJson: [String : Json] = [
+        "int" : .from(1),
+        "float" : .from(1.5),
+        "double" : .from(2.5),
+        "bool" : .from(true),
+        "string" : .from("hello")
     ]
     
     struct Basic : BasicMappable, CustomStringConvertible {
@@ -39,12 +40,12 @@ class BasicTypeTexts: XCTestCase {
         }
     }
     
-    let BasicArraysTestJson = [
-        "ints" : [1],
-        "floats" : [1.5],
-        "doubles" : [2.5],
-        "bools" : [true],
-        "strings" : ["hello"]
+    let BasicArraysTestJson: [String : Json] = [
+        "ints" : .from([1]),
+        "floats" : .from([1.5]),
+        "doubles" : .from([2.5]),
+        "bools" : .from([true]),
+        "strings" : .from(["hello"])
     ]
     
     struct BasicArrays : BasicMappable, CustomStringConvertible {
@@ -68,7 +69,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic.mappedInstance(BasicTestJson)
+        let basic = try! Basic.mappedInstance(.ObjectValue(BasicTestJson))
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
@@ -76,11 +77,11 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(basic.string == "hello")
         
         let json = try! basic.jsonRepresentation()
-        let int = json["int"] as! Int
-        let float = json["float"] as! Float
-        let double = json["double"] as! Double
-        let bool = json["bool"] as! Bool
-        let string = json["string"] as! String
+        let int = json["int"]!.intValue!
+        let float = json["float"]!.floatValue!
+        let double = json["double"]!.doubleValue!
+        let bool = json["bool"]!.boolValue!
+        let string = json["string"]!.stringValue!
         XCTAssert(int == 1)
         XCTAssert(float == 1.5)
         XCTAssert(double == 2.5)
@@ -89,7 +90,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() {
-        let basic = try! BasicArrays.mappedInstance(BasicArraysTestJson)
+        let basic = try! BasicArrays.mappedInstance(.ObjectValue(BasicArraysTestJson))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])
@@ -97,11 +98,11 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(basic.strings == ["hello"])
         
         let json = try! basic.jsonRepresentation()
-        let ints = json["ints"] as! [Int]
-        let floats = json["floats"] as! [Float]
-        let doubles = json["doubles"] as! [Double]
-        let bools = json["bools"] as! [Bool]
-        let strings = json["strings"] as! [String]
+        let ints = json["ints"]!.arrayValue!.flatMap { $0.intValue }
+        let floats = json["floats"]!.arrayValue!.flatMap { $0.floatValue }
+        let doubles = json["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
+        let bools = json["bools"]!.arrayValue!.flatMap { $0.boolValue }
+        let strings = json["strings"]!.arrayValue!.flatMap { $0.stringValue }
         XCTAssert(ints == [1])
         XCTAssert(floats == [1.5])
         XCTAssert(doubles == [2.5])

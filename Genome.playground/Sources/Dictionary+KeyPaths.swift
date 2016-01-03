@@ -6,39 +6,38 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-public extension Dictionary {
-    mutating func gnm_setValue(val: AnyObject, forKeyPath keyPath: String) {
+typealias JsonObject = [String : Json]
+
+extension Json {
+    mutating func gnm_setValue(val: Json, forKeyPath keyPath: String) {
+        guard let object = self.objectValue else { return }
+        var mutableObject = object
+        
         var keys = keyPath.gnm_keypathComponents()
-        guard let first = keys.first as? Key else { print("Unable to use string as key on type: \(Key.self)"); return }
+        guard let first = keys.first else { return }
         keys.removeAtIndex(0)
-        if keys.isEmpty, let settable = val as? Value {
-            self[first] = settable
+        
+        if keys.isEmpty {
+            mutableObject[first] = val
         } else {
             let rejoined = keys.joinWithSeparator(".")
-            var subdict: [String : AnyObject] = [:]
-            if let sub = self[first] as? [String : AnyObject] {
-                subdict = sub
-            }
+            var subdict: Json = mutableObject[first] ?? .ObjectValue([:])
             subdict.gnm_setValue(val, forKeyPath: rejoined)
-            if let settable = subdict as? Value {
-                self[first] = settable
-            } else {
-                print("Unable to set value: \(subdict) to dictionary of type: \(self.dynamicType)")
-            }
+            mutableObject[first] = subdict
         }
         
+        self = .from(mutableObject)
     }
     
-    func gnm_valueForKeyPath<T>(keyPath: String) -> T? {
+    func gnm_valueForKeyPath(keyPath: String) -> Json? {
         var keys = keyPath.gnm_keypathComponents()
-        guard let first = keys.first as? Key else { print("Unable to use string as key on type: \(Key.self)"); return nil }
-        guard let value = self[first] as? AnyObject else { return nil }
+        guard let first = keys.first else { return nil }
+        guard let value = self[first] else { return nil }
         keys.removeAtIndex(0)
-        if !keys.isEmpty, let subDict = value as? [String : AnyObject] {
-            let rejoined = keys.joinWithSeparator(".")
-            return subDict.gnm_valueForKeyPath(rejoined)
-        }
-        return value as? T
+        
+        guard !keys.isEmpty else { return value }
+        let rejoined = keys.joinWithSeparator(".")
+        return value.gnm_valueForKeyPath(rejoined)
     }
 }
 

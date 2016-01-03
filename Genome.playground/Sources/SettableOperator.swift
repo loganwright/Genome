@@ -8,53 +8,53 @@ extension Map {
     
     // MARK: Optional Extractions
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> T? {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> T? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [T]? {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [T]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [[T]]? {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [[T]]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [String : T]? {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [String : T]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [String : [T]]? {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [String : [T]]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> Set<T>? {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> Set<T>? {
         return try <~self[keyType]
     }
     
     // MARK: Non Optional Extractions
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> T {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> T {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [T] {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [T] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [[T]] {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [[T]] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [String : T] {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [String : T] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> [String : [T]] {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> [String : [T]] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JSONDataType>(keyType: KeyType) throws -> Set<T> {
+    public func extract<T : JSONConvertibleType>(keyType: KeyType) throws -> Set<T> {
         return try <~self[keyType]
     }
 
@@ -63,65 +63,65 @@ extension Map {
 // MARK: Optional Casters
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JSONDataType>(map: Map) throws -> T? {
+public prefix func <~? <T: JSONConvertibleType>(map: Map) throws -> T? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JSONDataType>(map: Map) throws -> [T]? {
+public prefix func <~? <T: JSONConvertibleType>(map: Map) throws -> [T]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JSONDataType>(map: Map) throws -> [[T]]? {
+public prefix func <~? <T: JSONConvertibleType>(map: Map) throws -> [[T]]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JSONDataType>(map: Map) throws -> [String : T]? {
+public prefix func <~? <T: JSONConvertibleType>(map: Map) throws -> [String : T]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JSONDataType>(map: Map) throws -> [String : [T]]? {
+public prefix func <~? <T: JSONConvertibleType>(map: Map) throws -> [String : [T]]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JSONDataType>(map: Map) throws -> Set<T>? {
+public prefix func <~? <T: JSONConvertibleType>(map: Map) throws -> Set<T>? {
     return try <~map
 }
 
 /// ****
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> T? {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> T? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [T]? {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [T]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [T]
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [[T]]? {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [[T]]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [[T]]
 }
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : T]? {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [String : T]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : T]
 }
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : [T]]? {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [String : [T]]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : [T]]
 }
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> Set<T>? {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> Set<T>? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as Set<T>
@@ -129,7 +129,7 @@ public prefix func <~ <T: JSONDataType>(map: Map) throws -> Set<T>? {
 
 // MARK: Non-Optional Casters
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> T {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> T {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: T.self)
     do {
@@ -140,20 +140,20 @@ public prefix func <~ <T: JSONDataType>(map: Map) throws -> T {
     }
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [T] {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [T] {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: T.self)
-    let rawArray = convertAnyObjectToRawArray(result)
-    return try [T].newInstance(rawArray, context: map.context)
+    return try [T].newInstance(result, context: map.context)
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [[T]] {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [[T]] {
     try enforceMapType(map, expectedType: .FromJson)
-    let jsonArrayOfArrays = try _expectJsonArrayOfArraysWithMap(map, targetType: [[T]].self)
-    return try jsonArrayOfArrays.map { try [T].newInstance($0, context: map.context) }
+    let result = try enforceResultExists(map, type: T.self)
+    let array = result.arrayValue ?? [result]
+    return try array.map { try [T].newInstance($0, context: map.context) }
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : T] {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [String : T] {
     try enforceMapType(map, expectedType: .FromJson)
     let jsonDictionary = try _expectJsonDictionaryWithMap(map, targetType: [String : T].self)
     
@@ -165,7 +165,7 @@ public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : T] {
     return mappedDictionary
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : [T]] {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [String : [T]] {
     try enforceMapType(map, expectedType: .FromJson)
     let jsonDictionaryOfArrays = try _expectJsonDictionaryOfArraysWithMap(map, targetType: [String : [T]].self)
     
@@ -177,10 +177,11 @@ public prefix func <~ <T: JSONDataType>(map: Map) throws -> [String : [T]] {
     return mappedDictionaryOfArrays
 }
 
-public prefix func <~ <T: JSONDataType>(map: Map) throws -> Set<T> {
+public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> Set<T> {
     try enforceMapType(map, expectedType: .FromJson)
     let jsonArray = try _expectJsonArrayWithMap(map, targetType: Set<T>.self)
-    return try Set<T>.newInstance(jsonArray, context: map.context)
+    // TODO: 
+    return Set<T>(try [T].newInstance(Json.from(jsonArray), context: map.context))
 }
 
 // MARK: Transformables
@@ -198,7 +199,7 @@ internal func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
     }
 }
 
-internal func enforceResultExists<T>(map: Map, type: T.Type) throws -> AnyObject {
+internal func enforceResultExists<T>(map: Map, type: T.Type) throws -> Json {
     if let result = map.result {
         return result
     } else {
@@ -215,83 +216,83 @@ internal func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: Key
 }
 
 
-private func _expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [AnyObject] {
+private func _expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [Json] {
     let result = try enforceResultExists(map, type: T.self)
-    return result as? [AnyObject] ?? [result]
+    return result.arrayValue ?? [result]
 }
 
-private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [JSON] {
+private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [Json] {
     let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [JSON] {
+    return result.arrayValue ?? [result]
+//    if let j = result as? [JSON] {
+//        return j
+//    } else if let j = result as? JSON {
+//        return [j]
+//    } else {
+//        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKey, targetType: T.self)
+//        throw logError(error)
+//    }
+}
+
+private func _expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [[Json]] {
+    let result = try enforceResultExists(map, type: T.self)
+    guard let outerArray = result.arrayValue else {
+        let error = unexpectedResult(result, expected: [Json].self, keyPath: map.lastKey, targetType: T.self)
+        throw logError(error)
+    }
+    return outerArray.flatMap { $0.arrayValue }
+//    if let j = result as? [[AnyObject]] {
+//        return j
+//    } else if let j = result as? [AnyObject] {
+//        return [j]
+//    } else {
+//        let error = unexpectedResult(result, expected: [AnyObject].self, keyPath: map.lastKey, targetType: T.self)
+//        throw logError(error)
+//    }
+}
+
+private func expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [[Json]] {
+    return try _expectJsonArrayOfArraysWithMap(map, targetType: targetType)
+    //    if let j = result as? [[AnyObject]] {
+    //        return j
+    //    } else if let j = result as? [AnyObject] {
+    //        return [j]
+    //    } else {
+    //        let error = unexpectedResult(result, expected: [AnyObject].self, keyPath: map.lastKey, targetType: T.self)
+    //        throw logError(error)
+    //    }
+
+}
+
+private func _expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : Json] {
+    let result = try enforceResultExists(map, type: T.self)
+    if let j = result.objectValue {
         return j
-    } else if let j = result as? JSON {
-        return [j]
     } else {
-        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKey, targetType: T.self)
+        let error = unexpectedResult(result, expected: [String : Json].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
 
-private func _expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [[AnyObject]] {
-    let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [[AnyObject]] {
-        return j
-    } else if let j = result as? [AnyObject] {
-        return [j]
-    } else {
-        let error = unexpectedResult(result, expected: [AnyObject].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
-    }
+private func expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : Json] {
+    return try _expectJsonDictionaryWithMap(map, targetType: targetType)
 }
 
-private func expectJsonArrayOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [[JSON]] {
+private func _expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [Json]] {
     let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [[JSON]] {
-        return j
-    } else if let j = result as? [JSON] {
-        return [j]
-    } else {
-        let error = unexpectedResult(result, expected: [JSON].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
-    }
-}
-
-private func _expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : AnyObject] {
-    let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [String : AnyObject] {
-        return j
-    } else {
+    guard let object = result.objectValue else {
         let error = unexpectedResult(result, expected: [String : AnyObject].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
+    
+    var mutable: [String : [Json]] = [:]
+    object.forEach { key, value in
+        let array = value.arrayValue ?? [value]
+        mutable[key] = array
+    }
+    return mutable
 }
 
-private func expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : JSON] {
-    let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [String : JSON] {
-        return j
-    } else {
-        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
-    }
-}
-
-private func _expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [AnyObject]] {
-    let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [String : [AnyObject]] {
-        return j
-    } else {
-        let error = unexpectedResult(result, expected: [String : AnyObject].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
-    }
-}
-
-private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [JSON]] {
-    let result = try enforceResultExists(map, type: T.self)
-    if let j = result as? [String : [JSON]] {
-        return j
-    } else {
-        let error = unexpectedResult(result, expected: [String : JSON].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
-    }
+private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [Json]] {
+    return try _expectJsonDictionaryOfArraysWithMap(map, targetType: targetType)
 }

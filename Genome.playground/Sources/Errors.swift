@@ -18,3 +18,7 @@ public enum RawConversionError : ErrorType {
     case UnableToConvertToJSON
     case UnableToConvertFromJSON(raw: Any, ofType: String, expected: String)
 }
+
+public enum Lazy : ErrorType {
+    case Error(String)
+}

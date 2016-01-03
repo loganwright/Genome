@@ -184,11 +184,6 @@ internal final class JsonDeserializer: Parser {
             throw InvalidNumberError("invalid token in number", self)
         }
         
-        if integer != Int64(Float80(integer)) {
-            // TODO: Verify implications of Float80
-            throw InvalidNumberError("too much integer part in number", self)
-        }
-        
         var fraction: Double = 0.0
         if expect(".") {
             var factor = 0.1

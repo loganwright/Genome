@@ -11,7 +11,7 @@
 extension MappableObject {
     
     /// Used to convert an object back into json
-    public func jsonRepresentation() throws -> JSON {
+    public func jsonRepresentation() throws -> Json {
         let map = Map()
         map.type = .ToJson
         var ob = self
@@ -20,34 +20,11 @@ extension MappableObject {
     }
 }
 
-extension Array where Element: MappableObject {
+extension CollectionType where Generator.Element: JSONConvertibleType {
     
-    /// Used to convert the array of mappable objects to an array of their json representations
-    public func jsonRepresentation() throws -> [JSON] {
-        return try map { try $0.jsonRepresentation() }
-    }
-}
-
-extension Array where Element: JSONDataType {
-    
-    /// Used to convert the array of mappable objects to an array of their json representations
-    public func rawRepresentation() throws -> [AnyObject] {
-        return try map { try $0.rawRepresentation() }
-    }
-}
-
-extension Set where Element: MappableObject {
-    
-    /// Used to convert the set of mappable objects to an array of their json representations
-    public func jsonRepresentation() throws -> [JSON] {
-        return try map { try $0.jsonRepresentation() }
-    }
-}
-
-extension Set where Element: JSONDataType {
-    
-    /// Used to convert the array of mappable objects to an array of their json representations
-    public func rawRepresentation() throws -> [AnyObject] {
-        return try map { try $0.rawRepresentation() }
+    /// Used to convert the collections of mappable objects to an array of their json representations
+    public func jsonRepresentation() throws -> Json {
+        let array = try map { try $0.jsonRepresentation() }
+        return .from(array)
     }
 }

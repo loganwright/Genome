@@ -8,6 +8,37 @@
 
 // MARK: MappableObject Initialization
 
+// TODO: Move to Foundation Specific
+// TODO: Make other direction
+extension Json {
+    public static func from(dictionary: JSON) throws -> Json {
+        var mutable: [String : Json] = [:]
+        try dictionary.forEach { key, value in
+            mutable[key] = try .from(value)
+        }
+        
+        return .from(mutable)
+    }
+    
+//    public static func from<T : JSONConvertibleType>(anything: T) throws -> Json {
+//        return try anything.jsonRepresentation()
+//    }
+    
+    public static func from(anything: AnyObject) throws -> Json {
+        switch anything {
+        case let x as String:
+            return .from(x)
+        case let x as JSONConvertibleType:
+            return try x.jsonRepresentation()
+        default:
+            print("asdf: \(anything.dynamicType)")
+            return .NullValue
+            // TODO:
+        }
+    }
+    
+}
+
 public extension MappableObject {
     
     /**
@@ -19,13 +50,19 @@ public extension MappableObject {
     
     :returns: an initialized instance based on the given map
     */
-    static func mappedInstance(js: JSON, context: JSON = [:]) throws -> Self {
+    static func mappedInstance(js: Json, context: Json = .ObjectValue([:])) throws -> Self {
         let map = Map(json: js, context: context)
         var instance = try newInstance(map)
         try instance.sequence(map)
         return instance
     }
     
+    static func mappedInstance(js: JSON, context: JSON = [:]) throws -> Self {
+        let map = Map(json: try .from(js), context: try .from(context))
+        var instance = try newInstance(map)
+        try instance.sequence(map)
+        return instance
+    }
 }
 
 public extension Array where Element : MappableObject {
@@ -39,15 +76,21 @@ public extension Array where Element : MappableObject {
     
     :returns: an array of objects initialized from the json array in the provided context
     */
-    static func mappedInstance(js: [JSON], context: JSON = [:]) throws -> Array {
-        return try js.map { try Element.mappedInstance($0, context: context) }
+    static func mappedInstance(js: Json, context: Json = .ObjectValue([:])) throws -> Array {
+        let array = js.arrayValue ?? [js]
+        return try array.map { try Element.mappedInstance($0, context: context) }
     }
 }
 
-public extension Array where Element : JSONDataType {
-    public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Array {
-        return try convertAnyObjectToRawArray(rawValue)
-            .map { try Element.newInstance($0, context: context) }
+public extension Array where Element : JSONConvertibleType {
+    // TODO: Should this take only `[Json]` for clarity? instead?
+    public static func newInstance(json: Json, context: Json = .ObjectValue([:])) throws -> Array {
+        let array = json.arrayValue ?? [json]
+        return try newInstance(array, context: context)
+    }
+    
+    public static func newInstance(json: [Json], context: Json = .ObjectValue([:])) throws -> Array {
+        return try json.map { try Element.newInstance($0, context: context) }
     }
 }
 
@@ -62,17 +105,11 @@ public extension Set where Element : MappableObject {
      
      :returns: a set of objects initialized from the json array in the provided context
      */
-    static func mappedInstance(js: [JSON], context: JSON = [:]) throws -> Set {
-        return Set<Element>(try js.map { try Element.mappedInstance($0, context: context) })
-    }
     
-}
-
-
-public extension Set where Element : JSONDataType {
-    public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Set {
-        let array = try convertAnyObjectToRawArray(rawValue)
-            .map { try Element.newInstance($0, context: context) }
-        return Set(array)
+    public static func newInstance(json: Json, context: Json) throws -> Set {
+        guard case let .ArrayValue(array) = json else {
+            throw Lazy.Error("Not an array ...")
+        }
+        return Set<Element>(try array.map { try Element.newInstance($0, context: context) })
     }
 }

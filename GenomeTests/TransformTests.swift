@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Genome
+@testable import Genome
 
 class TransformTest: XCTestCase {
     
@@ -16,7 +16,7 @@ class TransformTest: XCTestCase {
     ]
     
     func test() {
-        let map = Map(json: testJson)
+        let map = Map(json: try! .from(testJson))
         var settableString: String? = nil
         try! settableString <~ map["hello"]
             .transformFromJson({ self.stringToString($0) })

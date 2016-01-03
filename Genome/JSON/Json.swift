@@ -112,6 +112,11 @@ extension Json {
         return bool
     }
 
+    public var floatValue: Float? {
+        guard let double = doubleValue else { return nil }
+        return Float(double)
+    }
+    
     public var doubleValue: Double? {
         guard case let .NumberValue(double) = self else {
             return nil
@@ -160,8 +165,16 @@ extension Json {
     }
 
     public subscript(key: String) -> Json? {
-        guard let dict = objectValue else { return nil }
-        return dict[key]
+        get {
+            guard let dict = objectValue else { return nil }
+            return dict[key]
+        }
+        set {
+            guard let object = objectValue else { fatalError("Unable to set string subscript on non-object type!") }
+            var mutableObject = object
+            mutableObject[key] = newValue
+            self = .from(mutableObject)
+        }
     }
 }
 

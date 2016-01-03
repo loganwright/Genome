@@ -66,7 +66,7 @@ public class Transformer<InputType, OutputType> {
 
 // MARK: From Json
 
-public final class FromJsonTransformer<JsonType, TransformedType> : Transformer<JsonType, TransformedType> {
+public final class FromJsonTransformer<JsonType: JSONConvertibleType, TransformedType> : Transformer<JsonType, TransformedType> {
     override public init(map: Map, transformer: JsonType throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
@@ -75,15 +75,28 @@ public final class FromJsonTransformer<JsonType, TransformedType> : Transformer<
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformToJson<OutputJsonType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<JsonType, TransformedType, OutputJsonType> {
+    public func transformToJson<OutputJsonType: JSONConvertibleType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<JsonType, TransformedType, OutputJsonType> {
         let toJsonTransformer = ToJsonTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromJsonTransformer: self, toJsonTransformer: toJsonTransformer)
+    }
+    
+    internal func transformValue(json: Json?) throws -> TransformedType {
+        let validJson: Json
+        if allowsNil {
+            guard let unwrapped = json else { return try transformer(nil) }
+            validJson = unwrapped
+        } else {
+            validJson = try enforceValueExists(json)
+        }
+        
+        let input = try JsonType.newInstance(validJson, context: .ObjectValue([:]))
+        return try transformer(input)
     }
 }
 
 // MARK: To Json
 
-public final class ToJsonTransformer<ValueType, OutputJsonType> : Transformer<ValueType, OutputJsonType> {
+public final class ToJsonTransformer<ValueType, OutputJsonType: JSONConvertibleType> : Transformer<ValueType, OutputJsonType> {
     override public init(map: Map, transformer: ValueType throws -> OutputJsonType) {
         super.init(map: map, transformer: transformer)
     }
@@ -97,11 +110,16 @@ public final class ToJsonTransformer<ValueType, OutputJsonType> : Transformer<Va
         let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
     }
+    
+    internal func transformValue(value: ValueType) throws -> Json {
+        let transformed = try transformer(value)
+        return try transformed.jsonRepresentation()
+    }
 }
 
 // MARK: Two Way Transformer
 
-public final class TwoWayTransformer<InputJsonType, TransformedType, OutputJsonType> {
+public final class TwoWayTransformer<InputJsonType: JSONConvertibleType, TransformedType, OutputJsonType: JSONConvertibleType> {
     
     var map: Map {
         let toMap = toJsonTransformer.map
@@ -135,7 +153,7 @@ public extension Map {
 
 // MARK: Operators
 
-public func <~> <T: JSONDataType, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~> <T: JSONConvertibleType, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
     switch rhs.map.type {
     case .FromJson:
         try lhs <~ rhs
@@ -144,7 +162,7 @@ public func <~> <T: JSONDataType, JsonInputType>(inout lhs: T, rhs: FromJsonTran
     }
 }
 
-public func <~> <T: JSONDataType, JsonOutputType>(inout lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func <~> <T: JSONConvertibleType, JsonOutputType: JSONConvertibleType>(inout lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
     switch rhs.map.type {
     case .FromJson:
         try lhs <~ rhs.map
@@ -153,7 +171,7 @@ public func <~> <T: JSONDataType, JsonOutputType>(inout lhs: T, rhs: ToJsonTrans
     }
 }
 
-public func <~> <JsonInput, TransformedType, JsonOutput>(inout lhs: TransformedType, rhs: TwoWayTransformer<JsonInput, TransformedType, JsonOutput>) throws {
+public func <~> <JsonInput, TransformedType, JsonOutput: JSONConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<JsonInput, TransformedType, JsonOutput>) throws {
     switch rhs.map.type {
     case .FromJson:
         try lhs <~ rhs.fromJsonTransformer
@@ -162,7 +180,7 @@ public func <~> <JsonInput, TransformedType, JsonOutput>(inout lhs: TransformedT
     }
 }
 
-public func <~ <T, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~ <T, JsonInputType: JSONConvertibleType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
     switch rhs.map.type {
     case .FromJson:
         try lhs = rhs.transformValue(rhs.map.result)
@@ -171,7 +189,7 @@ public func <~ <T, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInp
     }
 }
 
-public func ~> <T, JsonOutputType>(lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func ~> <T, JsonOutputType: JSONConvertibleType>(lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
     switch rhs.map.type {
     case .FromJson:
         break

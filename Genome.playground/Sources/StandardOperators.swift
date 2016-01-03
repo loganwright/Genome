@@ -8,7 +8,7 @@
 
 // MARK: ToJson
 
-public func ~> <T : JSONDataType>(reference: T!, map: Map) throws {
+public func ~> <T : JSONConvertibleType>(reference: T!, map: Map) throws {
     switch map.type {
     case .ToJson:
         try map.setToLastKey(reference)
@@ -17,7 +17,7 @@ public func ~> <T : JSONDataType>(reference: T!, map: Map) throws {
     }
 }
 
-public func ~> <T: JSONDataType>(reference: [T]!, map: Map) throws {
+public func ~> <T: JSONConvertibleType>(reference: [T]!, map: Map) throws {
     switch map.type {
     case .ToJson:
         try map.setToLastKey(reference)
@@ -26,7 +26,7 @@ public func ~> <T: JSONDataType>(reference: [T]!, map: Map) throws {
     }
 }
 
-public func ~> <T: JSONDataType>(reference: [[T]]!, map: Map) throws {
+public func ~> <T: JSONConvertibleType>(reference: [[T]]!, map: Map) throws {
     switch map.type {
     case .ToJson:
         try map.setToLastKey(reference)
@@ -66,7 +66,7 @@ public func ~> <T : MappableObject>(reference: Set<T>!, map: Map) throws {
 
 infix operator <~ {}
 
-public func <~ <T: JSONDataType>(inout reference: T, map: Map) throws {
+public func <~ <T: JSONConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
     case .ToJson:
         break
@@ -75,7 +75,7 @@ public func <~ <T: JSONDataType>(inout reference: T, map: Map) throws {
     }
 }
 
-//public func <~ <T: JSONDataType>(inout reference: T!, map: Map) throws {
+//public func <~ <T: JSONConvertibleType>(inout reference: T!, map: Map) throws {
 //    switch map.type {
 //    case .ToJson:
 //        break
@@ -84,7 +84,7 @@ public func <~ <T: JSONDataType>(inout reference: T, map: Map) throws {
 //    }
 //}
 
-public func <~ <T: JSONDataType>(inout reference: T?, map: Map) throws {
+public func <~ <T: JSONConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
     case .ToJson:
         break
@@ -93,7 +93,7 @@ public func <~ <T: JSONDataType>(inout reference: T?, map: Map) throws {
     }
 }
 
-public func <~ <T: JSONDataType>(inout reference: [T], map: Map) throws {
+public func <~ <T: JSONConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
     case .ToJson:
         break
@@ -102,7 +102,7 @@ public func <~ <T: JSONDataType>(inout reference: [T], map: Map) throws {
     }
 }
 
-//public func <~ <T: JSONDataType>(inout reference: [T]!, map: Map) throws {
+//public func <~ <T: JSONConvertibleType>(inout reference: [T]!, map: Map) throws {
 //    switch map.type {
 //    case .ToJson:
 //        break
@@ -111,7 +111,7 @@ public func <~ <T: JSONDataType>(inout reference: [T], map: Map) throws {
 //    }
 //}
 
-public func <~ <T: JSONDataType>(inout reference: [T]?, map: Map) throws {
+public func <~ <T: JSONConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
     case .ToJson:
         break
@@ -232,7 +232,7 @@ public func <~ <T: MappableObject>(inout reference: Set<T>?, map: Map) throws {
 
 infix operator <~> {}
 
-public func <~> <T: JSONDataType>(inout reference: T, map: Map) throws {
+public func <~> <T: JSONConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
     case .ToJson:
         try reference ~> map
@@ -241,7 +241,7 @@ public func <~> <T: JSONDataType>(inout reference: T, map: Map) throws {
     }
 }
 
-//public func <~> <T: JSONDataType>(inout reference: T!, map: Map) throws {
+//public func <~> <T: JSONConvertibleType>(inout reference: T!, map: Map) throws {
 //    switch map.type {
 //    case .ToJson:
 //        try reference ~> map
@@ -250,7 +250,7 @@ public func <~> <T: JSONDataType>(inout reference: T, map: Map) throws {
 //    }
 //}
 
-public func <~> <T: JSONDataType>(inout reference: T?, map: Map) throws {
+public func <~> <T: JSONConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
     case .ToJson:
         try reference ~> map
@@ -259,7 +259,7 @@ public func <~> <T: JSONDataType>(inout reference: T?, map: Map) throws {
     }
 }
 
-public func <~> <T: JSONDataType>(inout reference: [T], map: Map) throws {
+public func <~> <T: JSONConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
     case .ToJson:
         try reference ~> map
@@ -268,7 +268,7 @@ public func <~> <T: JSONDataType>(inout reference: [T], map: Map) throws {
     }
 }
 
-//public func <~> <T: JSONDataType>(inout reference: [T]!, map: Map) throws {
+//public func <~> <T: JSONConvertibleType>(inout reference: [T]!, map: Map) throws {
 //    switch map.type {
 //    case .ToJson:
 //        try reference ~> map
@@ -277,7 +277,7 @@ public func <~> <T: JSONDataType>(inout reference: [T], map: Map) throws {
 //    }
 //}
 
-public func <~> <T: JSONDataType>(inout reference: [T]?, map: Map) throws {
+public func <~> <T: JSONConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
     case .ToJson:
         try reference ~> map

@@ -73,13 +73,13 @@ public final class Map {
     public var type: OperationType = .FromJson
     
     /// If the mapping operation were converted to JSON (Type.ToJson)
-    public private(set) var toJson: JSON = [:]
+    public private(set) var toJson: Json = .ObjectValue([:])
     
     /// The backing JSON being mapped
-    public let json: JSON
+    public let json: Json
     
     /// The greater context in which the mapping takes place
-    public let context: JSON
+    public let context: Json // TODO: Should probably be `Map`
     
     // MARK: Private
     
@@ -93,12 +93,9 @@ public final class Map {
     internal private(set) var lastKey: KeyType = .KeyPath("")
     
     /// The last retrieved result.  Used in operators to set value
-    internal private(set) var result: AnyObject? {
+    internal private(set) var result: Json? {
         didSet {
-            /*
-            This is a temporary fix for the issue of receiving NSNull in JSON.  I want this library to be platform agnostic which means I can't do a check using `is NSNull`. 
-            */
-            if let unwrapped = result where "\(unwrapped.dynamicType)" == "NSNull" {
+            if let unwrapped = result where unwrapped.isNull {
                 result = nil
             }
         }
@@ -114,7 +111,7 @@ public final class Map {
     
     :returns: an initialized map
     */
-    public init(json: JSON = [:], context: JSON = [:]) {
+    public init(json: Json = .ObjectValue([:]), context: Json = .ObjectValue([:])) {
         self.json = json
         self.context = context
     }
@@ -134,6 +131,7 @@ public final class Map {
         case let .Key(key):
             result = json[key]
         case let .KeyPath(keyPath):
+            json[""]
             result = json.gnm_valueForKeyPath(keyPath)
         }
         return self
@@ -146,64 +144,52 @@ public final class Map {
     
     :param: any the value to set to the json for the value of the last key
     */
-    internal func setToLastKey<T>(any: T?) throws {
-        if let a = any as? AnyObject {
-            switch lastKey {
-            case let .Key(key):
-                toJson[key] = a
-            case let .KeyPath(keyPath):
-                toJson.gnm_setValue(a, forKeyPath: keyPath)
-            }
-        } else if any != nil {
-            let message = "Unable to convert: \(any!) forKeyPath: \(lastKey) to JSON because type: \(any!.dynamicType) can't be cast to type AnyObject"
-            let error = MappingError.UnableToMap(message)
-            throw logError(error)
+    internal func setToLastKey(json: Json?) throws {
+        guard let json = json else { return }
+        switch lastKey {
+        case let .Key(key):
+            toJson[key] = json
+        case let .KeyPath(keyPath):
+            toJson.gnm_setValue(json, forKeyPath: keyPath)
         }
     }
     
-    internal func setToLastKey<T : JSONDataType>(any: T?) throws {
-        try setToLastKey(any?.rawRepresentation())
+    internal func setToLastKey<T : JSONConvertibleType>(any: T?) throws {
+        try setToLastKey(any?.jsonRepresentation())
     }
     
-    internal func setToLastKey<T : JSONDataType>(any: [T]?) throws {
-        try setToLastKey(any?.rawRepresentation())
+    internal func setToLastKey<T : JSONConvertibleType>(any: [T]?) throws {
+        try setToLastKey(any?.jsonRepresentation())
     }
     
-    internal func setToLastKey<T : JSONDataType>(any: [[T]]?) throws {
-        var json: [[AnyObject]]?
-        if let any = any {
-            json = []
-            for array in any {
-                json!.append(try array.rawRepresentation())
-            }
+    internal func setToLastKey<T : JSONConvertibleType>(any: [[T]]?) throws {
+        guard let any = any else { return }
+        let json: [Json] = try any.map { innerArray in
+            return try innerArray.jsonRepresentation()
         }
-        try setToLastKey(json)
+        try setToLastKey(Json.from(json))
     }
     
-    internal func setToLastKey<T : JSONDataType>(any: [String : T]?) throws {
-        var json: [String : AnyObject]?
-        if let any = any {
-            json = [:]
-            for (key, value) in any {
-                json![key] = try value.rawRepresentation()
-            }
+    internal func setToLastKey<T : JSONConvertibleType>(any: [String : T]?) throws {
+        guard let any = any else { return }
+        var json: [String : Json] = [:]
+        try any.forEach { key, value in
+            json[key] = try value.jsonRepresentation()
         }
-        try setToLastKey(json)
+        try setToLastKey(.from(json))
     }
     
-    internal func setToLastKey<T : JSONDataType>(any: [String : [T]]?) throws {
-        var json: [String : [AnyObject]]?
-        if let any = any {
-            json = [:]
-            for (key, value) in any {
-                json![key] = try value.rawRepresentation()
-            }
+    internal func setToLastKey<T : JSONConvertibleType>(any: [String : [T]]?) throws {
+        guard let any = any else { return }
+        var json: [String : Json] = [:]
+        try any.forEach { key, value in
+            json[key] = try value.jsonRepresentation()
         }
-        try setToLastKey(json)
+        try setToLastKey(.from(json))
     }
     
-    internal func setToLastKey<T : JSONDataType>(any: Set<T>?) throws {
-        try setToLastKey(any?.rawRepresentation())
+    internal func setToLastKey<T : JSONConvertibleType>(any: Set<T>?) throws {
+        try setToLastKey(any?.jsonRepresentation())
     }
 }
- 
+
