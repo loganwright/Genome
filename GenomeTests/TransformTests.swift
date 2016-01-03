@@ -11,7 +11,7 @@ import XCTest
 
 class TransformTest: XCTestCase {
     
-    let testJson: JSON = [
+    let testJson: [String : JSONConvertibleType] = [
         "hello" : "world"
     ]
     

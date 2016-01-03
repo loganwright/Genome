@@ -8,35 +8,39 @@
 
 // MARK: MappableObject Initialization
 
+extension Json : JSONConvertibleType {
+    public static func newInstance(json: Json, context: Json) -> Json {
+        return json
+    }
+    
+    public func jsonRepresentation() -> Json {
+        return self
+    }
+}
+
+extension Dictionary where Key: CustomStringConvertible, Value: JSONConvertibleType {
+    func jsonRepresentation() throws -> Json {
+        var mutableObject: [String : Json] = [:]
+        try self.forEach { key, value in
+            guard let key = key as? String else { fatalError() }
+            mutableObject[key] = try value.jsonRepresentation()
+        }
+        return .ObjectValue(mutableObject)
+    }
+}
+
 // TODO: Move to Foundation Specific
 // TODO: Make other direction
+
 extension Json {
-    public static func from(dictionary: JSON) throws -> Json {
+    public static func from(dictionary: [String : JSONConvertibleType]) throws -> Json {
         var mutable: [String : Json] = [:]
         try dictionary.forEach { key, value in
-            mutable[key] = try .from(value)
+            mutable[key] = try value.jsonRepresentation()
         }
         
         return .from(mutable)
     }
-    
-//    public static func from<T : JSONConvertibleType>(anything: T) throws -> Json {
-//        return try anything.jsonRepresentation()
-//    }
-    
-    public static func from(anything: AnyObject) throws -> Json {
-        switch anything {
-        case let x as String:
-            return .from(x)
-        case let x as JSONConvertibleType:
-            return try x.jsonRepresentation()
-        default:
-            print("asdf: \(anything.dynamicType)")
-            return .NullValue
-            // TODO:
-        }
-    }
-    
 }
 
 public extension MappableObject {
@@ -57,7 +61,7 @@ public extension MappableObject {
         return instance
     }
     
-    static func mappedInstance(js: JSON, context: JSON = [:]) throws -> Self {
+    static func mappedInstance(js: [String : JSONConvertibleType], context: [String : JSONConvertibleType] = [:]) throws -> Self {
         let map = Map(json: try .from(js), context: try .from(context))
         var instance = try newInstance(map)
         try instance.sequence(map)
