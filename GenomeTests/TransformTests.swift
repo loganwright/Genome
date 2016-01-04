@@ -11,12 +11,12 @@ import XCTest
 
 class TransformTest: XCTestCase {
     
-    let testJson: [String : JSONConvertibleType] = [
+    let testJson: Json = [
         "hello" : "world"
     ]
     
     func test() {
-        let map = Map(json: try! .from(testJson))
+        let map = Map(json: testJson)
         var settableString: String? = nil
         try! settableString <~ map["hello"]
             .transformFromJson({ self.stringToString($0) })
