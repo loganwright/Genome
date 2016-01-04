@@ -50,8 +50,8 @@ public protocol MappableObject : JSONConvertibleType {
 
 extension MappableObject {
     public static func newInstance(json: Json, context: Json) throws -> Self {
-        let map = Map(json: json, context: context)
-        return try newInstance(map)
+        // TODO: There's some confusion here, between mappedInstance and newInstance, consider better clarification
+        return try mappedInstance(json, context: context)
     }
 }
 

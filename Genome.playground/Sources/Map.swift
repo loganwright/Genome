@@ -145,6 +145,7 @@ public final class Map {
     :param: any the value to set to the json for the value of the last key
     */
     internal func setToLastKey(json: Json?) throws {
+        print("Before Set: \(toJson)")
         guard let json = json else { return }
         switch lastKey {
         case let .Key(key):
@@ -152,9 +153,15 @@ public final class Map {
         case let .KeyPath(keyPath):
             toJson.gnm_setValue(json, forKeyPath: keyPath)
         }
+        print("After Set: \(toJson)")
+        print("")
     }
-    
+}
+
+extension Map {
     internal func setToLastKey<T : JSONConvertibleType>(any: T?) throws {
+        print("Any: \(any)")
+        print("AnyJson: \(try! any?.jsonRepresentation())")
         try setToLastKey(any?.jsonRepresentation())
     }
     
