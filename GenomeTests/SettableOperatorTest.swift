@@ -381,78 +381,78 @@ class SettableOperatorTest: XCTestCase {
     // Expected Something, Got Nothing
     func testThatValueDoesNotExistNonOptional() {
         // Expected Non-Nil - Basic
-//        do {
-//            let _: String = try <~map["asdf"]
-//            XCTFail("nil value should throw error")
-//        } catch SequenceError.FoundNil(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-//        }
-//        
-//        // Expected Non-Nil - Mappable
-//        do {
-//            let _: Person = try <~map["asdf"]
-//            XCTFail("nil value should throw error")
-//        } catch SequenceError.FoundNil(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-//        }
-//        
-//        // Expected Non-Nil - Mappable Array
-//        do {
-//            let _: [Person] = try <~map["asdf"]
-//            XCTFail("nil value should throw error")
-//        } catch SequenceError.FoundNil(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-//        }
-//        
-//        // Expected Non-Nil - Mappable Array of Arrays
-//        do {
-//            let _: [[Person]] = try <~map["asdf"]
-//            XCTFail("nil value should throw error")
-//        } catch SequenceError.FoundNil(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-//        }
-//        
-//        // Expected Non-Nil - Mappable Dictionary
-//        do {
-//            let _: [String : Person] = try <~map["asdf"]
-//            XCTFail("nil value should throw error")
-//        } catch SequenceError.FoundNil(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-//        }
-//        
-//        // Expected Non-Nil - Mappable Dictionary of Arrays
-//        do {
-//            let _: [String : [Person]] = try <~map["asdf"]
-//            XCTFail("nil value should throw error")
-//        } catch SequenceError.FoundNil(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-//        }
-//        
-//        // Expected Non-Nil - Transformable
-//        do {
-//            // Transformer expects string, but is passed an int
-//            let _: String = try <~map["asdf"]
-//                .transformFromJson { (input: String) in
-//                    return "Hello: \(input)"
-//            }
-//            XCTFail("nil value should throw error")
-//        } catch TransformationError.UnexpectedInputType(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
-//        }
+        do {
+            let _: String = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - Mappable
+        do {
+            let _: Person = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - Mappable Array
+        do {
+            let _: [Person] = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - Mappable Array of Arrays
+        do {
+            let _: [[Person]] = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - Mappable Dictionary
+        do {
+            let _: [String : Person] = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - Mappable Dictionary of Arrays
+        do {
+            let _: [String : [Person]] = try <~map["asdf"]
+            XCTFail("nil value should throw error")
+        } catch SequenceError.FoundNil(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+        }
+        
+        // Expected Non-Nil - Transformable
+        do {
+            // Transformer expects string, but is passed an int
+            let _: String = try <~map["asdf"]
+                .transformFromJson { (input: String) in
+                    return "Hello: \(input)"
+            }
+            XCTFail("nil value should throw error")
+        } catch TransformationError.UnexpectedInputType(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+        }
     }
     
     func testMapType() {
