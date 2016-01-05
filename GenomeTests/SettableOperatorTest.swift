@@ -297,78 +297,84 @@ class SettableOperatorTest: XCTestCase {
     // If a value exists, but is the wrong type, it should throw error
     func testThatValueExistsButIsNotTheTypeExpectedOptional() {
         // Unexpected Value - Basic
-//        do {
-//            let _: String? = try <~?map["int"]
-//            XCTFail("Incorrect type should throw error")
-//        } catch SequenceError.UnexpectedValue(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
-//        }
-//        
-//        // Unexpected Value - Mappable Object
-//        do {
-//            let _: Person? = try <~?map["int"]
-//            XCTFail("Incorrect type should throw error")
-//        } catch SequenceError.UnexpectedValue(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
-//        }
-//        
-//        // Unexpected Value - Mappable Array
-//        do {
-//            let _: [Person]? = try <~?map["int"]
-//            XCTFail("Incorrect type should throw error")
-//        } catch SequenceError.UnexpectedValue(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
-//        }
-//        
-//        // Unexpected Value - Mappable Array of Arrays
-//        do {
-//            let _: [[Person]]? = try <~?map["int"]
-//            XCTFail("Incorrect type should throw error")
-//        } catch SequenceError.UnexpectedValue(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
-//        }
-//        
-//        // Unexpected Value - Mappable Dictionary
-//        do {
-//            let _: [String : Person]? = try <~?map["int"]
-//            XCTFail("Incorrect type should throw error")
-//        } catch SequenceError.UnexpectedValue(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
-//        }
-//        
-//        // Unexpected Value - Mappable Dictionary of Arrays
-//        do {
-//            let _: [String : [Person]]? = try <~?map["int"]
-//            XCTFail("Incorrect type should throw error")
-//        } catch SequenceError.UnexpectedValue(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
-//        }
-//        
-//        // Unexpected Input Type (nil) - Transformable
-//        do {
-//            // Transformer expects string, but is passed an int
-//            let _: String? = try <~map["int"]
-//                .transformFromJson { (input: String?) in
-//                    return "Hello: \(input)"
-//            }
-//            XCTFail("Incorrect type should throw error")
-//        } catch TransformationError.UnexpectedInputType(_) {
-//            
-//        } catch {
-//            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
-//        }
+        do {
+            let _: String? = try map.extract("int")
+            XCTFail("Incorrect type should throw error")
+        } catch MappingError.UnableToMap(key: _, error: let error) {
+            if case JSONConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            else {
+                XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+            }
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+        }
+        
+        // Unexpected Value - Mappable Object
+        do {
+            let _: Person? = try map.extract("int")
+            XCTFail("Incorrect type should throw error")
+        }  catch MappingError.UnableToMap(key: let key, error: let error) {
+            XCTAssert(key == KeyType.KeyPath("int"))
+            if case JSONConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            else {
+                XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+            }
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+        }
+        // Unexpected Value - Mappable Array
+        do {
+            let _: [Person]? = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch JSONConvertibleError.UnableToConvert(_) {
+
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+        }
+        
+        // Unexpected Value - Mappable Array of Arrays
+        do {
+            let _: [[Person]]? = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch JSONConvertibleError.UnableToConvert(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Value - Mappable Dictionary
+        do {
+            let _: [String : Person]? = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Value - Mappable Dictionary of Arrays
+        do {
+            let _: [String : [Person]]? = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch SequenceError.UnexpectedValue(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+        }
+        
+        // Unexpected Input Type (nil) - Transformable
+        do {
+            // Transformer expects string, but is passed an int
+            let _: String? = try <~map["int"]
+                .transformFromJson { (input: String?) in
+                    return "Hello: \(input)"
+            }
+            XCTFail("Incorrect type should throw error")
+        } catch JSONConvertibleError.UnableToConvert(_) {
+            
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+        }
         
     }
     

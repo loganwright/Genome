@@ -1,7 +1,11 @@
 
+public enum JSONConvertibleError : ErrorType {
+    case UnsupportedType(String)
+    case UnableToConvert(json: Json, toType: String)
+}
+
 public enum MappingError : ErrorType {
-    case _UnableToMap(key: KeyType, error: ErrorType)
-    case UnableToMap(String)
+    case UnableToMap(key: KeyType, error: ErrorType)
     case UnexpectedOperationType(String)
 }
 

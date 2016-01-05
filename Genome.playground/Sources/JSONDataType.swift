@@ -1,11 +1,4 @@
 
-public enum JSONConvertibleError : ErrorType {
-    case UnsupportedType(String)
-    case UnableToConvert(json: Json, toType: String)
-}
-
-public typealias ContextType = Any // Temporary
-
 public protocol JSONConvertibleType {
     static func newInstance(json: Json, context: Json) throws -> Self
     func jsonRepresentation() throws -> Json
@@ -20,7 +13,7 @@ extension String : JSONConvertibleType {
     
     public static func newInstance(json: Json, context: Json) throws -> String {
         guard let string = json.stringValue else {
-            throw JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)")
+            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         return string
     }
@@ -35,7 +28,7 @@ extension Bool : JSONConvertibleType {
     
     public static func newInstance(json: Json, context: Json) throws -> Bool {
         guard let bool = json.boolValue else {
-            throw JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)")
+            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         return bool
     }
@@ -57,7 +50,7 @@ extension UnsignedIntegerType {
     
     public static func newInstance(json: Json, context: Json) throws -> Self {
         guard let int = json.uintValue else {
-            throw JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)")
+            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         
         return self.init(int.toUIntMax())
@@ -80,7 +73,7 @@ extension SignedIntegerType {
     
     public static func newInstance(json: Json, context: Json) throws -> Self {
         guard let int = json.intValue else {
-            throw JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)")
+            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         
         return self.init(int.toIntMax())
@@ -119,7 +112,7 @@ extension JSONConvertibleFloatingPointType {
     
     public static func newInstance(json: Json, context: Json) throws -> Self {
         guard let double = json.doubleValue else {
-            throw JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)")
+            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         return self.init(double)
     }

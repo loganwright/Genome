@@ -50,46 +50,13 @@ public protocol MappableObject : JSONConvertibleType {
 
 extension MappableObject {
     public static func newInstance(json: Json, context: Json) throws -> Self {
+        guard let _ = json.objectValue else {
+            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
+        }
         // TODO: There's some confusion here, between mappedInstance and newInstance, consider better clarification
         return try mappedInstance(json, context: context)
     }
 }
-
-//func convertAnyObjectToRawArray(result: AnyObject) -> [AnyObject] {
-//    return result as? [AnyObject] ?? [result]
-//}
-//
-//func convertAnyObjectToJsonArray(result: AnyObject) throws -> [JSON] {
-//    if let j = result as? [JSON] {
-//        return j
-//    } else if let j = result as? JSON {
-//        return [j]
-//    } else {
-//        let error = RawConversionError
-//            .UnableToConvertFromJSON(raw: result, ofType: "\(result.dynamicType)", expected: "\([JSON].self)")
-//        throw logError(error)
-//    }
-//}
-//
-//func convertAnyObjectToJson(anyObject: AnyObject) throws -> JSON {
-//    if let json = anyObject as? JSON {
-//        return json
-//    } else {
-//        let error = RawConversionError
-//            .UnableToConvertFromJSON(raw: anyObject, ofType: "\(anyObject.dynamicType)", expected: "\(JSON.self)")
-//        throw logError(error)
-//    }
-//}
-//
-//extension MappableObject {
-//    public func rawRepresentation() throws -> AnyObject {
-//        return try self.jsonRepresentation()
-//    }
-//    public static func newInstance(rawValue: AnyObject, context: JSON = [:]) throws -> Self {
-//        let json = try convertAnyObjectToJson(rawValue)
-//        return try mappedInstance(json, context: context)
-//    }
-//}
 
 // MARK: Basic Mappable
 

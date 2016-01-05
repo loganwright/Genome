@@ -111,8 +111,8 @@ public extension Set where Element : MappableObject {
      */
     
     public static func newInstance(json: Json, context: Json) throws -> Set {
-        guard case let .ArrayValue(array) = json else {
-            throw Lazy.Error("Not an array ...")
+        guard let array = json.arrayValue else {
+            throw logError(Lazy.Error("Not an array ..."))
         }
         return Set<Element>(try array.map { try Element.newInstance($0, context: context) })
     }

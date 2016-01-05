@@ -135,20 +135,20 @@ public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> T {
     do {
         return try T.newInstance(result, context: map.context)
     } catch {
-        let error = MappingError._UnableToMap(key: map.lastKey, error: error)
+        let error = MappingError.UnableToMap(key: map.lastKey, error: error)
         throw logError(error)
     }
 }
 
 public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [T] {
     try enforceMapType(map, expectedType: .FromJson)
-    let result = try enforceResultExists(map, type: T.self)
+    let result = try enforceResultExists(map, type: [T].self)
     return try [T].newInstance(result, context: map.context)
 }
 
 public prefix func <~ <T: JSONConvertibleType>(map: Map) throws -> [[T]] {
     try enforceMapType(map, expectedType: .FromJson)
-    let result = try enforceResultExists(map, type: T.self)
+    let result = try enforceResultExists(map, type: [[T]].self)
     let array = result.arrayValue ?? [result]
     
     // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
@@ -225,6 +225,8 @@ private func _expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> 
     let result = try enforceResultExists(map, type: T.self)
     return result.arrayValue ?? [result]
 }
+
+// TODO: 
 
 private func expectJsonArrayWithMap<T>(map: Map, targetType: T.Type) throws -> [Json] {
     let result = try enforceResultExists(map, type: T.self)
