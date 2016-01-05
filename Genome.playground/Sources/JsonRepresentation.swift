@@ -20,7 +20,7 @@ extension MappableObject {
     }
 }
 
-extension CollectionType where Generator.Element: JSONConvertibleType {
+extension CollectionType where Generator.Element: JsonConvertibleType {
     
     /// Used to convert the collections of mappable objects to an array of their json representations
     public func jsonRepresentation() throws -> Json {

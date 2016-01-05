@@ -6,16 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-// MARK: Alias
-
-public typealias JSON = [String : AnyObject]
-
-///// I am using this typealias as a workaround.  It should be considered type `Map -> Self` for wherever it is required
-////public typealias Initializer = Map -> MappableObject
-////public typealias ThrowableInitializer = Map throws -> MappableObject
-//public typealias Initializer = Map throws -> MappableObject
-
-
 // MARK: MappableObject
 
 /**
@@ -28,7 +18,7 @@ public typealias JSON = [String : AnyObject]
 *  NOTE: You can always use this purely and declare a 
 *  custom Initializer implementation
 */
-public protocol MappableObject : JSONConvertibleType {
+public protocol MappableObject : JsonConvertibleType {
     
     /**
     This function will be called in two situations:
@@ -51,7 +41,7 @@ public protocol MappableObject : JSONConvertibleType {
 extension MappableObject {
     public static func newInstance(json: Json, context: Json) throws -> Self {
         guard let _ = json.objectValue else {
-            throw logError(JSONConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
+            throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         // TODO: There's some confusion here, between mappedInstance and newInstance, consider better clarification
         return try mappedInstance(json, context: context)
@@ -86,6 +76,8 @@ public protocol StandardMappable: MappableObject {
 }
 
 public extension StandardMappable {
+    public func sequence(map: Map) throws { }
+    
     static func newInstance(map: Map) throws -> Self {
         return try self.init(map: map)
     }

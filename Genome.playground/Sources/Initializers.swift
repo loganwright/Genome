@@ -8,7 +8,7 @@
 
 // MARK: MappableObject Initialization
 
-extension Json : JSONConvertibleType {
+extension Json : JsonConvertibleType {
     public static func newInstance(json: Json, context: Json) -> Json {
         return json
     }
@@ -18,7 +18,7 @@ extension Json : JSONConvertibleType {
     }
 }
 
-extension Dictionary where Key: CustomStringConvertible, Value: JSONConvertibleType {
+extension Dictionary where Key: CustomStringConvertible, Value: JsonConvertibleType {
     func jsonRepresentation() throws -> Json {
         var mutableObject: [String : Json] = [:]
         try self.forEach { key, value in
@@ -33,7 +33,7 @@ extension Dictionary where Key: CustomStringConvertible, Value: JSONConvertibleT
 // TODO: Make other direction
 
 extension Json {
-    public static func from(dictionary: [String : JSONConvertibleType]) throws -> Json {
+    public static func from(dictionary: [String : JsonConvertibleType]) throws -> Json {
         var mutable: [String : Json] = [:]
         try dictionary.forEach { key, value in
             mutable[key] = try value.jsonRepresentation()
@@ -61,7 +61,7 @@ public extension MappableObject {
         return instance
     }
     
-    static func mappedInstance(js: [String : JSONConvertibleType], context: [String : JSONConvertibleType] = [:]) throws -> Self {
+    static func mappedInstance(js: [String : JsonConvertibleType], context: [String : JsonConvertibleType] = [:]) throws -> Self {
         let map = Map(json: try .from(js), context: try .from(context))
         var instance = try newInstance(map)
         try instance.sequence(map)
@@ -86,7 +86,7 @@ public extension Array where Element : MappableObject {
     }
 }
 
-public extension Array where Element : JSONConvertibleType {
+public extension Array where Element : JsonConvertibleType {
     // TODO: Should this take only `[Json]` for clarity? instead?
     public static func newInstance(json: Json, context: Json = .ObjectValue([:])) throws -> Array {
         let array = json.arrayValue ?? [json]

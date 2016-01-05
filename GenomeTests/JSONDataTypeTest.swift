@@ -1,5 +1,5 @@
 //
-//  JSONDataTypeTest.swift
+//  JsonDataTypeTest.swift
 //  Genome
 //
 //  Created by Logan Wright on 12/6/15.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Genome
 
-class JSONDataTypeTest: XCTestCase {
+class JsonDataTypeTest: XCTestCase {
     
     // TODO:
     

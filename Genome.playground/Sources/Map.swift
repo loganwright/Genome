@@ -88,10 +88,10 @@ public final class Map {
     /// The type of operation for the current map
     public var type: OperationType = .FromJson
     
-    /// If the mapping operation were converted to JSON (Type.ToJson)
+    /// If the mapping operation were converted to Json (Type.ToJson)
     public private(set) var toJson: Json = .ObjectValue([:])
     
-    /// The backing JSON being mapped
+    /// The backing Json being mapped
     public let json: Json
     
     /// The greater context in which the mapping takes place
@@ -99,13 +99,7 @@ public final class Map {
     
     // MARK: Private
     
-    /// The key to link from (for json)
-    internal private(set) var linkFrom = ""
-    
-    /// The key to link to (array of objects in `context` at this key)
-    internal private(set) var linkTo = ""
-    
-    /// The last key accessed -- Used to reverse JSON Operations
+    /// The last key accessed -- Used to reverse Json Operations
     internal private(set) var lastKey: KeyType = .KeyPath("")
     
     /// The last retrieved result.  Used in operators to set value
@@ -147,13 +141,12 @@ public final class Map {
         case let .Key(key):
             result = json[key]
         case let .KeyPath(keyPath):
-            json[""]
             result = json.gnm_valueForKeyPath(keyPath)
         }
         return self
     }
     
-    // MARK: To JSON
+    // MARK: To Json
     
     /**
     Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Json Dict and pass a cast to 'AnyObject'
@@ -161,7 +154,6 @@ public final class Map {
     :param: any the value to set to the json for the value of the last key
     */
     internal func setToLastKey(json: Json?) throws {
-        print("Before Set: \(toJson)")
         guard let json = json else { return }
         switch lastKey {
         case let .Key(key):
@@ -169,23 +161,19 @@ public final class Map {
         case let .KeyPath(keyPath):
             toJson.gnm_setValue(json, forKeyPath: keyPath)
         }
-        print("After Set: \(toJson)")
-        print("")
     }
 }
 
 extension Map {
-    internal func setToLastKey<T : JSONConvertibleType>(any: T?) throws {
-        print("Any: \(any)")
-        print("AnyJson: \(try! any?.jsonRepresentation())")
+    internal func setToLastKey<T : JsonConvertibleType>(any: T?) throws {
         try setToLastKey(any?.jsonRepresentation())
     }
     
-    internal func setToLastKey<T : JSONConvertibleType>(any: [T]?) throws {
+    internal func setToLastKey<T : JsonConvertibleType>(any: [T]?) throws {
         try setToLastKey(any?.jsonRepresentation())
     }
     
-    internal func setToLastKey<T : JSONConvertibleType>(any: [[T]]?) throws {
+    internal func setToLastKey<T : JsonConvertibleType>(any: [[T]]?) throws {
         guard let any = any else { return }
         let json: [Json] = try any.map { innerArray in
             return try innerArray.jsonRepresentation()
@@ -193,7 +181,7 @@ extension Map {
         try setToLastKey(Json.from(json))
     }
     
-    internal func setToLastKey<T : JSONConvertibleType>(any: [String : T]?) throws {
+    internal func setToLastKey<T : JsonConvertibleType>(any: [String : T]?) throws {
         guard let any = any else { return }
         var json: [String : Json] = [:]
         try any.forEach { key, value in
@@ -202,7 +190,7 @@ extension Map {
         try setToLastKey(.from(json))
     }
     
-    internal func setToLastKey<T : JSONConvertibleType>(any: [String : [T]]?) throws {
+    internal func setToLastKey<T : JsonConvertibleType>(any: [String : [T]]?) throws {
         guard let any = any else { return }
         var json: [String : Json] = [:]
         try any.forEach { key, value in
@@ -211,7 +199,7 @@ extension Map {
         try setToLastKey(.from(json))
     }
     
-    internal func setToLastKey<T : JSONConvertibleType>(any: Set<T>?) throws {
+    internal func setToLastKey<T : JsonConvertibleType>(any: Set<T>?) throws {
         try setToLastKey(any?.jsonRepresentation())
     }
 }

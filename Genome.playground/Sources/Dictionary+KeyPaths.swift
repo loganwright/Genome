@@ -4,9 +4,6 @@
 //
 //  Created by Logan Wright on 7/2/15.
 //  Copyright © 2015 lowriDevs. All rights reserved.
-//
-
-typealias JsonObject = [String : Json]
 
 extension Json {
     public mutating func gnm_setValue(val: Json, forKeyPath keyPath: String) {

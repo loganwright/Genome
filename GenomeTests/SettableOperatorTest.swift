@@ -225,9 +225,9 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case JSONConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
             }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -239,9 +239,9 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case JSONConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
             }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -251,7 +251,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JSONConvertibleError.UnableToConvert(json: _, toType: _) {
+        } catch JsonConvertibleError.UnableToConvert(json: _, toType: _) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -261,7 +261,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JSONConvertibleError.UnableToConvert(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -295,7 +295,7 @@ class SettableOperatorTest: XCTestCase {
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch JSONConvertibleError.UnableToConvert(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
@@ -309,12 +309,12 @@ class SettableOperatorTest: XCTestCase {
             let _: String? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: _, error: let error) {
-            if case JSONConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
             }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Object
@@ -323,28 +323,28 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case JSONConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
             }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         // Unexpected Value - Mappable Array
         do {
             let _: [Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JSONConvertibleError.UnableToConvert(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
 
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Array of Arrays
         do {
             let _: [[Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JSONConvertibleError.UnableToConvert(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -378,10 +378,10 @@ class SettableOperatorTest: XCTestCase {
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch JSONConvertibleError.UnableToConvert(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JSONConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         
     }

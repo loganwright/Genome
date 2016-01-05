@@ -1,5 +1,5 @@
 
-public enum JSONConvertibleError : ErrorType {
+public enum JsonConvertibleError : ErrorType {
     case UnsupportedType(String)
     case UnableToConvert(json: Json, toType: String)
 }
@@ -19,8 +19,8 @@ public enum TransformationError : ErrorType {
 }
 
 public enum RawConversionError : ErrorType {
-    case UnableToConvertToJSON
-    case UnableToConvertFromJSON(raw: Any, ofType: String, expected: String)
+    case UnableToConvertToJson
+    case UnableToConvertFromJson(raw: Any, ofType: String, expected: String)
 }
 
 public enum Lazy : ErrorType {
