@@ -94,12 +94,6 @@ extension Double : JSONConvertibleFloatingPointType {
     }
 }
 
-//extension Float80 : JSONConvertibleFloatingPointType {
-//    public var doubleValue: Double {
-//        return Double(self)
-//    }
-//}
-
 public protocol JSONConvertibleFloatingPointType : JSONConvertibleType {
     var doubleValue: Double { get }
     init(_ other: Double)

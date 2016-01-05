@@ -175,48 +175,10 @@ class StandardOperatorTests: XCTestCase {
         var ints: [Int] = []
         try! ints <~> map["ints"]
         XCTAssert(ints == Ints.arrayValue!.flatMap { $0.intValue })
-        print("Ints: \(ints)")
         
         var intsOptional: [Int]?
         try! intsOptional <~> map["ints"]
         XCTAssert(intsOptional! == Ints.arrayValue!.flatMap { $0.intValue })
-        print("IntsOptional: \(intsOptional)")
-    }
-    
-}
-
-
-let ComplexOperatorJson: Json = [
-    "peeps" : [
-        [
-            "name" : "A",
-            "favorite_food_ids" : [1,2,3],
-            "birthday" : "12-10-85"
-        ],
-        [
-            "name" : "B",
-            "favorite_food_ids" : [2,3,5],
-            "birthday" : "12-23-87"
-        ]
-    ]
-]
-
-class ComplexOperatorTests: XCTestCase {
-    
-    func testSideLoad() {
-        let peeeeps: [Person]? = try! [Person].mappedInstance(SideLoadTestJson["people"]!)
-//        let peeeeps: [Person]? = Sequence(SideLoadTestJson["people"] as! [JSON])
-        print(peeeeps)
-        let map = Map(json: ComplexOperatorJson)
-        var peeps: [Person]? = []
-        try! peeps <~> map["peeps"]
-//        XCTAssert(peeps == Ints)
-        print("Peeps: \(peeps)")
-        
-        var peepsOptional: [Person]?
-        try! peepsOptional <~> map["peeps"]
-//        XCTAssert(peepsOptional! == Ints)
-        print("PeepsOptional: \(peepsOptional)")
     }
     
 }
