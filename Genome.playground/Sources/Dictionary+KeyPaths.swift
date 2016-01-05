@@ -9,7 +9,7 @@
 typealias JsonObject = [String : Json]
 
 extension Json {
-    mutating func gnm_setValue(val: Json, forKeyPath keyPath: String) {
+    public mutating func gnm_setValue(val: Json, forKeyPath keyPath: String) {
         guard let object = self.objectValue else { return }
         var mutableObject = object
         
@@ -29,7 +29,7 @@ extension Json {
         self = .from(mutableObject)
     }
     
-    func gnm_valueForKeyPath(keyPath: String) -> Json? {
+    public func gnm_valueForKeyPath(keyPath: String) -> Json? {
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return nil }
         guard let value = self[first] else { return nil }
