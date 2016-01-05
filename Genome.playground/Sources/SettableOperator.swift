@@ -215,7 +215,7 @@ internal func enforceResultExists<T>(map: Map, type: T.Type) throws -> Json {
 }
 
 internal func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
-    let message = "Found: \(result) ofType: \(result.dynamicType) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
+    let message = "Found: \(result) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
     return error
 }
