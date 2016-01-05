@@ -14,8 +14,8 @@ extension MappableObject {
     public func jsonRepresentation() throws -> Json {
         let map = Map()
         map.type = .ToJson
-        var ob = self
-        try ob.sequence(map)
+        var mutable = self
+        try mutable.sequence(map)
         return map.toJson
     }
 }

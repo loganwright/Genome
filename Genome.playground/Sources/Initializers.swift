@@ -22,8 +22,7 @@ extension Dictionary where Key: CustomStringConvertible, Value: JsonConvertibleT
     func jsonRepresentation() throws -> Json {
         var mutableObject: [String : Json] = [:]
         try self.forEach { key, value in
-            guard let key = key as? String else { fatalError() }
-            mutableObject[key] = try value.jsonRepresentation()
+            mutableObject[key.description] = try value.jsonRepresentation()
         }
         return .ObjectValue(mutableObject)
     }
