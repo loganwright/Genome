@@ -3,6 +3,24 @@
 
 prefix operator <~ {}
 
+// MARK: Settable Transform
+
+extension Map {
+    public func transform(keyType: KeyType) -> Map {
+        return self[keyType]
+    }
+    
+    public func fromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) throws -> TransformedType {
+        return try <~transformFromJson(transformer)
+    }
+    
+    public func fromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) throws -> TransformedType {
+        return try <~transformFromJson(transformer)
+    }
+}
+
+// MARK: Extraction
+
 extension Map {
     
     // MARK: Optional Extractions
@@ -161,7 +179,7 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> Set<T> {
 
 // MARK: Transformables
 
-public prefix func <~ <JsonInputType, T>(transformer: FromJsonTransformer<JsonInputType, T>) throws -> T {
+public prefix func <~ <JsonInputType: JsonConvertibleType, T>(transformer: FromJsonTransformer<JsonInputType, T>) throws -> T {
     try enforceMapType(transformer.map, expectedType: .FromJson)
     return try transformer.transformValue(transformer.map.result)
 }
