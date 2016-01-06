@@ -11,8 +11,6 @@ import XCTest
 
 class JsonDataTypeTest: XCTestCase {
     
-    // TODO:
-    
     // 127 is Int8 max, unless you want to change the way this test is setup,
     // the value must be somewhere between 0 and 127
     let integerValue: Int = 127
