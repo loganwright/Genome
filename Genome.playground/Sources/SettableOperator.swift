@@ -2,7 +2,6 @@
 // MARK: Casting
 
 prefix operator <~ {}
-prefix operator <~? {}
 
 extension Map {
     
@@ -58,38 +57,6 @@ extension Map {
         return try <~self[keyType]
     }
 
-}
-
-// MARK: Optional Casters
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> T? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [T]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [[T]]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [String : T]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [String : [T]]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> Set<T>? {
-    return try <~map
 }
 
 /// ****
@@ -217,7 +184,7 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Json {
     }
 }
 
-internal func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
+private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
     let message = "Found: \(result) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
     return error
@@ -246,4 +213,38 @@ private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type
         mutable[key] = array
     }
     return mutable
+}
+
+// MARK: Deprecations
+
+prefix operator <~? {}
+
+@available(*, deprecated=1.0.9, renamed="<~")
+public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> T? {
+    return try <~map
+}
+
+@available(*, deprecated=1.0.9, renamed="<~")
+public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [T]? {
+    return try <~map
+}
+
+@available(*, deprecated=1.0.9, renamed="<~")
+public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [[T]]? {
+    return try <~map
+}
+
+@available(*, deprecated=1.0.9, renamed="<~")
+public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [String : T]? {
+    return try <~map
+}
+
+@available(*, deprecated=1.0.9, renamed="<~")
+public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [String : [T]]? {
+    return try <~map
+}
+
+@available(*, deprecated=1.0.9, renamed="<~")
+public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> Set<T>? {
+    return try <~map
 }

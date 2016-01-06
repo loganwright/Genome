@@ -75,15 +75,6 @@ public func <~ <T: JsonConvertibleType>(inout reference: T, map: Map) throws {
     }
 }
 
-//public func <~ <T: JsonConvertibleType>(inout reference: T!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        break
-//    case .FromJson:
-//        reference = try <~map
-//    }
-//}
-
 public func <~ <T: JsonConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
     case .ToJson:
@@ -101,15 +92,6 @@ public func <~ <T: JsonConvertibleType>(inout reference: [T], map: Map) throws {
         reference = try <~map
     }
 }
-
-//public func <~ <T: JsonConvertibleType>(inout reference: [T]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        break
-//    case .FromJson:
-//        reference = try <~map
-//    }
-//}
 
 public func <~ <T: JsonConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
@@ -129,15 +111,6 @@ public func <~ <T: MappableObject>(inout reference: [[T]], map: Map) throws {
     }
 }
 
-//public func <~ <T: MappableObject>(inout reference: [[T]]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        break
-//    case .FromJson:
-//        reference = try <~map
-//    }
-//}
-
 public func <~ <T: MappableObject>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
     case .ToJson:
@@ -155,15 +128,6 @@ public func <~ <T: MappableObject>(inout reference: [String : T], map: Map) thro
         reference = try <~map
     }
 }
-
-//public func <~ <T: MappableObject>(inout reference: [String : T]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        break
-//    case .FromJson:
-//        reference = try <~map
-//    }
-//}
 
 public func <~ <T: MappableObject>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
@@ -183,15 +147,6 @@ public func <~ <T: MappableObject>(inout reference: [String : [T]], map: Map) th
     }
 }
 
-//public func <~ <T: MappableObject>(inout reference: [String : [T]]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        break
-//    case .FromJson:
-//        reference = try <~map
-//    }
-//}
-
 public func <~ <T: MappableObject>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
     case .ToJson:
@@ -209,15 +164,6 @@ public func <~ <T: MappableObject>(inout reference: Set<T>, map: Map) throws {
         reference = try <~map
     }
 }
-
-//public func <~ <T: MappableObject>(inout reference: Set<T>!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        break
-//    case .FromJson:
-//        reference = try <~map
-//    }
-//}
 
 public func <~ <T: MappableObject>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
@@ -241,15 +187,6 @@ public func <~> <T: JsonConvertibleType>(inout reference: T, map: Map) throws {
     }
 }
 
-//public func <~> <T: JsonConvertibleType>(inout reference: T!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        try reference ~> map
-//    case .FromJson:
-//        try reference <~ map
-//    }
-//}
-
 public func <~> <T: JsonConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
     case .ToJson:
@@ -267,15 +204,6 @@ public func <~> <T: JsonConvertibleType>(inout reference: [T], map: Map) throws 
         try reference <~ map
     }
 }
-
-//public func <~> <T: JsonConvertibleType>(inout reference: [T]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        try reference ~> map
-//    case .FromJson:
-//        try reference <~ map
-//    }
-//}
 
 public func <~> <T: JsonConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
@@ -295,15 +223,6 @@ public func <~> <T: MappableObject>(inout reference: [[T]], map: Map) throws {
     }
 }
 
-//public func <~> <T: MappableObject>(inout reference: [[T]]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        try reference ~> map
-//    case .FromJson:
-//        try reference <~ map
-//    }
-//}
-
 public func <~> <T: MappableObject>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
     case .ToJson:
@@ -321,15 +240,6 @@ public func <~> <T: MappableObject>(inout reference: [String : T], map: Map) thr
         try reference <~ map
     }
 }
-
-//public func <~> <T: MappableObject>(inout reference: [String : T]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        try reference ~> map
-//    case .FromJson:
-//        try reference <~ map
-//    }
-//}
 
 public func <~> <T: MappableObject>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
@@ -349,15 +259,6 @@ public func <~> <T: MappableObject>(inout reference: [String : [T]], map: Map) t
     }
 }
 
-//public func <~> <T: MappableObject>(inout reference: [String : [T]]!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        try reference ~> map
-//    case .FromJson:
-//        try reference <~ map
-//    }
-//}
-
 public func <~> <T: MappableObject>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
     case .ToJson:
@@ -375,15 +276,6 @@ public func <~> <T: MappableObject>(inout reference: Set<T>, map: Map) throws {
         try reference <~ map
     }
 }
-
-//public func <~> <T: MappableObject>(inout reference: Set<T>!, map: Map) throws {
-//    switch map.type {
-//    case .ToJson:
-//        try reference ~> map
-//    case .FromJson:
-//        try reference <~ map
-//    }
-//}
 
 public func <~> <T: MappableObject>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
