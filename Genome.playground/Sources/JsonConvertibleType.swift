@@ -136,3 +136,16 @@ extension Json {
         return .from(mutable)
     }
 }
+
+extension Dictionary where Key : CustomStringConvertible, Value : JsonConvertibleType {
+    public func jsonRepresentation() throws -> Json {
+        var mutable: [String : Json] = [:]
+        try self.forEach { key, value in
+            guard let safeKey = key as? String else {
+                throw JsonConvertibleError.UnsupportedType("\(key) - Expected String")
+            }
+            mutable[safeKey] = try value.jsonRepresentation()
+        }
+        return .ObjectValue(mutable)
+    }
+}

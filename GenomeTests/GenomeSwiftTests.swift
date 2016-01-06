@@ -122,20 +122,14 @@ extension Person : CustomStringConvertible {
 class GenomeSideLoadTests: XCTestCase {
     
     func testSideLoad() {
-        
-        // TODO: 
-        
         let jsonArrayOfPeople = SideLoadTestJson["people"]!
         let single: Person! = try! Person.mappedInstance(jsonArrayOfPeople.arrayValue!.first!)
-//        let single: Person! = Sequence(jsonArrayOfPeople.first)
         XCTAssert(single != nil)
         
         let allFoods = try! [Food].mappedInstance(SideLoadTestJson["foods"]!, context: SideLoadTestJson)
-//        let allFoods: [Food] = Sequence(SideLoadTestJson["foods"], inContext: SideLoadTestJson)
         XCTAssert(allFoods.count == 4)
 
         var peeps: [Person] = try! [Person].mappedInstance(jsonArrayOfPeople, context: SideLoadTestJson)
-//        var peeps: [Person] = Sequence(jsonArrayOfPeople, inContext: SideLoadTestJson)
         peeps = peeps.map { (var person) -> Person in person.associateFavoriteFoods(allFoods); return person }
         XCTAssert(peeps.count == 2)
         
@@ -149,8 +143,8 @@ class GenomeSideLoadTests: XCTestCase {
         // Assert Json
         
         let json = try! peeps.first!.jsonRepresentation()
-        print("Todo: Write json tests \(json)")
-        let peepsJson = peeps.map { try! $0.favoriteFoods.jsonRepresentation() }
+        print("Write json tests \(json)")
+        let peepsJson = try! peeps.jsonRepresentation()
         print("Peeps: \(peepsJson)")
         
         let m = Map()

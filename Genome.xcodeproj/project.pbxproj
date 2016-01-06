@@ -104,6 +104,11 @@
 		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
 		80C3654D1BB5BE58006DE82E /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
 		80C3654F1BB5C279006DE82E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
+		80CE8C581C3C9B19000F4DA7 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE8C571C3C9B19000F4DA7 /* Foundation.swift */; };
+		80CE8C591C3C9B19000F4DA7 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE8C571C3C9B19000F4DA7 /* Foundation.swift */; };
+		80CE8C5A1C3C9B19000F4DA7 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE8C571C3C9B19000F4DA7 /* Foundation.swift */; };
+		80CE8C5B1C3C9B19000F4DA7 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE8C571C3C9B19000F4DA7 /* Foundation.swift */; };
+		80CE8C5C1C3C9B19000F4DA7 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE8C571C3C9B19000F4DA7 /* Foundation.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +160,7 @@
 		80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataTypeTest.swift; sourceTree = "<group>"; };
 		80C3654C1BB5BE58006DE82E /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Genome.playground/Sources/Logging.swift; sourceTree = SOURCE_ROOT; };
 		80C3654E1BB5C279006DE82E /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Genome.playground/Sources/Errors.swift; sourceTree = SOURCE_ROOT; };
+		80CE8C571C3C9B19000F4DA7 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Foundation.swift; path = Genome.playground/Sources/Foundation.swift; sourceTree = SOURCE_ROOT; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +290,7 @@
 				8052E7A31BB58C96004E08F6 /* Transformers.swift */,
 				8052E79F1BB58C96004E08F6 /* Map.swift */,
 				8052E79C1BB58C96004E08F6 /* Dictionary+KeyPaths.swift */,
+				80CE8C571C3C9B19000F4DA7 /* Foundation.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -533,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CE8C5A1C3C9B19000F4DA7 /* Foundation.swift in Sources */,
 				8047B2E91C38DD5700C0F9E5 /* ParseError.swift in Sources */,
 				80A300B01C14E51A00DDE54D /* JsonConvertibleType.swift in Sources */,
 				3D5396F01BBA8A7300791B49 /* Errors.swift in Sources */,
@@ -557,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CE8C5B1C3C9B19000F4DA7 /* Foundation.swift in Sources */,
 				8047B2EA1C38DD5700C0F9E5 /* ParseError.swift in Sources */,
 				80A300B11C14E51A00DDE54D /* JsonConvertibleType.swift in Sources */,
 				3D5396FA1BBA8A7900791B49 /* Errors.swift in Sources */,
@@ -581,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CE8C591C3C9B19000F4DA7 /* Foundation.swift in Sources */,
 				8047B2E81C38DD5700C0F9E5 /* ParseError.swift in Sources */,
 				80A300AF1C14E51A00DDE54D /* JsonConvertibleType.swift in Sources */,
 				3DCE374E1BB9D9C100D0100C /* Errors.swift in Sources */,
@@ -605,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CE8C5C1C3C9B19000F4DA7 /* Foundation.swift in Sources */,
 				8047B2EB1C38DD5700C0F9E5 /* ParseError.swift in Sources */,
 				80A300B21C14E51A00DDE54D /* JsonConvertibleType.swift in Sources */,
 				68088BF71BC5F5D000B5A733 /* Errors.swift in Sources */,
@@ -647,6 +658,7 @@
 				8052E7A71BB58C96004E08F6 /* Map.swift in Sources */,
 				8047B2D31C38DD5700C0F9E5 /* JsonParser.swift in Sources */,
 				8052E7601BB58102004E08F6 /* AppDelegate.swift in Sources */,
+				80CE8C581C3C9B19000F4DA7 /* Foundation.swift in Sources */,
 				8047B2DD1C38DD5700C0F9E5 /* Json.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
