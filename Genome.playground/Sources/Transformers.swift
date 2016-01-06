@@ -138,15 +138,15 @@ public final class TwoWayTransformer<InputJsonType: JsonConvertibleType, Transfo
 // MARK: Map Extensions
 
 public extension Map {
-    public func transformFromJson<JsonType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
+    public func transformFromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
         return FromJsonTransformer(map: self, transformer: transformer)
     }
     
-    public func transformFromJson<JsonType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
+    public func transformFromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
         return FromJsonTransformer(map: self, transformer: transformer)
     }
     
-    public func transformToJson<ValueType, JsonOutputType>(transformer: ValueType throws -> JsonOutputType) -> ToJsonTransformer<ValueType, JsonOutputType> {
+    public func transformToJson<ValueType, JsonOutputType: JsonConvertibleType>(transformer: ValueType throws -> JsonOutputType) -> ToJsonTransformer<ValueType, JsonOutputType> {
         return ToJsonTransformer(map: self, transformer: transformer)
     }
 }
