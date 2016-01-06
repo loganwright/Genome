@@ -105,11 +105,17 @@ extension Json {
     }
     
     public var boolValue: Bool? {
-        guard case let .BooleanValue(bool) = self else {
+        if case let .BooleanValue(bool) = self {
+            return bool
+        } else if let integer = intValue where integer == 1 || integer == 0 {
+            // When converting from foundation type `[String : AnyObject]`, something that I see as important, 
+            // it's not possible to distinguish between 'bool', 'double', and 'int'.
+            // Because of this, if we have an integer that is 0 or 1, and a user is requesting a boolean val,
+            // it's fairly likely this is their desired result.
+            return integer == 1
+        } else {
             return nil
         }
-        
-        return bool
     }
 
     public var floatValue: Float? {

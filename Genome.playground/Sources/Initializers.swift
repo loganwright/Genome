@@ -8,40 +8,6 @@
 
 // MARK: MappableObject Initialization
 
-extension Json : JsonConvertibleType {
-    public static func newInstance(json: Json, context: Json) -> Json {
-        return json
-    }
-    
-    public func jsonRepresentation() -> Json {
-        return self
-    }
-}
-
-extension Dictionary where Key: CustomStringConvertible, Value: JsonConvertibleType {
-    func jsonRepresentation() throws -> Json {
-        var mutableObject: [String : Json] = [:]
-        try self.forEach { key, value in
-            mutableObject[key.description] = try value.jsonRepresentation()
-        }
-        return .ObjectValue(mutableObject)
-    }
-}
-
-// TODO: Move to Foundation Specific
-// TODO: Make other direction
-
-extension Json {
-    public static func from(dictionary: [String : JsonConvertibleType]) throws -> Json {
-        var mutable: [String : Json] = [:]
-        try dictionary.forEach { key, value in
-            mutable[key] = try value.jsonRepresentation()
-        }
-        
-        return .from(mutable)
-    }
-}
-
 public extension MappableObject {
     
     /**

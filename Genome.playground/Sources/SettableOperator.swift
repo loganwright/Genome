@@ -111,16 +111,19 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [[T]]? {
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [[T]]
 }
+
 public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : T]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : T]
 }
+
 public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : [T]]? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : [T]]
 }
+
 public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> Set<T>? {
     try enforceMapType(map, expectedType: .FromJson)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil

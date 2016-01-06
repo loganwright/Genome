@@ -4,6 +4,18 @@ public protocol JsonConvertibleType {
     func jsonRepresentation() throws -> Json
 }
 
+// MARK: Json
+
+extension Json : JsonConvertibleType {
+    public static func newInstance(json: Json, context: Json) -> Json {
+        return json
+    }
+    
+    public func jsonRepresentation() -> Json {
+        return self
+    }
+}
+
 // MARK: String
 
 extension String : JsonConvertibleType {
@@ -109,5 +121,18 @@ extension JsonConvertibleFloatingPointType {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         return self.init(double)
+    }
+}
+
+// MARK: Convenience
+
+extension Json {
+    public static func from(dictionary: [String : JsonConvertibleType]) throws -> Json {
+        var mutable: [String : Json] = [:]
+        try dictionary.forEach { key, value in
+            mutable[key] = try value.jsonRepresentation()
+        }
+        
+        return .from(mutable)
     }
 }

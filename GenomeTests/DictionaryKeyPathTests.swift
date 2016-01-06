@@ -12,16 +12,18 @@ import Genome
 class DictionaryKeyPathTests: XCTestCase {
     
     func testExample() {
-        var TestDictionary: Json = [
+        var TestDictionary: AnyObject = [
             "one" : [
                 "two" : "Found me!"
             ]
         ]
+        
+        var json = Json.from(TestDictionary)
 
-        let value: String! = TestDictionary.gnm_valueForKeyPath("one.two")?.stringValue
+        let value: String! = json.gnm_valueForKeyPath("one.two")?.stringValue
         XCTAssert(value == "Found me!")
-        TestDictionary.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
-        let setVal: String! = TestDictionary.gnm_valueForKeyPath("path.to.new.value")?.stringValue
+        json.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
+        let setVal: String! = json.gnm_valueForKeyPath("path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
     }
     
