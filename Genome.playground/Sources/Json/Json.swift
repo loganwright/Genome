@@ -17,45 +17,45 @@ public enum Json: CustomStringConvertible, CustomDebugStringConvertible, Equatab
 
     // MARK: Initialization
     
-    init(_ value: Bool) {
+    public init(_ value: Bool) {
         self = .BooleanValue(value)
     }
     
-    init(_ value: Double) {
+    public init(_ value: Double) {
         self = .NumberValue(value)
     }
     
-    init(_ value: String) {
+    public init(_ value: String) {
         self = .StringValue(value)
     }
     
-    init(_ value: [Json]) {
+    public init(_ value: [Json]) {
         self = .ArrayValue(value)
     }
     
-    init(_ value: [String : Json]) {
+    public init(_ value: [String : Json]) {
         self = .ObjectValue(value)
     }
     
     // MARK: From
     
-    static func from(value: Bool) -> Json {
+    public static func from(value: Bool) -> Json {
         return .BooleanValue(value)
     }
 
-    static func from(value: Double) -> Json {
+    public static func from(value: Double) -> Json {
         return .NumberValue(value)
     }
 
-    static func from(value: String) -> Json {
+    public static func from(value: String) -> Json {
         return .StringValue(value)
     }
 
-    static func from(value: [Json]) -> Json {
+    public static func from(value: [Json]) -> Json {
         return .ArrayValue(value)
     }
 
-    static func from(value: [String : Json]) -> Json {
+    public static func from(value: [String : Json]) -> Json {
         return .ObjectValue(value)
     }
 }
