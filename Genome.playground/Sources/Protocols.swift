@@ -35,14 +35,14 @@ public protocol MappableObject: MappableBase {
 public extension MappableObject {
     public func sequence(map: Map) throws { }
     
-    public init(js: Json, context: Json = [:]) throws {
+    public init(js: Json, context: Context = EmptyJson) throws {
         let map = Map(json: js, context: context)
         try self.init(map: map)
         try sequence(map)
     }
     
     // JsonConvertibleTypeConformance
-    public static func newInstance(json: Json, context: Json = [:]) throws -> Self {
+    public static func newInstance(json: Json, context: Context = EmptyJson) throws -> Self {
         guard let _ = json.objectValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }

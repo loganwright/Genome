@@ -95,7 +95,7 @@ public final class Map {
     public let json: Json
     
     /// The greater context in which the mapping takes place
-    public let context: Json // TODO: Should probably be `Map`
+    public let context: Context
     
     // MARK: Private
     
@@ -121,7 +121,7 @@ public final class Map {
     
     :returns: an initialized map
     */
-    public init(json: Json, context: Json = .ObjectValue([:])) {
+    public init(json: Json, context: Context = EmptyJson) {
         self.json = json
         self.context = context
         self.type = .FromJson
@@ -129,7 +129,7 @@ public final class Map {
     
     public init() {
         self.json = [:]
-        self.context = [:]
+        self.context = EmptyJson
         self.type = .ToJson
     }
     

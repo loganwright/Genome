@@ -89,7 +89,7 @@ public final class FromJsonTransformer<JsonType: JsonConvertibleType, Transforme
             validJson = try enforceValueExists(json)
         }
         
-        let input = try JsonType.newInstance(validJson, context: .ObjectValue([:]))
+        let input = try JsonType.newInstance(validJson, context: validJson)
         return try transformer(input)
     }
 }
