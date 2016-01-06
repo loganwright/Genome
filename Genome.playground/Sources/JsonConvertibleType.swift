@@ -7,7 +7,7 @@ public protocol JsonConvertibleType {
 // MARK: Json
 
 extension Json : JsonConvertibleType {
-    public static func newInstance(json: Json, context: Json) -> Json {
+    public static func newInstance(json: Json, context: Json = [:]) -> Json {
         return json
     }
     
@@ -23,7 +23,7 @@ extension String : JsonConvertibleType {
         return .from(self)
     }
     
-    public static func newInstance(json: Json, context: Json) throws -> String {
+    public static func newInstance(json: Json, context: Json = [:]) throws -> String {
         guard let string = json.stringValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
@@ -38,7 +38,7 @@ extension Bool : JsonConvertibleType {
         return .from(self)
     }
     
-    public static func newInstance(json: Json, context: Json) throws -> Bool {
+    public static func newInstance(json: Json, context: Json = [:]) throws -> Bool {
         guard let bool = json.boolValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
@@ -60,7 +60,7 @@ extension UnsignedIntegerType {
         return .from(double)
     }
     
-    public static func newInstance(json: Json, context: Json) throws -> Self {
+    public static func newInstance(json: Json, context: Json = [:]) throws -> Self {
         guard let int = json.uintValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
@@ -83,7 +83,7 @@ extension SignedIntegerType {
         return .from(double)
     }
     
-    public static func newInstance(json: Json, context: Json) throws -> Self {
+    public static func newInstance(json: Json, context: Json = [:]) throws -> Self {
         guard let int = json.intValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
@@ -116,7 +116,7 @@ extension JsonConvertibleFloatingPointType {
         return .from(doubleValue)
     }
     
-    public static func newInstance(json: Json, context: Json) throws -> Self {
+    public static func newInstance(json: Json, context: Json = [:]) throws -> Self {
         guard let double = json.doubleValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
@@ -127,6 +127,10 @@ extension JsonConvertibleFloatingPointType {
 // MARK: Convenience
 
 extension Json {
+    public init(_ dictionary: [String : JsonConvertibleType]) throws{
+        self = try Json.from(dictionary)
+    }
+    
     public static func from(dictionary: [String : JsonConvertibleType]) throws -> Json {
         var mutable: [String : Json] = [:]
         try dictionary.forEach { key, value in
@@ -134,18 +138,5 @@ extension Json {
         }
         
         return .from(mutable)
-    }
-}
-
-extension Dictionary where Key : CustomStringConvertible, Value : JsonConvertibleType {
-    public func jsonRepresentation() throws -> Json {
-        var mutable: [String : Json] = [:]
-        try self.forEach { key, value in
-            guard let safeKey = key as? String else {
-                throw JsonConvertibleError.UnsupportedType("\(key) - Expected String")
-            }
-            mutable[safeKey] = try value.jsonRepresentation()
-        }
-        return .ObjectValue(mutable)
     }
 }

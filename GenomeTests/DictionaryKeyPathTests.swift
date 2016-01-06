@@ -12,7 +12,7 @@ import Genome
 class DictionaryKeyPathTests: XCTestCase {
     
     func testExample() {
-        var TestDictionary: AnyObject = [
+        let TestDictionary: AnyObject = [
             "one" : [
                 "two" : "Found me!"
             ]

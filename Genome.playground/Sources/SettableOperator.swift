@@ -146,7 +146,7 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> T {
 public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [T] {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: [T].self)
-    return try [T].newInstance(result, context: map.context)
+    return try [T](js: result, context: map.context)
 }
 
 public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [[T]] {
@@ -158,7 +158,7 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [[T]] {
     let possibleArrayOfArrays = array.flatMap { $0.arrayValue }
     let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
     let arrayOfArrays: [[Json]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
-    return try arrayOfArrays.map { try [T].newInstance($0, context: map.context) }
+    return try arrayOfArrays.map { try [T](js: $0, context: map.context) }
 }
 
 public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : T] {
@@ -179,7 +179,7 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : [T]
     
     var mappedDictionaryOfArrays: [String : [T]] = [:]
     for (key, value) in jsonDictionaryOfArrays {
-        let mappedValue = try [T].newInstance(value, context: map.context)
+        let mappedValue = try [T](js: value, context: map.context)
         mappedDictionaryOfArrays[key] = mappedValue
     }
     return mappedDictionaryOfArrays
@@ -189,7 +189,7 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> Set<T> {
     try enforceMapType(map, expectedType: .FromJson)
     let result = try enforceResultExists(map, type: T.self)
     let jsonArray = result.arrayValue ?? [result]
-    return Set<T>(try [T].newInstance(Json.from(jsonArray), context: map.context))
+    return Set<T>(try [T](js: Json.from(jsonArray), context: map.context))
 }
 
 // MARK: Transformables
@@ -201,13 +201,13 @@ public prefix func <~ <JsonInputType, T>(transformer: FromJsonTransformer<JsonIn
 
 // MARK: Enforcers
 
-internal func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
+private func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
     if map.type != expectedType {
         throw logError(MappingError.UnexpectedOperationType("Received mapping operation of type: \(map.type) expected: \(expectedType)"))
     }
 }
 
-internal func enforceResultExists<T>(map: Map, type: T.Type) throws -> Json {
+private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Json {
     if let result = map.result {
         return result
     } else {

@@ -123,13 +123,13 @@ class GenomeSideLoadTests: XCTestCase {
     
     func testSideLoad() {
         let jsonArrayOfPeople = SideLoadTestJson["people"]!
-        let single: Person! = try! Person.mappedInstance(jsonArrayOfPeople.arrayValue!.first!)
+        let single: Person! = try! Person(js: jsonArrayOfPeople.arrayValue!.first!)
         XCTAssert(single != nil)
         
-        let allFoods = try! [Food].mappedInstance(SideLoadTestJson["foods"]!, context: SideLoadTestJson)
+        let allFoods = try! [Food](js: SideLoadTestJson["foods"]!, context: SideLoadTestJson)
         XCTAssert(allFoods.count == 4)
 
-        var peeps: [Person] = try! [Person].mappedInstance(jsonArrayOfPeople, context: SideLoadTestJson)
+        var peeps: [Person] = try! [Person](js: jsonArrayOfPeople, context: SideLoadTestJson)
         peeps = peeps.map { (var person) -> Person in person.associateFavoriteFoods(allFoods); return person }
         XCTAssert(peeps.count == 2)
         
@@ -148,7 +148,6 @@ class GenomeSideLoadTests: XCTestCase {
         print("Peeps: \(peepsJson)")
         
         let m = Map()
-        m.type = .ToJson
         try! peeps <~> m
         print("mjs: \(m.toJson)")
     }

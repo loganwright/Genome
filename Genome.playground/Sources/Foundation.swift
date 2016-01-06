@@ -6,12 +6,6 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-extension MappableObject {
-    public static func mappedInstance(js: [String : AnyObject], context: [String : AnyObject] = [:]) throws -> Self {
-        return try mappedInstance(Json.from(js), context: Json.from(context))
-    }
-}
-
 extension BasicMappable {
     public init(js: AnyObject, context: [String : AnyObject] = [:]) throws {
         let safeJson = Json.from(js)
@@ -24,7 +18,7 @@ extension BasicMappable {
     }
 }
 
-extension StandardMappable {
+extension MappableObject {
     public init(js: AnyObject, context: [String : AnyObject] = [:]) throws {
         let safeJson = Json.from(js)
         let safeContext = Json.from(context)

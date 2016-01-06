@@ -11,7 +11,7 @@ import Genome
 
 class FromJsonOperatorTest: XCTestCase {
     
-    struct Person: StandardMappable, Hashable {
+    struct Person: MappableObject, Hashable {
         
         let firstName: String
         let lastName: String

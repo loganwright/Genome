@@ -11,7 +11,7 @@ import XCTest
 
 class SettableOperatorTest: XCTestCase {
     
-    struct Person: StandardMappable, Hashable {
+    struct Person: MappableObject, Hashable {
         
         let firstName: String
         let lastName: String
@@ -465,7 +465,7 @@ class SettableOperatorTest: XCTestCase {
     
     func testMapType() {
         do {
-            map.type = .ToJson
+            let map = Map()
             let _: String = try <~map["a"]
             XCTFail("Inproper map type should throw error")
         } catch MappingError.UnexpectedOperationType(_) {

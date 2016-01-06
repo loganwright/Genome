@@ -25,7 +25,7 @@ class ToJsonOperatorTest: XCTestCase {
         
     }
     
-    struct Business: StandardMappable {
+    struct Business: MappableObject {
         
         let name: String
         let foundedYear: Int
@@ -161,7 +161,7 @@ class ToJsonOperatorTest: XCTestCase {
         "employeesSet" : self.employeesSet
     ]
     
-    lazy var goodBusiness: Business = try! Business.mappedInstance(self.businessJson)
+    lazy var goodBusiness: Business = try! Business(js: self.businessJson)
     
     func test() {
         let json = try! goodBusiness.jsonRepresentation()

@@ -69,7 +69,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic.mappedInstance(.ObjectValue(BasicTestJson))
+        let basic = try! Basic(js: .ObjectValue(BasicTestJson))
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
@@ -90,7 +90,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() {
-        let basic = try! BasicArrays.mappedInstance(.ObjectValue(BasicArraysTestJson))
+        let basic = try! BasicArrays(js: .ObjectValue(BasicArraysTestJson))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])

@@ -86,7 +86,7 @@ public final class Map {
     }
     
     /// The type of operation for the current map
-    public var type: OperationType = .FromJson
+    public let type: OperationType
     
     /// If the mapping operation were converted to Json (Type.ToJson)
     public private(set) var toJson: Json = .ObjectValue([:])
@@ -121,9 +121,16 @@ public final class Map {
     
     :returns: an initialized map
     */
-    public init(json: Json = .ObjectValue([:]), context: Json = .ObjectValue([:])) {
+    public init(json: Json, context: Json = .ObjectValue([:])) {
         self.json = json
         self.context = context
+        self.type = .FromJson
+    }
+    
+    public init() {
+        self.json = [:]
+        self.context = [:]
+        self.type = .ToJson
     }
     
     // MARK: Subscript
