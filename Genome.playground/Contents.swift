@@ -2,28 +2,7 @@
 
 import UIKit
 
-let json_rover: JSON = [
-    "name" : "Rover",
-    "nickname" : "RoRo",
-    "type" : "dog"
-]
-
-let json_jane: JSON = [
-    "name" : "jane",
-    "birthday" : "12-10-85",
-    "pet" : json_rover
-]
-
-let json_snowflake: JSON = [
-    "name" : "Snowflake",
-    "type" : "cat"
-]
-
-let json_joe: JSON = [
-    "name" : "Joe",
-    "birthday" : "12-15-84",
-    "pet" : json_snowflake
-]
+// MARK: Date Conversion
 
 enum DateTransformationError : ErrorType {
     case UnableToConvertString
@@ -40,34 +19,25 @@ extension NSDate {
         }
     }
     
-    class func birthdayStringWithDate(date: NSDate?) -> String? {
-        guard let date = date else { return nil }
+    class func birthdayStringWithDate(date: NSDate) throws -> String {
         let df = NSDateFormatter()
         df.dateFormat = "mm-d-yy"
         return df.stringFromDate(date)
     }
 }
 
+// MARK: Pet
+
 enum PetType : String {
     case Dog = "dog"
     case Cat = "cat"
 }
 
-struct Pet {
+struct Pet : BasicMappable {
     var name = ""
     var type: PetType!
     var nickname: String?
-}
-
-struct Person {
-    let name: String
-    let pet: Pet
-    let birthday: NSDate
     
-    let favoriteFood: String?
-}
-
-extension Pet : BasicMappable {
     mutating func sequence(map: Map) throws {
         try name <~> map["name"]
         try nickname <~> map["nickname"]
@@ -81,107 +51,129 @@ extension Pet : BasicMappable {
     }
 }
 
-extension Person : StandardMappable {
+let json_rover: Json = [
+    "name" : "Rover",
+    "nickname" : "RoRo",
+    "type" : "dog"
+]
+
+let rover = try Pet(js: json_rover)
+print(rover)
+
+// MARK: Person
+
+struct Person : MappableObject {
+    let name: String
+    let pet: Pet
+    let birthday: NSDate
+    
+    let favoriteFood: String?
+
     init(map: Map) throws {
-        try pet = <~map["pet"]
-        try name = <~map["name"]
-        try birthday = <~map["birthday"]
-            .transformFromJson(NSDate.dateWithBirthdayString)
-        try favoriteFood = <~?map["favorite_food"]
+        pet = try map.extract("pet")
+        name = try map.extract("name")
+        favoriteFood = try map.extract("favorite_food")
+        birthday = try map["birthday"]
+            .fromJson(NSDate.dateWithBirthdayString)
     }
     
     mutating func sequence(map: Map) throws {
         try name ~> map["name"]
         try pet ~> map["pet"]
+        try favoriteFood ~> map["favorite_food"]
         try birthday ~> map["birthday"]
             .transformToJson(NSDate.birthdayStringWithDate)
-        try favoriteFood ~> map["favorite_food"]
     }
 }
 
-do {
-    let rover = try Pet.mappedInstance(json_rover)
-    print(rover)
-} catch {
-    print(error)
+let json_snowflake: Json = [
+    "name" : "Snowflake",
+    "type" : "cat"
+]
+
+let json_joe: Json = [
+    "name" : "Joe",
+    "birthday" : "12-15-84",
+    "pet" : json_snowflake
+]
+
+let joe = try Person(js: json_joe)
+print(joe)
+
+// MARK: Creating A Custom Mappable
+
+extension Int {
+    static func fromString(string: String) -> Int {
+        return Int(string)!
+    }
 }
 
-let joe = try Person.mappedInstance(json_joe)
-joe.name
-joe.favoriteFood
-joe.pet.type
-joe.pet.name
-joe.birthday
+extension String {
+    static func fromInt(int: Int) -> String {
+        return "\(int)"
+    }
+}
 
-struct Book : CustomMappable {
+class Book : ComplexMappable {
     var title: String = ""
     var releaseYear: Int = 0
     var id: String = ""
     
-    static func newInstance(map: Map) throws -> Book {
-        let id: String = try <~map["id"]
-        return existingBookWithId(id) ?? Book()
+    required init() {}
+    
+    static func newInstance(map: Map) throws -> Self {
+        let id: String = try map.extract("id")
+        return existingBookWithId(id) ?? self.init()
     }
     
-    mutating func sequence(map: Map) throws {
+    func sequence(map: Map) throws {
         try title <~> map["title"]
         try id <~> map["id"]
+
+        // String => Int
         try releaseYear <~> map["release_year"]
-            .transformFromJson  { (input: String) -> Int in
-                return Int(input)!
-            }
-            .transformToJson {
-                return "\($0)"
-            }
+            .transformFromJson(Int.fromString)
+            .transformToJson(String.fromInt)
     }
 }
 
-
-func existingBookWithId(id: String) -> Book? {
+func existingBookWithId<T: Book>(id: String) -> T? {
     return nil
 }
 
-let json_book: JSON = [
+let json_book: Json = [
     "title" : "Title",
     "release_year" : "2009",
     "id" : "asd9fj20m"
 ]
 
-let book = try! Book.mappedInstance(json_book)
-book.title
-book.releaseYear
-book.id
+let book = try! Book.newInstance(json_book)
+print(book)
 
-// MARK:
+// MARK: Core Data Example
 
-let map = Map(json: ["key" : "value"])
+import CoreData
 
-let mappedString1: String? = try <~map["key"]
-    .transformFromJson { (input: String?) -> String? in
-        return "Hello \(input)"
-    }
+extension NSManagedObjectContext : Context {}
 
-let mappedString2: String = try <~map["key"]
-    .transformFromJson { (input: String) -> String in
-        return "Hello NonOptional \(input)"
-    }
-
-struct __Person : StandardMappable {
-    let firstName: String
-    let secondName: String?
-    let age: Int
-    let description: String
-    let hobbies: [String]
-    
-    init(map: Map) throws {
-        firstName = try <~map["firstName"]
-        secondName = try <~?map["secondName"]
-        age = try <~map["age"]
-        description = try <~map["description"]
-        hobbies = try <~map["hobbies"]
+extension NSManagedObject : MappableBase {
+    public class var entityName: String {
+        return "\(self)"
     }
     
-    mutating func sequence(map: Map) throws {}
+    public func sequence(map: Map) throws {
+        fatalError("Sequence must be overwritten")
+    }
+    
+    public class func newInstance(json: Json, context: Context) throws -> Self {
+        return try newInstance(json, context: context, type: self)
+    }
+    
+    public class func newInstance<T: NSManagedObject>(json: Json, context: Context, type: T.Type) throws -> T {
+        let context = context as! NSManagedObjectContext
+        let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
+        let map = Map(json: json, context: context)
+        try new.sequence(map)
+        return new
+    }
 }
-
-[__Person].mappedInstance([])

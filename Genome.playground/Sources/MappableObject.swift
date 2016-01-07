@@ -6,16 +6,13 @@
 //  Copyright © 2015 lowriDevs. All rights reserved.
 //
 
-// MARK: MappableObject
+// MARK: MappableBase
 
-/**
-*  The base requirement for mappers
-*/
 public protocol MappableBase : JsonConvertibleType {
     mutating func sequence(map: Map) throws -> Void
 }
 
-public extension MappableBase {
+extension MappableBase {
     
     /// Used to convert an object back into json
     public func jsonRepresentation() throws -> Json {
@@ -26,13 +23,13 @@ public extension MappableBase {
     }
 }
 
-// MARK: Standard Mappable
+// MARK: MappableObject
 
 public protocol MappableObject: MappableBase {
     init(map: Map) throws
 }
 
-public extension MappableObject {
+extension MappableObject {
     public func sequence(map: Map) throws { }
     
     public init(js: Json, context: Context = EmptyJson) throws {
@@ -60,9 +57,37 @@ public protocol BasicMappable: MappableObject {
     init() throws
 }
 
-public extension BasicMappable {
+extension BasicMappable {
     public init(map: Map) throws {
         try self.init()
         try sequence(map)
+    }
+}
+
+// MARK: Complex Object
+
+public protocol ComplexMappable : MappableBase {
+    static func newInstance(map: Map) throws -> Self
+}
+
+extension ComplexMappable {
+    public static func newInstance(js: Json, context: Context = EmptyJson) throws -> Self {
+        let map = Map(json: js, context: context)
+        return try newInstance(map)
+    }
+}
+
+// MARK: Inheritable Object
+
+public class Object : MappableObject {
+    required public init(map: Map) throws {}
+    
+    public func sequence(map: Map) throws {}
+    
+    public static func newInstance(json: Json, context: Context) throws -> Self {
+        let map = Map(json: json, context: context)
+        let new = try self.init(map: map)
+        try new.sequence(map)
+        return new
     }
 }
