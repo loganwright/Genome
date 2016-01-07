@@ -35,9 +35,13 @@ The goal of this library is to satisfy the following constraints:
 
 >\- Struct Friendly
 
-### Playground
+>\- Inheritance Friendly
 
-The <a href="/GenomePlayground.playground">playground</a> provided by this project can be used to test the library.  It also provides more detail into how to use the library.  
+>\- Core Data and Persistence Compatible
+
+### Playground / Examples
+
+The <a href="/GenomePlayground.playground">playground</a> provided by this project can be used to test the library.  It also provides some examples on how to use the library.  
 
 ### Failure Driven
 
@@ -61,6 +65,17 @@ github "LoganWright/Genome"
 
 And execute `carthage update` to download and compile the framework.
 
+### Table Of Contents
+
+* [Quick Start](#quick-start)
+* [Json](#json)
+* [Inheritance](#inheritance)
+* [JsonConvertibleType](#jsonconvertibletype)
+* [Instantiation](#instantiation)
+* [Alamofire](#alamofire)
+* [Core Data](#core-data)
+* [Logging](#logging)
+
 ### Quick Start
 
 Let's take the following hypothetical JSON
@@ -82,42 +97,72 @@ enum PetType : String {
     case Cat = "cat"
 }
 
-struct Pet {
-      var name: String = ""
-      var type: PetType!
-      var nickname: String?
-}
-```
+struct Pet : MappableObject {
+    let name: String
+    let type: PetType
+    let nickname: String
 
-Now, let's look at how we might provide a mapping schema for our model.
+    init(map: Map) throws {
+        name = try map.extract("name")
+        nickname = try map.extract("nickname")
+        type = try map["type"]
+            .fromJson { PetType(rawValue: $0)! }
+    }
 
-```Swift
-extension Pet : BasicMappable {
-    mutating func sequence(map: Map) throws {
-        try name <~> map["name"]
-        try nickname <~> map["nickname"]
-        try type <~> map["type"]
-            .transformFromJson {
-                return PetType(rawValue: $0)
-            }
-            .transformToJson {
-                return $0.rawValue
-            }
+    func sequence(map: Map) throws {
+        try name ~> map["name"]
+        try type ~> map["type"]
+            .transformToJson { $0.rawValue }
+        try nickname ~> map["nickname"]
     }
 }
 ```
 
-There's a lot to look at in this, here's some of the key points:
+### `Map`
 
-### `sequence(map: Map) throws`
+This is the object that is used two encapsulate the `Json` as well as a more global context which can represent any object you may want your sub operations to have access to.
 
-Mappable objects must implement this method.  This is how the objects can be mapped.  It is marked `mutating` because it will modify values.
+This has particular use in things like CoreData where a `NSManagedObjectContext` may be required.
+
+### `MappableObject`
+
+This is one of the core protocol options for this library.  It will be the go to for most standard mapping operations.
+
+It has two requirements
+
+#### `init(map: Map) throws`
+
+This is the initializer you will use to map your object.  You may call this manually if you like, but if you use any of the built in convenience initializers, this will be called automatically.  Otherwise, if you need to initialize a `Map`, use:
+
+```Swift
+let map = Map(json: someJson, context: someContext)
+```
+
+It has two main requirements
+
+#### `sequence(map: Map) throws`
+
+The `sequence` function is called in two main situations. It is marked `mutating` because it will modify values on `fromJson` operations.  If however, you're only using sequence for `toJson`, nothing will be mutated and one can remove the `mutating` keyword. (as in the above example)
 
 `Note, if you're only mapping to JSON, nothing will be mutated.`
 
-### `<~>`
+##### FromJson
 
-This is the main operation used in this library.  The `~` symbolizes a connection, and the `<` and `>` respectively symbol a flow of value.  When declared as `<~>` it symbolizes that mapping can flow both ways.
+When mapping to Json w/ any of the convenience initializer.  After instantiating the object, `sequence` will be called.  This allows objects that don't initialize constants or objects that use the two-way operator to complete their mapping.
+
+> If you are initializing w/ `init(map: Map)` directly, you will be responsible for calling `sequence` manually if your object requires it.
+
+It is marked `mutating` because it will modify values.
+
+`Note, if you're only mapping to JSON, nothing will be mutated.`
+
+##### ToJson
+
+When accessing an objects `jsonRepresentation()`, the sequence operation will be called to collect the values into a `Json` package.
+
+### `~>`
+
+This is one of the main operations used in this library.  The `~` symbolizes a connection, and the `<` and `>` respectively symbol a flow of value.  When declared as `~>` it symbolizes that mapping only happens from value, to Json.
 
 You could also use the following:
 
@@ -131,7 +176,23 @@ You could also use the following:
 
 Genome provides various options for transforming values.  These are type-safe and will be checked by the compiler.
 
+These are chainable, like the following:
+
+```Swift
+try type <~> map["type"]
+    .transformFromJson {
+        return PetType(rawValue: $0)
+    }
+    .transformToJson {
+        return $0.rawValue
+    }
+```
+
 >Note: At the moment, transforms require absolute optionality conformance in some situations. ie, Optionals get Optionals, ImplicitlyUnwrappedOptionals get ImplicitlyUnwrappedOptionals, etc.
+
+#### `fromJson`
+
+When using `let` constants, you will need to call a transformer that sets the value instantly.  In this case, you will call `fromJson` and pass any closure that takes a `JsonConvertibleType` (a standard Json type) and returns a value.
 
 #### `transformFromJson`
 
@@ -145,7 +206,77 @@ Use this if you need to transform the given value to something more suitable for
 
 Why is the `try` keyword on every line!  Every mapping operation is failable if not properly specified.  It's better to deal with these possibilities, head first.  
 
-For example, if a value is non-optional, and there's no associated value in the json, the operation should throw an error that can be easily caught.
+For example, if the property being set is non-optional, and `nil` is found in the `Json`, the operation should throw an error that can be easily caught.
+
+# More Concepts
+
+Some of the different functionality available in Genome
+
+## Json
+
+Genome is 100% functional w/o Foundation dependencies.  Part of achieving this is the encorporation of a pure Swift Json parsing library.  Genome uses <a href="https://github.com/gfx/Swift-JsonSerializer">Swift-JsonSerializer</a> by @gfx.
+
+### Deserialize
+
+```Swift
+let data: NSData = ...
+let jsonFromData = try? Json.deserialize(data)
+
+let string: String = ...
+let jsonFromString = try? Json.deserialize(string)
+
+let byteArray: [UInt8] = ...
+let jsonFromByteArray = try? Json.deserialize(byteArray)
+```
+
+### Serialize
+
+```Swift
+let json: Json = ...
+let rawJsonString: String? = try? json.serialize()
+
+// Pretty
+let prettyJsonString: String? = try? json.serialize(.PrettyPrinted)
+```
+
+The way that Genome is constructed, you should never have to deal w/ `Json` beyond deserializing and serializing for your web services.  It can still be used directly if desired.
+
+## Inheritance
+
+Genome is most suited to `final` classes and structures, but it does support Inheritance.  Unfortunately, due to some limitations surrounding generics, protocols, and `Self` it requires some extra effort.
+
+### `Object`
+
+The `Object` type is provided by the library to satisfy most inheritance based mapping operations.  Simply subclass `Object` and you're good to go:
+
+```Swift
+class MyClass : Object {}
+```
+
+> Note: If you're using `Realm`, or another library that has also used `Object`, don't forget that these are module namespaced in Swift.  If that's the case, you should declare your class: `class MyClass : Genome.Object {}`
+
+### `Custom`
+
+If you're using a custom class, you'll need to add some additional functions.  Here's what a basic base class might look like:
+
+```Swift
+class CustomBase : MappableBase {
+    required init() {}
+
+    static func newInstance(json: Json, context: Context) throws -> Self {
+        let map = Map(json: json, context: context)
+        let new = self.init()
+        try new.sequence(map)
+        return new
+    }
+
+    func sequence(map: Map) throws {}
+}
+```
+
+**Notice the `required` initializer above.  When returning `Self` at a class level, you will almost always need a required initializer.**
+
+If you need to extend an existing base class, and for particularly complex situations, see the CoreData example below as reference.
 
 ### `BasicMappable`
 
@@ -154,18 +285,38 @@ In order to support flexible customization, Genome provides various mapping opti
 | Protocol | Required Initializer |
 |:---|:---|
 | BasicMappable | `init() throws` |
-| StandardMappable | `init(map: Map) throws` |
-| CustomMappable | `static func newInstance(map: Map) throws -> Self` |
+| MappableObject | `init(map: Map) throws` |
 
-These are all just convenience protocols, and ultimately all derive from `MappableObject`.  If you wish to define your own implementation, all of the other functionality will still apply.
+These are all just convenience protocols, and ultimately all derive from `MappableBase`.  If you wish to define your own implementation, the rest of the library's functionality will still apply.
 
-### Instantiation
+### `JsonConvertibleType`
+
+This is the true root of the library.  Even `MappableBase` mentioned above inherits from this core type.  It has two requirements:
+
+```Swift
+public protocol JsonConvertibleType {
+    static func newInstance(json: Json, context: Context) throws -> Self
+    func jsonRepresentation() throws -> Json
+}
+```
+
+All Json basic types such as `Int`, `String`, etc. conform to this protocol which allows ultimate flexibility in defining the library.  It also paves the way to much fewer overloads going forward when collections of `JsonConvertibleType` can also conform to it.
+
+> This can be used as a supplement to `transform` types mentioned above.  If an object conforms to this protocol, it will be immediately useable within the library.
+
+## Instantiation
+
+If you are using the standard instantiation scheme established in the library, you will likely initialize with this function.
+
+```Swift
+public init(js: Json, context: Context = EmptyJson) throws
+```
 
 Now we can easily create an object safely:
 
 ```Swift
 do {
-    let rover = try Pet.mappedInstance(json_rover)
+    let rover = try Pet(js: json_rover)
     print(rover)
 } catch {
     print(error)
@@ -175,15 +326,41 @@ do {
 If all we care about is whether or not we were able to create an object, we can also do the following:
 
 ```Swift
-let rover = try? Pet.mappedInstance(json_rover)
+let rover = try? Pet(js: json_rover)
 print(rover) // Rover is type: `Pet?`
 ```
+
+### Context
+
+`Context` is defined as an empty protocol that any object you might need access to can conform to and passed within.
+
+### Foundation
+
+If you're using `Foundation`, you can also use the following initialization:
+
+```Swift
+public init(js: AnyObject, context: [String : AnyObject] = [:]) throws
+
+public init(js: [String : AnyObject], context: [String : AnyObject] = [:]) throws
+```
+
+### CollectionTypes
+
+You can instantiate collections directly w/o mapping as well:
+
+```Swift
+let people = try [People](js: someJson)
+```
+
+### Class Level Instantiation
+
+See Core Data
 
 ### `mappedInstance(json: JSON)`
 
 This is the function that should be used to initialize new mapped objects for a given json.
 
-### More
+### Playground
 
 Feel free to check out and interact with the <a href="/GenomePlayground.playground">playground</a> provided in this repo!
 
@@ -221,11 +398,6 @@ enum NasaResult<T> {
 }
 
 struct Nasa {
-
-    enum NasaError : ErrorType {
-        case UnableToConvertJson
-    }
-
     static func fetchPictureOfTheDay(completion: NasaResult<NasaPhoto> -> Void) {
         let url = "https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=DEMO_KEY"
         Alamofire.request(.GET, url)
@@ -233,8 +405,7 @@ struct Nasa {
                 switch response.result {
                 case .Success(let value):
                     do {
-                        let json = try toJson(value)
-                        let photo = try NasaPhoto.mappedInstance(json)
+                        let photo = try NasaPhoto(js: value)
                         completion(.Success(photo))
                     } catch {
                         completion(.Failure(error))
@@ -244,15 +415,6 @@ struct Nasa {
                 }
         }
     }
-
-    private static func toJson(value: AnyObject) throws -> JSON {
-        if let json = value as? JSON {
-            return json
-        } else {
-            throw NasaError.UnableToConvertJson
-        }
-    }
-
 }
 ```
 
@@ -271,218 +433,44 @@ Nasa.fetchPictureOfTheDay { [weak self] result in
 }
 ```
 
-Enjoy :)
+#### Core Data
 
-### Initialization Options
-
-One of the key components of this library is the ability to customize your objects initialization paradigm.  You can choose which protocol you'd like to conform to, or define your own if you'd like to, depending on your initialization requirements.
-
-The library provides three protocol options for you:
-
->NOTE: Although each of these protocols defines a throwable initializer, you are not required to conform to this if your initializer won't throw.  This means that the requirement `init() throws` can be satisfied by `init()`. This applies to all throwable requirements.
-
-#### `BasicMappable`
-
-This protocol has the requirement:
+If you wish to use `CoreData`, you will want to add something similar to the following to your project:
 
 ```Swift
-init() throws
-```
 
-This often applies to very simple objects that don't have any customization in the initializer that requires access to the `Map` object.
+import CoreData
 
-Quick Sample:
+extension NSManagedObjectContext : Context {}
 
-```Swift
-struct Book : BasicMappable {
-    var title = ""
-    var releaseYear = 0
+extension NSManagedObject : MappableBase {
+    public class var entityName: String {
+        return "\(self)"
+    }
 
-    mutating func sequence(map: Map) throws {
-        try title <~> map["title"]
-        try releaseYear <~> map["release_year"]
-            .transformFromJson { (input: String) in
-                return Int(input)!
-            }
-            .transformToJson {
-                return "\($0)"
-            }
+    public func sequence(map: Map) throws {
+        fatalError("Sequence must be overwritten")
+    }
+
+    public class func newInstance(json: Json, context: Context) throws -> Self {
+        return try newInstance(json, context: context, type: self)
+    }
+
+    public class func newInstance<T: NSManagedObject>(json: Json, context: Context, type: T.Type) throws -> T {
+        let context = context as! NSManagedObjectContext
+        let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
+        let map = Map(json: json, context: context)
+        try new.sequence(map)
+        return new
     }
 }
 ```
 
-#### `StandardMappable`
-
-This protocol has the requirement:
-
-```Swift
-init(map: Map) throws
-```
-
-This applies to objects who may want to access the `Map` object during initialization.  This could be for a number of reasons, but most commonly it's to take advantage of `let` constant variables.
-
-Here's how our `Book` object might look with `StandardMappable` conformance.
-
-```Swift
-struct Book : StandardMappable {
-    let title: String
-    let releaseYear: Int
-
-    init(map: Map) throws {
-        try title = <~map["title"]
-        try releaseYear = <~map["release_year"]
-            .transformFromJson  { (input: String) -> Int in
-                return Int(input)!
-            }
-    }
-
-    func sequence(map: Map) throws {
-        try title ~> map["title"]
-        try releaseYear ~> map["release_year"]
-            .transformToJson {
-                return "\($0)"
-            }
-    }
-}
-```
-
->NOTE: Notice that above, `sequence(map: Map)` isn't marked `mutating`.  If we're only sequencing one way, it's not necessary to keep this marked `mutating`
-
-#### `CustomMappable`
-
-This protocol has the requirement:
-
-```Swift
-static func newInstance(map: Map) throws -> Self
-```
-
-This is good for objects that may need to check a database first to see if they still exist before we map a new one.  Let's stick with the `Book` example from above for clarity.  When we're creating an object, we'll see if one already exists in our database.
-
-```Swift
-struct Book : CustomMappable {
-    var title: String = ""
-    var releaseYear: Int = 0
-    var id: String = ""
-
-    static func newInstance(map: Map) throws -> Book {
-        let id: String = try <~map["id"]
-        return existingBookWithId(id) ?? Book()
-    }
-
-    mutating func sequence(map: Map) throws {
-        try title <~> map["title"]
-        try id <~> map["id"]
-        try releaseYear <~> map["release_year"]
-            .transformFromJson  { (input: String) -> Int in
-                return Int(input)!
-            }
-            .transformToJson {
-                return "\($0)"
-            }
-    }
-}
-```
+The generics above might seem a little strange, but they are an attempt to work within the extremely strict inheritance / `Self` system established by Swift without using a `required` initializer.  This type of format can be used for other persistence layers that have class level initializers or object creation factories.
 
 #### Custom Implementation
 
-Feel free to implement your own protocol by inheriting from `MappableObject` and defining the initializer.  Look at the implementations of the provided protocols for information on how to do this.
-
-### Inheritance
-
-For some types of architecture, you may want to utilize inheritance.  In these situations, you'll need to mark the initializer you're conforming to `required`.  For example, if our basic book from above was a class, we'd need to add the following:
-
-```Swift
-class Book : BasicMappable {
-    var title = ""
-    var releaseYear = 0
-
-    required init() {}
-
-    func sequence(map: Map) throws {
-        try title <~> map["title"]
-        try releaseYear <~> map["release_year"]
-            .transformFromJson { (input: String) in
-                return Int(input)!
-            }
-            .transformToJson {
-                return "\($0)"
-            }
-    }
-}
-```
-
-If you want classes, but aren't using inheritance, you can optionally mark a class `final`
-
-### Setting Constants
-
-Sometimes, for various reasons we don't want to pass a variable as an `inout`.  Because of limitations in the generic type system when using prefix operators, we need to be explicit when we're setting an optional value.
-
-Note that these operators fall under the same failure driven development that the infix operators do, and the `try` keyword will still be required.  This looks a little funny at first, but is a much safer code base in the long run.
-
->NOTE: These operators should look familiar to the infix operators from earlier.  Remember that `~` still represents a connection, and `<` still symbolizes the flow of values.  We're just positioning them a bit differently.
-
-#### `<~`
-
-This operator is used for **non-optional** values.  You can use this for properties, or inline variables as desired:
-
-```Swift
-let someNumber: Int = try <~map["some_number"]
-```
-
-Or in an initializer:
-
-```Swift
-let someNumber: Int
-
-init(map: Map) throws {
-  someNumber = try <~map["some_number"]
-}
-```
-
->NOTE: Optional mappings will fail when using this operator.  See `<~?` for more on how it should be used.
-
-#### `<~?`
-
-The `?` extends our operator to symbolize the possibility that the value received can be `nil`.
-
-This operator is used for **optional** values. At this time, Swift is unable to infer generic optionality through overloading the way it can with infix operators.  This means that we need to be explicit about our mapping when objects are optional.
-
-```Swift
-let possibleValue: String? = try <~?map["possible_value"]
-```
-
-Or in an initializer:
-
-```Swift
-
-let possibleValue: String?
-
-init(map: Map) throws {
-  possibleValue = try <~?map["possible_value"]
-}
-```
-
-#### Transforming Settables
-
-When attaching a transformer via these operators, use the `<~` prefix regardless of the optionality of the target.  In this case, optionality can be inferred through the provided transformation function.
-
-##### Non-Optional
-
-```Swift
-let mappedString2: String = try <~map["key"]
-    .transformFromJson { (input: String) -> String in
-        return "Hello NonOptional \(input)"
-    }
-```
-
-##### Optional
-
-```Swift
-let mappedString1: String? = try <~map["key"]
-    .transformFromJson { (input: String?) -> String? in
-        return "Hello \(input)"
-    }
-```
+Feel free to implement your own protocol by inheriting from `Mappable` and defining the initialization scheme.  Look at the implementations of the provided protocols for information on how to do this.
 
 ### Logging
 

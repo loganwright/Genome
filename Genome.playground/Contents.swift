@@ -33,8 +33,28 @@ enum PetType : String {
     case Cat = "cat"
 }
 
+struct _Pet : MappableObject {
+    let name: String
+    let type: PetType
+    let nickname: String
+    
+    init(map: Map) throws {
+        name = try map.extract("name")
+        nickname = try map.extract("nickname")
+        type = try map["type"]
+            .fromJson { PetType(rawValue: $0)! }
+    }
+    
+    func sequence(map: Map) throws {
+        try name ~> map["name"]
+        try type ~> map["type"]
+            .transformToJson { $0.rawValue }
+        try nickname ~> map["nickname"]
+    }
+}
+
 struct Pet : BasicMappable {
-    var name = ""
+    var name: String!
     var type: PetType!
     var nickname: String?
     
@@ -50,6 +70,7 @@ struct Pet : BasicMappable {
             }
     }
 }
+
 
 let json_rover: Json = [
     "name" : "Rover",
@@ -114,16 +135,38 @@ extension String {
     }
 }
 
-class Book : ComplexMappable {
+class CustomBase : MappableBase {
+    required init() {}
+    
+    static func newInstance(json: Json, context: Context) throws -> Self {
+        let map = Map(json: json, context: context)
+        let new = self.init()
+        try new.sequence(map)
+        return new
+    }
+    
+    func sequence(map: Map) throws {}
+}
+
+// MARK: Complex Example
+
+class Book : MappableBase {
     var title: String = ""
     var releaseYear: Int = 0
     var id: String = ""
     
     required init() {}
     
+    static func newInstance(json: Json, context: Context = EmptyJson) throws -> Self {
+        let map = Map(json: json, context: context)
+        return try newInstance(map)
+    }
+    
     static func newInstance(map: Map) throws -> Self {
         let id: String = try map.extract("id")
-        return existingBookWithId(id) ?? self.init()
+        let new = existingBookWithId(id) ?? self.init()
+        try new.sequence(map)
+        return new
     }
     
     func sequence(map: Map) throws {

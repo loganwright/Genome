@@ -64,19 +64,6 @@ extension BasicMappable {
     }
 }
 
-// MARK: Complex Object
-
-public protocol ComplexMappable : MappableBase {
-    static func newInstance(map: Map) throws -> Self
-}
-
-extension ComplexMappable {
-    public static func newInstance(js: Json, context: Context = EmptyJson) throws -> Self {
-        let map = Map(json: js, context: context)
-        return try newInstance(map)
-    }
-}
-
 // MARK: Inheritable Object
 
 public class Object : MappableObject {
