@@ -179,7 +179,7 @@ let rover = try? Pet.mappedInstance(json_rover)
 print(rover) // Rover is type: `Pet?`
 ```
 
-### `mappedInstance(json: Json)`
+### `mappedInstance(json: JSON)`
 
 This is the function that should be used to initialize new mapped objects for a given json.
 
@@ -245,8 +245,8 @@ struct Nasa {
         }
     }
 
-    private static func toJson(value: AnyObject) throws -> Json {
-        if let json = value as? Json {
+    private static func toJson(value: AnyObject) throws -> JSON {
+        if let json = value as? JSON {
             return json
         } else {
             throw NasaError.UnableToConvertJson
