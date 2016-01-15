@@ -1,10 +1,13 @@
-////
-////  JsonRepresentation.swift
-////  Genome
-////
-////  Created by Logan Wright on 6/30/15.
-////  Copyright © 2015 lowriDevs. All rights reserved.
-////
+//
+//  Genome
+//
+//  Created by Logan Wright
+//  Copyright © 2016 lowriDevs. All rights reserved.
+//
+//  MIT
+//
+
+import PureJsonSerializer
 
 // MARK: To Json
 
