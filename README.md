@@ -536,3 +536,7 @@ loggers = []
 
 Genome.loggers = []
 ```
+
+### PureJsonSerializer
+
+This library makes use of a pure swift json serializer located <a href="https://github.com/gfx/Swift-JsonSerializer">here!</a>
