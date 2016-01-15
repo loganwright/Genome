@@ -7,7 +7,7 @@
 
 Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  The ObjC version is no longer maintained, and any new developments will be done in Swift.
 
-<h1 align="center">**** Genome 2.0.0 ****</h1>
+<h1 align="center">Genome 2.0.0</h1>
 
 With the 2.0.0 release, there are some breaking syntax adjustments that you should be aware of.  One of the major changes is the removal of the dreaded and confusing `<~?` operator.  By structuring differently, special cases for optionality are no longer necessary, and all direct set mappings can use `<~` or the newly added `extract` function.  This also positions the library to better adapt when containers of conforming objects can conform themselves. The goal here would be reducing the amount of overload functions necessary.
 
