@@ -5,7 +5,13 @@
 
 <h2 align="center">Failure-Driven JSON Mapping in Swift</h2>
 
-Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  If there is enough demand for maintenance, another branch may be created; however, any new developments will likely be done in Swift.
+Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  The ObjC version is no longer maintained, any new developments will be done in Swift.
+
+### Building Project
+
+Genome uses <a href="https://www.cocoapods.org">cocoapods</a> to manage its dependencies, namely `PureJsonSerializer`.  When building the project, you'll need to use `Genome.xcworkspace`, and run `pod install` in the directory.
+
+Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
 
 ### Why
 
