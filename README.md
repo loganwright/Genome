@@ -5,7 +5,7 @@
 
 <h2 align="center">Failure-Driven JSON Mapping in Swift</h2>
 
-Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  The ObjC version is no longer maintained, any new developments will be done in Swift.
+Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  The ObjC version is no longer maintained, and any new developments will be done in Swift.
 
 ### Building Project
 
