@@ -9,7 +9,7 @@ Genome has gone Swift!  If you're looking for the original, ObjC implementation,
 
 <h1 align="center">**** !Genome 2.0.0 Release! ****</h1>
 
-With the 2.0.0 release, there are some breaking syntax changes.  Check the <a href="/releases">releases</a> section for a `1.0.0` compatible version.  If you're running cocoapods, and wish to role back to a 1.0.0 compatible version, use `pod 'Cocoapods', '~> 1.0.0'`.
+With the 2.0.0 release, there are some breaking syntax changes.  Check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section for a `1.0.0` compatible version.  If you're running cocoapods, and wish to role back to a 1.0.0 compatible version, use `pod 'Cocoapods', '~> 1.0.0'`.
 
 ### Building Project
 
