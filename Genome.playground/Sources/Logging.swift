@@ -1,3 +1,11 @@
+//
+//  Genome
+//
+//  Created by Logan Wright
+//  Copyright © 2016 lowriDevs. All rights reserved.
+//
+//  MIT
+//
 
 public var loggers: [ErrorType -> Void] = [defaultLogger]
 

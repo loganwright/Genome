@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import PureJsonSerializer
+
 @testable import Genome
 
 // MARK: Side Load Tests 

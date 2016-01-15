@@ -1,9 +1,13 @@
 //
-//  Array+KeyPaths.swift
 //  Genome
 //
-//  Created by Logan Wright on 7/2/15.
-//  Copyright © 2015 lowriDevs. All rights reserved.
+//  Created by Logan Wright
+//  Copyright © 2016 lowriDevs. All rights reserved.
+//
+//  MIT
+//
+
+import PureJsonSerializer
 
 extension Json {
     public mutating func gnm_setValue(val: Json, forKeyPath keyPath: String) {

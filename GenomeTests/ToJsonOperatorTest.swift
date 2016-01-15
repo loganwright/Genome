@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import PureJsonSerializer
+
 @testable import Genome
 
 class ToJsonOperatorTest: XCTestCase {

@@ -1,9 +1,10 @@
 //
-//  Map.swift
 //  Genome
 //
-//  Created by Logan Wright on 9/19/15.
-//  Copyright © 2015 lowriDevs. All rights reserved.
+//  Created by Logan Wright
+//  Copyright © 2016 lowriDevs. All rights reserved.
+//
+//  MIT
 //
 
 public enum KeyType {

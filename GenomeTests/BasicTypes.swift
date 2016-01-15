@@ -8,6 +8,8 @@
 
 import XCTest
 import Foundation
+import PureJsonSerializer
+
 @testable import Genome
 
 class BasicTypeTexts: XCTestCase {
