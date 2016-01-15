@@ -7,6 +7,10 @@
 
 Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  The ObjC version is no longer maintained, and any new developments will be done in Swift.
 
+<h1 align="center">**** !Genome 2.0.0 Release! ****</h1>
+
+With the 2.0.0 release, there are some breaking syntax changes.  Check the <a href="/releases">releases</a> section for a `1.0.0` compatible version.  If you're running cocoapods, and wish to role back to a 1.0.0 compatible version, use `pod 'Cocoapods', '~> 1.0.0'`.
+
 ### Building Project
 
 Genome uses <a href="https://www.cocoapods.org">cocoapods</a> to manage its dependencies, namely `PureJsonSerializer`.  When building the project, you'll need to use `Genome.xcworkspace`, and run `pod install` in the directory.
