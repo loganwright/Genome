@@ -7,11 +7,13 @@
 //
 
 import XCTest
-import Genome
+import PureJsonSerializer
+
+@testable import Genome
 
 class TransformTest: XCTestCase {
     
-    let testJson: JSON = [
+    let testJson: Json = [
         "hello" : "world"
     ]
     

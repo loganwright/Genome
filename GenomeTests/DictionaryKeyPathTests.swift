@@ -8,20 +8,23 @@
 
 import XCTest
 import Genome
+import PureJsonSerializer
 
 class DictionaryKeyPathTests: XCTestCase {
     
     func testExample() {
-        var TestDictionary: [NSObject : AnyObject] = [
+        let TestDictionary: AnyObject = [
             "one" : [
                 "two" : "Found me!"
             ]
         ]
         
-        let value: String! = TestDictionary.gnm_valueForKeyPath("one.two")
+        var json = Json.from(TestDictionary)
+
+        let value: String! = json.gnm_valueForKeyPath("one.two")?.stringValue
         XCTAssert(value == "Found me!")
-        TestDictionary.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
-        let setVal: String! = TestDictionary.gnm_valueForKeyPath("path.to.new.value")
+        json.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
+        let setVal: String! = json.gnm_valueForKeyPath("path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
     }
     

@@ -7,11 +7,13 @@
 //
 
 import XCTest
+import PureJsonSerializer
+
 @testable import Genome
 
 class SettableOperatorTest: XCTestCase {
     
-    struct Person: StandardMappable, Hashable {
+    struct Person: MappableObject, Hashable {
         
         let firstName: String
         let lastName: String
@@ -22,8 +24,8 @@ class SettableOperatorTest: XCTestCase {
         }
         
         init(map: Map) throws {
-            try firstName = <~map["first_name"]
-            try lastName = <~map["last_name"]
+            try firstName = map.extract("first_name")
+            try lastName = map.extract("last_name")
         }
         
         mutating func sequence(map: Map) throws -> Void {
@@ -37,37 +39,37 @@ class SettableOperatorTest: XCTestCase {
         
     }
     
-    let strings = [
+    let strings: Json = [
         "one",
         "two",
         "tre"
     ]
     
     let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeJson = [
+    let joeJson: Json = [
         "first_name" : "Joe",
         "last_name" : "Fish"
     ]
     
     let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeJson = [
+    let janeJson: Json = [
         "first_name" : "Jane",
         "last_name" : "Bear"
     ]
     
     let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinJson = [
+    let justinJson: Json = [
         "first_name" : "Justin",
         "last_name" : "Badger"
     ]
     
     let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philJson = [
+    let philJson: Json = [
         "first_name" : "Phil",
         "last_name" : "Viper"
     ]
     
-    lazy var json: JSON = [
+    lazy var json: Json = [
         "int" : 272,
         "strings" : self.strings,
         "person" : self.joeJson,
@@ -94,17 +96,17 @@ class SettableOperatorTest: XCTestCase {
     }
     
     func testBasicTypes() {
-        let int: Int = try! <~map["int"]
+        let int: Int = try! map.extract("int")
         XCTAssert(int == 272)
         
-        let optionalInt: Int? = try! <~?map["int"]
+        let optionalInt: Int? = try! map.extract("int")
         XCTAssert(optionalInt! == 272)
         
-        let strings: [String] = try! <~map["strings"]
-        XCTAssert(strings == self.strings)
+        let strings: [String] = try! map.extract("strings")
+        XCTAssert(strings == self.strings.arrayValue!.flatMap { $0.stringValue })
         
-        let optionalStrings: [String]? = try! <~?map["strings"]
-        XCTAssert(optionalStrings! == self.strings)
+        let optionalStrings: [String]? = try! map.extract("strings")
+        XCTAssert(optionalStrings! == self.strings.arrayValue!.flatMap { $0.stringValue })
         
         let stringInt: String = try! <~map["int"]
             .transformFromJson { (jsonValue: Int) in
@@ -112,41 +114,41 @@ class SettableOperatorTest: XCTestCase {
         }
         XCTAssert(stringInt == "272")
         
-        let emptyInt: Int? = try! <~?map["i_dont_exist"]
+        let emptyInt: Int? = try! map.extract("i_dont_exist")
         XCTAssert(emptyInt == nil)
         
-        let emptyStrings: [String]? = try! <~?map["i_dont_exist"]
+        let emptyStrings: [String]? = try! map.extract("i_dont_exist")
         XCTAssert(emptyStrings == nil)
     }
     
     func testMappableObject() {
-        let person: Person = try! <~map["person"]
+        let person: Person = try! map.extract("person")
         XCTAssert(person == self.joeObject)
         
-        let optionalPerson: Person? = try! <~?map["person"]
+        let optionalPerson: Person? = try! map.extract("person")
         XCTAssert(optionalPerson == self.joeObject)
         
-        let emptyPerson: Person? = try! <~?map["i_dont_exist"]
+        let emptyPerson: Person? = try! map.extract("i_dont_exist")
         XCTAssert(emptyPerson == nil)
     }
     
     func testMappableArray() {
-        let people: [Person] = try! <~map["people"]
+        let people: [Person] = try! map.extract("people")
         XCTAssert(people == [self.joeObject, self.janeObject])
         
-        let optionalPeople: [Person]? = try! <~?map["people"]
+        let optionalPeople: [Person]? = try! <~map["people"]
         XCTAssert(optionalPeople! == [self.joeObject, self.janeObject])
         
-        let singleValueToArray: [Person] = try! <~map["person"]
+        let singleValueToArray: [Person] = try! map.extract("person")
         XCTAssert(singleValueToArray == [self.joeObject])
         
-        let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
+        let emptyPersons: [Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     
     func testMappableArrayOfArrays() {
-        let orderedGroups: [[Person]] = try! <~map["ordered_groups"]
-        let optionalOrderedGroups: [[Person]]? = try! <~?map["ordered_groups"]
+        let orderedGroups: [[Person]] = try! map.extract("ordered_groups")
+        let optionalOrderedGroups: [[Person]]? = try! map.extract("ordered_groups")
         
         for orderGroupsArray in [orderedGroups, optionalOrderedGroups!] {
             XCTAssert(orderGroupsArray.count == 2)
@@ -158,11 +160,11 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(secondGroup == [self.janeObject])
         }
         
-        let arrayValueToArrayOfArrays: [[Person]] = try! <~map["people"]
+        let arrayValueToArrayOfArrays: [[Person]] = try! map.extract("people")
         XCTAssert(arrayValueToArrayOfArrays.count == 1)
         XCTAssert(arrayValueToArrayOfArrays.first! == [self.joeObject, self.janeObject])
         
-        let emptyArrayOfArrays: [[Person]]? = try! <~?map["i_dont_exist"]
+        let emptyArrayOfArrays: [[Person]]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyArrayOfArrays == nil)
     }
     
@@ -172,19 +174,19 @@ class SettableOperatorTest: XCTestCase {
             "cousin": self.justinObject
         ]
         
-        let relationships: [String : Person] = try! <~map["relationships"]
+        let relationships: [String : Person] = try! map.extract("relationships")
         XCTAssert(relationships == expectedRelationships)
         
-        let optionalRelationships: [String : Person]? = try! <~?map["relationships"]
+        let optionalRelationships: [String : Person]? = try! map.extract("relationships")
         XCTAssert(optionalRelationships! == expectedRelationships)
         
-        let emptyDictionary: [String : Person]? = try! <~?map["i_dont_exist"]
+        let emptyDictionary: [String : Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyDictionary == nil)
     }
     
     func testMappableDictionaryOfArrays() {
-        let groups: [String : [Person]] = try! <~map["groups"]
-        let optionalGroups: [String : [Person]]? = try! <~?map["groups"]
+        let groups: [String : [Person]] = try! map.extract("groups")
+        let optionalGroups: [String : [Person]]? = try! map.extract("groups")
         
         for groupsArray in [groups, optionalGroups!] {
             XCTAssert(groupsArray.count == 2)
@@ -196,13 +198,13 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(girls == [self.janeObject])
         }
         
-        let emptyDictionaryOfArrays: [String : [Person]]? = try! <~?map["i_dont_exist"]
+        let emptyDictionaryOfArrays: [String : [Person]]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyDictionaryOfArrays == nil)
     }
     
     func testMappableSet() {
-        let people: Set<Person> = try! <~map["duplicated_people"]
-        let optionalPeople: Set<Person>? = try! <~?map["duplicated_people"]
+        let people: Set<Person> = try! map.extract("duplicated_people")
+        let optionalPeople: Set<Person>? = try! <~map["duplicated_people"]
         
         for peopleSet in [people, optionalPeople!] {
             XCTAssert(peopleSet.count == 2)
@@ -210,11 +212,11 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(peopleSet.contains(self.janeObject))
         }
         
-        let singleValueToSet: Set<Person> = try! <~map["person"]
+        let singleValueToSet: Set<Person> = try! map.extract("person")
         XCTAssert(singleValueToSet.count == 1)
         XCTAssert(singleValueToSet.contains(self.joeObject))
         
-        let emptyPersons: [Person]? = try! <~?map["i_dont_exist"]
+        let emptyPersons: [Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     
@@ -223,8 +225,12 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: String = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
-            
+        } catch MappingError.UnableToMap(key: let key, error: let error) {
+            XCTAssert(key == KeyType.KeyPath("int"))
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            else {
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
         }
@@ -233,8 +239,12 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: Person = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
-            
+        } catch MappingError.UnableToMap(key: let key, error: let error) {
+            XCTAssert(key == KeyType.KeyPath("int"))
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            else {
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
         }
@@ -243,7 +253,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch JsonConvertibleError.UnableToConvert(json: _, toType: _) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -253,7 +263,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -287,7 +297,7 @@ class SettableOperatorTest: XCTestCase {
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch TransformationError.UnexpectedInputType(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
@@ -298,39 +308,45 @@ class SettableOperatorTest: XCTestCase {
     func testThatValueExistsButIsNotTheTypeExpectedOptional() {
         // Unexpected Value - Basic
         do {
-            let _: String? = try <~?map["int"]
+            let _: String? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
-            
+        } catch MappingError.UnableToMap(key: _, error: let error) {
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            else {
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Object
         do {
-            let _: Person? = try <~?map["int"]
+            let _: Person? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
-            
+        } catch MappingError.UnableToMap(key: let key, error: let error) {
+            XCTAssert(key == KeyType.KeyPath("int"))
+            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            else {
+                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
-        
         // Unexpected Value - Mappable Array
         do {
-            let _: [Person]? = try <~?map["int"]
+            let _: [Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
-            
+        } catch JsonConvertibleError.UnableToConvert(_) {
+
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Array of Arrays
         do {
-            let _: [[Person]]? = try <~?map["int"]
+            let _: [[Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -338,7 +354,7 @@ class SettableOperatorTest: XCTestCase {
         
         // Unexpected Value - Mappable Dictionary
         do {
-            let _: [String : Person]? = try <~?map["int"]
+            let _: [String : Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
         } catch SequenceError.UnexpectedValue(_) {
             
@@ -348,7 +364,7 @@ class SettableOperatorTest: XCTestCase {
         
         // Unexpected Value - Mappable Dictionary of Arrays
         do {
-            let _: [String : [Person]]? = try <~?map["int"]
+            let _: [String : [Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
         } catch SequenceError.UnexpectedValue(_) {
             
@@ -364,10 +380,10 @@ class SettableOperatorTest: XCTestCase {
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch TransformationError.UnexpectedInputType(_) {
+        } catch JsonConvertibleError.UnableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
         }
         
     }
@@ -451,7 +467,7 @@ class SettableOperatorTest: XCTestCase {
     
     func testMapType() {
         do {
-            map.type = .ToJson
+            let map = Map()
             let _: String = try <~map["a"]
             XCTFail("Inproper map type should throw error")
         } catch MappingError.UnexpectedOperationType(_) {
@@ -459,7 +475,6 @@ class SettableOperatorTest: XCTestCase {
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(MappingError.UnexpectedOperationType)")
         }
-        
     }
     
 }

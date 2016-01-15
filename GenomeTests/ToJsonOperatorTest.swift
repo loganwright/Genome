@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import PureJsonSerializer
+
 @testable import Genome
 
 class ToJsonOperatorTest: XCTestCase {
@@ -25,7 +27,7 @@ class ToJsonOperatorTest: XCTestCase {
         
     }
     
-    struct Business: StandardMappable {
+    struct Business: MappableObject {
         
         let name: String
         let foundedYear: Int
@@ -55,32 +57,34 @@ class ToJsonOperatorTest: XCTestCase {
         var optionalNotNil: String? = "not nil"
         
         init(map: Map) {
-            name = try! <~map["name"]
-            foundedYear = try! <~map["founded_in"]
+            name = try! map.extract("name")
+            foundedYear = try! map.extract("founded_in")
             
-            locations = try! <~map["locations"]
-            locationsOptional = try! <~?map["locations"]
+            locations = try! map.extract("locations")
+            locationsOptional = try! map.extract("locations")
             
-            owner = try! <~map["owner"]
-            ownerOptional = try! <~?map["owner"]
+            let ownerrr: Employee = try! map.extract("owner")
+            print("Ownerer: \(ownerrr)")
+            owner = try! map.extract("owner")
+            ownerOptional = try! map.extract("owner")
             
-            employees = try! <~map["employees"]
-            employeesOptional = try! <~?map["employees"]
+            employees = try! map.extract("employees")
+            employeesOptional = try! map.extract("employees")
             
-            employeesArray = try! <~map["employeesArray"]
-            employeesOptionalArray = try! <~?map["employeesArray"]
+            employeesArray = try! map.extract("employeesArray")
+            employeesOptionalArray = try! map.extract("employeesArray")
             
-            employeesDictionary = try! <~map["employeesDictionary"]
-            employeesOptionalDictionary = try! <~?map["employeesDictionary"]
+            employeesDictionary = try! map.extract("employeesDictionary")
+            employeesOptionalDictionary = try! map.extract("employeesDictionary")
             
-            employeesDictionaryArray = try! <~map["employeesDictionaryArray"]
-            employeesOptionalDictionaryArray = try! <~?map["employeesDictionaryArray"]
+            employeesDictionaryArray = try! map.extract("employeesDictionaryArray")
+            employeesOptionalDictionaryArray = try! map.extract("employeesDictionaryArray")
             
-            employeesSet = try! <~map["employees"]
-            employeesOptionalSet = try! <~?map["employees"]
+            employeesSet = try! map.extract("employees")
+            employeesOptionalSet = try! map.extract("employees")
         }
         
-        mutating func sequence(map: Map) throws -> Void {
+        func sequence(map: Map) throws -> Void {
             try name ~> map["name"]
             try foundedYear ~> map["foundedYear"]
             
@@ -110,44 +114,44 @@ class ToJsonOperatorTest: XCTestCase {
         }
     }
     
-    let locations = [
+    let locations: Json = [
         "123 Street",
         "456 Road"
     ]
     
-    let employees = [
+    let employees: Json = [
         ["name" : "Joe"],
         ["name" : "Jane"],
         ["name" : "Joe"],
         ["name" : "Justin"]
     ]
     
-    let employeesArray = [
+    let employeesArray: Json = [
         [["name" : "Joe"], ["name" : "Jane"]],
         [["name" : "Joe"], ["name" : "Justin"]]
     ]
     
-    let employeesDictionary = [
+    let employeesDictionary: Json = [
         "0" : ["name" : "Joe"],
         "1" : ["name" : "Jane"]
     ]
     
-    let employeesDictionaryArray = [
+    let employeesDictionaryArray: Json = [
         "0" : [["name" : "Joe"], ["name" : "Phil"]],
         "1" : [["name" : "Jane"]]
     ]
     
-    let employeesSet = [
+    let employeesSet: Json = [
         ["name" : "Joe"],
         ["name" : "Jane"],
         ["name" : "Justin"]
     ]
     
-    let owner = [
+    let owner: Json = [
         "name" : "Owner"
     ]
     
-    lazy var businessJson: JSON = [
+    lazy var businessJson: Json = [
         "owner" : self.owner,
         "name" : "Good Business",
         "founded_in" : 1987,
@@ -159,63 +163,63 @@ class ToJsonOperatorTest: XCTestCase {
         "employeesSet" : self.employeesSet
     ]
     
-    lazy var goodBusiness: Business = try! Business.mappedInstance(self.businessJson)
+    lazy var goodBusiness: Business = try! Business(js: self.businessJson)
     
     func test() {
         let json = try! goodBusiness.jsonRepresentation()
         
         // Basic type
-        let name = json["name"] as! String
+        let name = json["name"]!.stringValue!
         XCTAssert(name == "Good Business")
-        let foundedYear = json["foundedYear"] as! Int
+        let foundedYear = json["foundedYear"]!.intValue
         XCTAssert(foundedYear == 1987)
         
         // Basic type array
-        let locations = json["locations"] as! [String]
+        let locations = json["locations"]!
         XCTAssert(locations == self.locations)
-        let locationsOptional = json["locationsOptional"] as! [String]
+        let locationsOptional = json["locationsOptional"]
         XCTAssert(locationsOptional == self.locations)
         
         // Mappable
-        let owner = json["owner"] as! [String : String]
+        let owner = json["owner"]!
         XCTAssert(owner == self.owner)
-        let ownerOptional = json["ownerOptional"] as! [String : String]
+        let ownerOptional = json["ownerOptional"]
         XCTAssert(ownerOptional == self.owner)
         
         // Mappable array
-        let employees = json["employees"] as! [[String : String]]
+        let employees = json["employees"]!
         XCTAssert(employees == self.employees)
-        let employeesOptional = json["employeesOptional"] as! [[String : String]]
+        let employeesOptional = json["employeesOptional"]
         XCTAssert(employeesOptional == self.employees)
         
         // Mappable array of arrays
-        let employeesArray = json["employeesArray"] as! [[[String : String]]]
+        let employeesArray = json["employeesArray"]!
         XCTAssert(employeesArray[0] == self.employeesArray[0])
         XCTAssert(employeesArray[1] == self.employeesArray[1])
-        let employeesOptionalArray = json["employeesOptionalArray"] as! [[[String : String]]]
-        XCTAssert(employeesOptionalArray[0] == self.employeesArray[0])
-        XCTAssert(employeesOptionalArray[1] == self.employeesArray[1])
+        let employeesOptionalArray = json["employeesOptionalArray"]
+        XCTAssert(employeesOptionalArray![0]! == self.employeesArray[0])
+        XCTAssert(employeesOptionalArray![1]! == self.employeesArray[1])
         
         // Mappable dictionary
-        let employeesDictionary = json["employeesDictionary"] as! [String : [String : String]]
+        let employeesDictionary = json["employeesDictionary"]!
         XCTAssert(employeesDictionary["0"]! == self.employeesDictionary["0"]!)
         XCTAssert(employeesDictionary["1"]! == self.employeesDictionary["1"]!)
-        let employeesOptionalDictionary = json["employeesOptionalDictionary"] as! [String : [String : String]]
-        XCTAssert(employeesOptionalDictionary["0"]! == self.employeesDictionary["0"]!)
-        XCTAssert(employeesOptionalDictionary["1"]! == self.employeesDictionary["1"]!)
+        let employeesOptionalDictionary = json["employeesOptionalDictionary"]
+        XCTAssert(employeesOptionalDictionary!["0"]! == self.employeesDictionary["0"]!)
+        XCTAssert(employeesOptionalDictionary!["1"]! == self.employeesDictionary["1"]!)
         
         // Mappable dictionary array
-        let employeesDictionaryArray = json["employeesDictionaryArray"] as! [String : [[String : String]]]
+        let employeesDictionaryArray = json["employeesDictionaryArray"]!
         XCTAssert(employeesDictionaryArray["0"]! == self.employeesDictionaryArray["0"]!)
         XCTAssert(employeesDictionaryArray["1"]! == self.employeesDictionaryArray["1"]!)
-        let employeesOptionalDictionaryArray = json["employeesOptionalDictionaryArray"] as! [String : [[String : String]]]
-        XCTAssert(employeesOptionalDictionaryArray["0"]! == self.employeesDictionaryArray["0"]!)
-        XCTAssert(employeesOptionalDictionaryArray["1"]! == self.employeesDictionaryArray["1"]!)
+        let employeesOptionalDictionaryArray = json["employeesOptionalDictionaryArray"]
+        XCTAssert(employeesOptionalDictionaryArray!["0"]! == self.employeesDictionaryArray["0"]!)
+        XCTAssert(employeesOptionalDictionaryArray!["1"]! == self.employeesDictionaryArray["1"]!)
         
         // Mappable set
-        let employeesSet = json["employeesSet"] as! [[String : String]]
+        let employeesSet = json["employeesSet"]!
         XCTAssert(employeesSet == self.employeesSet)
-        let employeesOptionalSet = json["employeesOptionalSet"] as! [[String : String]]
+        let employeesOptionalSet = json["employeesOptionalSet"]
         XCTAssert(employeesOptionalSet == self.employeesSet)
         
         // Nil

@@ -8,10 +8,11 @@
 
 import XCTest
 import Genome
+import PureJsonSerializer
 
 class FromJsonOperatorTest: XCTestCase {
     
-    struct Person: StandardMappable, Hashable {
+    struct Person: MappableObject, Hashable {
         
         let firstName: String
         let lastName: String
@@ -27,8 +28,8 @@ class FromJsonOperatorTest: XCTestCase {
         }
         
         init(map: Map) throws {
-            try firstName = <~map["first_name"]
-            try lastName = <~map["last_name"]
+            try firstName = map.extract("first_name")
+            try lastName = map.extract("last_name")
         }
         
         mutating func sequence(map: Map) throws -> Void {
@@ -42,37 +43,37 @@ class FromJsonOperatorTest: XCTestCase {
         
     }
     
-    let strings = [
+    let strings: Json = [
         "one",
         "two",
         "tre"
     ]
     
     let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeJson = [
+    let joeJson: Json = [
         "first_name" : "Joe",
         "last_name" : "Fish"
     ]
     
     let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeJson = [
+    let janeJson: Json = [
         "first_name" : "Jane",
         "last_name" : "Bear"
     ]
     
     let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinJson = [
+    let justinJson: Json = [
         "first_name" : "Justin",
         "last_name" : "Badger"
     ]
     
     let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philJson = [
+    let philJson: Json = [
         "first_name" : "Phil",
         "last_name" : "Viper"
     ]
     
-    lazy var json: JSON = [
+    lazy var json: [String : Json] = [
         "string" : "pass",
         "int" : 272,
         "strings" : self.strings,
@@ -93,7 +94,7 @@ class FromJsonOperatorTest: XCTestCase {
         ]
     ]
     
-    lazy var map: Map = Map(json: self.json)
+    lazy var map: Map = Map(json: .ObjectValue(self.json))
     
     func testBasicTypes() {
         var string = ""
@@ -106,11 +107,11 @@ class FromJsonOperatorTest: XCTestCase {
         
         var strings: [String] = []
         try! strings <~ map["strings"]
-        XCTAssert(strings == self.strings)
+        XCTAssert(strings == self.strings.arrayValue!.flatMap { $0.stringValue })
         
         var optionalStrings: [String]?
         try! optionalStrings <~ map["strings"]
-        XCTAssert(optionalStrings! == self.strings)
+        XCTAssert(optionalStrings! == self.strings.arrayValue!.flatMap { $0.stringValue })
         
         var emptyInt: Int?
         try! emptyInt <~ map["i_dont_exist"]
