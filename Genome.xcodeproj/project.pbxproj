@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		267EDC7B32366D1D33C75D81 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4229C5D50AD5F6C550EF2B8C /* Pods.framework */; };
 		3D5396F01BBA8A7300791B49 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654E1BB5C279006DE82E /* Errors.swift */; };
 		3D5396F11BBA8A7300791B49 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3654C1BB5BE58006DE82E /* Logging.swift */; };
 		3D5396F21BBA8A7300791B49 /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7A01BB58C96004E08F6 /* MappableObject.swift */; };
@@ -131,6 +132,8 @@
 		3D5396CC1BBA89D600791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5396E81BBA8A2800791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCE37371BB9D9A300D0100C /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4229C5D50AD5F6C550EF2B8C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CBB8E99F92200423FC3F1F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		68088C071BC5F5D000B5A733 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		801AB3CC1C3CB6E100344937 /* KeyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyType.swift; path = Genome.playground/Sources/KeyType.swift; sourceTree = SOURCE_ROOT; };
 		801AB3D21C3CB8BE00344937 /* Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Json.swift; path = Genome.playground/Sources/Json/Json.swift; sourceTree = SOURCE_ROOT; };
@@ -168,6 +171,7 @@
 		80C3654E1BB5C279006DE82E /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Genome.playground/Sources/Errors.swift; sourceTree = SOURCE_ROOT; };
 		80C7A01E1C3DEACA009EAC9D /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
+		CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267EDC7B32366D1D33C75D81 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +221,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EC3370F4B3F6099236D1076 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */,
+				5CBB8E99F92200423FC3F1F0 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8047B2CC1C38DD4D00C0F9E5 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +249,8 @@
 				8052E75E1BB58102004E08F6 /* Genome */,
 				8052E7731BB58102004E08F6 /* GenomeTests */,
 				8052E75D1BB58102004E08F6 /* Products */,
+				7EC3370F4B3F6099236D1076 /* Pods */,
+				8242F19A85FA817AF30CCBC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,6 +326,14 @@
 			name = Foundation;
 			path = Genome.playground/Sources/Foundation;
 			sourceTree = SOURCE_ROOT;
+		};
+		8242F19A85FA817AF30CCBC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4229C5D50AD5F6C550EF2B8C /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -421,9 +445,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8052E7791BB58102004E08F6 /* Build configuration list for PBXNativeTarget "Genome" */;
 			buildPhases = (
+				2647AB7FD183122207A94A4B /* Check Pods Manifest.lock */,
 				8052E7581BB58102004E08F6 /* Sources */,
 				8052E7591BB58102004E08F6 /* Frameworks */,
 				8052E75A1BB58102004E08F6 /* Resources */,
+				D04D203AB4AEC872FF9B2BB5 /* Embed Pods Frameworks */,
+				DE6DD48FE1ACF2D74CE1B2AD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -550,6 +577,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2647AB7FD183122207A94A4B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D04D203AB4AEC872FF9B2BB5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE6DD48FE1ACF2D74CE1B2AD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D5396C71BBA89D600791B49 /* Sources */ = {
@@ -994,6 +1069,7 @@
 		};
 		8052E77A1BB58102004E08F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Genome/Info.plist;
@@ -1005,6 +1081,7 @@
 		};
 		8052E77B1BB58102004E08F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CBB8E99F92200423FC3F1F0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Genome/Info.plist;
