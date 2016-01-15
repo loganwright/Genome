@@ -9,7 +9,21 @@ Genome has gone Swift!  If you're looking for the original, ObjC implementation,
 
 <h1 align="center">**** !Genome 2.0.0 Release! ****</h1>
 
-With the 2.0.0 release, there are some breaking syntax changes.  Check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section for a `1.0.0` compatible version.  If you're running cocoapods, and wish to role back to a 1.0.0 compatible version, use `pod 'Cocoapods', '~> 1.0.0'`.
+With the 2.0.0 release, there are some breaking syntax changes that you should be aware of.  One of the major changes is the `<~?` operator is finally gone.  By structuring differently, special cases for optionality are no longer necessary.  This also sets the library up better to update when containers of conforming objects can conform themselves, allowing us to eliminate the number of overloads.
+
+PureJson
+
+Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out it snuck into the library in `1.0.0`.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  To remove this, we added a pure swift json serialization layer that you can find <a href="https://github.com/gfx/Swift-JsonSerializer">here.</a>
+
+This means that we'll be using the new `Json` type which is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Json = "HumanName"`.  When converting from data or a string, use `let json = try Json.deserialize(jsonData)`.  
+
+>The cocoapods version of this library supports `NSData` conversions through `Foundation` automatically.  If you're using the library without `Foundation`, you will need to deserialize Json strings or byte arrays.  Syntax is the same.
+
+There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'Cocoapods', '~> 1.0.0'`.
+
+If you're not using Cocoapods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
+
+Happy Mapping!
 
 ### Building Project
 
