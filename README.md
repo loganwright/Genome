@@ -53,8 +53,8 @@ If you wish to install the library manually, you'll need to find the source file
 
 It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">cocoapods.</a>  Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
 
-```
-pod 'Genome'
+```Ruby
+pod 'Genome', '~> 2.0.0'
 ```
 
 You can also install Genome using [Carthage](https://github.com/Carthage/Carthage). Just add the line below to your `Cartfile`:

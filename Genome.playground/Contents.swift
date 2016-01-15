@@ -2,6 +2,20 @@
 
 import UIKit
 
+/**
+ If you are getting errors here, make sure you have built the frameworks. 
+ 
+ Select `Genome-iOS` target
+ Set Simulator Device
+ Build w/ cmd + b
+ 
+ Once that's done you should be good to go.
+ 
+ You'll need to rebuild to access library changes here
+ */
+import Genome
+import PureJsonSerializer
+
 // MARK: Date Conversion
 
 enum DateTransformationError : ErrorType {
