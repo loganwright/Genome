@@ -13,7 +13,9 @@ With the 2.0.0 release, there are some breaking syntax adjustments that you shou
 
 #### PureJson
 
-Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out that it snuck into the `1.0.0` version.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  To remove this, we added a pure swift json serialization layer that you can find <a href="https://github.com/gfx/Swift-JsonSerializer">here.</a>
+Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out that it snuck into the `1.0.0` version.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  
+
+To remove this dependency, we added a pure swift json serialization layer that you can find <a href="https://github.com/gfx/Swift-JsonSerializer">here.</a>
 
 This means that going forward, we'll be using the new `Json` type.  The new `Json` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Json = "HumanName"`.  When converting from data or a string, use `let json = try Json.deserialize(jsonData)`.  
 
