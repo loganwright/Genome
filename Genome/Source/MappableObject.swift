@@ -38,7 +38,6 @@ extension MappableObject {
     public init(js: Json, context: Context = EmptyJson) throws {
         let map = Map(json: js, context: context)
         try self.init(map: map)
-        try sequence(map)
     }
     
     // JsonConvertibleTypeConformance
@@ -77,7 +76,6 @@ public class Object : MappableObject {
     public static func newInstance(json: Json, context: Context) throws -> Self {
         let map = Map(json: json, context: context)
         let new = try self.init(map: map)
-        try new.sequence(map)
         return new
     }
 }
