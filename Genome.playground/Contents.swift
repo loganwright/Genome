@@ -14,7 +14,6 @@ import UIKit
  You'll need to rebuild to access library changes here
  */
 import Genome
-import PureJsonSerializer
 
 // MARK: Date Conversion
 
@@ -56,13 +55,13 @@ struct _Pet : MappableObject {
         name = try map.extract("name")
         nickname = try map.extract("nickname")
         type = try map["type"]
-            .fromJson { PetType(rawValue: $0)! }
+            .fromDna { PetType(rawValue: $0)! }
     }
     
     func sequence(map: Map) throws {
         try name ~> map["name"]
         try type ~> map["type"]
-            .transformToJson { $0.rawValue }
+            .transformToDna { $0.rawValue }
         try nickname ~> map["nickname"]
     }
 }
@@ -76,23 +75,23 @@ struct Pet : BasicMappable {
         try name <~> map["name"]
         try nickname <~> map["nickname"]
         try type <~> map["type"]
-            .transformFromJson {
+            .transformFromDna {
                 return PetType(rawValue: $0)
             }
-            .transformToJson {
+            .transformToDna {
                 return $0.rawValue
             }
     }
 }
 
 
-let json_rover: Json = [
+let dna_rover: Dna = [
     "name" : "Rover",
     "nickname" : "RoRo",
     "type" : "dog"
 ]
 
-let rover = try Pet(js: json_rover)
+let rover = try Pet(dna: dna_rover)
 print(rover)
 
 // MARK: Person
@@ -109,7 +108,7 @@ struct Person : MappableObject {
         name = try map.extract("name")
         favoriteFood = try map.extract("favorite_food")
         birthday = try map["birthday"]
-            .fromJson(NSDate.dateWithBirthdayString)
+            .fromDna(NSDate.dateWithBirthdayString)
     }
     
     mutating func sequence(map: Map) throws {
@@ -117,22 +116,22 @@ struct Person : MappableObject {
         try pet ~> map["pet"]
         try favoriteFood ~> map["favorite_food"]
         try birthday ~> map["birthday"]
-            .transformToJson(NSDate.birthdayStringWithDate)
+            .transformToDna(NSDate.birthdayStringWithDate)
     }
 }
 
-let json_snowflake: Json = [
+let dna_snowflake: Dna = [
     "name" : "Snowflake",
     "type" : "cat"
 ]
 
-let json_joe: Json = [
+let dna_joe: Dna = [
     "name" : "Joe",
     "birthday" : "12-15-84",
-    "pet" : json_snowflake
+    "pet" : dna_snowflake
 ]
 
-let joe = try Person(js: json_joe)
+let joe = try Person(dna: dna_joe)
 print(joe)
 
 // MARK: Creating A Custom Mappable
@@ -152,8 +151,8 @@ extension String {
 class CustomBase : MappableBase {
     required init() {}
     
-    static func newInstance(json: Json, context: Context) throws -> Self {
-        let map = Map(json: json, context: context)
+    static func newInstance(dna: Dna, context: Context) throws -> Self {
+        let map = Map(dna: dna, context: context)
         let new = self.init()
         try new.sequence(map)
         return new
@@ -171,8 +170,8 @@ class Book : MappableBase {
     
     required init() {}
     
-    static func newInstance(json: Json, context: Context = EmptyJson) throws -> Self {
-        let map = Map(json: json, context: context)
+    static func newInstance(dna: Dna, context: Context = EmptyDna) throws -> Self {
+        let map = Map(dna: dna, context: context)
         return try newInstance(map)
     }
     
@@ -189,8 +188,8 @@ class Book : MappableBase {
 
         // String => Int
         try releaseYear <~> map["release_year"]
-            .transformFromJson(Int.fromString)
-            .transformToJson(String.fromInt)
+            .transformFromDna(Int.fromString)
+            .transformToDna(String.fromInt)
     }
 }
 
@@ -198,13 +197,13 @@ func existingBookWithId<T: Book>(id: String) -> T? {
     return nil
 }
 
-let json_book: Json = [
+let dna_book: Dna = [
     "title" : "Title",
     "release_year" : "2009",
     "id" : "asd9fj20m"
 ]
 
-let book = try! Book.newInstance(json_book)
+let book = try! Book.newInstance(dna_book)
 print(book)
 
 // MARK: Core Data Example
@@ -222,14 +221,14 @@ extension NSManagedObject : MappableBase {
         fatalError("Sequence must be overwritten")
     }
     
-    public class func newInstance(json: Json, context: Context) throws -> Self {
-        return try newInstance(json, context: context, type: self)
+    public class func newInstance(dna: Dna, context: Context) throws -> Self {
+        return try newInstance(dna, context: context, type: self)
     }
     
-    public class func newInstance<T: NSManagedObject>(json: Json, context: Context, type: T.Type) throws -> T {
+    public class func newInstance<T: NSManagedObject>(dna: Dna, context: Context, type: T.Type) throws -> T {
         let context = context as! NSManagedObjectContext
         let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
-        let map = Map(json: json, context: context)
+        let map = Map(dna: dna, context: context)
         try new.sequence(map)
         return new
     }

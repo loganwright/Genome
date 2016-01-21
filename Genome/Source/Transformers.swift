@@ -7,8 +7,6 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
 // MARK: Transformer Base
 
 public class Transformer<InputType, OutputType> {
@@ -67,136 +65,136 @@ public class Transformer<InputType, OutputType> {
 }
 
 
-// MARK: From Json
+// MARK: From Dna
 
-public final class FromJsonTransformer<JsonType: JsonConvertibleType, TransformedType> : Transformer<JsonType, TransformedType> {
-    override public init(map: Map, transformer: JsonType throws -> TransformedType) {
+public final class FromDnaTransformer<DnaType: DnaConvertibleType, TransformedType> : Transformer<DnaType, TransformedType> {
+    override public init(map: Map, transformer: DnaType throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
-    override public init(map: Map, transformer: JsonType? throws -> TransformedType) {
+    override public init(map: Map, transformer: DnaType? throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformToJson<OutputJsonType: JsonConvertibleType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<JsonType, TransformedType, OutputJsonType> {
-        let toJsonTransformer = ToJsonTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromJsonTransformer: self, toJsonTransformer: toJsonTransformer)
+    public func transformToDna<OutputDnaType: DnaConvertibleType>(transformer: TransformedType throws -> OutputDnaType) -> TwoWayTransformer<DnaType, TransformedType, OutputDnaType> {
+        let toDnaTransformer = ToDnaTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromDnaTransformer: self, toDnaTransformer: toDnaTransformer)
     }
     
-    internal func transformValue(json: Json?) throws -> TransformedType {
-        let validJson: Json
+    internal func transformValue(dna: Dna?) throws -> TransformedType {
+        let validDna: Dna
         if allowsNil {
-            guard let unwrapped = json else { return try transformer(nil) }
-            validJson = unwrapped
+            guard let unwrapped = dna else { return try transformer(nil) }
+            validDna = unwrapped
         } else {
-            validJson = try enforceValueExists(json)
+            validDna = try enforceValueExists(dna)
         }
         
-        let input = try JsonType.newInstance(validJson, context: validJson)
+        let input = try DnaType.newInstance(validDna, context: validDna)
         return try transformer(input)
     }
 }
 
-// MARK: To Json
+// MARK: To Dna
 
-public final class ToJsonTransformer<ValueType, OutputJsonType: JsonConvertibleType> : Transformer<ValueType, OutputJsonType> {
-    override public init(map: Map, transformer: ValueType throws -> OutputJsonType) {
+public final class ToDnaTransformer<ValueType, OutputDnaType: DnaConvertibleType> : Transformer<ValueType, OutputDnaType> {
+    override public init(map: Map, transformer: ValueType throws -> OutputDnaType) {
         super.init(map: map, transformer: transformer)
     }
     
-    func transformFromJson<InputJsonType>(transformer: InputJsonType throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputJsonType> {
-        let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
+    func transformFromDna<InputDnaType>(transformer: InputDnaType throws -> ValueType) -> TwoWayTransformer<InputDnaType, ValueType, OutputDnaType> {
+        let fromDnaTransformer = FromDnaTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromDnaTransformer: fromDnaTransformer, toDnaTransformer: self)
     }
     
-    func transformFromJson<InputJsonType>(transformer: InputJsonType? throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputJsonType> {
-        let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
+    func transformFromDna<InputDnaType>(transformer: InputDnaType? throws -> ValueType) -> TwoWayTransformer<InputDnaType, ValueType, OutputDnaType> {
+        let fromDnaTransformer = FromDnaTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromDnaTransformer: fromDnaTransformer, toDnaTransformer: self)
     }
     
-    internal func transformValue(value: ValueType) throws -> Json {
+    internal func transformValue(value: ValueType) throws -> Dna {
         let transformed = try transformer(value)
-        return try transformed.jsonRepresentation()
+        return try transformed.dnaRepresentation()
     }
 }
 
 // MARK: Two Way Transformer
 
-public final class TwoWayTransformer<InputJsonType: JsonConvertibleType, TransformedType, OutputJsonType: JsonConvertibleType> {
+public final class TwoWayTransformer<InputDnaType: DnaConvertibleType, TransformedType, OutputDnaType: DnaConvertibleType> {
     
     var map: Map {
-        let toMap = toJsonTransformer.map
+        let toMap = toDnaTransformer.map
         return toMap
     }
     
-    public let fromJsonTransformer: FromJsonTransformer<InputJsonType, TransformedType>
-    public let toJsonTransformer: ToJsonTransformer<TransformedType, OutputJsonType>
+    public let fromDnaTransformer: FromDnaTransformer<InputDnaType, TransformedType>
+    public let toDnaTransformer: ToDnaTransformer<TransformedType, OutputDnaType>
     
-    public init(fromJsonTransformer: FromJsonTransformer<InputJsonType, TransformedType>, toJsonTransformer: ToJsonTransformer<TransformedType, OutputJsonType>) {
-        self.fromJsonTransformer = fromJsonTransformer
-        self.toJsonTransformer = toJsonTransformer
+    public init(fromDnaTransformer: FromDnaTransformer<InputDnaType, TransformedType>, toDnaTransformer: ToDnaTransformer<TransformedType, OutputDnaType>) {
+        self.fromDnaTransformer = fromDnaTransformer
+        self.toDnaTransformer = toDnaTransformer
     }
 }
 
 // MARK: Map Extensions
 
 public extension Map {
-    public func transformFromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
-        return FromJsonTransformer(map: self, transformer: transformer)
+    public func transformFromDna<DnaType: DnaConvertibleType, TransformedType>(transformer: DnaType throws -> TransformedType) -> FromDnaTransformer<DnaType, TransformedType> {
+        return FromDnaTransformer(map: self, transformer: transformer)
     }
     
-    public func transformFromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
-        return FromJsonTransformer(map: self, transformer: transformer)
+    public func transformFromDna<DnaType: DnaConvertibleType, TransformedType>(transformer: DnaType? throws -> TransformedType) -> FromDnaTransformer<DnaType, TransformedType> {
+        return FromDnaTransformer(map: self, transformer: transformer)
     }
     
-    public func transformToJson<ValueType, JsonOutputType: JsonConvertibleType>(transformer: ValueType throws -> JsonOutputType) -> ToJsonTransformer<ValueType, JsonOutputType> {
-        return ToJsonTransformer(map: self, transformer: transformer)
+    public func transformToDna<ValueType, DnaOutputType: DnaConvertibleType>(transformer: ValueType throws -> DnaOutputType) -> ToDnaTransformer<ValueType, DnaOutputType> {
+        return ToDnaTransformer(map: self, transformer: transformer)
     }
 }
 
 // MARK: Operators
 
-public func <~> <T: JsonConvertibleType, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~> <T: DnaConvertibleType, DnaInputType>(inout lhs: T, rhs: FromDnaTransformer<DnaInputType, T>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromDna:
         try lhs <~ rhs
-    case .ToJson:
+    case .ToDna:
         try lhs ~> rhs.map
     }
 }
 
-public func <~> <T: JsonConvertibleType, JsonOutputType: JsonConvertibleType>(inout lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func <~> <T: DnaConvertibleType, DnaOutputType: DnaConvertibleType>(inout lhs: T, rhs: ToDnaTransformer<T, DnaOutputType>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromDna:
         try lhs <~ rhs.map
-    case .ToJson:
+    case .ToDna:
         try lhs ~> rhs
     }
 }
 
-public func <~> <JsonInput, TransformedType, JsonOutput: JsonConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<JsonInput, TransformedType, JsonOutput>) throws {
+public func <~> <DnaInput, TransformedType, DnaOutput: DnaConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<DnaInput, TransformedType, DnaOutput>) throws {
     switch rhs.map.type {
-    case .FromJson:
-        try lhs <~ rhs.fromJsonTransformer
-    case .ToJson:
-        try lhs ~> rhs.toJsonTransformer
+    case .FromDna:
+        try lhs <~ rhs.fromDnaTransformer
+    case .ToDna:
+        try lhs ~> rhs.toDnaTransformer
     }
 }
 
-public func <~ <T, JsonInputType: JsonConvertibleType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~ <T, DnaInputType: DnaConvertibleType>(inout lhs: T, rhs: FromDnaTransformer<DnaInputType, T>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromDna:
         try lhs = rhs.transformValue(rhs.map.result)
-    case .ToJson:
+    case .ToDna:
         break
     }
 }
 
-public func ~> <T, JsonOutputType: JsonConvertibleType>(lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func ~> <T, DnaOutputType: DnaConvertibleType>(lhs: T, rhs: ToDnaTransformer<T, DnaOutputType>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromDna:
         break
-    case .ToJson:
+    case .ToDna:
         let output = try rhs.transformValue(lhs)
         try rhs.map.setToLastKey(output)
     }

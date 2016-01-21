@@ -7,224 +7,224 @@
 //  MIT
 //
 
-// MARK: ToJson
+// MARK: ToDna
 
-public func ~> <T : JsonConvertibleType>(reference: T!, map: Map) throws {
+public func ~> <T : DnaConvertibleType>(reference: T!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromDna:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [T]!, map: Map) throws {
+public func ~> <T: DnaConvertibleType>(reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromDna:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [[T]]!, map: Map) throws {
+public func ~> <T: DnaConvertibleType>(reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromDna:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [String : T]!, map: Map) throws {
+public func ~> <T: DnaConvertibleType>(reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromDna:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [String : [T]]!, map: Map) throws {
+public func ~> <T: DnaConvertibleType>(reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromDna:
         break
     }
 }
 
-public func ~> <T : JsonConvertibleType>(reference: Set<T>!, map: Map) throws {
+public func ~> <T : DnaConvertibleType>(reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromDna:
         break
     }
 }
 
-// MARK: FromJson
+// MARK: FromDna
 
 infix operator <~ {}
 
-public func <~ <T: JsonConvertibleType>(inout reference: T, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: T!, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: T!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: T?, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [T], map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [T]!, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [T]?, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [[T]], map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [[T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : T], map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [String : T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [String : [T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: Set<T>, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: Set<T>, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+public func <~ <T: DnaConvertibleType>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         break
-    case .FromJson:
+    case .FromDna:
         reference = try <~map
     }
 }
@@ -233,164 +233,164 @@ public func <~ <T: JsonConvertibleType>(inout reference: Set<T>?, map: Map) thro
 
 infix operator <~> {}
 
-public func <~> <T: JsonConvertibleType>(inout reference: T, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: T!, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: T!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: T?, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [T], map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [T]!, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [T]?, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [[T]], map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [[T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : T], map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [String : T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [String : [T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: Set<T>, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: Set<T>, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+public func <~> <T: DnaConvertibleType>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToDna:
         try reference ~> map
-    case .FromJson:
+    case .FromDna:
         try reference <~ map
     }
 }

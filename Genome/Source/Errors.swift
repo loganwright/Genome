@@ -7,11 +7,9 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
-public enum JsonConvertibleError : ErrorType {
+public enum DnaConvertibleError : ErrorType {
     case UnsupportedType(String)
-    case UnableToConvert(json: Json, toType: String)
+    case UnableToConvert(dna: Dna, toType: String)
 }
 
 public enum MappingError : ErrorType {
@@ -29,6 +27,6 @@ public enum TransformationError : ErrorType {
 }
 
 public enum RawConversionError : ErrorType {
-    case UnableToConvertToJson
-    case UnableToConvertFromJson(raw: Any, ofType: String, expected: String)
+    case UnableToConvertToDna
+    case UnableToConvertFromDna(raw: Any, ofType: String, expected: String)
 }

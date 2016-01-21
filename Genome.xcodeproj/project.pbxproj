@@ -23,21 +23,21 @@
 		8003F2C51C489586000ADD91 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AE1C489586000ADD91 /* Foundation.swift */; };
 		8003F2C61C489586000ADD91 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AE1C489586000ADD91 /* Foundation.swift */; };
 		8003F2C71C489586000ADD91 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AE1C489586000ADD91 /* Foundation.swift */; };
-		8003F2C81C489586000ADD91 /* Json+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */; };
-		8003F2C91C489586000ADD91 /* Json+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */; };
-		8003F2CA1C489586000ADD91 /* Json+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */; };
-		8003F2CB1C489586000ADD91 /* Json+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */; };
-		8003F2CC1C489586000ADD91 /* Json+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */; };
-		8003F2CD1C489586000ADD91 /* JsonConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */; };
-		8003F2CE1C489586000ADD91 /* JsonConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */; };
-		8003F2CF1C489586000ADD91 /* JsonConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */; };
-		8003F2D01C489586000ADD91 /* JsonConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */; };
-		8003F2D11C489586000ADD91 /* JsonConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */; };
-		8003F2D21C489586000ADD91 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* JsonRepresentation.swift */; };
-		8003F2D31C489586000ADD91 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* JsonRepresentation.swift */; };
-		8003F2D41C489586000ADD91 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* JsonRepresentation.swift */; };
-		8003F2D51C489586000ADD91 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* JsonRepresentation.swift */; };
-		8003F2D61C489586000ADD91 /* JsonRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* JsonRepresentation.swift */; };
+		8003F2C81C489586000ADD91 /* Dna+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */; };
+		8003F2C91C489586000ADD91 /* Dna+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */; };
+		8003F2CA1C489586000ADD91 /* Dna+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */; };
+		8003F2CB1C489586000ADD91 /* Dna+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */; };
+		8003F2CC1C489586000ADD91 /* Dna+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */; };
+		8003F2CD1C489586000ADD91 /* DnaConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */; };
+		8003F2CE1C489586000ADD91 /* DnaConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */; };
+		8003F2CF1C489586000ADD91 /* DnaConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */; };
+		8003F2D01C489586000ADD91 /* DnaConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */; };
+		8003F2D11C489586000ADD91 /* DnaConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */; };
+		8003F2D21C489586000ADD91 /* DnaRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* DnaRepresentation.swift */; };
+		8003F2D31C489586000ADD91 /* DnaRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* DnaRepresentation.swift */; };
+		8003F2D41C489586000ADD91 /* DnaRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* DnaRepresentation.swift */; };
+		8003F2D51C489586000ADD91 /* DnaRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* DnaRepresentation.swift */; };
+		8003F2D61C489586000ADD91 /* DnaRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B11C489586000ADD91 /* DnaRepresentation.swift */; };
 		8003F2D71C489586000ADD91 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B21C489586000ADD91 /* KeyType.swift */; };
 		8003F2D81C489586000ADD91 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B21C489586000ADD91 /* KeyType.swift */; };
 		8003F2D91C489586000ADD91 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2B21C489586000ADD91 /* KeyType.swift */; };
@@ -86,6 +86,16 @@
 		80A300B41C14E55300DDE54D /* JSONDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */; };
 		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
+		EA02CEDA1C511C9B002718AB /* Dna.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Dna.swift */; };
+		EA02CEDB1C511E96002718AB /* Dna.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Dna.swift */; };
+		EA02CEDC1C511E97002718AB /* Dna.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Dna.swift */; };
+		EA02CEDD1C511E98002718AB /* Dna.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Dna.swift */; };
+		EA02CEDE1C511E98002718AB /* Dna.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Dna.swift */; };
+		EA02CEE01C512139002718AB /* Dna+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Dna+Foundation.swift */; };
+		EA02CEE11C512139002718AB /* Dna+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Dna+Foundation.swift */; };
+		EA02CEE21C512139002718AB /* Dna+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Dna+Foundation.swift */; };
+		EA02CEE31C512139002718AB /* Dna+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Dna+Foundation.swift */; };
+		EA02CEE41C512139002718AB /* Dna+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Dna+Foundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,9 +118,9 @@
 		8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInitializers.swift; sourceTree = "<group>"; };
 		8003F2AC1C489586000ADD91 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		8003F2AE1C489586000ADD91 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
-		8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Json+KeyPaths.swift"; sourceTree = "<group>"; };
-		8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonConvertibleType.swift; sourceTree = "<group>"; };
-		8003F2B11C489586000ADD91 /* JsonRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonRepresentation.swift; sourceTree = "<group>"; };
+		8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dna+KeyPaths.swift"; sourceTree = "<group>"; };
+		8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnaConvertibleType.swift; sourceTree = "<group>"; };
+		8003F2B11C489586000ADD91 /* DnaRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnaRepresentation.swift; sourceTree = "<group>"; };
 		8003F2B21C489586000ADD91 /* KeyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyType.swift; sourceTree = "<group>"; };
 		8003F2B31C489586000ADD91 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		8003F2B41C489586000ADD91 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
@@ -136,6 +146,8 @@
 		80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataTypeTest.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EA02CED91C511C9B002718AB /* Dna.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dna.swift; sourceTree = "<group>"; };
+		EA02CEDF1C512139002718AB /* Dna+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dna+Foundation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,9 +212,9 @@
 				8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */,
 				8003F2AC1C489586000ADD91 /* Errors.swift */,
 				8003F2AD1C489586000ADD91 /* Foundation */,
-				8003F2AF1C489586000ADD91 /* Json+KeyPaths.swift */,
-				8003F2B01C489586000ADD91 /* JsonConvertibleType.swift */,
-				8003F2B11C489586000ADD91 /* JsonRepresentation.swift */,
+				8003F2AF1C489586000ADD91 /* Dna+KeyPaths.swift */,
+				8003F2B01C489586000ADD91 /* DnaConvertibleType.swift */,
+				8003F2B11C489586000ADD91 /* DnaRepresentation.swift */,
 				8003F2B21C489586000ADD91 /* KeyType.swift */,
 				8003F2B31C489586000ADD91 /* Logging.swift */,
 				8003F2B41C489586000ADD91 /* Map.swift */,
@@ -210,6 +222,8 @@
 				8003F2B61C489586000ADD91 /* SettableOperator.swift */,
 				8003F2B71C489586000ADD91 /* StandardOperators.swift */,
 				8003F2B81C489586000ADD91 /* Transformers.swift */,
+				EA02CED91C511C9B002718AB /* Dna.swift */,
+				EA02CEDF1C512139002718AB /* Dna+Foundation.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -581,18 +595,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8003F2E81C489586000ADD91 /* MappableObject.swift in Sources */,
-				8003F2CA1C489586000ADD91 /* Json+KeyPaths.swift in Sources */,
+				8003F2CA1C489586000ADD91 /* Dna+KeyPaths.swift in Sources */,
 				8003F2C51C489586000ADD91 /* Foundation.swift in Sources */,
-				8003F2D41C489586000ADD91 /* JsonRepresentation.swift in Sources */,
-				8003F2CF1C489586000ADD91 /* JsonConvertibleType.swift in Sources */,
+				8003F2D41C489586000ADD91 /* DnaRepresentation.swift in Sources */,
+				8003F2CF1C489586000ADD91 /* DnaConvertibleType.swift in Sources */,
 				8003F2C01C489586000ADD91 /* Errors.swift in Sources */,
 				8003F2D91C489586000ADD91 /* KeyType.swift in Sources */,
 				8003F2BB1C489586000ADD91 /* CollectionInitializers.swift in Sources */,
 				8003F2E31C489586000ADD91 /* Map.swift in Sources */,
+				EA02CEDC1C511E97002718AB /* Dna.swift in Sources */,
 				8003F2ED1C489586000ADD91 /* SettableOperator.swift in Sources */,
 				8003F2F71C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F21C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2DE1C489586000ADD91 /* Logging.swift in Sources */,
+				EA02CEE21C512139002718AB /* Dna+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,18 +617,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8003F2E91C489586000ADD91 /* MappableObject.swift in Sources */,
-				8003F2CB1C489586000ADD91 /* Json+KeyPaths.swift in Sources */,
+				8003F2CB1C489586000ADD91 /* Dna+KeyPaths.swift in Sources */,
 				8003F2C61C489586000ADD91 /* Foundation.swift in Sources */,
-				8003F2D51C489586000ADD91 /* JsonRepresentation.swift in Sources */,
-				8003F2D01C489586000ADD91 /* JsonConvertibleType.swift in Sources */,
+				8003F2D51C489586000ADD91 /* DnaRepresentation.swift in Sources */,
+				8003F2D01C489586000ADD91 /* DnaConvertibleType.swift in Sources */,
 				8003F2C11C489586000ADD91 /* Errors.swift in Sources */,
 				8003F2DA1C489586000ADD91 /* KeyType.swift in Sources */,
 				8003F2BC1C489586000ADD91 /* CollectionInitializers.swift in Sources */,
 				8003F2E41C489586000ADD91 /* Map.swift in Sources */,
+				EA02CEDD1C511E98002718AB /* Dna.swift in Sources */,
 				8003F2EE1C489586000ADD91 /* SettableOperator.swift in Sources */,
 				8003F2F81C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F31C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2DF1C489586000ADD91 /* Logging.swift in Sources */,
+				EA02CEE31C512139002718AB /* Dna+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,18 +639,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8003F2E71C489586000ADD91 /* MappableObject.swift in Sources */,
-				8003F2C91C489586000ADD91 /* Json+KeyPaths.swift in Sources */,
+				8003F2C91C489586000ADD91 /* Dna+KeyPaths.swift in Sources */,
 				8003F2C41C489586000ADD91 /* Foundation.swift in Sources */,
-				8003F2D31C489586000ADD91 /* JsonRepresentation.swift in Sources */,
-				8003F2CE1C489586000ADD91 /* JsonConvertibleType.swift in Sources */,
+				8003F2D31C489586000ADD91 /* DnaRepresentation.swift in Sources */,
+				8003F2CE1C489586000ADD91 /* DnaConvertibleType.swift in Sources */,
 				8003F2BF1C489586000ADD91 /* Errors.swift in Sources */,
 				8003F2D81C489586000ADD91 /* KeyType.swift in Sources */,
 				8003F2BA1C489586000ADD91 /* CollectionInitializers.swift in Sources */,
 				8003F2E21C489586000ADD91 /* Map.swift in Sources */,
+				EA02CEDB1C511E96002718AB /* Dna.swift in Sources */,
 				8003F2EC1C489586000ADD91 /* SettableOperator.swift in Sources */,
 				8003F2F61C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F11C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2DD1C489586000ADD91 /* Logging.swift in Sources */,
+				EA02CEE11C512139002718AB /* Dna+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,18 +661,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8003F2EA1C489586000ADD91 /* MappableObject.swift in Sources */,
-				8003F2CC1C489586000ADD91 /* Json+KeyPaths.swift in Sources */,
+				8003F2CC1C489586000ADD91 /* Dna+KeyPaths.swift in Sources */,
 				8003F2C71C489586000ADD91 /* Foundation.swift in Sources */,
-				8003F2D61C489586000ADD91 /* JsonRepresentation.swift in Sources */,
-				8003F2D11C489586000ADD91 /* JsonConvertibleType.swift in Sources */,
+				8003F2D61C489586000ADD91 /* DnaRepresentation.swift in Sources */,
+				8003F2D11C489586000ADD91 /* DnaConvertibleType.swift in Sources */,
 				8003F2C21C489586000ADD91 /* Errors.swift in Sources */,
 				8003F2DB1C489586000ADD91 /* KeyType.swift in Sources */,
 				8003F2BD1C489586000ADD91 /* CollectionInitializers.swift in Sources */,
 				8003F2E51C489586000ADD91 /* Map.swift in Sources */,
+				EA02CEDE1C511E98002718AB /* Dna.swift in Sources */,
 				8003F2EF1C489586000ADD91 /* SettableOperator.swift in Sources */,
 				8003F2F91C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F41C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2E01C489586000ADD91 /* Logging.swift in Sources */,
+				EA02CEE41C512139002718AB /* Dna+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,16 +684,18 @@
 			files = (
 				8003F2F01C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2E61C489586000ADD91 /* MappableObject.swift in Sources */,
-				8003F2D21C489586000ADD91 /* JsonRepresentation.swift in Sources */,
+				8003F2D21C489586000ADD91 /* DnaRepresentation.swift in Sources */,
+				EA02CEE01C512139002718AB /* Dna+Foundation.swift in Sources */,
 				8003F2DC1C489586000ADD91 /* Logging.swift in Sources */,
 				8003F2BE1C489586000ADD91 /* Errors.swift in Sources */,
-				8003F2CD1C489586000ADD91 /* JsonConvertibleType.swift in Sources */,
+				8003F2CD1C489586000ADD91 /* DnaConvertibleType.swift in Sources */,
 				8003F2B91C489586000ADD91 /* CollectionInitializers.swift in Sources */,
+				EA02CEDA1C511C9B002718AB /* Dna.swift in Sources */,
 				8052E7621BB58102004E08F6 /* ViewController.swift in Sources */,
 				8003F2C31C489586000ADD91 /* Foundation.swift in Sources */,
 				8003F2E11C489586000ADD91 /* Map.swift in Sources */,
 				8003F2D71C489586000ADD91 /* KeyType.swift in Sources */,
-				8003F2C81C489586000ADD91 /* Json+KeyPaths.swift in Sources */,
+				8003F2C81C489586000ADD91 /* Dna+KeyPaths.swift in Sources */,
 				8003F2EB1C489586000ADD91 /* SettableOperator.swift in Sources */,
 				8003F2F51C489586000ADD91 /* Transformers.swift in Sources */,
 				8052E7601BB58102004E08F6 /* AppDelegate.swift in Sources */,

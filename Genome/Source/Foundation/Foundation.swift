@@ -7,16 +7,14 @@
 //
 //  MIT
 
-import PureJsonSerializer
-
 extension MappableObject {
-    public init(js: AnyObject, context: [String : AnyObject] = [:]) throws {
-        let safeJson = Json.from(js)
-        let safeContext = Json.from(context)
-        try self.init(js: safeJson, context: safeContext)
+    public init(dna: AnyObject, context: [String : AnyObject] = [:]) throws {
+        let safeDna = Dna.from(dna)
+        let safeContext = Dna.from(context)
+        try self.init(dna: safeDna, context: safeContext)
     }
     
-    public init(js: [String : AnyObject], context: [String : AnyObject] = [:]) throws {
-        try self.init(js: js as AnyObject, context: context)
+    public init(dna: [String : AnyObject], context: [String : AnyObject] = [:]) throws {
+        try self.init(dna: dna as AnyObject, context: context)
     }
 }

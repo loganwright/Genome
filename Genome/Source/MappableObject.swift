@@ -7,22 +7,20 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
 // MARK: MappableBase
 
-public protocol MappableBase : JsonConvertibleType {
+public protocol MappableBase : DnaConvertibleType {
     mutating func sequence(map: Map) throws -> Void
 }
 
 extension MappableBase {
     
-    /// Used to convert an object back into json
-    public func jsonRepresentation() throws -> Json {
+    /// Used to convert an object back into dna
+    public func dnaRepresentation() throws -> Dna {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
-        return map.toJson
+        return map.toDna
     }
 }
 
@@ -35,17 +33,17 @@ public protocol MappableObject: MappableBase {
 extension MappableObject {
     public func sequence(map: Map) throws { }
     
-    public init(js: Json, context: Context = EmptyJson) throws {
-        let map = Map(json: js, context: context)
+    public init(dna: Dna, context: Context = EmptyDna) throws {
+        let map = Map(dna: dna, context: context)
         try self.init(map: map)
     }
     
-    // JsonConvertibleTypeConformance
-    public static func newInstance(json: Json, context: Context = EmptyJson) throws -> Self {
-        guard let _ = json.objectValue else {
-            throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
+    // DnaConvertibleTypeConformance
+    public static func newInstance(dna: Dna, context: Context = EmptyDna) throws -> Self {
+        guard let _ = dna.objectValue else {
+            throw logError(DnaConvertibleError.UnableToConvert(dna: dna, toType: "\(self)"))
         }
-        return try self.init(js: json, context: context)
+        return try self.init(dna: dna, context: context)
     }
 }
 
@@ -73,8 +71,8 @@ public class Object : MappableObject {
     
     public func sequence(map: Map) throws {}
     
-    public static func newInstance(json: Json, context: Context) throws -> Self {
-        let map = Map(json: json, context: context)
+    public static func newInstance(dna: Dna, context: Context) throws -> Self {
+        let map = Map(dna: dna, context: context)
         let new = try self.init(map: map)
         return new
     }
