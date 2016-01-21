@@ -127,10 +127,10 @@ class GenomeSideLoadTests: XCTestCase {
         let single: Person! = try! Person(dna: dnaArrayOfPeople.arrayValue!.first!)
         XCTAssert(single != nil)
         
-        let allFoods = try! [Food](js: SideLoadTestDna["foods"]!, context: SideLoadTestDna)
+        let allFoods = try! [Food](dna: SideLoadTestDna["foods"]!, context: SideLoadTestDna)
         XCTAssert(allFoods.count == 4)
 
-        var peeps: [Person] = try! [Person](js: dnaArrayOfPeople, context: SideLoadTestDna)
+        var peeps: [Person] = try! [Person](dna: dnaArrayOfPeople, context: SideLoadTestDna)
         peeps = peeps.map { (var person) -> Person in person.associateFavoriteFoods(allFoods); return person }
         XCTAssert(peeps.count == 2)
         
@@ -150,7 +150,7 @@ class GenomeSideLoadTests: XCTestCase {
         
         let m = Map()
         try! peeps <~> m
-        print("mjs: \(m.toDna)")
+        print("mdna: \(m.toDna)")
     }
     
 }

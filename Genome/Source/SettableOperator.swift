@@ -135,7 +135,7 @@ public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> T {
 public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [T] {
     try enforceMapType(map, expectedType: .FromDna)
     let result = try enforceResultExists(map, type: [T].self)
-    return try [T](js: result, context: map.context)
+    return try [T](dna: result, context: map.context)
 }
 
 public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [[T]] {
@@ -147,7 +147,7 @@ public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [[T]] {
     let possibleArrayOfArrays = array.flatMap { $0.arrayValue }
     let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
     let arrayOfArrays: [[Dna]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
-    return try arrayOfArrays.map { try [T](js: $0, context: map.context) }
+    return try arrayOfArrays.map { try [T](dna: $0, context: map.context) }
 }
 
 public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [String : T] {
@@ -168,7 +168,7 @@ public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [String : [T]]
     
     var mappedDictionaryOfArrays: [String : [T]] = [:]
     for (key, value) in dnaDictionaryOfArrays {
-        let mappedValue = try [T](js: value, context: map.context)
+        let mappedValue = try [T](dna: value, context: map.context)
         mappedDictionaryOfArrays[key] = mappedValue
     }
     return mappedDictionaryOfArrays
@@ -178,7 +178,7 @@ public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> Set<T> {
     try enforceMapType(map, expectedType: .FromDna)
     let result = try enforceResultExists(map, type: T.self)
     let dnaArray = result.arrayValue ?? [result]
-    return Set<T>(try [T](js: Dna.from(dnaArray), context: map.context))
+    return Set<T>(try [T](dna: Dna.from(dnaArray), context: map.context))
 }
 
 // MARK: Transformables
