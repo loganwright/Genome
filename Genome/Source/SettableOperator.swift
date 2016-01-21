@@ -7,8 +7,6 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
 // MARK: Casting
 
 prefix operator <~ {}
@@ -21,63 +19,63 @@ extension Map {
     
     // MARK: Transforms
     
-    public func extract<T, JsonInputType: JsonConvertibleType>(keyType: KeyType, transformer: JsonInputType throws -> T) throws -> T {
-        return try <~self[keyType].transformFromJson(transformer)
+    public func extract<T, DnaType: DnaConvertibleType>(keyType: KeyType, transformer: DnaType throws -> T) throws -> T {
+        return try <~self[keyType].transformFromDna(transformer)
     }
     
-    public func extract<T, JsonInputType: JsonConvertibleType>(keyType: KeyType, transformer: JsonInputType? throws -> T) throws -> T {
-        return try <~self[keyType].transformFromJson(transformer)
+    public func extract<T, DnaType: DnaConvertibleType>(keyType: KeyType, transformer: DnaType? throws -> T) throws -> T {
+        return try <~self[keyType].transformFromDna(transformer)
     }
     
     // MARK: Optional Extractions
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> T? {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> T? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [T]? {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [T]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [[T]]? {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [[T]]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [String : T]? {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [String : T]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [String : [T]]? {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [String : [T]]? {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> Set<T>? {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> Set<T>? {
         return try <~self[keyType]
     }
     
     // MARK: Non Optional Extractions
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> T {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> T {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [T] {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [T] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [[T]] {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [[T]] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [String : T] {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [String : T] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> [String : [T]] {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> [String : [T]] {
         return try <~self[keyType]
     }
     
-    public func extract<T : JsonConvertibleType>(keyType: KeyType) throws -> Set<T> {
+    public func extract<T : DnaConvertibleType>(keyType: KeyType) throws -> Set<T> {
         return try <~self[keyType]
     }
 
@@ -85,46 +83,46 @@ extension Map {
 
 /// ****
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> T? {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> T? {
+    try enforceMapType(map, expectedType: .FromDna)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [T]? {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [T]? {
+    try enforceMapType(map, expectedType: .FromDna)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [T]
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [[T]]? {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [[T]]? {
+    try enforceMapType(map, expectedType: .FromDna)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [[T]]
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : T]? {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [String : T]? {
+    try enforceMapType(map, expectedType: .FromDna)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : T]
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : [T]]? {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [String : [T]]? {
+    try enforceMapType(map, expectedType: .FromDna)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : [T]]
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> Set<T>? {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> Set<T>? {
+    try enforceMapType(map, expectedType: .FromDna)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as Set<T>
 }
 
 // MARK: Non-Optional Casters
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> T {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> T {
+    try enforceMapType(map, expectedType: .FromDna)
     let result = try enforceResultExists(map, type: T.self)
     do {
         return try T.newInstance(result, context: map.context)
@@ -134,59 +132,59 @@ public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> T {
     }
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [T] {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [T] {
+    try enforceMapType(map, expectedType: .FromDna)
     let result = try enforceResultExists(map, type: [T].self)
     return try [T](js: result, context: map.context)
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [[T]] {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [[T]] {
+    try enforceMapType(map, expectedType: .FromDna)
     let result = try enforceResultExists(map, type: [[T]].self)
     let array = result.arrayValue ?? [result]
     
     // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
     let possibleArrayOfArrays = array.flatMap { $0.arrayValue }
     let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
-    let arrayOfArrays: [[Json]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
+    let arrayOfArrays: [[Dna]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
     return try arrayOfArrays.map { try [T](js: $0, context: map.context) }
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : T] {
-    try enforceMapType(map, expectedType: .FromJson)
-    let jsonDictionary = try expectJsonDictionaryWithMap(map, targetType: [String : T].self)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [String : T] {
+    try enforceMapType(map, expectedType: .FromDna)
+    let dnaDictionary = try expectDnaDictionaryWithMap(map, targetType: [String : T].self)
     
     var mappedDictionary: [String : T] = [:]
-    for (key, value) in jsonDictionary {
+    for (key, value) in dnaDictionary {
         let mappedValue = try T.newInstance(value, context: map.context)
         mappedDictionary[key] = mappedValue
     }
     return mappedDictionary
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> [String : [T]] {
-    try enforceMapType(map, expectedType: .FromJson)
-    let jsonDictionaryOfArrays = try expectJsonDictionaryOfArraysWithMap(map, targetType: [String : [T]].self)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> [String : [T]] {
+    try enforceMapType(map, expectedType: .FromDna)
+    let dnaDictionaryOfArrays = try expectDnaDictionaryOfArraysWithMap(map, targetType: [String : [T]].self)
     
     var mappedDictionaryOfArrays: [String : [T]] = [:]
-    for (key, value) in jsonDictionaryOfArrays {
+    for (key, value) in dnaDictionaryOfArrays {
         let mappedValue = try [T](js: value, context: map.context)
         mappedDictionaryOfArrays[key] = mappedValue
     }
     return mappedDictionaryOfArrays
 }
 
-public prefix func <~ <T: JsonConvertibleType>(map: Map) throws -> Set<T> {
-    try enforceMapType(map, expectedType: .FromJson)
+public prefix func <~ <T: DnaConvertibleType>(map: Map) throws -> Set<T> {
+    try enforceMapType(map, expectedType: .FromDna)
     let result = try enforceResultExists(map, type: T.self)
-    let jsonArray = result.arrayValue ?? [result]
-    return Set<T>(try [T](js: Json.from(jsonArray), context: map.context))
+    let dnaArray = result.arrayValue ?? [result]
+    return Set<T>(try [T](js: Dna.from(dnaArray), context: map.context))
 }
 
 // MARK: Transformables
 
-public prefix func <~ <JsonInputType: JsonConvertibleType, T>(transformer: FromJsonTransformer<JsonInputType, T>) throws -> T {
-    try enforceMapType(transformer.map, expectedType: .FromJson)
+public prefix func <~ <DnaInputType: DnaConvertibleType, T>(transformer: FromDnaTransformer<DnaInputType, T>) throws -> T {
+    try enforceMapType(transformer.map, expectedType: .FromDna)
     return try transformer.transformValue(transformer.map.result)
 }
 
@@ -198,7 +196,7 @@ private func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
     }
 }
 
-private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Json {
+private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Dna {
     if let result = map.result {
         return result
     } else {
@@ -214,24 +212,24 @@ private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyT
     return error
 }
 
-private func expectJsonDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : Json] {
+private func expectDnaDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : Dna] {
     let result = try enforceResultExists(map, type: T.self)
     if let j = result.objectValue {
         return j
     } else {
-        let error = unexpectedResult(result, expected: [String : Json].self, keyPath: map.lastKey, targetType: T.self)
+        let error = unexpectedResult(result, expected: [String : Dna].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
 }
 
-private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [Json]] {
+private func expectDnaDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [Dna]] {
     let result = try enforceResultExists(map, type: T.self)
     guard let object = result.objectValue else {
         let error = unexpectedResult(result, expected: [String : AnyObject].self, keyPath: map.lastKey, targetType: T.self)
         throw logError(error)
     }
     
-    var mutable: [String : [Json]] = [:]
+    var mutable: [String : [Dna]] = [:]
     object.forEach { key, value in
         let array = value.arrayValue ?? [value]
         mutable[key] = array
@@ -244,31 +242,31 @@ private func expectJsonDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type
 prefix operator <~? {}
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> T? {
+public prefix func <~? <T: DnaConvertibleType>(map: Map) throws -> T? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [T]? {
+public prefix func <~? <T: DnaConvertibleType>(map: Map) throws -> [T]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [[T]]? {
+public prefix func <~? <T: DnaConvertibleType>(map: Map) throws -> [[T]]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [String : T]? {
+public prefix func <~? <T: DnaConvertibleType>(map: Map) throws -> [String : T]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> [String : [T]]? {
+public prefix func <~? <T: DnaConvertibleType>(map: Map) throws -> [String : [T]]? {
     return try <~map
 }
 
 @available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: JsonConvertibleType>(map: Map) throws -> Set<T>? {
+public prefix func <~? <T: DnaConvertibleType>(map: Map) throws -> Set<T>? {
     return try <~map
 }

@@ -7,10 +7,8 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
-extension Json {
-    public mutating func gnm_setValue(val: Json, forKeyPath keyPath: String) {
+extension Dna {
+    public mutating func gnm_setValue(val: Dna, forKeyPath keyPath: String) {
         guard let object = self.objectValue else { return }
         var mutableObject = object
         
@@ -22,7 +20,7 @@ extension Json {
             mutableObject[first] = val
         } else {
             let rejoined = keys.joinWithSeparator(".")
-            var subdict: Json = mutableObject[first] ?? .ObjectValue([:])
+            var subdict: Dna = mutableObject[first] ?? .ObjectValue([:])
             subdict.gnm_setValue(val, forKeyPath: rejoined)
             mutableObject[first] = subdict
         }
@@ -30,7 +28,7 @@ extension Json {
         self = .from(mutableObject)
     }
     
-    public func gnm_valueForKeyPath(keyPath: String) -> Json? {
+    public func gnm_valueForKeyPath(keyPath: String) -> Dna? {
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return nil }
         guard let value = self[first] else { return nil }
