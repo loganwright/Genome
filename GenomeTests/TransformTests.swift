@@ -7,25 +7,24 @@
 //
 
 import XCTest
-import PureJsonSerializer
 
 @testable import Genome
 
 class TransformTest: XCTestCase {
     
-    let testJson: Json = [
+    let testDna: Dna = [
         "hello" : "world"
     ]
     
     func test() {
-        let map = Map(json: testJson)
+        let map = Map(dna: testDna)
         var settableString: String? = nil
         try! settableString <~ map["hello"]
-            .transformFromJson({ self.stringToString($0) })
+            .transformFromDna({ self.stringToString($0) })
         XCTAssert(settableString == "modified: world")
         
         let nonOptionalString = ""
-        try! nonOptionalString ~> map["test"].transformToJson(optStringToString)
+        try! nonOptionalString ~> map["test"].transformToDna(optStringToString)
     }
     
     func stringToString(input: String) -> String {

@@ -1,5 +1,5 @@
 //
-//  FromJsonOperatorTest.swift
+//  FromDnaOperatorTest.swift
 //  Genome
 //
 //  Created by Logan Wright on 9/22/15.
@@ -8,9 +8,8 @@
 
 import XCTest
 import Genome
-import PureJsonSerializer
 
-class FromJsonOperatorTest: XCTestCase {
+class FromDnaOperatorTest: XCTestCase {
     
     struct Person: MappableObject, Hashable {
         
@@ -43,58 +42,58 @@ class FromJsonOperatorTest: XCTestCase {
         
     }
     
-    let strings: Json = [
+    let strings: Dna = [
         "one",
         "two",
         "tre"
     ]
     
     let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeJson: Json = [
+    let joeDna: Dna = [
         "first_name" : "Joe",
         "last_name" : "Fish"
     ]
     
     let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeJson: Json = [
+    let janeDna: Dna = [
         "first_name" : "Jane",
         "last_name" : "Bear"
     ]
     
     let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinJson: Json = [
+    let justinDna: Dna = [
         "first_name" : "Justin",
         "last_name" : "Badger"
     ]
     
     let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philJson: Json = [
+    let philDna: Dna = [
         "first_name" : "Phil",
         "last_name" : "Viper"
     ]
     
-    lazy var json: [String : Json] = [
+    lazy var dna: [String : Dna] = [
         "string" : "pass",
         "int" : 272,
         "strings" : self.strings,
-        "person" : self.joeJson,
-        "people" : [self.joeJson, self.janeJson],
-        "duplicated_people" : [self.joeJson, self.joeJson, self.janeJson],
+        "person" : self.joeDna,
+        "people" : [self.joeDna, self.janeDna],
+        "duplicated_people" : [self.joeDna, self.joeDna, self.janeDna],
         "relationships" : [
-            "best_friend" : self.philJson,
-            "cousin" : self.justinJson
+            "best_friend" : self.philDna,
+            "cousin" : self.justinDna
         ],
         "groups" : [
-            "boys" : [self.joeJson, self.justinJson, self.philJson],
-            "girls" : [self.janeJson]
+            "boys" : [self.joeDna, self.justinDna, self.philDna],
+            "girls" : [self.janeDna]
         ],
         "ordered_groups" : [
-            [self.joeJson, self.justinJson, self.philJson],
-            [self.janeJson]
+            [self.joeDna, self.justinDna, self.philDna],
+            [self.janeDna]
         ]
     ]
     
-    lazy var map: Map = Map(json: .ObjectValue(self.json))
+    lazy var map: Map = Map(dna: .ObjectValue(self.dna))
     
     func testBasicTypes() {
         var string = ""
@@ -232,6 +231,6 @@ class FromJsonOperatorTest: XCTestCase {
 
 // MARK: Operators
 
-func ==(lhs: FromJsonOperatorTest.Person, rhs: FromJsonOperatorTest.Person) -> Bool {
+func ==(lhs: FromDnaOperatorTest.Person, rhs: FromDnaOperatorTest.Person) -> Bool {
     return lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName
 }

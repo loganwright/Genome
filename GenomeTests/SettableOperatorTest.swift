@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import PureJsonSerializer
 
 @testable import Genome
 
@@ -39,57 +38,57 @@ class SettableOperatorTest: XCTestCase {
         
     }
     
-    let strings: Json = [
+    let strings: Dna = [
         "one",
         "two",
         "tre"
     ]
     
     let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeJson: Json = [
+    let joeDna: Dna = [
         "first_name" : "Joe",
         "last_name" : "Fish"
     ]
     
     let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeJson: Json = [
+    let janeDna: Dna = [
         "first_name" : "Jane",
         "last_name" : "Bear"
     ]
     
     let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinJson: Json = [
+    let justinDna: Dna = [
         "first_name" : "Justin",
         "last_name" : "Badger"
     ]
     
     let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philJson: Json = [
+    let philDna: Dna = [
         "first_name" : "Phil",
         "last_name" : "Viper"
     ]
     
-    lazy var json: Json = [
+    lazy var dna: Dna = [
         "int" : 272,
         "strings" : self.strings,
-        "person" : self.joeJson,
-        "people" : [self.joeJson, self.janeJson],
-        "duplicated_people" : [self.joeJson, self.joeJson, self.janeJson],
+        "person" : self.joeDna,
+        "people" : [self.joeDna, self.janeDna],
+        "duplicated_people" : [self.joeDna, self.joeDna, self.janeDna],
         "relationships" : [
-            "best_friend" : self.philJson,
-            "cousin" : self.justinJson
+            "best_friend" : self.philDna,
+            "cousin" : self.justinDna
         ],
         "groups" : [
-            "boys" : [self.joeJson, self.justinJson, self.philJson],
-            "girls" : [self.janeJson]
+            "boys" : [self.joeDna, self.justinDna, self.philDna],
+            "girls" : [self.janeDna]
         ],
         "ordered_groups" : [
-            [self.joeJson, self.justinJson, self.philJson],
-            [self.janeJson]
+            [self.joeDna, self.justinDna, self.philDna],
+            [self.janeDna]
         ]
     ]
     
-    lazy var map: Map! = Map(json: self.json)
+    lazy var map: Map! = Map(dna: self.dna)
     
     override func tearDown() {
         map = nil
@@ -109,8 +108,8 @@ class SettableOperatorTest: XCTestCase {
         XCTAssert(optionalStrings! == self.strings.arrayValue!.flatMap { $0.stringValue })
         
         let stringInt: String = try! <~map["int"]
-            .transformFromJson { (jsonValue: Int) in
-                return "\(jsonValue)"
+            .transformFromDna { (dnaValue: Int) in
+                return "\(dnaValue)"
         }
         XCTAssert(stringInt == "272")
         
@@ -227,9 +226,9 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
             }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -241,9 +240,9 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
             }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -253,7 +252,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JsonConvertibleError.UnableToConvert(json: _, toType: _) {
+        } catch DnaConvertibleError.UnableToConvert(dna: _, toType: _) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -263,7 +262,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JsonConvertibleError.UnableToConvert(_) {
+        } catch DnaConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -293,11 +292,11 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String = try <~map["int"]
-                .transformFromJson { (input: String) in
+                .transformFromDna { (input: String) in
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch JsonConvertibleError.UnableToConvert(_) {
+        } catch DnaConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
@@ -311,12 +310,12 @@ class SettableOperatorTest: XCTestCase {
             let _: String? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: _, error: let error) {
-            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
             }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Object
@@ -325,28 +324,28 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case JsonConvertibleError.UnableToConvert(json: _, toType: _) = error { }
+            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
             }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
         }
         // Unexpected Value - Mappable Array
         do {
             let _: [Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JsonConvertibleError.UnableToConvert(_) {
+        } catch DnaConvertibleError.UnableToConvert(_) {
 
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Array of Arrays
         do {
             let _: [[Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch JsonConvertibleError.UnableToConvert(_) {
+        } catch DnaConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -376,14 +375,14 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String? = try <~map["int"]
-                .transformFromJson { (input: String?) in
+                .transformFromDna { (input: String?) in
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch JsonConvertibleError.UnableToConvert(_) {
+        } catch DnaConvertibleError.UnableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(JsonConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
         }
         
     }
@@ -454,7 +453,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String = try <~map["asdf"]
-                .transformFromJson { (input: String) in
+                .transformFromDna { (input: String) in
                     return "Hello: \(input)"
             }
             XCTFail("nil value should throw error")
