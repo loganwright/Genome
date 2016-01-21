@@ -8,7 +8,6 @@
 
 import XCTest
 import Genome
-import PureJsonSerializer
 
 class DictionaryKeyPathTests: XCTestCase {
     
@@ -19,12 +18,12 @@ class DictionaryKeyPathTests: XCTestCase {
             ]
         ]
         
-        var json = Json.from(TestDictionary)
+        var dna = Dna.from(TestDictionary)
 
-        let value: String! = json.gnm_valueForKeyPath("one.two")?.stringValue
+        let value: String! = dna.gnm_valueForKeyPath("one.two")?.stringValue
         XCTAssert(value == "Found me!")
-        json.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
-        let setVal: String! = json.gnm_valueForKeyPath("path.to.new.value")?.stringValue
+        dna.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
+        let setVal: String! = dna.gnm_valueForKeyPath("path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
     }
     

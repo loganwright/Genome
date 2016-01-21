@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		267EDC7B32366D1D33C75D81 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4229C5D50AD5F6C550EF2B8C /* Pods.framework */; };
 		8003F2B91C489586000ADD91 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */; };
 		8003F2BA1C489586000ADD91 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */; };
 		8003F2BB1C489586000ADD91 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */; };
@@ -80,10 +79,10 @@
 		8052E76A1BB58102004E08F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7681BB58102004E08F6 /* LaunchScreen.storyboard */; };
 		8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
 		8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
-		8052E7871BB58178004E08F6 /* FromJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */; };
+		8052E7871BB58178004E08F6 /* FromDnaOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromDnaOperatorTest.swift */; };
 		8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; };
-		8052E78A1BB58178004E08F6 /* ToJsonOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */; };
-		80A300B41C14E55300DDE54D /* JSONDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */; };
+		8052E78A1BB58178004E08F6 /* ToDnaOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToDnaOperatorTest.swift */; };
+		80A300B41C14E55300DDE54D /* DnaDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* DnaDataTypeTest.swift */; };
 		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 		EA02CEDA1C511C9B002718AB /* Dna.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Dna.swift */; };
@@ -139,11 +138,11 @@
 		8052E7761BB58102004E08F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8052E77F1BB58177004E08F6 /* BasicTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
 		8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
-		8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromJsonOperatorTest.swift; sourceTree = "<group>"; };
+		8052E7811BB58178004E08F6 /* FromDnaOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromDnaOperatorTest.swift; sourceTree = "<group>"; };
 		8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenomeSwiftTests.swift; sourceTree = "<group>"; };
 		8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToJsonOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataTypeTest.swift; sourceTree = "<group>"; };
+		8052E7841BB58178004E08F6 /* ToDnaOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDnaOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		80A300B31C14E55300DDE54D /* DnaDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnaDataTypeTest.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA02CED91C511C9B002718AB /* Dna.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dna.swift; sourceTree = "<group>"; };
@@ -183,7 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				267EDC7B32366D1D33C75D81 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,12 +277,12 @@
 			children = (
 				8052E77F1BB58177004E08F6 /* BasicTypes.swift */,
 				8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */,
-				8052E7811BB58178004E08F6 /* FromJsonOperatorTest.swift */,
+				8052E7811BB58178004E08F6 /* FromDnaOperatorTest.swift */,
 				8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */,
 				8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */,
-				8052E7841BB58178004E08F6 /* ToJsonOperatorTest.swift */,
+				8052E7841BB58178004E08F6 /* ToDnaOperatorTest.swift */,
 				80FC8F191BB6CEE30069CC5A /* TransformTests.swift */,
-				80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */,
+				80A300B31C14E55300DDE54D /* DnaDataTypeTest.swift */,
 				8052E7761BB58102004E08F6 /* Info.plist */,
 			);
 			path = GenomeTests;
@@ -408,12 +406,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8052E7791BB58102004E08F6 /* Build configuration list for PBXNativeTarget "Genome" */;
 			buildPhases = (
-				2647AB7FD183122207A94A4B /* Check Pods Manifest.lock */,
 				8052E7581BB58102004E08F6 /* Sources */,
 				8052E7591BB58102004E08F6 /* Frameworks */,
 				8052E75A1BB58102004E08F6 /* Resources */,
-				D04D203AB4AEC872FF9B2BB5 /* Embed Pods Frameworks */,
-				DE6DD48FE1ACF2D74CE1B2AD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -541,54 +536,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		2647AB7FD183122207A94A4B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D04D203AB4AEC872FF9B2BB5 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE6DD48FE1ACF2D74CE1B2AD /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		3D5396C71BBA89D600791B49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -708,12 +655,12 @@
 			files = (
 				8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */,
 				8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */,
-				8052E78A1BB58178004E08F6 /* ToJsonOperatorTest.swift in Sources */,
+				8052E78A1BB58178004E08F6 /* ToDnaOperatorTest.swift in Sources */,
 				8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */,
 				80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */,
 				80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */,
-				8052E7871BB58178004E08F6 /* FromJsonOperatorTest.swift in Sources */,
-				80A300B41C14E55300DDE54D /* JSONDataTypeTest.swift in Sources */,
+				8052E7871BB58178004E08F6 /* FromDnaOperatorTest.swift in Sources */,
+				80A300B41C14E55300DDE54D /* DnaDataTypeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

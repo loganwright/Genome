@@ -8,13 +8,12 @@
 
 import XCTest
 import Foundation
-import PureJsonSerializer
 
 @testable import Genome
 
 class BasicTypeTexts: XCTestCase {
 
-    let BasicTestJson: [String : Json] = [
+    let BasicTestDna: [String : Dna] = [
         "int" : .from(1),
         "float" : .from(1.5),
         "double" : .from(2.5),
@@ -42,7 +41,7 @@ class BasicTypeTexts: XCTestCase {
         }
     }
     
-    let BasicArraysTestJson: [String : Json] = [
+    let BasicArraysTestDna: [String : Dna] = [
         "ints" : .from([1]),
         "floats" : .from([1.5]),
         "doubles" : .from([2.5]),
@@ -71,19 +70,19 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic(js: .ObjectValue(BasicTestJson))
+        let basic = try! Basic(dna: .ObjectValue(BasicTestDna))
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let json = try! basic.jsonRepresentation()
-        let int = json["int"]!.intValue!
-        let float = json["float"]!.floatValue!
-        let double = json["double"]!.doubleValue!
-        let bool = json["bool"]!.boolValue!
-        let string = json["string"]!.stringValue!
+        let dna = try! basic.dnaRepresentation()
+        let int = dna["int"]!.intValue!
+        let float = dna["float"]!.floatValue!
+        let double = dna["double"]!.doubleValue!
+        let bool = dna["bool"]!.boolValue!
+        let string = dna["string"]!.stringValue!
         XCTAssert(int == 1)
         XCTAssert(float == 1.5)
         XCTAssert(double == 2.5)
@@ -92,19 +91,19 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() {
-        let basic = try! BasicArrays(js: .ObjectValue(BasicArraysTestJson))
+        let basic = try! BasicArrays(dna: .ObjectValue(BasicArraysTestDna))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let json = try! basic.jsonRepresentation()
-        let ints = json["ints"]!.arrayValue!.flatMap { $0.intValue }
-        let floats = json["floats"]!.arrayValue!.flatMap { $0.floatValue }
-        let doubles = json["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
-        let bools = json["bools"]!.arrayValue!.flatMap { $0.boolValue }
-        let strings = json["strings"]!.arrayValue!.flatMap { $0.stringValue }
+        let dna = try! basic.dnaRepresentation()
+        let ints = dna["ints"]!.arrayValue!.flatMap { $0.intValue }
+        let floats = dna["floats"]!.arrayValue!.flatMap { $0.floatValue }
+        let doubles = dna["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
+        let bools = dna["bools"]!.arrayValue!.flatMap { $0.boolValue }
+        let strings = dna["strings"]!.arrayValue!.flatMap { $0.stringValue }
         XCTAssert(ints == [1])
         XCTAssert(floats == [1.5])
         XCTAssert(doubles == [2.5])
