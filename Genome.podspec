@@ -13,5 +13,4 @@ Pod::Spec.new do |spec|
   spec.tvos.deployment_target = "9.0"
   spec.requires_arc = true
   spec.social_media_url = 'https://twitter.com/logmaestro'
-  spec.dependency 'PureJsonSerializer', '~> 1.0.0'
 end
