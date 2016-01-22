@@ -62,7 +62,7 @@ struct _Pet : MappableObject {
     func sequence(map: Map) throws {
         try name ~> map["name"]
         try type ~> map["type"]
-            .transformToDna { $0.rawValue }
+            .transformToNode { $0.rawValue }
         try nickname ~> map["nickname"]
     }
 }
@@ -76,23 +76,23 @@ struct Pet : BasicMappable {
         try name <~> map["name"]
         try nickname <~> map["nickname"]
         try type <~> map["type"]
-            .transformFromDna {
+            .transformFromNode {
                 return PetType(rawValue: $0)
             }
-            .transformToDna {
+            .transformToNode {
                 return $0.rawValue
             }
     }
 }
 
 
-let dna_rover: Dna = [
+let node_rover: Node = [
     "name" : "Rover",
     "nickname" : "RoRo",
     "type" : "dog"
 ]
 
-let rover = try Pet(dna: dna_rover)
+let rover = try Pet(node: node_rover)
 print(rover)
 
 // MARK: Person
@@ -116,22 +116,22 @@ struct Person : MappableObject {
         try pet ~> map["pet"]
         try favoriteFood ~> map["favorite_food"]
         try birthday ~> map["birthday"]
-            .transformToDna(NSDate.birthdayStringWithDate)
+            .transformToNode(NSDate.birthdayStringWithDate)
     }
 }
 
-let dna_snowflake: Dna = [
+let node_snowflake: Node = [
     "name" : "Snowflake",
     "type" : "cat"
 ]
 
-let dna_joe: Dna = [
+let node_joe: Node = [
     "name" : "Joe",
     "birthday" : "12-15-84",
-    "pet" : dna_snowflake
+    "pet" : node_snowflake
 ]
 
-let joe = try Person(dna: dna_joe)
+let joe = try Person(node: node_joe)
 print(joe)
 
 // MARK: Creating A Custom Mappable
@@ -151,8 +151,8 @@ extension String {
 class CustomBase : MappableBase {
     required init() {}
     
-    static func newInstance(dna: Dna, context: Context) throws -> Self {
-        let map = Map(dna: dna, context: context)
+    static func newInstance(node: Node, context: Context) throws -> Self {
+        let map = Map(node: node, context: context)
         let new = self.init()
         try new.sequence(map)
         return new
@@ -170,8 +170,8 @@ class Book : MappableBase {
     
     required init() {}
     
-    static func newInstance(dna: Dna, context: Context = EmptyDna) throws -> Self {
-        let map = Map(dna: dna, context: context)
+    static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+        let map = Map(node: node, context: context)
         return try newInstance(map)
     }
     
@@ -188,8 +188,8 @@ class Book : MappableBase {
 
         // String => Int
         try releaseYear <~> map["release_year"]
-            .transformFromDna(Int.fromString)
-            .transformToDna(String.fromInt)
+            .transformFromNode(Int.fromString)
+            .transformToNode(String.fromInt)
     }
 }
 
@@ -197,13 +197,13 @@ func existingBookWithId<T: Book>(id: String) -> T? {
     return nil
 }
 
-let dna_book: Dna = [
+let node_book: Node = [
     "title" : "Title",
     "release_year" : "2009",
     "id" : "asd9fj20m"
 ]
 
-let book = try! Book.newInstance(dna_book)
+let book = try! Book.newInstance(node_book)
 print(book)
 
 // MARK: Core Data Example
@@ -221,18 +221,14 @@ public class NSMappableManagedObject: NSManagedObject, MappableBase {
         fatalError("Sequence must be overwritten")
     }
     
-    public class func newInstance(dna: Dna, context: Context) throws -> Self {
-        return try newInstance(dna, context: context, type: self)
+    public class func newInstance(node: Node, context: Context) throws -> Self {
+        return try newInstance(node, context: context, type: self)
     }
     
-<<<<<<< HEAD
-    public class func newInstance<T: NSMappableManagedObject>(json: Json, context: Context, type: T.Type) throws -> T {
-=======
-    public class func newInstance<T: NSManagedObject>(dna: Dna, context: Context, type: T.Type) throws -> T {
->>>>>>> 9a7f462... Removed the Json type and replaced it with Dna
+    public class func newInstance<T: NSMappableManagedObject>(node: Node, context: Context, type: T.Type) throws -> T {
         let context = context as! NSManagedObjectContext
         let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
-        let map = Map(dna: dna, context: context)
+        let map = Map(node: node, context: context)
         try new.sequence(map)
         return new
     }
