@@ -38,57 +38,57 @@ class SettableOperatorTest: XCTestCase {
         
     }
     
-    let strings: Dna = [
+    let strings: Node = [
         "one",
         "two",
         "tre"
     ]
     
     let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeDna: Dna = [
+    let joeNode: Node = [
         "first_name" : "Joe",
         "last_name" : "Fish"
     ]
     
     let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeDna: Dna = [
+    let janeNode: Node = [
         "first_name" : "Jane",
         "last_name" : "Bear"
     ]
     
     let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinDna: Dna = [
+    let justinNode: Node = [
         "first_name" : "Justin",
         "last_name" : "Badger"
     ]
     
     let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philDna: Dna = [
+    let philNode: Node = [
         "first_name" : "Phil",
         "last_name" : "Viper"
     ]
     
-    lazy var dna: Dna = [
+    lazy var node: Node = [
         "int" : 272,
         "strings" : self.strings,
-        "person" : self.joeDna,
-        "people" : [self.joeDna, self.janeDna],
-        "duplicated_people" : [self.joeDna, self.joeDna, self.janeDna],
+        "person" : self.joeNode,
+        "people" : [self.joeNode, self.janeNode],
+        "duplicated_people" : [self.joeNode, self.joeNode, self.janeNode],
         "relationships" : [
-            "best_friend" : self.philDna,
-            "cousin" : self.justinDna
+            "best_friend" : self.philNode,
+            "cousin" : self.justinNode
         ],
         "groups" : [
-            "boys" : [self.joeDna, self.justinDna, self.philDna],
-            "girls" : [self.janeDna]
+            "boys" : [self.joeNode, self.justinNode, self.philNode],
+            "girls" : [self.janeNode]
         ],
         "ordered_groups" : [
-            [self.joeDna, self.justinDna, self.philDna],
-            [self.janeDna]
+            [self.joeNode, self.justinNode, self.philNode],
+            [self.janeNode]
         ]
     ]
     
-    lazy var map: Map! = Map(dna: self.dna)
+    lazy var map: Map! = Map(node: self.node)
     
     override func tearDown() {
         map = nil
@@ -108,8 +108,8 @@ class SettableOperatorTest: XCTestCase {
         XCTAssert(optionalStrings! == self.strings.arrayValue!.flatMap { $0.stringValue })
         
         let stringInt: String = try! <~map["int"]
-            .transformFromDna { (dnaValue: Int) in
-                return "\(dnaValue)"
+            .transformFromNode { (nodeValue: Int) in
+                return "\(nodeValue)"
         }
         XCTAssert(stringInt == "272")
         
@@ -226,9 +226,9 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
+            if case NodeConvertibleError.UnableToConvert(node: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
             }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -240,9 +240,9 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
+            if case NodeConvertibleError.UnableToConvert(node: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
             }
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -252,7 +252,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch DnaConvertibleError.UnableToConvert(dna: _, toType: _) {
+        } catch NodeConvertibleError.UnableToConvert(node: _, toType: _) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -262,7 +262,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch DnaConvertibleError.UnableToConvert(_) {
+        } catch NodeConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -292,11 +292,11 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String = try <~map["int"]
-                .transformFromDna { (input: String) in
+                .transformFromNode { (input: String) in
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch DnaConvertibleError.UnableToConvert(_) {
+        } catch NodeConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
@@ -310,12 +310,12 @@ class SettableOperatorTest: XCTestCase {
             let _: String? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: _, error: let error) {
-            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
+            if case NodeConvertibleError.UnableToConvert(node: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
             }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Object
@@ -324,28 +324,28 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case DnaConvertibleError.UnableToConvert(dna: _, toType: _) = error { }
+            if case NodeConvertibleError.UnableToConvert(node: _, toType: _) = error { }
             else {
-                XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
             }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
         // Unexpected Value - Mappable Array
         do {
             let _: [Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch DnaConvertibleError.UnableToConvert(_) {
+        } catch NodeConvertibleError.UnableToConvert(_) {
 
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Value - Mappable Array of Arrays
         do {
             let _: [[Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch DnaConvertibleError.UnableToConvert(_) {
+        } catch NodeConvertibleError.UnableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
@@ -375,14 +375,14 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String? = try <~map["int"]
-                .transformFromDna { (input: String?) in
+                .transformFromNode { (input: String?) in
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch DnaConvertibleError.UnableToConvert(_) {
+        } catch NodeConvertibleError.UnableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(DnaConvertibleError.UnableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
         
     }
@@ -453,7 +453,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String = try <~map["asdf"]
-                .transformFromDna { (input: String) in
+                .transformFromNode { (input: String) in
                     return "Hello: \(input)"
             }
             XCTFail("nil value should throw error")

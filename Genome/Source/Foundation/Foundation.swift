@@ -8,13 +8,13 @@
 //  MIT
 
 extension MappableObject {
-    public init(dna: AnyObject, context: [String : AnyObject] = [:]) throws {
-        let safeDna = Dna.from(dna)
-        let safeContext = Dna.from(context)
-        try self.init(dna: safeDna, context: safeContext)
+    public init(node: AnyObject, context: [String : AnyObject] = [:]) throws {
+        let safeNode = Node.from(node)
+        let safeContext = Node.from(context)
+        try self.init(node: safeNode, context: safeContext)
     }
     
-    public init(dna: [String : AnyObject], context: [String : AnyObject] = [:]) throws {
-        try self.init(dna: dna as AnyObject, context: context)
+    public init(node: [String : AnyObject], context: [String : AnyObject] = [:]) throws {
+        try self.init(node: node as AnyObject, context: context)
     }
 }

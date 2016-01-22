@@ -1,5 +1,5 @@
 //
-//  Dna+Foundation.swift
+//  Node+Foundation.swift
 //  Genome
 //
 //  Created by McQuilkin, Brandon on 1/21/16.
@@ -8,8 +8,8 @@
 
 import Foundation.NSNull
 
-extension Dna {
-    public static func from(any: AnyObject) -> Dna {
+extension Node {
+    public static func from(any: AnyObject) -> Node {
         switch any {
             // If we're coming from foundation, it will be an `NSNumber`.
             //This represents double, integer, and boolean.
@@ -29,8 +29,8 @@ extension Dna {
         return .NullValue
     }
     
-    public static func from(any: [String : AnyObject]) -> Dna {
-        var mutable: [String : Dna] = [:]
+    public static func from(any: [String : AnyObject]) -> Node {
+        var mutable: [String : Node] = [:]
         any.forEach { key, val in
             mutable[key] = .from(val)
         }

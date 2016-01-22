@@ -18,12 +18,12 @@ class DictionaryKeyPathTests: XCTestCase {
             ]
         ]
         
-        var dna = Dna.from(TestDictionary)
+        var node = Node.from(TestDictionary)
 
-        let value: String! = dna.gnm_valueForKeyPath("one.two")?.stringValue
+        let value: String! = node.gnm_valueForKeyPath("one.two")?.stringValue
         XCTAssert(value == "Found me!")
-        dna.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
-        let setVal: String! = dna.gnm_valueForKeyPath("path.to.new.value")?.stringValue
+        node.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
+        let setVal: String! = node.gnm_valueForKeyPath("path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
     }
     

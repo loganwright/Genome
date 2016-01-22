@@ -9,7 +9,7 @@
 
 // MARK: Map
 
-/// This class is designed to serve as an adaptor between the raw dna and the values.  In this way we can interject behavior that assists in mapping between the two.
+/// This class is designed to serve as an adaptor between the raw node and the values.  In this way we can interject behavior that assists in mapping between the two.
 public final class Map {
     
     // MARK: Map Type
@@ -17,33 +17,33 @@ public final class Map {
     /**
     The representative type of mapping operation
     
-    - ToDna:   transforming the object into a dna dictionary representation
-    - FromDna: transforming a dna dictionary representation into an object
+    - ToNode:   transforming the object into a node dictionary representation
+    - FromNode: transforming a node dictionary representation into an object
     */
     public enum OperationType {
-        case ToDna
-        case FromDna
+        case ToNode
+        case FromNode
     }
     
     /// The type of operation for the current map
     public let type: OperationType
     
-    /// If the mapping operation were converted to Dna (Type.ToDna)
-    public private(set) var toDna: Dna = .ObjectValue([:])
+    /// If the mapping operation were converted to Node (Type.ToNode)
+    public private(set) var toNode: Node = .ObjectValue([:])
     
-    /// The backing Dna being mapped
-    public let dna: Dna
+    /// The backing Node being mapped
+    public let node: Node
     
     /// The greater context in which the mapping takes place
     public let context: Context
     
     // MARK: Private
     
-    /// The last key accessed -- Used to reverse Dna Operations
+    /// The last key accessed -- Used to reverse Node Operations
     internal private(set) var lastKey: KeyType = .KeyPath("")
     
     /// The last retrieved result.  Used in operators to set value
-    internal private(set) var result: Dna? {
+    internal private(set) var result: Node? {
         didSet {
             if let unwrapped = result where unwrapped.isNull {
                 result = nil
@@ -56,21 +56,21 @@ public final class Map {
     /**
     The designated initializer
     
-    :param: dna    the dna that will be used in the mapping
+    :param: node    the node that will be used in the mapping
     :param: context the context that will be used in the mapping
     
     :returns: an initialized map
     */
-    public init(dna: Dna, context: Context = EmptyDna) {
-        self.dna = dna
+    public init(node: Node, context: Context = EmptyNode) {
+        self.node = node
         self.context = context
-        self.type = .FromDna
+        self.type = .FromNode
     }
     
     public init() {
-        self.dna = [:]
-        self.context = EmptyDna
-        self.type = .ToDna
+        self.node = [:]
+        self.context = EmptyNode
+        self.type = .ToNode
     }
     
     // MARK: Subscript
@@ -78,7 +78,7 @@ public final class Map {
     /**
     Basic subscripting
     
-    :param: keyPath the keypath to use when getting the value from the backing dna
+    :param: keyPath the keypath to use when getting the value from the backing node
     
     :returns: returns an instance of self that can be passed to the mappable operator
     */
@@ -86,68 +86,68 @@ public final class Map {
         lastKey = keyType
         switch keyType {
         case let .Key(key):
-            result = dna[key]
+            result = node[key]
         case let .KeyPath(keyPath):
-            result = dna.gnm_valueForKeyPath(keyPath)
+            result = node.gnm_valueForKeyPath(keyPath)
         }
         return self
     }
     
-    // MARK: To Dna
+    // MARK: To Node
     
     /**
-    Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Dna Dict and pass a cast to 'AnyObject'
+    Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Node Dict and pass a cast to 'AnyObject'
     
-    :param: any the value to set to the dna for the value of the last key
+    :param: any the value to set to the node for the value of the last key
     */
-    internal func setToLastKey(dna: Dna?) throws {
-        guard let dna = dna else { return }
+    internal func setToLastKey(node: Node?) throws {
+        guard let node = node else { return }
         switch lastKey {
         case let .Key(key):
-            toDna[key] = dna
+            toNode[key] = node
         case let .KeyPath(keyPath):
-            toDna.gnm_setValue(dna, forKeyPath: keyPath)
+            toNode.gnm_setValue(node, forKeyPath: keyPath)
         }
     }
 }
 
 extension Map {
-    internal func setToLastKey<T : DnaConvertibleType>(any: T?) throws {
-        try setToLastKey(any?.dnaRepresentation())
+    internal func setToLastKey<T : NodeConvertibleType>(any: T?) throws {
+        try setToLastKey(any?.nodeRepresentation())
     }
     
-    internal func setToLastKey<T : DnaConvertibleType>(any: [T]?) throws {
-        try setToLastKey(any?.dnaRepresentation())
+    internal func setToLastKey<T : NodeConvertibleType>(any: [T]?) throws {
+        try setToLastKey(any?.nodeRepresentation())
     }
     
-    internal func setToLastKey<T : DnaConvertibleType>(any: [[T]]?) throws {
+    internal func setToLastKey<T : NodeConvertibleType>(any: [[T]]?) throws {
         guard let any = any else { return }
-        let dna: [Dna] = try any.map { innerArray in
-            return try innerArray.dnaRepresentation()
+        let node: [Node] = try any.map { innerArray in
+            return try innerArray.nodeRepresentation()
         }
-        try setToLastKey(Dna.from(dna))
+        try setToLastKey(Node.from(node))
     }
     
-    internal func setToLastKey<T : DnaConvertibleType>(any: [String : T]?) throws {
+    internal func setToLastKey<T : NodeConvertibleType>(any: [String : T]?) throws {
         guard let any = any else { return }
-        var dna: [String : Dna] = [:]
+        var node: [String : Node] = [:]
         try any.forEach { key, value in
-            dna[key] = try value.dnaRepresentation()
+            node[key] = try value.nodeRepresentation()
         }
-        try setToLastKey(.from(dna))
+        try setToLastKey(.from(node))
     }
     
-    internal func setToLastKey<T : DnaConvertibleType>(any: [String : [T]]?) throws {
+    internal func setToLastKey<T : NodeConvertibleType>(any: [String : [T]]?) throws {
         guard let any = any else { return }
-        var dna: [String : Dna] = [:]
+        var node: [String : Node] = [:]
         try any.forEach { key, value in
-            dna[key] = try value.dnaRepresentation()
+            node[key] = try value.nodeRepresentation()
         }
-        try setToLastKey(.from(dna))
+        try setToLastKey(.from(node))
     }
     
-    internal func setToLastKey<T : DnaConvertibleType>(any: Set<T>?) throws {
-        try setToLastKey(any?.dnaRepresentation())
+    internal func setToLastKey<T : NodeConvertibleType>(any: Set<T>?) throws {
+        try setToLastKey(any?.nodeRepresentation())
     }
 }
 

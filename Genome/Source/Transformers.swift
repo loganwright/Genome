@@ -65,136 +65,136 @@ public class Transformer<InputType, OutputType> {
 }
 
 
-// MARK: From Dna
+// MARK: From Node
 
-public final class FromDnaTransformer<DnaType: DnaConvertibleType, TransformedType> : Transformer<DnaType, TransformedType> {
-    override public init(map: Map, transformer: DnaType throws -> TransformedType) {
+public final class FromNodeTransformer<NodeType: NodeConvertibleType, TransformedType> : Transformer<NodeType, TransformedType> {
+    override public init(map: Map, transformer: NodeType throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
-    override public init(map: Map, transformer: DnaType? throws -> TransformedType) {
+    override public init(map: Map, transformer: NodeType? throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformToDna<OutputDnaType: DnaConvertibleType>(transformer: TransformedType throws -> OutputDnaType) -> TwoWayTransformer<DnaType, TransformedType, OutputDnaType> {
-        let toDnaTransformer = ToDnaTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromDnaTransformer: self, toDnaTransformer: toDnaTransformer)
+    public func transformToNode<OutputNodeType: NodeConvertibleType>(transformer: TransformedType throws -> OutputNodeType) -> TwoWayTransformer<NodeType, TransformedType, OutputNodeType> {
+        let toNodeTransformer = ToNodeTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromNodeTransformer: self, toNodeTransformer: toNodeTransformer)
     }
     
-    internal func transformValue(dna: Dna?) throws -> TransformedType {
-        let validDna: Dna
+    internal func transformValue(node: Node?) throws -> TransformedType {
+        let validNode: Node
         if allowsNil {
-            guard let unwrapped = dna else { return try transformer(nil) }
-            validDna = unwrapped
+            guard let unwrapped = node else { return try transformer(nil) }
+            validNode = unwrapped
         } else {
-            validDna = try enforceValueExists(dna)
+            validNode = try enforceValueExists(node)
         }
         
-        let input = try DnaType.newInstance(validDna, context: validDna)
+        let input = try NodeType.newInstance(validNode, context: validNode)
         return try transformer(input)
     }
 }
 
-// MARK: To Dna
+// MARK: To Node
 
-public final class ToDnaTransformer<ValueType, OutputDnaType: DnaConvertibleType> : Transformer<ValueType, OutputDnaType> {
-    override public init(map: Map, transformer: ValueType throws -> OutputDnaType) {
+public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertibleType> : Transformer<ValueType, OutputNodeType> {
+    override public init(map: Map, transformer: ValueType throws -> OutputNodeType) {
         super.init(map: map, transformer: transformer)
     }
     
-    func transformFromDna<InputDnaType>(transformer: InputDnaType throws -> ValueType) -> TwoWayTransformer<InputDnaType, ValueType, OutputDnaType> {
-        let fromDnaTransformer = FromDnaTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromDnaTransformer: fromDnaTransformer, toDnaTransformer: self)
+    func transformFromNode<InputNodeType>(transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+        let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    func transformFromDna<InputDnaType>(transformer: InputDnaType? throws -> ValueType) -> TwoWayTransformer<InputDnaType, ValueType, OutputDnaType> {
-        let fromDnaTransformer = FromDnaTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromDnaTransformer: fromDnaTransformer, toDnaTransformer: self)
+    func transformFromNode<InputNodeType>(transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+        let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    internal func transformValue(value: ValueType) throws -> Dna {
+    internal func transformValue(value: ValueType) throws -> Node {
         let transformed = try transformer(value)
-        return try transformed.dnaRepresentation()
+        return try transformed.nodeRepresentation()
     }
 }
 
 // MARK: Two Way Transformer
 
-public final class TwoWayTransformer<InputDnaType: DnaConvertibleType, TransformedType, OutputDnaType: DnaConvertibleType> {
+public final class TwoWayTransformer<InputNodeType: NodeConvertibleType, TransformedType, OutputNodeType: NodeConvertibleType> {
     
     var map: Map {
-        let toMap = toDnaTransformer.map
+        let toMap = toNodeTransformer.map
         return toMap
     }
     
-    public let fromDnaTransformer: FromDnaTransformer<InputDnaType, TransformedType>
-    public let toDnaTransformer: ToDnaTransformer<TransformedType, OutputDnaType>
+    public let fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>
+    public let toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>
     
-    public init(fromDnaTransformer: FromDnaTransformer<InputDnaType, TransformedType>, toDnaTransformer: ToDnaTransformer<TransformedType, OutputDnaType>) {
-        self.fromDnaTransformer = fromDnaTransformer
-        self.toDnaTransformer = toDnaTransformer
+    public init(fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>, toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>) {
+        self.fromNodeTransformer = fromNodeTransformer
+        self.toNodeTransformer = toNodeTransformer
     }
 }
 
 // MARK: Map Extensions
 
 public extension Map {
-    public func transformFromDna<DnaType: DnaConvertibleType, TransformedType>(transformer: DnaType throws -> TransformedType) -> FromDnaTransformer<DnaType, TransformedType> {
-        return FromDnaTransformer(map: self, transformer: transformer)
+    public func transformFromNode<NodeType: NodeConvertibleType, TransformedType>(transformer: NodeType throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
+        return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformFromDna<DnaType: DnaConvertibleType, TransformedType>(transformer: DnaType? throws -> TransformedType) -> FromDnaTransformer<DnaType, TransformedType> {
-        return FromDnaTransformer(map: self, transformer: transformer)
+    public func transformFromNode<NodeType: NodeConvertibleType, TransformedType>(transformer: NodeType? throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
+        return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformToDna<ValueType, DnaOutputType: DnaConvertibleType>(transformer: ValueType throws -> DnaOutputType) -> ToDnaTransformer<ValueType, DnaOutputType> {
-        return ToDnaTransformer(map: self, transformer: transformer)
+    public func transformToNode<ValueType, NodeOutputType: NodeConvertibleType>(transformer: ValueType throws -> NodeOutputType) -> ToNodeTransformer<ValueType, NodeOutputType> {
+        return ToNodeTransformer(map: self, transformer: transformer)
     }
 }
 
 // MARK: Operators
 
-public func <~> <T: DnaConvertibleType, DnaInputType>(inout lhs: T, rhs: FromDnaTransformer<DnaInputType, T>) throws {
+public func <~> <T: NodeConvertibleType, NodeInputType>(inout lhs: T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
-    case .FromDna:
+    case .FromNode:
         try lhs <~ rhs
-    case .ToDna:
+    case .ToNode:
         try lhs ~> rhs.map
     }
 }
 
-public func <~> <T: DnaConvertibleType, DnaOutputType: DnaConvertibleType>(inout lhs: T, rhs: ToDnaTransformer<T, DnaOutputType>) throws {
+public func <~> <T: NodeConvertibleType, NodeOutputType: NodeConvertibleType>(inout lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
     switch rhs.map.type {
-    case .FromDna:
+    case .FromNode:
         try lhs <~ rhs.map
-    case .ToDna:
+    case .ToNode:
         try lhs ~> rhs
     }
 }
 
-public func <~> <DnaInput, TransformedType, DnaOutput: DnaConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<DnaInput, TransformedType, DnaOutput>) throws {
+public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<NodeInput, TransformedType, NodeOutput>) throws {
     switch rhs.map.type {
-    case .FromDna:
-        try lhs <~ rhs.fromDnaTransformer
-    case .ToDna:
-        try lhs ~> rhs.toDnaTransformer
+    case .FromNode:
+        try lhs <~ rhs.fromNodeTransformer
+    case .ToNode:
+        try lhs ~> rhs.toNodeTransformer
     }
 }
 
-public func <~ <T, DnaInputType: DnaConvertibleType>(inout lhs: T, rhs: FromDnaTransformer<DnaInputType, T>) throws {
+public func <~ <T, NodeInputType: NodeConvertibleType>(inout lhs: T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
-    case .FromDna:
+    case .FromNode:
         try lhs = rhs.transformValue(rhs.map.result)
-    case .ToDna:
+    case .ToNode:
         break
     }
 }
 
-public func ~> <T, DnaOutputType: DnaConvertibleType>(lhs: T, rhs: ToDnaTransformer<T, DnaOutputType>) throws {
+public func ~> <T, NodeOutputType: NodeConvertibleType>(lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
     switch rhs.map.type {
-    case .FromDna:
+    case .FromNode:
         break
-    case .ToDna:
+    case .ToNode:
         let output = try rhs.transformValue(lhs)
         try rhs.map.setToLastKey(output)
     }

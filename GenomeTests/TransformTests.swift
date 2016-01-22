@@ -12,19 +12,19 @@ import XCTest
 
 class TransformTest: XCTestCase {
     
-    let testDna: Dna = [
+    let testNode: Node = [
         "hello" : "world"
     ]
     
     func test() {
-        let map = Map(dna: testDna)
+        let map = Map(node: testNode)
         var settableString: String? = nil
         try! settableString <~ map["hello"]
-            .transformFromDna({ self.stringToString($0) })
+            .transformFromNode({ self.stringToString($0) })
         XCTAssert(settableString == "modified: world")
         
         let nonOptionalString = ""
-        try! nonOptionalString ~> map["test"].transformToDna(optStringToString)
+        try! nonOptionalString ~> map["test"].transformToNode(optStringToString)
     }
     
     func stringToString(input: String) -> String {

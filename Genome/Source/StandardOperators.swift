@@ -7,224 +7,224 @@
 //  MIT
 //
 
-// MARK: ToDna
+// MARK: ToNode
 
-public func ~> <T : DnaConvertibleType>(reference: T!, map: Map) throws {
+public func ~> <T : NodeConvertibleType>(reference: T!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromDna:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: DnaConvertibleType>(reference: [T]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromDna:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: DnaConvertibleType>(reference: [[T]]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromDna:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: DnaConvertibleType>(reference: [String : T]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromDna:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: DnaConvertibleType>(reference: [String : [T]]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromDna:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T : DnaConvertibleType>(reference: Set<T>!, map: Map) throws {
+public func ~> <T : NodeConvertibleType>(reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromDna:
+    case .FromNode:
         break
     }
 }
 
-// MARK: FromDna
+// MARK: FromNode
 
 infix operator <~ {}
 
-public func <~ <T: DnaConvertibleType>(inout reference: T, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: T!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: T!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: T?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [T], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [T]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [T]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [[T]], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [[T]], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [String : T], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : T], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: Set<T>, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: Set<T>, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: DnaConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         break
-    case .FromDna:
+    case .FromNode:
         reference = try <~map
     }
 }
@@ -233,164 +233,164 @@ public func <~ <T: DnaConvertibleType>(inout reference: Set<T>?, map: Map) throw
 
 infix operator <~> {}
 
-public func <~> <T: DnaConvertibleType>(inout reference: T, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: T!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: T!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: T?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [T], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [T]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [T]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [[T]], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [[T]], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [String : T], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : T], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]], map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: Set<T>, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: Set<T>, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: DnaConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
-    case .ToDna:
+    case .ToNode:
         try reference ~> map
-    case .FromDna:
+    case .FromNode:
         try reference <~ map
     }
 }

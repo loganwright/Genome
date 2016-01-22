@@ -1,5 +1,5 @@
 //
-//  FromDnaOperatorTest.swift
+//  FromNodeOperatorTest.swift
 //  Genome
 //
 //  Created by Logan Wright on 9/22/15.
@@ -9,7 +9,7 @@
 import XCTest
 import Genome
 
-class FromDnaOperatorTest: XCTestCase {
+class FromNodeOperatorTest: XCTestCase {
     
     struct Person: MappableObject, Hashable {
         
@@ -42,58 +42,58 @@ class FromDnaOperatorTest: XCTestCase {
         
     }
     
-    let strings: Dna = [
+    let strings: Node = [
         "one",
         "two",
         "tre"
     ]
     
     let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeDna: Dna = [
+    let joeNode: Node = [
         "first_name" : "Joe",
         "last_name" : "Fish"
     ]
     
     let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeDna: Dna = [
+    let janeNode: Node = [
         "first_name" : "Jane",
         "last_name" : "Bear"
     ]
     
     let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinDna: Dna = [
+    let justinNode: Node = [
         "first_name" : "Justin",
         "last_name" : "Badger"
     ]
     
     let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philDna: Dna = [
+    let philNode: Node = [
         "first_name" : "Phil",
         "last_name" : "Viper"
     ]
     
-    lazy var dna: [String : Dna] = [
+    lazy var node: [String : Node] = [
         "string" : "pass",
         "int" : 272,
         "strings" : self.strings,
-        "person" : self.joeDna,
-        "people" : [self.joeDna, self.janeDna],
-        "duplicated_people" : [self.joeDna, self.joeDna, self.janeDna],
+        "person" : self.joeNode,
+        "people" : [self.joeNode, self.janeNode],
+        "duplicated_people" : [self.joeNode, self.joeNode, self.janeNode],
         "relationships" : [
-            "best_friend" : self.philDna,
-            "cousin" : self.justinDna
+            "best_friend" : self.philNode,
+            "cousin" : self.justinNode
         ],
         "groups" : [
-            "boys" : [self.joeDna, self.justinDna, self.philDna],
-            "girls" : [self.janeDna]
+            "boys" : [self.joeNode, self.justinNode, self.philNode],
+            "girls" : [self.janeNode]
         ],
         "ordered_groups" : [
-            [self.joeDna, self.justinDna, self.philDna],
-            [self.janeDna]
+            [self.joeNode, self.justinNode, self.philNode],
+            [self.janeNode]
         ]
     ]
     
-    lazy var map: Map = Map(dna: .ObjectValue(self.dna))
+    lazy var map: Map = Map(node: .ObjectValue(self.node))
     
     func testBasicTypes() {
         var string = ""
@@ -231,6 +231,6 @@ class FromDnaOperatorTest: XCTestCase {
 
 // MARK: Operators
 
-func ==(lhs: FromDnaOperatorTest.Person, rhs: FromDnaOperatorTest.Person) -> Bool {
+func ==(lhs: FromNodeOperatorTest.Person, rhs: FromNodeOperatorTest.Person) -> Bool {
     return lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName
 }
