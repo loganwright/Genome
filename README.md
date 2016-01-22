@@ -13,13 +13,13 @@ With the 2.0.0 release, there are some breaking syntax adjustments that you shou
 
 <h1 align="center">Genome 2.1.0</h1>
 
-With the 2.1.0 release, `Json` has been replaced with a file type independent `Dna` object. This positions the library to gain serializers and deserializers for various file types other than JSON. NSData support has been temporarily removed, as the dependency that provided it has been phased out. It will be re-added with the serialization and deserialization support. `NSJSONSerialization` can be used perform the conversion from `NSData` to `[String:AnyObject]` while serialization support is coming.
+With the 2.1.0 release, `Json` has been replaced with a file type independent `Node` object. This positions the library to gain serializers and deserializers for various file types other than JSON. NSData support has been temporarily removed, as the dependency that provided it has been phased out. It will be re-added with the serialization and deserialization support. `NSJSONSerialization` can be used perform the conversion from `NSData` to `[String:AnyObject]` while serialization support is coming.
 
 #### Pure
 
 Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out that it snuck into the `1.0.0` version.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  
 
-This means that going forward, we'll be using the new `Dna` type.  The new `Dna` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Dna = "HumanName"`.  When converting from data or a string, use `let dna = try Dna.deserialize(dnaData)`.  
+This means that going forward, we'll be using the new `Node` type.  The new `Node` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Node = "HumanName"`.  When converting from data or a string, use `let node = try Node.deserialize(nodeData)`.  
 
 There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'Cocoapods', '~> 1.0.0'`.
 
@@ -92,9 +92,9 @@ And execute `carthage update` to download and compile the framework.
 ### Table Of Contents
 
 * [Quick Start](#quick-start)
-* [Dna](#dna)
+* [Node](#node)
 * [Inheritance](#inheritance)
-* [DnaConvertibleType](#dnaconvertibletype)
+* [NodeConvertibleType](#nodeconvertibletype)
 * [Instantiation](#instantiation)
 * [Alamofire](#alamofire)
 * [Core Data](#core-data)
@@ -130,13 +130,13 @@ struct Pet : MappableObject {
         name = try map.extract("name")
         nickname = try map.extract("nickname")
         type = try map["type"]
-            .fromDna { PetType(rawValue: $0)! }
+            .fromNode { PetType(rawValue: $0)! }
     }
 
     func sequence(map: Map) throws {
         try name ~> map["name"]
         try type ~> map["type"]
-            .transformToDna { $0.rawValue }
+            .transformToNode { $0.rawValue }
         try nickname ~> map["nickname"]
     }
 }
@@ -144,7 +144,7 @@ struct Pet : MappableObject {
 
 ### `Map`
 
-This is the object that is used two encapsulate the `Dna` as well as a more global context which can represent any object you may want your sub operations to have access to.
+This is the object that is used two encapsulate the `Node` as well as a more global context which can represent any object you may want your sub operations to have access to.
 
 This has particular use in things like CoreData where a `NSManagedObjectContext` may be required.
 
@@ -159,42 +159,42 @@ It has two requirements
 This is the initializer you will use to map your object.  You may call this manually if you like, but if you use any of the built in convenience initializers, this will be called automatically.  Otherwise, if you need to initialize a `Map`, use:
 
 ```Swift
-let map = Map(dan: someDna, context: someContext)
+let map = Map(dan: someNode, context: someContext)
 ```
 
 It has two main requirements
 
 #### `sequence(map: Map) throws`
 
-The `sequence` function is called in two main situations. It is marked `mutating` because it will modify values on `fromDna` operations.  If however, you're only using sequence for `toDna`, nothing will be mutated and one can remove the `mutating` keyword. (as in the above example)
+The `sequence` function is called in two main situations. It is marked `mutating` because it will modify values on `fromNode` operations.  If however, you're only using sequence for `toNode`, nothing will be mutated and one can remove the `mutating` keyword. (as in the above example)
 
-`Note, if you're only mapping to Dna, nothing will be mutated.`
+`Note, if you're only mapping to Node, nothing will be mutated.`
 
-##### FromDna
+##### FromNode
 
-When mapping to Dna w/ any of the convenience initializer.  After instantiating the object, `sequence` will be called.  This allows objects that don't initialize constants or objects that use the two-way operator to complete their mapping.
+When mapping to Node w/ any of the convenience initializer.  After instantiating the object, `sequence` will be called.  This allows objects that don't initialize constants or objects that use the two-way operator to complete their mapping.
 
 > If you are initializing w/ `init(map: Map)` directly, you will be responsible for calling `sequence` manually if your object requires it.
 
 It is marked `mutating` because it will modify values.
 
-`Note, if you're only mapping to Dna, nothing will be mutated.`
+`Note, if you're only mapping to Node, nothing will be mutated.`
 
-##### ToDna
+##### ToNode
 
-When accessing an objects `dnaRepresentation()`, the sequence operation will be called to collect the values into a `Dna` package.
+When accessing an objects `nodeRepresentation()`, the sequence operation will be called to collect the values into a `Node` package.
 
 ### `~>`
 
-This is one of the main operations used in this library.  The `~` symbolizes a connection, and the `<` and `>` respectively symbol a flow of value.  When declared as `~>` it symbolizes that mapping only happens from value, to Dna.
+This is one of the main operations used in this library.  The `~` symbolizes a connection, and the `<` and `>` respectively symbol a flow of value.  When declared as `~>` it symbolizes that mapping only happens from value, to Node.
 
 You could also use the following:
 
 | Operator | Directions | Example | Mutates |
 |:---:|:---:|:---:|:---:|
-|`<~>`| To and From Dna | `try name <~> map["name"]` | ✓ |
-|`~>`| To Dna Only | `try clientId ~> map["client_id"]` | 𝘅 |
-|`<~`| From Dna Only | `try updatedAt <~ map["updated_at"]` | ✓ |
+|`<~>`| To and From Node | `try name <~> map["name"]` | ✓ |
+|`~>`| To Node Only | `try clientId ~> map["client_id"]` | 𝘅 |
+|`<~`| From Node Only | `try updatedAt <~ map["updated_at"]` | ✓ |
 
 ### `transform`
 
@@ -204,25 +204,25 @@ These are chainable, like the following:
 
 ```Swift
 try type <~> map["type"]
-    .transformFromDna {
+    .transformFromNode {
         return PetType(rawValue: $0)
     }
-    .transformToDna {
+    .transformToNode {
         return $0.rawValue
     }
 ```
 
 >Note: At the moment, transforms require absolute optionality conformance in some situations. ie, Optionals get Optionals, ImplicitlyUnwrappedOptionals get ImplicitlyUnwrappedOptionals, etc.
 
-#### `fromDna`
+#### `fromNode`
 
-When using `let` constants, you will need to call a transformer that sets the value instantly.  In this case, you will call `fromDna` and pass any closure that takes a `DnaConvertibleType` (a standard Dna type) and returns a value.
+When using `let` constants, you will need to call a transformer that sets the value instantly.  In this case, you will call `fromNode` and pass any closure that takes a `NodeConvertibleType` (a standard Node type) and returns a value.
 
-#### `transformFromDna`
+#### `transformFromNode`
 
-Use this if you need to transform the dna input to accomodate your type.  In our example above, we need to convert the raw dna to our associated enum.  This can also be appended to mappings for the `<~` operator.
+Use this if you need to transform the node input to accomodate your type.  In our example above, we need to convert the raw node to our associated enum.  This can also be appended to mappings for the `<~` operator.
 
-#### `transformToDna`
+#### `transformToNode`
 
 Use this if you need to transform the given value to something more suitable for data.  This can also be appended to mappings for the `~>` operator.
 
@@ -230,13 +230,13 @@ Use this if you need to transform the given value to something more suitable for
 
 Why is the `try` keyword on every line!  Every mapping operation is failable if not properly specified.  It's better to deal with these possibilities, head first.  
 
-For example, if the property being set is non-optional, and `nil` is found in the `Dna`, the operation should throw an error that can be easily caught.
+For example, if the property being set is non-optional, and `nil` is found in the `Node`, the operation should throw an error that can be easily caught.
 
 # More Concepts
 
 Some of the different functionality available in Genome
 
-The way that Genome is constructed, you should never have to deal w/ `Dna` beyond deserializing and serializing for your web services.  It can still be used directly if desired.
+The way that Genome is constructed, you should never have to deal w/ `Node` beyond deserializing and serializing for your web services.  It can still be used directly if desired.
 
 ## Inheritance
 
@@ -260,8 +260,8 @@ If you're using a custom class, you'll need to add some additional functions.  H
 class CustomBase : MappableBase {
     required init() {}
 
-    static func newInstance(dna: Dna, context: Context) throws -> Self {
-        let map = Map(dna: dna, context: context)
+    static func newInstance(node: Node, context: Context) throws -> Self {
+        let map = Map(node: node, context: context)
         let new = self.init()
         try new.sequence(map)
         return new
@@ -286,18 +286,18 @@ In order to support flexible customization, Genome provides various mapping opti
 
 These are all just convenience protocols, and ultimately all derive from `MappableBase`.  If you wish to define your own implementation, the rest of the library's functionality will still apply.
 
-### `DnaConvertibleType`
+### `NodeConvertibleType`
 
 This is the true root of the library.  Even `MappableBase` mentioned above inherits from this core type.  It has two requirements:
 
 ```Swift
-public protocol DnaConvertibleType {
-    static func newInstance(dna: Dna, context: Context) throws -> Self
-    func dnaRepresentation() throws -> Dna
+public protocol NodeConvertibleType {
+    static func newInstance(node: Node, context: Context) throws -> Self
+    func nodeRepresentation() throws -> Node
 }
 ```
 
-All Dna basic types such as `Int`, `String`, etc. conform to this protocol which allows ultimate flexibility in defining the library.  It also paves the way to much fewer overloads going forward when collections of `DnaConvertibleType` can also conform to it.
+All Node basic types such as `Int`, `String`, etc. conform to this protocol which allows ultimate flexibility in defining the library.  It also paves the way to much fewer overloads going forward when collections of `NodeConvertibleType` can also conform to it.
 
 > This can be used as a supplement to `transform` types mentioned above.  If an object conforms to this protocol, it will be immediately useable within the library.
 
@@ -306,14 +306,14 @@ All Dna basic types such as `Int`, `String`, etc. conform to this protocol which
 If you are using the standard instantiation scheme established in the library, you will likely initialize with this function.
 
 ```Swift
-public init(dna: Dna, context: Context = EmptyDna) throws
+public init(node: Node, context: Context = EmptyNode) throws
 ```
 
 Now we can easily create an object safely:
 
 ```Swift
 do {
-    let rover = try Pet(dna: dna_rover)
+    let rover = try Pet(node: node_rover)
     print(rover)
 } catch {
     print(error)
@@ -323,7 +323,7 @@ do {
 If all we care about is whether or not we were able to create an object, we can also do the following:
 
 ```Swift
-let rover = try? Pet(dna: dna_rover)
+let rover = try? Pet(node: node_rover)
 print(rover) // Rover is type: `Pet?`
 ```
 
@@ -336,9 +336,9 @@ print(rover) // Rover is type: `Pet?`
 If you're using `Foundation`, you can also use the following initialization:
 
 ```Swift
-public init(dna: AnyObject, context: [String : AnyObject] = [:]) throws
+public init(node: AnyObject, context: [String : AnyObject] = [:]) throws
 
-public init(dna: [String : AnyObject], context: [String : AnyObject] = [:]) throws
+public init(node: [String : AnyObject], context: [String : AnyObject] = [:]) throws
 ```
 
 ### CollectionTypes
@@ -346,16 +346,16 @@ public init(dna: [String : AnyObject], context: [String : AnyObject] = [:]) thro
 You can instantiate collections directly w/o mapping as well:
 
 ```Swift
-let people = try [People](dna: someDna)
+let people = try [People](node: someNode)
 ```
 
 ### Class Level Instantiation
 
 See Core Data
 
-### `mappedInstance(dna: Dna)`
+### `mappedInstance(node: Node)`
 
-This is the function that should be used to initialize new mapped objects for a given dna.
+This is the function that should be used to initialize new mapped objects for a given node.
 
 ### Playground
 
@@ -383,7 +383,7 @@ struct NasaPhoto : BasicMappable {
         try explanation <~ map["explanation"]
         try concepts <~ map["concepts"]
         try imageUrl <~ map["url"]
-            .transformFromDna {
+            .transformFromNode {
                 return NSURL(string: $0)
             }
     }
@@ -402,7 +402,7 @@ struct Nasa {
                 switch response.result {
                 case .Success(let value):
                     do {
-                        let photo = try NasaPhoto(dna: value)
+                        let photo = try NasaPhoto(node: value)
                         completion(.Success(photo))
                     } catch {
                         completion(.Failure(error))
@@ -449,14 +449,14 @@ extension NSManagedObject : MappableBase {
         fatalError("Sequence must be overwritten")
     }
 
-    public class func newInstance(dna: Dna, context: Context) throws -> Self {
-        return try newInstance(dna, context: context, type: self)
+    public class func newInstance(node: Node, context: Context) throws -> Self {
+        return try newInstance(node, context: context, type: self)
     }
 
-    public class func newInstance<T: NSManagedObject>(dna: Dna, context: Context, type: T.Type) throws -> T {
+    public class func newInstance<T: NSManagedObject>(node: Node, context: Context, type: T.Type) throws -> T {
         let context = context as! NSManagedObjectContext
         let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
-        let map = Map(dna: Dna, context: context)
+        let map = Map(node: Node, context: context)
         try new.sequence(map)
         return new
     }
