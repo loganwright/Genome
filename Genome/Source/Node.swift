@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
-public enum Dna: CustomStringConvertible, CustomDebugStringConvertible, Equatable {
+public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatable {
     
     case NullValue
     case BooleanValue(Bool)
     case NumberValue(Double)
     case StringValue(String)
-    case ArrayValue([Dna])
-    case ObjectValue([String:Dna])
+    case ArrayValue([Node])
+    case ObjectValue([String:Node])
     
     // MARK: Initialization
     
@@ -29,40 +29,40 @@ public enum Dna: CustomStringConvertible, CustomDebugStringConvertible, Equatabl
         self = .StringValue(value)
     }
     
-    public init(_ value: [Dna]) {
+    public init(_ value: [Node]) {
         self = .ArrayValue(value)
     }
     
-    public init(_ value: [String : Dna]) {
+    public init(_ value: [String : Node]) {
         self = .ObjectValue(value)
     }
     
     // MARK: From
     
-    public static func from(value: Bool) -> Dna {
+    public static func from(value: Bool) -> Node {
         return .BooleanValue(value)
     }
     
-    public static func from(value: Double) -> Dna {
+    public static func from(value: Double) -> Node {
         return .NumberValue(value)
     }
     
-    public static func from(value: String) -> Dna {
+    public static func from(value: String) -> Node {
         return .StringValue(value)
     }
     
-    public static func from(value: [Dna]) -> Dna {
+    public static func from(value: [Node]) -> Node {
         return .ArrayValue(value)
     }
     
-    public static func from(value: [String : Dna]) -> Dna {
+    public static func from(value: [String : Node]) -> Node {
         return .ObjectValue(value)
     }
 }
 
 // MARK: Convenience
 
-extension Dna {
+extension Node {
     public var isNull: Bool {
         guard case .NullValue = self else { return false }
         return true
@@ -116,25 +116,25 @@ extension Dna {
         return string
     }
     
-    public var arrayValue: [Dna]? {
+    public var arrayValue: [Node]? {
         guard case let .ArrayValue(array) = self else { return nil }
         return array
     }
     
-    public var objectValue: [String : Dna]? {
+    public var objectValue: [String : Node]? {
         guard case let .ObjectValue(object) = self else { return nil }
         return object
     }
 }
 
-extension Dna {
-    public subscript(index: Int) -> Dna? {
+extension Node {
+    public subscript(index: Int) -> Node? {
         assert(index >= 0)
         guard let array = arrayValue where index < array.count else { return nil }
         return array[index]
     }
     
-    public subscript(key: String) -> Dna? {
+    public subscript(key: String) -> Node? {
         get {
             guard let dict = objectValue else { return nil }
             return dict[key]
@@ -148,7 +148,7 @@ extension Dna {
     }
 }
 
-extension Dna {
+extension Node {
     public var description: String {
         switch self {
         case .NullValue:
@@ -184,7 +184,7 @@ extension Dna {
     }
 }
 
-public func ==(lhs: Dna, rhs: Dna) -> Bool {
+public func ==(lhs: Node, rhs: Node) -> Bool {
     switch lhs {
     case .NullValue:
         return rhs.isNull
@@ -208,31 +208,31 @@ public func ==(lhs: Dna, rhs: Dna) -> Bool {
 
 // MARK: Literal Convertibles
 
-extension Dna: NilLiteralConvertible {
+extension Node: NilLiteralConvertible {
     public init(nilLiteral value: Void) {
         self = .NullValue
     }
 }
 
-extension Dna: BooleanLiteralConvertible {
+extension Node: BooleanLiteralConvertible {
     public init(booleanLiteral value: BooleanLiteralType) {
         self = .BooleanValue(value)
     }
 }
 
-extension Dna: IntegerLiteralConvertible {
+extension Node: IntegerLiteralConvertible {
     public init(integerLiteral value: IntegerLiteralType) {
         self = .NumberValue(Double(value))
     }
 }
 
-extension Dna: FloatLiteralConvertible {
+extension Node: FloatLiteralConvertible {
     public init(floatLiteral value: FloatLiteralType) {
         self = .NumberValue(Double(value))
     }
 }
 
-extension Dna: StringLiteralConvertible {
+extension Node: StringLiteralConvertible {
     public typealias UnicodeScalarLiteralType = String
     public typealias ExtendedGraphemeClusterLiteralType = String
     
@@ -249,15 +249,15 @@ extension Dna: StringLiteralConvertible {
     }
 }
 
-extension Dna: ArrayLiteralConvertible {
-    public init(arrayLiteral elements: Dna...) {
+extension Node: ArrayLiteralConvertible {
+    public init(arrayLiteral elements: Node...) {
         self = .ArrayValue(elements)
     }
 }
 
-extension Dna: DictionaryLiteralConvertible {
-    public init(dictionaryLiteral elements: (String, Dna)...) {
-        var object = [String : Dna](minimumCapacity: elements.count)
+extension Node: DictionaryLiteralConvertible {
+    public init(dictionaryLiteral elements: (String, Node)...) {
+        var object = [String : Node](minimumCapacity: elements.count)
         elements.forEach { key, value in
             object[key] = value
         }

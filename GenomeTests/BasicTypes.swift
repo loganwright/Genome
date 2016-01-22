@@ -13,7 +13,7 @@ import Foundation
 
 class BasicTypeTexts: XCTestCase {
 
-    let BasicTestDna: [String : Dna] = [
+    let BasicTestNode: [String : Node] = [
         "int" : .from(1),
         "float" : .from(1.5),
         "double" : .from(2.5),
@@ -41,7 +41,7 @@ class BasicTypeTexts: XCTestCase {
         }
     }
     
-    let BasicArraysTestDna: [String : Dna] = [
+    let BasicArraysTestNode: [String : Node] = [
         "ints" : .from([1]),
         "floats" : .from([1.5]),
         "doubles" : .from([2.5]),
@@ -70,19 +70,19 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic(dna: .ObjectValue(BasicTestDna))
+        let basic = try! Basic(node: .ObjectValue(BasicTestNode))
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let dna = try! basic.dnaRepresentation()
-        let int = dna["int"]!.intValue!
-        let float = dna["float"]!.floatValue!
-        let double = dna["double"]!.doubleValue!
-        let bool = dna["bool"]!.boolValue!
-        let string = dna["string"]!.stringValue!
+        let node = try! basic.nodeRepresentation()
+        let int = node["int"]!.intValue!
+        let float = node["float"]!.floatValue!
+        let double = node["double"]!.doubleValue!
+        let bool = node["bool"]!.boolValue!
+        let string = node["string"]!.stringValue!
         XCTAssert(int == 1)
         XCTAssert(float == 1.5)
         XCTAssert(double == 2.5)
@@ -91,19 +91,19 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() {
-        let basic = try! BasicArrays(dna: .ObjectValue(BasicArraysTestDna))
+        let basic = try! BasicArrays(node: .ObjectValue(BasicArraysTestNode))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let dna = try! basic.dnaRepresentation()
-        let ints = dna["ints"]!.arrayValue!.flatMap { $0.intValue }
-        let floats = dna["floats"]!.arrayValue!.flatMap { $0.floatValue }
-        let doubles = dna["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
-        let bools = dna["bools"]!.arrayValue!.flatMap { $0.boolValue }
-        let strings = dna["strings"]!.arrayValue!.flatMap { $0.stringValue }
+        let node = try! basic.nodeRepresentation()
+        let ints = node["ints"]!.arrayValue!.flatMap { $0.intValue }
+        let floats = node["floats"]!.arrayValue!.flatMap { $0.floatValue }
+        let doubles = node["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
+        let bools = node["bools"]!.arrayValue!.flatMap { $0.boolValue }
+        let strings = node["strings"]!.arrayValue!.flatMap { $0.stringValue }
         XCTAssert(ints == [1])
         XCTAssert(floats == [1.5])
         XCTAssert(doubles == [2.5])

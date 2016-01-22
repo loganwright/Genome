@@ -12,7 +12,7 @@ import XCTest
 
 // MARK: Side Load Tests 
 
-let SideLoadTestDna: Dna = [
+let SideLoadTestNode: Node = [
     "people" : [
         [
             "name" : "A",
@@ -67,8 +67,8 @@ struct Person : BasicMappable {
         try name <~> map["name"]
         
         try birthday <~> map["birthday"]
-            .transformFromDna(NSDate.dateWithBirthdayString)
-            .transformToDna(NSDate.birthdayStringWithDate)
+            .transformFromNode(NSDate.dateWithBirthdayString)
+            .transformToNode(NSDate.birthdayStringWithDate)
         
         try favoriteFoodIds <~> map["favorite_food_ids"]
     }
@@ -123,14 +123,14 @@ extension Person : CustomStringConvertible {
 class GenomeSideLoadTests: XCTestCase {
     
     func testSideLoad() {
-        let dnaArrayOfPeople = SideLoadTestDna["people"]!
-        let single: Person! = try! Person(dna: dnaArrayOfPeople.arrayValue!.first!)
+        let nodeArrayOfPeople = SideLoadTestNode["people"]!
+        let single: Person! = try! Person(node: nodeArrayOfPeople.arrayValue!.first!)
         XCTAssert(single != nil)
         
-        let allFoods = try! [Food](dna: SideLoadTestDna["foods"]!, context: SideLoadTestDna)
+        let allFoods = try! [Food](node: SideLoadTestNode["foods"]!, context: SideLoadTestNode)
         XCTAssert(allFoods.count == 4)
 
-        var peeps: [Person] = try! [Person](dna: dnaArrayOfPeople, context: SideLoadTestDna)
+        var peeps: [Person] = try! [Person](node: nodeArrayOfPeople, context: SideLoadTestNode)
         peeps = peeps.map { (var person) -> Person in person.associateFavoriteFoods(allFoods); return person }
         XCTAssert(peeps.count == 2)
         
@@ -141,31 +141,31 @@ class GenomeSideLoadTests: XCTestCase {
         XCTAssert(a.favoriteFoods.count == 3)
         XCTAssert(allFoods.containsAll(a.favoriteFoods))
         
-        // Assert Dna
+        // Assert Node
         
-        let dna = try! peeps.first!.dnaRepresentation()
-        print("Write dna tests \(dna)")
-        let peepsDna = try! peeps.dnaRepresentation()
-        print("Peeps: \(peepsDna)")
+        let node = try! peeps.first!.nodeRepresentation()
+        print("Write node tests \(node)")
+        let peepsNode = try! peeps.nodeRepresentation()
+        print("Peeps: \(peepsNode)")
         
         let m = Map()
         try! peeps <~> m
-        print("mdna: \(m.toDna)")
+        print("mnode: \(m.toNode)")
     }
     
 }
 
 // MARK: Standard Operator Tests
 
-let Ints: Dna = [1,2,3,4,5]
-let StandardOperatorDna: Dna = [
+let Ints: Node = [1,2,3,4,5]
+let StandardOperatorNode: Node = [
     "ints" : Ints
 ]
 
 class StandardOperatorTests: XCTestCase {
     
     func testSideLoad() {
-        let map = Map(dna: StandardOperatorDna)
+        let map = Map(node: StandardOperatorNode)
         var ints: [Int] = []
         try! ints <~> map["ints"]
         XCTAssert(ints == Ints.arrayValue!.flatMap { $0.intValue })
