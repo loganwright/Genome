@@ -211,21 +211,9 @@
 		8003F2AA1C489586000ADD91 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */,
-				8003F2AC1C489586000ADD91 /* Errors.swift */,
-				8003F2AD1C489586000ADD91 /* Foundation */,
-				8003F2AF1C489586000ADD91 /* Node+KeyPaths.swift */,
-				8003F2B01C489586000ADD91 /* NodeConvertibleType.swift */,
-				8003F2B11C489586000ADD91 /* NodeRepresentation.swift */,
-				8003F2B21C489586000ADD91 /* KeyType.swift */,
-				8003F2B31C489586000ADD91 /* Logging.swift */,
-				8003F2B41C489586000ADD91 /* Map.swift */,
-				8003F2B51C489586000ADD91 /* MappableObject.swift */,
-				8003F2B61C489586000ADD91 /* SettableOperator.swift */,
-				8003F2B71C489586000ADD91 /* StandardOperators.swift */,
-				8003F2B81C489586000ADD91 /* Transformers.swift */,
-				EA02CED91C511C9B002718AB /* Node.swift */,
-				EA02CEDF1C512139002718AB /* Node+Foundation.swift */,
+				EAA887851C530C3E00DC11CA /* Utility */,
+				EAA887841C530BF500DC11CA /* Mapping */,
+				EAA887871C530F6A00DC11CA /* Data Representation */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -302,6 +290,42 @@
 				4229C5D50AD5F6C550EF2B8C /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EAA887841C530BF500DC11CA /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				8003F2AB1C489586000ADD91 /* CollectionInitializers.swift */,
+				8003F2AF1C489586000ADD91 /* Node+KeyPaths.swift */,
+				8003F2B01C489586000ADD91 /* NodeConvertibleType.swift */,
+				8003F2B11C489586000ADD91 /* NodeRepresentation.swift */,
+				8003F2B21C489586000ADD91 /* KeyType.swift */,
+				8003F2B41C489586000ADD91 /* Map.swift */,
+				8003F2B51C489586000ADD91 /* MappableObject.swift */,
+				8003F2B61C489586000ADD91 /* SettableOperator.swift */,
+				8003F2B71C489586000ADD91 /* StandardOperators.swift */,
+				8003F2B81C489586000ADD91 /* Transformers.swift */,
+				8003F2AD1C489586000ADD91 /* Foundation */,
+			);
+			name = Mapping;
+			sourceTree = "<group>";
+		};
+		EAA887851C530C3E00DC11CA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8003F2AC1C489586000ADD91 /* Errors.swift */,
+				8003F2B31C489586000ADD91 /* Logging.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		EAA887871C530F6A00DC11CA /* Data Representation */ = {
+			isa = PBXGroup;
+			children = (
+				EA02CED91C511C9B002718AB /* Node.swift */,
+				EA02CEDF1C512139002718AB /* Node+Foundation.swift */,
+			);
+			name = "Data Representation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
