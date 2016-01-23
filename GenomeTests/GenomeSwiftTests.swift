@@ -7,13 +7,12 @@
 //
 
 import XCTest
-import PureJsonSerializer
 
 @testable import Genome
 
 // MARK: Side Load Tests 
 
-let SideLoadTestJson: Json = [
+let SideLoadTestNode: Node = [
     "people" : [
         [
             "name" : "A",
@@ -68,8 +67,8 @@ struct Person : BasicMappable {
         try name <~> map["name"]
         
         try birthday <~> map["birthday"]
-            .transformFromJson(NSDate.dateWithBirthdayString)
-            .transformToJson(NSDate.birthdayStringWithDate)
+            .transformFromNode(NSDate.dateWithBirthdayString)
+            .transformToNode(NSDate.birthdayStringWithDate)
         
         try favoriteFoodIds <~> map["favorite_food_ids"]
     }
@@ -124,14 +123,14 @@ extension Person : CustomStringConvertible {
 class GenomeSideLoadTests: XCTestCase {
     
     func testSideLoad() {
-        let jsonArrayOfPeople = SideLoadTestJson["people"]!
-        let single: Person! = try! Person(js: jsonArrayOfPeople.arrayValue!.first!)
+        let nodeArrayOfPeople = SideLoadTestNode["people"]!
+        let single: Person! = try! Person(node: nodeArrayOfPeople.arrayValue!.first!)
         XCTAssert(single != nil)
         
-        let allFoods = try! [Food](js: SideLoadTestJson["foods"]!, context: SideLoadTestJson)
+        let allFoods = try! [Food](node: SideLoadTestNode["foods"]!, context: SideLoadTestNode)
         XCTAssert(allFoods.count == 4)
 
-        var peeps: [Person] = try! [Person](js: jsonArrayOfPeople, context: SideLoadTestJson)
+        var peeps: [Person] = try! [Person](node: nodeArrayOfPeople, context: SideLoadTestNode)
         peeps = peeps.map { (var person) -> Person in person.associateFavoriteFoods(allFoods); return person }
         XCTAssert(peeps.count == 2)
         
@@ -142,31 +141,31 @@ class GenomeSideLoadTests: XCTestCase {
         XCTAssert(a.favoriteFoods.count == 3)
         XCTAssert(allFoods.containsAll(a.favoriteFoods))
         
-        // Assert Json
+        // Assert Node
         
-        let json = try! peeps.first!.jsonRepresentation()
-        print("Write json tests \(json)")
-        let peepsJson = try! peeps.jsonRepresentation()
-        print("Peeps: \(peepsJson)")
+        let node = try! peeps.first!.nodeRepresentation()
+        print("Write node tests \(node)")
+        let peepsNode = try! peeps.nodeRepresentation()
+        print("Peeps: \(peepsNode)")
         
         let m = Map()
         try! peeps <~> m
-        print("mjs: \(m.toJson)")
+        print("mnode: \(m.toNode)")
     }
     
 }
 
 // MARK: Standard Operator Tests
 
-let Ints: Json = [1,2,3,4,5]
-let StandardOperatorJson: Json = [
+let Ints: Node = [1,2,3,4,5]
+let StandardOperatorNode: Node = [
     "ints" : Ints
 ]
 
 class StandardOperatorTests: XCTestCase {
     
     func testSideLoad() {
-        let map = Map(json: StandardOperatorJson)
+        let map = Map(node: StandardOperatorNode)
         var ints: [Int] = []
         try! ints <~> map["ints"]
         XCTAssert(ints == Ints.arrayValue!.flatMap { $0.intValue })

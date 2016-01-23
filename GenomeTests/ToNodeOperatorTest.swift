@@ -1,5 +1,5 @@
 //
-//  ToJsonOperatorTest.swift
+//  ToNodeOperatorTest.swift
 //  Genome
 //
 //  Created by Logan Wright on 9/23/15.
@@ -7,11 +7,10 @@
 //
 
 import XCTest
-import PureJsonSerializer
 
 @testable import Genome
 
-class ToJsonOperatorTest: XCTestCase {
+class ToNodeOperatorTest: XCTestCase {
     
     struct Employee: BasicMappable, Hashable {
         
@@ -114,44 +113,44 @@ class ToJsonOperatorTest: XCTestCase {
         }
     }
     
-    let locations: Json = [
+    let locations: Node = [
         "123 Street",
         "456 Road"
     ]
     
-    let employees: Json = [
+    let employees: Node = [
         ["name" : "Joe"],
         ["name" : "Jane"],
         ["name" : "Joe"],
         ["name" : "Justin"]
     ]
     
-    let employeesArray: Json = [
+    let employeesArray: Node = [
         [["name" : "Joe"], ["name" : "Jane"]],
         [["name" : "Joe"], ["name" : "Justin"]]
     ]
     
-    let employeesDictionary: Json = [
+    let employeesDictionary: Node = [
         "0" : ["name" : "Joe"],
         "1" : ["name" : "Jane"]
     ]
     
-    let employeesDictionaryArray: Json = [
+    let employeesDictionaryArray: Node = [
         "0" : [["name" : "Joe"], ["name" : "Phil"]],
         "1" : [["name" : "Jane"]]
     ]
     
-    let employeesSet: Json = [
+    let employeesSet: Node = [
         ["name" : "Joe"],
         ["name" : "Jane"],
         ["name" : "Justin"]
     ]
     
-    let owner: Json = [
+    let owner: Node = [
         "name" : "Owner"
     ]
     
-    lazy var businessJson: Json = [
+    lazy var businessNode: Node = [
         "owner" : self.owner,
         "name" : "Good Business",
         "founded_in" : 1987,
@@ -163,69 +162,69 @@ class ToJsonOperatorTest: XCTestCase {
         "employeesSet" : self.employeesSet
     ]
     
-    lazy var goodBusiness: Business = try! Business(js: self.businessJson)
+    lazy var goodBusiness: Business = try! Business(node: self.businessNode)
     
     func test() {
-        let json = try! goodBusiness.jsonRepresentation()
+        let node = try! goodBusiness.nodeRepresentation()
         
         // Basic type
-        let name = json["name"]!.stringValue!
+        let name = node["name"]!.stringValue!
         XCTAssert(name == "Good Business")
-        let foundedYear = json["foundedYear"]!.intValue
+        let foundedYear = node["foundedYear"]!.intValue
         XCTAssert(foundedYear == 1987)
         
         // Basic type array
-        let locations = json["locations"]!
+        let locations = node["locations"]!
         XCTAssert(locations == self.locations)
-        let locationsOptional = json["locationsOptional"]
+        let locationsOptional = node["locationsOptional"]
         XCTAssert(locationsOptional == self.locations)
         
         // Mappable
-        let owner = json["owner"]!
+        let owner = node["owner"]!
         XCTAssert(owner == self.owner)
-        let ownerOptional = json["ownerOptional"]
+        let ownerOptional = node["ownerOptional"]
         XCTAssert(ownerOptional == self.owner)
         
         // Mappable array
-        let employees = json["employees"]!
+        let employees = node["employees"]!
         XCTAssert(employees == self.employees)
-        let employeesOptional = json["employeesOptional"]
+        let employeesOptional = node["employeesOptional"]
         XCTAssert(employeesOptional == self.employees)
         
         // Mappable array of arrays
-        let employeesArray = json["employeesArray"]!
+        let employeesArray = node["employeesArray"]!
         XCTAssert(employeesArray[0] == self.employeesArray[0])
         XCTAssert(employeesArray[1] == self.employeesArray[1])
-        let employeesOptionalArray = json["employeesOptionalArray"]
+        let employeesOptionalArray = node["employeesOptionalArray"]
         XCTAssert(employeesOptionalArray![0]! == self.employeesArray[0])
         XCTAssert(employeesOptionalArray![1]! == self.employeesArray[1])
         
         // Mappable dictionary
-        let employeesDictionary = json["employeesDictionary"]!
+        let employeesDictionary = node["employeesDictionary"]!
         XCTAssert(employeesDictionary["0"]! == self.employeesDictionary["0"]!)
         XCTAssert(employeesDictionary["1"]! == self.employeesDictionary["1"]!)
-        let employeesOptionalDictionary = json["employeesOptionalDictionary"]
+        let employeesOptionalDictionary = node["employeesOptionalDictionary"]
         XCTAssert(employeesOptionalDictionary!["0"]! == self.employeesDictionary["0"]!)
         XCTAssert(employeesOptionalDictionary!["1"]! == self.employeesDictionary["1"]!)
         
         // Mappable dictionary array
-        let employeesDictionaryArray = json["employeesDictionaryArray"]!
+        let employeesDictionaryArray = node["employeesDictionaryArray"]!
         XCTAssert(employeesDictionaryArray["0"]! == self.employeesDictionaryArray["0"]!)
         XCTAssert(employeesDictionaryArray["1"]! == self.employeesDictionaryArray["1"]!)
-        let employeesOptionalDictionaryArray = json["employeesOptionalDictionaryArray"]
+        let employeesOptionalDictionaryArray = node["employeesOptionalDictionaryArray"]
         XCTAssert(employeesOptionalDictionaryArray!["0"]! == self.employeesDictionaryArray["0"]!)
         XCTAssert(employeesOptionalDictionaryArray!["1"]! == self.employeesDictionaryArray["1"]!)
         
         // Mappable set
-        let employeesSet = json["employeesSet"]!
+        let employeesSet = node["employeesSet"]!
         XCTAssert(employeesSet == self.employeesSet)
-        let employeesOptionalSet = json["employeesOptionalSet"]
+        let employeesOptionalSet = node["employeesOptionalSet"]
         XCTAssert(employeesOptionalSet == self.employeesSet)
         
         // Nil
-        let optionalNil = json["optionalNil"]
+        let optionalNil = node["optionalNil"]
         XCTAssert(optionalNil == nil)
-        let optionalNotNil = json["optionalNotNil"]
+        let optionalNotNil = node["optionalNotNil"]
         XCTAssert(optionalNotNil != nil)
     }
     
@@ -233,6 +232,6 @@ class ToJsonOperatorTest: XCTestCase {
 
 // MARK: Operators
 
-func ==(lhs: ToJsonOperatorTest.Employee, rhs: ToJsonOperatorTest.Employee) -> Bool {
+func ==(lhs: ToNodeOperatorTest.Employee, rhs: ToNodeOperatorTest.Employee) -> Bool {
     return lhs.name == rhs.name
 }

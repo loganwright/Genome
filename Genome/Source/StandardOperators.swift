@@ -7,224 +7,224 @@
 //  MIT
 //
 
-// MARK: ToJson
+// MARK: ToNode
 
-public func ~> <T : JsonConvertibleType>(reference: T!, map: Map) throws {
+public func ~> <T : NodeConvertibleType>(reference: T!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [T]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [[T]]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [String : T]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T: JsonConvertibleType>(reference: [String : [T]]!, map: Map) throws {
+public func ~> <T: NodeConvertibleType>(reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromNode:
         break
     }
 }
 
-public func ~> <T : JsonConvertibleType>(reference: Set<T>!, map: Map) throws {
+public func ~> <T : NodeConvertibleType>(reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try map.setToLastKey(reference)
-    case .FromJson:
+    case .FromNode:
         break
     }
 }
 
-// MARK: FromJson
+// MARK: FromNode
 
 infix operator <~ {}
 
-public func <~ <T: JsonConvertibleType>(inout reference: T, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: T!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: T!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: T?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [T], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [T]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [T]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [[T]], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [[T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : T], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: Set<T>, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: Set<T>, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
 
-public func <~ <T: JsonConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+public func <~ <T: NodeConvertibleType>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         break
-    case .FromJson:
+    case .FromNode:
         reference = try <~map
     }
 }
@@ -233,164 +233,164 @@ public func <~ <T: JsonConvertibleType>(inout reference: Set<T>?, map: Map) thro
 
 infix operator <~> {}
 
-public func <~> <T: JsonConvertibleType>(inout reference: T, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: T, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: T!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: T!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: T?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: T?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [T], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [T]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [T]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [[T]], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [[T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [[T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [[T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : T], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : T], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : T]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : T]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]], map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: Set<T>, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: Set<T>, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: Set<T>!, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }
 
-public func <~> <T: JsonConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+public func <~> <T: NodeConvertibleType>(inout reference: Set<T>?, map: Map) throws {
     switch map.type {
-    case .ToJson:
+    case .ToNode:
         try reference ~> map
-    case .FromJson:
+    case .FromNode:
         try reference <~ map
     }
 }

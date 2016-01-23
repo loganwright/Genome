@@ -7,11 +7,9 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
-public enum JsonConvertibleError : ErrorType {
+public enum NodeConvertibleError : ErrorType {
     case UnsupportedType(String)
-    case UnableToConvert(json: Json, toType: String)
+    case UnableToConvert(node: Node, toType: String)
 }
 
 public enum MappingError : ErrorType {
@@ -29,6 +27,6 @@ public enum TransformationError : ErrorType {
 }
 
 public enum RawConversionError : ErrorType {
-    case UnableToConvertToJson
-    case UnableToConvertFromJson(raw: Any, ofType: String, expected: String)
+    case UnableToConvertToNode
+    case UnableToConvertFromNode(raw: Any, ofType: String, expected: String)
 }

@@ -7,11 +7,9 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
 // MARK: Map
 
-/// This class is designed to serve as an adaptor between the raw json and the values.  In this way we can interject behavior that assists in mapping between the two.
+/// This class is designed to serve as an adaptor between the raw node and the values.  In this way we can interject behavior that assists in mapping between the two.
 public final class Map {
     
     // MARK: Map Type
@@ -19,33 +17,33 @@ public final class Map {
     /**
     The representative type of mapping operation
     
-    - ToJson:   transforming the object into a json dictionary representation
-    - FromJson: transforming a json dictionary representation into an object
+    - ToNode:   transforming the object into a node dictionary representation
+    - FromNode: transforming a node dictionary representation into an object
     */
     public enum OperationType {
-        case ToJson
-        case FromJson
+        case ToNode
+        case FromNode
     }
     
     /// The type of operation for the current map
     public let type: OperationType
     
-    /// If the mapping operation were converted to Json (Type.ToJson)
-    public private(set) var toJson: Json = .ObjectValue([:])
+    /// If the mapping operation were converted to Node (Type.ToNode)
+    public private(set) var toNode: Node = .ObjectValue([:])
     
-    /// The backing Json being mapped
-    public let json: Json
+    /// The backing Node being mapped
+    public let node: Node
     
     /// The greater context in which the mapping takes place
     public let context: Context
     
     // MARK: Private
     
-    /// The last key accessed -- Used to reverse Json Operations
+    /// The last key accessed -- Used to reverse Node Operations
     internal private(set) var lastKey: KeyType = .KeyPath("")
     
     /// The last retrieved result.  Used in operators to set value
-    internal private(set) var result: Json? {
+    internal private(set) var result: Node? {
         didSet {
             if let unwrapped = result where unwrapped.isNull {
                 result = nil
@@ -58,21 +56,21 @@ public final class Map {
     /**
     The designated initializer
     
-    :param: json    the json that will be used in the mapping
+    :param: node    the node that will be used in the mapping
     :param: context the context that will be used in the mapping
     
     :returns: an initialized map
     */
-    public init(json: Json, context: Context = EmptyJson) {
-        self.json = json
+    public init(node: Node, context: Context = EmptyNode) {
+        self.node = node
         self.context = context
-        self.type = .FromJson
+        self.type = .FromNode
     }
     
     public init() {
-        self.json = [:]
-        self.context = EmptyJson
-        self.type = .ToJson
+        self.node = [:]
+        self.context = EmptyNode
+        self.type = .ToNode
     }
     
     // MARK: Subscript
@@ -80,7 +78,7 @@ public final class Map {
     /**
     Basic subscripting
     
-    :param: keyPath the keypath to use when getting the value from the backing json
+    :param: keyPath the keypath to use when getting the value from the backing node
     
     :returns: returns an instance of self that can be passed to the mappable operator
     */
@@ -88,68 +86,68 @@ public final class Map {
         lastKey = keyType
         switch keyType {
         case let .Key(key):
-            result = json[key]
+            result = node[key]
         case let .KeyPath(keyPath):
-            result = json.gnm_valueForKeyPath(keyPath)
+            result = node.gnm_valueForKeyPath(keyPath)
         }
         return self
     }
     
-    // MARK: To Json
+    // MARK: To Node
     
     /**
-    Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Json Dict and pass a cast to 'AnyObject'
+    Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Node Dict and pass a cast to 'AnyObject'
     
-    :param: any the value to set to the json for the value of the last key
+    :param: any the value to set to the node for the value of the last key
     */
-    internal func setToLastKey(json: Json?) throws {
-        guard let json = json else { return }
+    internal func setToLastKey(node: Node?) throws {
+        guard let node = node else { return }
         switch lastKey {
         case let .Key(key):
-            toJson[key] = json
+            toNode[key] = node
         case let .KeyPath(keyPath):
-            toJson.gnm_setValue(json, forKeyPath: keyPath)
+            toNode.gnm_setValue(node, forKeyPath: keyPath)
         }
     }
 }
 
 extension Map {
-    internal func setToLastKey<T : JsonConvertibleType>(any: T?) throws {
-        try setToLastKey(any?.jsonRepresentation())
+    internal func setToLastKey<T : NodeConvertibleType>(any: T?) throws {
+        try setToLastKey(any?.nodeRepresentation())
     }
     
-    internal func setToLastKey<T : JsonConvertibleType>(any: [T]?) throws {
-        try setToLastKey(any?.jsonRepresentation())
+    internal func setToLastKey<T : NodeConvertibleType>(any: [T]?) throws {
+        try setToLastKey(any?.nodeRepresentation())
     }
     
-    internal func setToLastKey<T : JsonConvertibleType>(any: [[T]]?) throws {
+    internal func setToLastKey<T : NodeConvertibleType>(any: [[T]]?) throws {
         guard let any = any else { return }
-        let json: [Json] = try any.map { innerArray in
-            return try innerArray.jsonRepresentation()
+        let node: [Node] = try any.map { innerArray in
+            return try innerArray.nodeRepresentation()
         }
-        try setToLastKey(Json.from(json))
+        try setToLastKey(Node.from(node))
     }
     
-    internal func setToLastKey<T : JsonConvertibleType>(any: [String : T]?) throws {
+    internal func setToLastKey<T : NodeConvertibleType>(any: [String : T]?) throws {
         guard let any = any else { return }
-        var json: [String : Json] = [:]
+        var node: [String : Node] = [:]
         try any.forEach { key, value in
-            json[key] = try value.jsonRepresentation()
+            node[key] = try value.nodeRepresentation()
         }
-        try setToLastKey(.from(json))
+        try setToLastKey(.from(node))
     }
     
-    internal func setToLastKey<T : JsonConvertibleType>(any: [String : [T]]?) throws {
+    internal func setToLastKey<T : NodeConvertibleType>(any: [String : [T]]?) throws {
         guard let any = any else { return }
-        var json: [String : Json] = [:]
+        var node: [String : Node] = [:]
         try any.forEach { key, value in
-            json[key] = try value.jsonRepresentation()
+            node[key] = try value.nodeRepresentation()
         }
-        try setToLastKey(.from(json))
+        try setToLastKey(.from(node))
     }
     
-    internal func setToLastKey<T : JsonConvertibleType>(any: Set<T>?) throws {
-        try setToLastKey(any?.jsonRepresentation())
+    internal func setToLastKey<T : NodeConvertibleType>(any: Set<T>?) throws {
+        try setToLastKey(any?.nodeRepresentation())
     }
 }
 

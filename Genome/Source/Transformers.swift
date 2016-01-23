@@ -7,8 +7,6 @@
 //  MIT
 //
 
-import PureJsonSerializer
-
 // MARK: Transformer Base
 
 public class Transformer<InputType, OutputType> {
@@ -67,136 +65,136 @@ public class Transformer<InputType, OutputType> {
 }
 
 
-// MARK: From Json
+// MARK: From Node
 
-public final class FromJsonTransformer<JsonType: JsonConvertibleType, TransformedType> : Transformer<JsonType, TransformedType> {
-    override public init(map: Map, transformer: JsonType throws -> TransformedType) {
+public final class FromNodeTransformer<NodeType: NodeConvertibleType, TransformedType> : Transformer<NodeType, TransformedType> {
+    override public init(map: Map, transformer: NodeType throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
-    override public init(map: Map, transformer: JsonType? throws -> TransformedType) {
+    override public init(map: Map, transformer: NodeType? throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformToJson<OutputJsonType: JsonConvertibleType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<JsonType, TransformedType, OutputJsonType> {
-        let toJsonTransformer = ToJsonTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromJsonTransformer: self, toJsonTransformer: toJsonTransformer)
+    public func transformToNode<OutputNodeType: NodeConvertibleType>(transformer: TransformedType throws -> OutputNodeType) -> TwoWayTransformer<NodeType, TransformedType, OutputNodeType> {
+        let toNodeTransformer = ToNodeTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromNodeTransformer: self, toNodeTransformer: toNodeTransformer)
     }
     
-    internal func transformValue(json: Json?) throws -> TransformedType {
-        let validJson: Json
+    internal func transformValue(node: Node?) throws -> TransformedType {
+        let validNode: Node
         if allowsNil {
-            guard let unwrapped = json else { return try transformer(nil) }
-            validJson = unwrapped
+            guard let unwrapped = node else { return try transformer(nil) }
+            validNode = unwrapped
         } else {
-            validJson = try enforceValueExists(json)
+            validNode = try enforceValueExists(node)
         }
         
-        let input = try JsonType.newInstance(validJson, context: validJson)
+        let input = try NodeType.newInstance(validNode, context: validNode)
         return try transformer(input)
     }
 }
 
-// MARK: To Json
+// MARK: To Node
 
-public final class ToJsonTransformer<ValueType, OutputJsonType: JsonConvertibleType> : Transformer<ValueType, OutputJsonType> {
-    override public init(map: Map, transformer: ValueType throws -> OutputJsonType) {
+public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertibleType> : Transformer<ValueType, OutputNodeType> {
+    override public init(map: Map, transformer: ValueType throws -> OutputNodeType) {
         super.init(map: map, transformer: transformer)
     }
     
-    func transformFromJson<InputJsonType>(transformer: InputJsonType throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputJsonType> {
-        let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
+    func transformFromNode<InputNodeType>(transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+        let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    func transformFromJson<InputJsonType>(transformer: InputJsonType? throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputJsonType> {
-        let fromJsonTransformer = FromJsonTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromJsonTransformer: fromJsonTransformer, toJsonTransformer: self)
+    func transformFromNode<InputNodeType>(transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+        let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
+        return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    internal func transformValue(value: ValueType) throws -> Json {
+    internal func transformValue(value: ValueType) throws -> Node {
         let transformed = try transformer(value)
-        return try transformed.jsonRepresentation()
+        return try transformed.nodeRepresentation()
     }
 }
 
 // MARK: Two Way Transformer
 
-public final class TwoWayTransformer<InputJsonType: JsonConvertibleType, TransformedType, OutputJsonType: JsonConvertibleType> {
+public final class TwoWayTransformer<InputNodeType: NodeConvertibleType, TransformedType, OutputNodeType: NodeConvertibleType> {
     
     var map: Map {
-        let toMap = toJsonTransformer.map
+        let toMap = toNodeTransformer.map
         return toMap
     }
     
-    public let fromJsonTransformer: FromJsonTransformer<InputJsonType, TransformedType>
-    public let toJsonTransformer: ToJsonTransformer<TransformedType, OutputJsonType>
+    public let fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>
+    public let toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>
     
-    public init(fromJsonTransformer: FromJsonTransformer<InputJsonType, TransformedType>, toJsonTransformer: ToJsonTransformer<TransformedType, OutputJsonType>) {
-        self.fromJsonTransformer = fromJsonTransformer
-        self.toJsonTransformer = toJsonTransformer
+    public init(fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>, toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>) {
+        self.fromNodeTransformer = fromNodeTransformer
+        self.toNodeTransformer = toNodeTransformer
     }
 }
 
 // MARK: Map Extensions
 
 public extension Map {
-    public func transformFromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
-        return FromJsonTransformer(map: self, transformer: transformer)
+    public func transformFromNode<NodeType: NodeConvertibleType, TransformedType>(transformer: NodeType throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
+        return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformFromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromJsonTransformer<JsonType, TransformedType> {
-        return FromJsonTransformer(map: self, transformer: transformer)
+    public func transformFromNode<NodeType: NodeConvertibleType, TransformedType>(transformer: NodeType? throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
+        return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformToJson<ValueType, JsonOutputType: JsonConvertibleType>(transformer: ValueType throws -> JsonOutputType) -> ToJsonTransformer<ValueType, JsonOutputType> {
-        return ToJsonTransformer(map: self, transformer: transformer)
+    public func transformToNode<ValueType, NodeOutputType: NodeConvertibleType>(transformer: ValueType throws -> NodeOutputType) -> ToNodeTransformer<ValueType, NodeOutputType> {
+        return ToNodeTransformer(map: self, transformer: transformer)
     }
 }
 
 // MARK: Operators
 
-public func <~> <T: JsonConvertibleType, JsonInputType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~> <T: NodeConvertibleType, NodeInputType>(inout lhs: T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromNode:
         try lhs <~ rhs
-    case .ToJson:
+    case .ToNode:
         try lhs ~> rhs.map
     }
 }
 
-public func <~> <T: JsonConvertibleType, JsonOutputType: JsonConvertibleType>(inout lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func <~> <T: NodeConvertibleType, NodeOutputType: NodeConvertibleType>(inout lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromNode:
         try lhs <~ rhs.map
-    case .ToJson:
+    case .ToNode:
         try lhs ~> rhs
     }
 }
 
-public func <~> <JsonInput, TransformedType, JsonOutput: JsonConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<JsonInput, TransformedType, JsonOutput>) throws {
+public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertibleType>(inout lhs: TransformedType, rhs: TwoWayTransformer<NodeInput, TransformedType, NodeOutput>) throws {
     switch rhs.map.type {
-    case .FromJson:
-        try lhs <~ rhs.fromJsonTransformer
-    case .ToJson:
-        try lhs ~> rhs.toJsonTransformer
+    case .FromNode:
+        try lhs <~ rhs.fromNodeTransformer
+    case .ToNode:
+        try lhs ~> rhs.toNodeTransformer
     }
 }
 
-public func <~ <T, JsonInputType: JsonConvertibleType>(inout lhs: T, rhs: FromJsonTransformer<JsonInputType, T>) throws {
+public func <~ <T, NodeInputType: NodeConvertibleType>(inout lhs: T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromNode:
         try lhs = rhs.transformValue(rhs.map.result)
-    case .ToJson:
+    case .ToNode:
         break
     }
 }
 
-public func ~> <T, JsonOutputType: JsonConvertibleType>(lhs: T, rhs: ToJsonTransformer<T, JsonOutputType>) throws {
+public func ~> <T, NodeOutputType: NodeConvertibleType>(lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
     switch rhs.map.type {
-    case .FromJson:
+    case .FromNode:
         break
-    case .ToJson:
+    case .ToNode:
         let output = try rhs.transformValue(lhs)
         try rhs.map.setToLastKey(output)
     }
