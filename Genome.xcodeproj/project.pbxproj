@@ -140,16 +140,10 @@
 		80A300B31C14E55300DDE54D /* JSONDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataTypeTest.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E434DF011C5A18BC00A95287 /* JsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JsonSerializer.framework; path = Carthage/Build/iOS/JsonSerializer.framework; sourceTree = "<group>"; };
-		E434E0041C5A289100A95287 /* JsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JsonSerializer.framework; path = Carthage/Build/Mac/JsonSerializer.framework; sourceTree = "<group>"; };
-		E434E0061C5A28A200A95287 /* JsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JsonSerializer.framework; path = Carthage/Build/watchOS/JsonSerializer.framework; sourceTree = "<group>"; };
-		E434E0081C5A28AF00A95287 /* JsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JsonSerializer.framework; path = Carthage/Build/tvOS/JsonSerializer.framework; sourceTree = "<group>"; };
-		E434E00A1C5A2B8B00A95287 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E434E00C1C5A2BD600A95287 /* PureJsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureJsonSerializer.framework; path = Carthage/Build/Mac/PureJsonSerializer.framework; sourceTree = "<group>"; };
 		E434E00E1C5A2BF800A95287 /* PureJsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureJsonSerializer.framework; path = Carthage/Build/iOS/PureJsonSerializer.framework; sourceTree = "<group>"; };
 		E434E0101C5A2C1500A95287 /* PureJsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureJsonSerializer.framework; path = Carthage/Build/watchOS/PureJsonSerializer.framework; sourceTree = "<group>"; };
 		E434E0121C5A2C2200A95287 /* PureJsonSerializer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureJsonSerializer.framework; path = Carthage/Build/tvOS/PureJsonSerializer.framework; sourceTree = "<group>"; };
-		E434E0331C5A306500A95287 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,16 +291,10 @@
 		8242F19A85FA817AF30CCBC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E434E0331C5A306500A95287 /* Foundation.framework */,
 				E434E0121C5A2C2200A95287 /* PureJsonSerializer.framework */,
 				E434E0101C5A2C1500A95287 /* PureJsonSerializer.framework */,
 				E434E00E1C5A2BF800A95287 /* PureJsonSerializer.framework */,
 				E434E00C1C5A2BD600A95287 /* PureJsonSerializer.framework */,
-				E434E00A1C5A2B8B00A95287 /* Foundation.framework */,
-				E434E0081C5A28AF00A95287 /* JsonSerializer.framework */,
-				E434E0061C5A28A200A95287 /* JsonSerializer.framework */,
-				E434E0041C5A289100A95287 /* JsonSerializer.framework */,
-				E434DF011C5A18BC00A95287 /* JsonSerializer.framework */,
 				4229C5D50AD5F6C550EF2B8C /* Pods.framework */,
 			);
 			name = Frameworks;
