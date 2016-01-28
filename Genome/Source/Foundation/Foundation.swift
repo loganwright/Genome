@@ -8,6 +8,7 @@
 //  MIT
 
 import PureJsonSerializer
+import Foundation
 
 extension MappableObject {
     public init(js: AnyObject, context: [String : AnyObject] = [:]) throws {
