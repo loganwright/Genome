@@ -469,7 +469,7 @@ import CoreData
 
 extension NSManagedObjectContext : Context {}
 
-extension NSManagedObject : MappableBase {
+public class NSMappableManagedObject: NSManagedObject, MappableBase {
     public class var entityName: String {
         return "\(self)"
     }
@@ -482,7 +482,7 @@ extension NSManagedObject : MappableBase {
         return try newInstance(json, context: context, type: self)
     }
 
-    public class func newInstance<T: NSManagedObject>(json: Json, context: Context, type: T.Type) throws -> T {
+    public class func newInstance<T: NSMappableManagedObject>(json: Json, context: Context, type: T.Type) throws -> T {
         let context = context as! NSManagedObjectContext
         let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
         let map = Map(json: json, context: context)
