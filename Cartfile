@@ -1,1 +1,1 @@
-github "tomco/Swift-PureJsonSerializer" "master"
+github "gfx/Swift-PureJsonSerializer" ~> 1.1
