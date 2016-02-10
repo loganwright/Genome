@@ -15,23 +15,19 @@ prefix operator <~ {}
 
 // MARK: Settable Transform
 
-extension Map {
-    public func transform(keyType: KeyType) -> Map {
-        return self[keyType]
-    }
-    
-    public func fromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) throws -> TransformedType {
-        return try <~transformFromJson(transformer)
-    }
-    
-    public func fromJson<JsonType: JsonConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) throws -> TransformedType {
-        return try <~transformFromJson(transformer)
-    }
-}
-
 // MARK: Extraction
 
 extension Map {
+    
+    // MARK: Transforms
+    
+    public func extract<T, JsonInputType: JsonConvertibleType>(keyType: KeyType, transformer: JsonInputType throws -> T) throws -> T {
+        return try <~self[keyType].transformFromJson(transformer)
+    }
+    
+    public func extract<T, JsonInputType: JsonConvertibleType>(keyType: KeyType, transformer: JsonInputType? throws -> T) throws -> T {
+        return try <~self[keyType].transformFromJson(transformer)
+    }
     
     // MARK: Optional Extractions
     

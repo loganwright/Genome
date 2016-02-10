@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'Genome'
-  spec.version      = '2.0.1'
+  spec.version      = '2.0.4'
   spec.license      = 'MIT'
   spec.homepage     = 'https://github.com/LoganWright/Genome'
   spec.authors      = { 'Logan Wright' => 'logan.william.wright@gmail.com' }
