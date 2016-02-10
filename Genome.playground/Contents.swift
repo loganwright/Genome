@@ -55,8 +55,9 @@ struct _Pet : MappableObject {
     init(map: Map) throws {
         name = try map.extract("name")
         nickname = try map.extract("nickname")
-        type = try map["type"]
-            .fromJson { PetType(rawValue: $0)! }
+        type = try map.extract("type") {
+            PetType(rawValue: $0)!
+        }
     }
     
     func sequence(map: Map) throws {
@@ -108,8 +109,7 @@ struct Person : MappableObject {
         pet = try map.extract("pet")
         name = try map.extract("name")
         favoriteFood = try map.extract("favorite_food")
-        birthday = try map["birthday"]
-            .fromJson(NSDate.dateWithBirthdayString)
+        birthday = try map.extract("birthday", transform: NSDate.dateWithBirthdayString)
     }
     
     mutating func sequence(map: Map) throws {
