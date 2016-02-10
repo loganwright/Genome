@@ -67,7 +67,7 @@ The goal of this library is to satisfy the following constraints:
 
 ### Playground / Examples
 
-The <a href="/GenomePlayground.playground">playground</a> provided by this project can be used to test the library.  It also provides some examples on how to use the library.  
+The <a href="/Genome.playground">playground</a> provided by this project can be used to test the library.  It also provides some examples on how to use the library.  
 
 ### Failure Driven
 
