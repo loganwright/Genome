@@ -1,0 +1,10 @@
+language: swift
+rvm: 2.0.0
+os: osx
+osx_image: xcode7.2
+
+before_install:
+  - gem install cocoapods
+script:
+  - xctool -workspace Genome.xcworkspace -scheme Genome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xctool test -workspace Genome.xcworkspace -scheme GenomeTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
