@@ -96,6 +96,10 @@
 		EA02CEE21C512139002718AB /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Node+Foundation.swift */; };
 		EA02CEE31C512139002718AB /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Node+Foundation.swift */; };
 		EA02CEE41C512139002718AB /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CEDF1C512139002718AB /* Node+Foundation.swift */; };
+		EAF4C6E51C6CCFAC007822B0 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */; };
+		EAF4C6E61C6CCFAD007822B0 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */; };
+		EAF4C6E71C6CCFAE007822B0 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */; };
+		EAF4C6E81C6CCFAE007822B0 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -587,6 +591,7 @@
 				8003F2E31C489586000ADD91 /* Map.swift in Sources */,
 				EA02CEDC1C511E97002718AB /* Node.swift in Sources */,
 				8003F2ED1C489586000ADD91 /* SettableOperator.swift in Sources */,
+				EAF4C6E61C6CCFAD007822B0 /* BackingDataType.swift in Sources */,
 				8003F2F71C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F21C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2DE1C489586000ADD91 /* Logging.swift in Sources */,
@@ -609,6 +614,7 @@
 				8003F2E41C489586000ADD91 /* Map.swift in Sources */,
 				EA02CEDD1C511E98002718AB /* Node.swift in Sources */,
 				8003F2EE1C489586000ADD91 /* SettableOperator.swift in Sources */,
+				EAF4C6E71C6CCFAE007822B0 /* BackingDataType.swift in Sources */,
 				8003F2F81C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F31C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2DF1C489586000ADD91 /* Logging.swift in Sources */,
@@ -631,6 +637,7 @@
 				8003F2E21C489586000ADD91 /* Map.swift in Sources */,
 				EA02CEDB1C511E96002718AB /* Node.swift in Sources */,
 				8003F2EC1C489586000ADD91 /* SettableOperator.swift in Sources */,
+				EAF4C6E51C6CCFAC007822B0 /* BackingDataType.swift in Sources */,
 				8003F2F61C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F11C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2DD1C489586000ADD91 /* Logging.swift in Sources */,
@@ -653,6 +660,7 @@
 				8003F2E51C489586000ADD91 /* Map.swift in Sources */,
 				EA02CEDE1C511E98002718AB /* Node.swift in Sources */,
 				8003F2EF1C489586000ADD91 /* SettableOperator.swift in Sources */,
+				EAF4C6E81C6CCFAE007822B0 /* BackingDataType.swift in Sources */,
 				8003F2F91C489586000ADD91 /* Transformers.swift in Sources */,
 				8003F2F41C489586000ADD91 /* StandardOperators.swift in Sources */,
 				8003F2E01C489586000ADD91 /* Logging.swift in Sources */,

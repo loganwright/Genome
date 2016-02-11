@@ -8,12 +8,6 @@
 
 import Foundation
 
-extension Node: BackingDataType {
-    public init(_ node: Node) {
-        self = node
-    }
-}
-
 public protocol BackingDataType {
     var isNull: Bool { get }
     var boolValue: Bool? { get }
@@ -22,7 +16,13 @@ public protocol BackingDataType {
     var arrayValue: [Self]? { get }
     var objectValue: [String : Self]? { get }
     
-    init(_ node: Node)
+    init(_ backingData: Node)
+}
+
+extension Node: BackingDataType {
+    public init(_ backingData: Node) {
+        self = backingData
+    }
 }
 
 extension BackingDataType {
