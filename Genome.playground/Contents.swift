@@ -109,7 +109,7 @@ struct Person : MappableObject {
         pet = try map.extract("pet")
         name = try map.extract("name")
         favoriteFood = try map.extract("favorite_food")
-        birthday = try map.extract("birthday", transform: NSDate.dateWithBirthdayString)
+        birthday = try map.extract("birthday", transformer: NSDate.dateWithBirthdayString)
     }
     
     mutating func sequence(map: Map) throws {
