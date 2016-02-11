@@ -14,11 +14,11 @@ import Foundation
 class BasicTypeTexts: XCTestCase {
 
     let BasicTestNode: [String : Node] = [
-        "int" : .from(1),
-        "float" : .from(1.5),
-        "double" : .from(2.5),
-        "bool" : .from(true),
-        "string" : .from("hello")
+        "int" : 1,
+        "float" : 1.5,
+        "double" : 2.5,
+        "bool" : true,
+        "string" : "hello"
     ]
     
     struct Basic : BasicMappable, CustomStringConvertible {
@@ -42,11 +42,11 @@ class BasicTypeTexts: XCTestCase {
     }
     
     let BasicArraysTestNode: [String : Node] = [
-        "ints" : .from([1]),
-        "floats" : .from([1.5]),
-        "doubles" : .from([2.5]),
-        "bools" : .from([true]),
-        "strings" : .from(["hello"])
+        "ints" : [1],
+        "floats" : [1.5],
+        "doubles" : [2.5],
+        "bools" : [true],
+        "strings" : ["hello"]
     ]
     
     struct BasicArrays : BasicMappable, CustomStringConvertible {
