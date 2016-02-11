@@ -28,7 +28,7 @@ public protocol NodeConvertibleType {
 }
 
 extension NodeConvertibleType {
-    static func newInstance<T: BackingDataType>(data: T, context: Context) throws -> Self {
+    static func newInstance<T: BackingDataType>(data: T, context: Context = EmptyNode) throws -> Self {
         return try newInstance(Node(data), context: context)
     }
 }
