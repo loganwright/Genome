@@ -66,7 +66,7 @@ extension BasicMappable {
 
 // MARK: Inheritable Object
 
-public class Object : MappableObject {
+public class Object: MappableObject {
     required public init(map: Map) throws {}
     
     public func sequence(map: Map) throws {}

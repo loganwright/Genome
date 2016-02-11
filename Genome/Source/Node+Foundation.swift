@@ -6,34 +6,73 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
-import Foundation.NSNull
+import Foundation
 
 extension Node {
-    public static func from(any: AnyObject) -> Node {
+    public init(_ any: AnyObject) {
         switch any {
             // If we're coming from foundation, it will be an `NSNumber`.
             //This represents double, integer, and boolean.
         case let number as Double:
-            return .NumberValue(number)
+            self = .NumberValue(number)
         case let string as String:
-            return .StringValue(string)
+            self = .StringValue(string)
         case let object as [String : AnyObject]:
-            return from(object)
+            self = Node(object)
         case let array as [AnyObject]:
-            return .ArrayValue(array.map(from))
+            self = .ArrayValue(array.map(Node.init))
         case _ as NSNull:
-            return .NullValue
+            self = .NullValue
         default:
             fatalError("Unsupported foundation type")
         }
-        return .NullValue
     }
     
-    public static func from(any: [String : AnyObject]) -> Node {
+    public init(_ any: [String : AnyObject]) {
         var mutable: [String : Node] = [:]
         any.forEach { key, val in
-            mutable[key] = .from(val)
+            mutable[key] = Node(val)
         }
-        return .from(mutable)
+        self = .ObjectValue(mutable)
+    }
+    
+    public init(_ any: [AnyObject]) {
+        let array = any.map(Node.init)
+        self = .ArrayValue(array)
+    }
+    
+    public var anyValue: AnyObject {
+        switch self {
+        case .ObjectValue(let ob):
+            var mapped: [String : AnyObject] = [:]
+            ob.forEach { key, val in
+                mapped[key] = val.anyValue
+            }
+            return mapped
+        case .ArrayValue(let array):
+            return array.map { $0.anyValue }
+        case .BooleanValue(let bool):
+            return bool
+        case .NumberValue(let number):
+            return number
+        case .StringValue(let string):
+            return string
+        case .NullValue:
+            return NSNull()
+        }
+    }
+}
+
+extension MappableBase {
+    public func foundationJson() throws -> AnyObject {
+        return try nodeRepresentation().anyValue
+    }
+    
+    public func foundationDictionary() throws -> [String : AnyObject]? {
+        return try foundationJson() as? [String : AnyObject]
+    }
+    
+    public func foundationArray() throws -> [AnyObject]? {
+        return try nodeRepresentation().anyValue as? [AnyObject]
     }
 }

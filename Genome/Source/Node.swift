@@ -6,6 +6,61 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
+public protocol BackingDataType {
+    var isNull: Bool { get }
+    var boolValue: Bool? { get }
+    var doubleValue: Double? { get }
+    var stringValue: String? { get }
+    var arrayValue: [Self]? { get }
+    var objectValue: [String : Self]? { get }
+    
+    init(_ node: Node)
+}
+
+extension BackingDataType {
+    public var floatValue: Float? {
+        guard let double = doubleValue else { return nil }
+        return Float(double)
+    }
+    
+    public var intValue: Int? {
+        guard let double = doubleValue where double % 1 == 0 else {
+            return nil
+        }
+        
+        return Int(double)
+    }
+    
+    public var uintValue: UInt? {
+        guard let int = intValue where int >= 0 else { return nil }
+        return UInt(int)
+    }
+}
+
+extension Node {
+    public init<T: BackingDataType>(_ data: T) {
+        if let string = data.stringValue {
+            self = .StringValue(string)
+        } else if let bool = data.boolValue {
+            self = .BooleanValue(bool)
+        } else if let number = data.doubleValue {
+            self = .NumberValue(number)
+        } else if let array = data.arrayValue {
+            self = .ArrayValue(array.map(Node.init))
+        } else if let object = data.objectValue {
+            var mutable: [String : Node] = [:]
+            object.forEach { key, val in
+                mutable[key] = Node(val)
+            }
+            self = .ObjectValue(mutable)
+        } else if data.isNull {
+            self = Node.NullValue
+        } else {
+            fatalError("Unable to convert data: \(data)")
+        }
+    }
+}
+
 public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatable {
     
     case NullValue
@@ -37,27 +92,6 @@ public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatab
         self = .ObjectValue(value)
     }
     
-    // MARK: From
-    
-    public static func from(value: Bool) -> Node {
-        return .BooleanValue(value)
-    }
-    
-    public static func from(value: Double) -> Node {
-        return .NumberValue(value)
-    }
-    
-    public static func from(value: String) -> Node {
-        return .StringValue(value)
-    }
-    
-    public static func from(value: [Node]) -> Node {
-        return .ArrayValue(value)
-    }
-    
-    public static func from(value: [String : Node]) -> Node {
-        return .ObjectValue(value)
-    }
 }
 
 // MARK: Convenience
@@ -129,9 +163,22 @@ extension Node {
 
 extension Node {
     public subscript(index: Int) -> Node? {
-        assert(index >= 0)
-        guard let array = arrayValue where index < array.count else { return nil }
-        return array[index]
+        get {
+            assert(index >= 0)
+            guard let array = arrayValue where index < array.count else { return nil }
+            return array[index]
+        }
+        set {
+            assert(index >= 0)
+            guard let array = arrayValue where index < array.count else { return }
+            var mutable = array
+            if let new = newValue {
+                mutable[index] = new
+            } else {
+                mutable.removeAtIndex(index)
+            }
+            self = .ArrayValue(mutable)
+        }
     }
     
     public subscript(key: String) -> Node? {
@@ -143,7 +190,7 @@ extension Node {
             guard let object = objectValue else { fatalError("Unable to set string subscript on non-object type!") }
             var mutableObject = object
             mutableObject[key] = newValue
-            self = .from(mutableObject)
+            self = Node(mutableObject)
         }
     }
 }

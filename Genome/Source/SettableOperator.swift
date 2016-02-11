@@ -27,6 +27,16 @@ extension Map {
         return try <~self[keyType].transformFromNode(transformer)
     }
     
+    // MARK: Transforming
+    
+    public func extract<T, InputType: NodeConvertibleType>(keyType: KeyType, transformer: InputType throws -> T) throws -> T {
+        return try <~self[keyType].transformFromNode(transformer)
+    }
+    
+    public func extract<T, InputType: NodeConvertibleType>(keyType: KeyType, transformer: InputType? throws -> T) throws -> T {
+        return try <~self[keyType].transformFromNode(transformer)
+    }
+
     // MARK: Optional Extractions
     
     public func extract<T : NodeConvertibleType>(keyType: KeyType) throws -> T? {
@@ -178,7 +188,7 @@ public prefix func <~ <T: NodeConvertibleType>(map: Map) throws -> Set<T> {
     try enforceMapType(map, expectedType: .FromNode)
     let result = try enforceResultExists(map, type: T.self)
     let nodeArray = result.arrayValue ?? [result]
-    return Set<T>(try [T](node: Node.from(nodeArray), context: map.context))
+    return Set<T>(try [T](node: Node(nodeArray), context: map.context))
 }
 
 // MARK: Transformables

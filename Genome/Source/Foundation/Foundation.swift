@@ -9,8 +9,8 @@
 
 extension MappableObject {
     public init(node: AnyObject, context: [String : AnyObject] = [:]) throws {
-        let safeNode = Node.from(node)
-        let safeContext = Node.from(context)
+        let safeNode = Node(node)
+        let safeContext = Node(context)
         try self.init(node: safeNode, context: safeContext)
     }
     

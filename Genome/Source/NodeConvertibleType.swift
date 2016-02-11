@@ -43,7 +43,7 @@ extension Node : NodeConvertibleType {
 
 extension String : NodeConvertibleType {
     public func nodeRepresentation() throws -> Node {
-        return .from(self)
+        return Node(self)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> String {
@@ -58,7 +58,7 @@ extension String : NodeConvertibleType {
 
 extension Bool : NodeConvertibleType {
     public func nodeRepresentation() throws -> Node {
-        return .from(self)
+        return Node(self)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Bool {
@@ -80,7 +80,7 @@ extension UInt64 : NodeConvertibleType {}
 extension UnsignedIntegerType {
     public func nodeRepresentation() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
-        return .from(double)
+        return Node(double)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
@@ -103,7 +103,7 @@ extension Int64 : NodeConvertibleType {}
 extension SignedIntegerType {
     public func nodeRepresentation() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
-        return .from(double)
+        return Node(double)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
@@ -136,7 +136,7 @@ public protocol NodeConvertibleFloatingPointType : NodeConvertibleType {
 
 extension NodeConvertibleFloatingPointType {
     public func nodeRepresentation() throws -> Node {
-        return .from(doubleValue)
+        return Node(doubleValue)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
@@ -160,6 +160,6 @@ extension Node {
             mutable[key] = try value.nodeRepresentation()
         }
         
-        return .from(mutable)
+        return Node(mutable)
     }
 }
