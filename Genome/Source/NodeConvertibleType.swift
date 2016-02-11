@@ -27,6 +27,12 @@ public protocol NodeConvertibleType {
     func nodeRepresentation() throws -> Node
 }
 
+extension NodeConvertibleType {
+    static func newInstance<T: BackingDataType>(data: T, context: Context) throws -> Self {
+        return try newInstance(Node(data), context: context)
+    }
+}
+
 // MARK: Node
 
 extension Node : NodeConvertibleType {

@@ -6,72 +6,18 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
-public protocol BackingDataType {
-    var isNull: Bool { get }
-    var boolValue: Bool? { get }
-    var doubleValue: Double? { get }
-    var stringValue: String? { get }
-    var arrayValue: [Self]? { get }
-    var objectValue: [String : Self]? { get }
-    
-    init(_ node: Node)
-}
-
-extension BackingDataType {
-    public var floatValue: Float? {
-        guard let double = doubleValue else { return nil }
-        return Float(double)
-    }
-    
-    public var intValue: Int? {
-        guard let double = doubleValue where double % 1 == 0 else {
-            return nil
-        }
-        
-        return Int(double)
-    }
-    
-    public var uintValue: UInt? {
-        guard let int = intValue where int >= 0 else { return nil }
-        return UInt(int)
-    }
-}
-
-extension Node {
-    public init<T: BackingDataType>(_ data: T) {
-        if let string = data.stringValue {
-            self = .StringValue(string)
-        } else if let bool = data.boolValue {
-            self = .BooleanValue(bool)
-        } else if let number = data.doubleValue {
-            self = .NumberValue(number)
-        } else if let array = data.arrayValue {
-            self = .ArrayValue(array.map(Node.init))
-        } else if let object = data.objectValue {
-            var mutable: [String : Node] = [:]
-            object.forEach { key, val in
-                mutable[key] = Node(val)
-            }
-            self = .ObjectValue(mutable)
-        } else if data.isNull {
-            self = Node.NullValue
-        } else {
-            fatalError("Unable to convert data: \(data)")
-        }
-    }
-}
-
-public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatable {
-    
+public enum Node {
     case NullValue
     case BooleanValue(Bool)
     case NumberValue(Double)
     case StringValue(String)
     case ArrayValue([Node])
     case ObjectValue([String:Node])
-    
-    // MARK: Initialization
-    
+}
+
+// MARK: Initialization
+
+extension Node {
     public init(_ value: Bool) {
         self = .BooleanValue(value)
     }
@@ -91,7 +37,6 @@ public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatab
     public init(_ value: [String : Node]) {
         self = .ObjectValue(value)
     }
-    
 }
 
 // MARK: Convenience
@@ -195,7 +140,7 @@ extension Node {
     }
 }
 
-extension Node {
+extension Node: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
         case .NullValue:
@@ -230,6 +175,8 @@ extension Node {
         }
     }
 }
+
+extension Node: Equatable {}
 
 public func ==(lhs: Node, rhs: Node) -> Bool {
     switch lhs {

@@ -84,6 +84,7 @@
 		8052E78A1BB58178004E08F6 /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */; };
 		80A300B41C14E55300DDE54D /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */; };
 		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
+		80C477621C6C4C9100C4A7D7 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 		EA02CEDA1C511C9B002718AB /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Node.swift */; };
 		EA02CEDB1C511E96002718AB /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CED91C511C9B002718AB /* Node.swift */; };
@@ -143,6 +144,7 @@
 		8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
+		80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackingDataType.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CF7F7DDB6C557B820931F617 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA02CED91C511C9B002718AB /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			children = (
 				EA02CED91C511C9B002718AB /* Node.swift */,
 				EA02CEDF1C512139002718AB /* Node+Foundation.swift */,
+				80C477611C6C4C9100C4A7D7 /* BackingDataType.swift */,
 			);
 			name = "Data Representation";
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				8003F2C31C489586000ADD91 /* Foundation.swift in Sources */,
 				8003F2E11C489586000ADD91 /* Map.swift in Sources */,
 				8003F2D71C489586000ADD91 /* KeyType.swift in Sources */,
+				80C477621C6C4C9100C4A7D7 /* BackingDataType.swift in Sources */,
 				8003F2C81C489586000ADD91 /* Node+KeyPaths.swift in Sources */,
 				8003F2EB1C489586000ADD91 /* SettableOperator.swift in Sources */,
 				8003F2F51C489586000ADD91 /* Transformers.swift in Sources */,
