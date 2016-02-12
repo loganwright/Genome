@@ -11,21 +11,9 @@
 
 prefix operator <~ {}
 
-// MARK: Settable Transform
-
 // MARK: Extraction
 
 extension Map {
-    
-    // MARK: Transforms
-    
-    public func extract<T, NodeType: NodeConvertibleType>(keyType: KeyType, transformer: NodeType throws -> T) throws -> T {
-        return try <~self[keyType].transformFromNode(transformer)
-    }
-    
-    public func extract<T, NodeType: NodeConvertibleType>(keyType: KeyType, transformer: NodeType? throws -> T) throws -> T {
-        return try <~self[keyType].transformFromNode(transformer)
-    }
     
     // MARK: Transforming
     
@@ -245,38 +233,4 @@ private func expectNodeDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type
         mutable[key] = array
     }
     return mutable
-}
-
-// MARK: Deprecations
-
-prefix operator <~? {}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: NodeConvertibleType>(map: Map) throws -> T? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: NodeConvertibleType>(map: Map) throws -> [T]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: NodeConvertibleType>(map: Map) throws -> [[T]]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: NodeConvertibleType>(map: Map) throws -> [String : T]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: NodeConvertibleType>(map: Map) throws -> [String : [T]]? {
-    return try <~map
-}
-
-@available(*, deprecated=1.0.9, renamed="<~")
-public prefix func <~? <T: NodeConvertibleType>(map: Map) throws -> Set<T>? {
-    return try <~map
 }

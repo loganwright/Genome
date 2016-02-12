@@ -7,6 +7,30 @@
 //  MIT
 //
 
+/**
+Genome automatically uses keypath, which means given the following:
+
+[ 
+    "one" : [
+        "two" : "hello"
+    ]
+]
+
+If you pass a key "one.two", the library will automatically fetch "hello" by default.
+
+If however you have the following:
+
+[
+    "one.two" : "hello"
+]
+
+To access the value at "one.two", use `map[.Key("one.two")]` to assert that it is not key path components.
+
+
+
+- KeyPath: default
+- Key:     used for keys w/ '.'
+*/
 public enum KeyType {
     case KeyPath(String)
     case Key(String)
@@ -46,19 +70,26 @@ extension KeyType : StringLiteralConvertible {
         self.init(rawValue)
     }
     
-    init(_ string: String) {
+    public init(_ string: String) {
         // defaults to keypath
         self = .KeyPath(string)
     }
 }
 
+extension KeyType : Hashable {
+    public var hashValue: Int {
+        let underlyingValue = keyPath ?? key
+        return "KeyType:\(underlyingValue)".hashValue
+    }
+}
+
 extension KeyType : Equatable {
-    var keyPath: String? {
+    public var keyPath: String? {
         guard case let .KeyPath(keyPath) = self else { return nil }
         return keyPath
     }
     
-    var key: String? {
+    public var key: String? {
         guard case let .Key(key) = self else { return nil }
         return key
     }

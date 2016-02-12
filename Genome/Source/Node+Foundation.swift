@@ -79,7 +79,7 @@ extension MappableBase {
     }
     
     public func foundationArray() throws -> [AnyObject]? {
-        return try nodeRepresentation().anyValue as? [AnyObject]
+        return try foundationJson() as? [AnyObject]
     }
 }
 

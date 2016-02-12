@@ -7,12 +7,8 @@
 //  MIT
 //
 
-// MARK: Map
-
 /// This class is designed to serve as an adaptor between the raw node and the values.  In this way we can interject behavior that assists in mapping between the two.
 public final class Map {
-    
-    // MARK: Map Type
     
     /**
     The representative type of mapping operation
@@ -28,14 +24,11 @@ public final class Map {
     /// The type of operation for the current map
     public let type: OperationType
     
-    /// If the mapping operation were converted to Node (Type.ToNode)
-    public private(set) var toNode: Node = .ObjectValue([:])
-    
-    /// The backing Node being mapped
-    public let node: Node
-    
     /// The greater context in which the mapping takes place
     public let context: Context
+
+    /// The backing Node being mapped
+    public private(set) var node: Node
     
     // MARK: Private
     
@@ -54,23 +47,30 @@ public final class Map {
     // MARK: Initialization
     
     /**
-    The designated initializer
+    The designated initializer for mapping from Node
     
     :param: node    the node that will be used in the mapping
     :param: context the context that will be used in the mapping
     
-    :returns: an initialized map
+    :returns: an initialized map ready to map an object
     */
     public init(node: Node, context: Context = EmptyNode) {
+        self.type = .FromNode
+        
         self.node = node
         self.context = context
-        self.type = .FromNode
     }
     
+    /**
+     The designated initializer for mapping to Node
+     
+     - returns: an initialized map ready to generate a node
+     */
     public init() {
+        self.type = .ToNode
+        
         self.node = [:]
         self.context = EmptyNode
-        self.type = .ToNode
     }
     
     // MARK: Subscript
@@ -101,12 +101,25 @@ public final class Map {
     :param: any the value to set to the node for the value of the last key
     */
     internal func setToLastKey(node: Node?) throws {
+        try assertOperationTypeToNode()
         guard let node = node else { return }
+        
         switch lastKey {
         case let .Key(key):
-            toNode[key] = node
+            self.node[key] = node
         case let .KeyPath(keyPath):
-            toNode.gnm_setValue(node, forKeyPath: keyPath)
+            self.node.gnm_setValue(node, forKeyPath: keyPath)
+        }
+    }
+    
+    /**
+     Ensure that we're running the appropriate operation type
+     */
+    private func assertOperationTypeToNode() throws {
+        if type != .ToNode {
+            let error = MappingError
+                .UnexpectedOperationType("Received mapping operation of type: \(type) expected: \(OperationType.ToNode)")
+            throw logError(error)
         }
     }
 }

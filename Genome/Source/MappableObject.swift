@@ -20,7 +20,7 @@ extension MappableBase {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
-        return map.toNode
+        return map.node
     }
 }
 
