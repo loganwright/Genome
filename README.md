@@ -21,9 +21,9 @@ This means that going forward, we'll be using the new `Json` type.  The new `Jso
 
 >The cocoapods version of this library supports `NSData` conversions through `Foundation` automatically.  If you're using the library without `Foundation`, you will need to deserialize Json strings or byte arrays.  Syntax is the same.
 
-There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'Cocoapods', '~> 1.0.0'`.
+There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'CocoaPods', '~> 1.0.0'`.
 
-If you're not using Cocoapods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
+If you're not using CocoaPods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
 
 Happy Mapping!
 
@@ -31,7 +31,7 @@ Happy Mapping!
 
 Genome uses <a href="https://www.cocoapods.org">cocoapods</a> to manage its dependencies, namely `PureJsonSerializer`.  When building the project, you'll need to use `Genome.xcworkspace`, and run `pod install` in the directory.
 
-Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
+Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">CocoaPods Setup Guide</a>
 
 ### Why
 
@@ -77,7 +77,7 @@ With the introduction of Swift 2.0, we were given an entirely new error handling
 
 If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/Genome.playground/Sources">sources</a>  directory.
 
-It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">cocoapods.</a>  Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
+It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">cocoapods.</a>  Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">CocoaPods Setup Guide</a>
 
 ```Ruby
 pod 'Genome', '~> 2.0.0'
