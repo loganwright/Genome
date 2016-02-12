@@ -6,7 +6,6 @@ Pod::Spec.new do |spec|
   spec.authors      = { 'Logan Wright' => 'logan.william.wright@gmail.com' }
   spec.summary      = 'A simple, type safe, failure driven mapping library for serializing json to models in Swift'
   spec.source       = { :git => 'https://github.com/LoganWright/Genome.git', :tag => "#{spec.version}" }
-  spec.source_files = 'Genome/Source/**/*.{swift}'
   spec.ios.deployment_target = "8.0"
   spec.osx.deployment_target = "10.9"
   spec.watchos.deployment_target = "2.0"
@@ -34,5 +33,5 @@ Pod::Spec.new do |spec|
     ds.dependency 'Genome/Json'
     ds.dependency 'Genome/Foundation'
   end
-  
+
 end
