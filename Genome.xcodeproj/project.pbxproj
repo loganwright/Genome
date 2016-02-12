@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8010E28E1C6D80A80032F804 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010E28D1C6D80A80032F804 /* Genome+Json.swift */; };
+		8010E28F1C6D80A80032F804 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010E28D1C6D80A80032F804 /* Genome+Json.swift */; };
+		8010E2901C6D80A80032F804 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010E28D1C6D80A80032F804 /* Genome+Json.swift */; };
+		8010E2911C6D80A80032F804 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010E28D1C6D80A80032F804 /* Genome+Json.swift */; };
+		8010E2921C6D80A80032F804 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010E28D1C6D80A80032F804 /* Genome+Json.swift */; };
 		8052E7601BB58102004E08F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E75F1BB58102004E08F6 /* AppDelegate.swift */; };
 		8052E7621BB58102004E08F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7611BB58102004E08F6 /* ViewController.swift */; };
 		8052E7651BB58102004E08F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7631BB58102004E08F6 /* Main.storyboard */; };
@@ -22,11 +27,6 @@
 		806479C41C6D7EDF003A5D8C /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AD1C6D7EDF003A5D8C /* BackingDataType.swift */; };
 		806479C51C6D7EDF003A5D8C /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AD1C6D7EDF003A5D8C /* BackingDataType.swift */; };
 		806479C61C6D7EDF003A5D8C /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AD1C6D7EDF003A5D8C /* BackingDataType.swift */; };
-		806479C71C6D7EDF003A5D8C /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AE1C6D7EDF003A5D8C /* Deprecations.swift */; };
-		806479C81C6D7EDF003A5D8C /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AE1C6D7EDF003A5D8C /* Deprecations.swift */; };
-		806479C91C6D7EDF003A5D8C /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AE1C6D7EDF003A5D8C /* Deprecations.swift */; };
-		806479CA1C6D7EDF003A5D8C /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AE1C6D7EDF003A5D8C /* Deprecations.swift */; };
-		806479CB1C6D7EDF003A5D8C /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479AE1C6D7EDF003A5D8C /* Deprecations.swift */; };
 		806479CC1C6D7EDF003A5D8C /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479B01C6D7EDF003A5D8C /* Map.swift */; };
 		806479CD1C6D7EDF003A5D8C /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479B01C6D7EDF003A5D8C /* Map.swift */; };
 		806479CE1C6D7EDF003A5D8C /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806479B01C6D7EDF003A5D8C /* Map.swift */; };
@@ -124,6 +124,7 @@
 		3DCE37371BB9D9A300D0100C /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68088C071BC5F5D000B5A733 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EC82E9933E8161F1E8FACE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8010E28D1C6D80A80032F804 /* Genome+Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Genome+Json.swift"; sourceTree = "<group>"; };
 		8052E75C1BB58102004E08F6 /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8052E75F1BB58102004E08F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8052E7611BB58102004E08F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +141,6 @@
 		8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		806479AD1C6D7EDF003A5D8C /* BackingDataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackingDataType.swift; sourceTree = "<group>"; };
-		806479AE1C6D7EDF003A5D8C /* Deprecations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
 		806479B01C6D7EDF003A5D8C /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		806479B11C6D7EDF003A5D8C /* MappableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableObject.swift; sourceTree = "<group>"; };
 		806479B21C6D7EDF003A5D8C /* SettableOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettableOperator.swift; sourceTree = "<group>"; };
@@ -224,8 +224,17 @@
 			children = (
 				806479AB1C6D7EDF003A5D8C /* Core */,
 				806479BF1C6D7EDF003A5D8C /* Foundation */,
+				8010E28C1C6D809A0032F804 /* Json */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		8010E28C1C6D809A0032F804 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				8010E28D1C6D80A80032F804 /* Genome+Json.swift */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 		8052E7531BB58102004E08F6 = {
@@ -286,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				806479AC1C6D7EDF003A5D8C /* BackingDataType */,
-				806479AE1C6D7EDF003A5D8C /* Deprecations.swift */,
 				806479AF1C6D7EDF003A5D8C /* Mapping */,
 				806479B51C6D7EDF003A5D8C /* Node */,
 				806479BA1C6D7EDF003A5D8C /* Utility */,
@@ -642,6 +650,7 @@
 			files = (
 				806479E71C6D7EDF003A5D8C /* Node+KeyPaths.swift in Sources */,
 				80647A0A1C6D7EDF003A5D8C /* Logging.swift in Sources */,
+				8010E2901C6D80A80032F804 /* Genome+Json.swift in Sources */,
 				80647A0F1C6D7EDF003A5D8C /* Foundation.swift in Sources */,
 				806479E21C6D7EDF003A5D8C /* Transformers.swift in Sources */,
 				806479D31C6D7EDF003A5D8C /* MappableObject.swift in Sources */,
@@ -652,7 +661,6 @@
 				806479FB1C6D7EDF003A5D8C /* CollectionInitializers.swift in Sources */,
 				80647A141C6D7EDF003A5D8C /* Node+Foundation.swift in Sources */,
 				80647A001C6D7EDF003A5D8C /* Errors.swift in Sources */,
-				806479C91C6D7EDF003A5D8C /* Deprecations.swift in Sources */,
 				806479CE1C6D7EDF003A5D8C /* Map.swift in Sources */,
 				806479F11C6D7EDF003A5D8C /* NodeConvertibleType.swift in Sources */,
 				806479DD1C6D7EDF003A5D8C /* StandardOperators.swift in Sources */,
@@ -666,6 +674,7 @@
 			files = (
 				806479E81C6D7EDF003A5D8C /* Node+KeyPaths.swift in Sources */,
 				80647A0B1C6D7EDF003A5D8C /* Logging.swift in Sources */,
+				8010E2911C6D80A80032F804 /* Genome+Json.swift in Sources */,
 				80647A101C6D7EDF003A5D8C /* Foundation.swift in Sources */,
 				806479E31C6D7EDF003A5D8C /* Transformers.swift in Sources */,
 				806479D41C6D7EDF003A5D8C /* MappableObject.swift in Sources */,
@@ -676,7 +685,6 @@
 				806479FC1C6D7EDF003A5D8C /* CollectionInitializers.swift in Sources */,
 				80647A151C6D7EDF003A5D8C /* Node+Foundation.swift in Sources */,
 				80647A011C6D7EDF003A5D8C /* Errors.swift in Sources */,
-				806479CA1C6D7EDF003A5D8C /* Deprecations.swift in Sources */,
 				806479CF1C6D7EDF003A5D8C /* Map.swift in Sources */,
 				806479F21C6D7EDF003A5D8C /* NodeConvertibleType.swift in Sources */,
 				806479DE1C6D7EDF003A5D8C /* StandardOperators.swift in Sources */,
@@ -690,6 +698,7 @@
 			files = (
 				806479E61C6D7EDF003A5D8C /* Node+KeyPaths.swift in Sources */,
 				80647A091C6D7EDF003A5D8C /* Logging.swift in Sources */,
+				8010E28F1C6D80A80032F804 /* Genome+Json.swift in Sources */,
 				80647A0E1C6D7EDF003A5D8C /* Foundation.swift in Sources */,
 				806479E11C6D7EDF003A5D8C /* Transformers.swift in Sources */,
 				806479D21C6D7EDF003A5D8C /* MappableObject.swift in Sources */,
@@ -700,7 +709,6 @@
 				806479FA1C6D7EDF003A5D8C /* CollectionInitializers.swift in Sources */,
 				80647A131C6D7EDF003A5D8C /* Node+Foundation.swift in Sources */,
 				806479FF1C6D7EDF003A5D8C /* Errors.swift in Sources */,
-				806479C81C6D7EDF003A5D8C /* Deprecations.swift in Sources */,
 				806479CD1C6D7EDF003A5D8C /* Map.swift in Sources */,
 				806479F01C6D7EDF003A5D8C /* NodeConvertibleType.swift in Sources */,
 				806479DC1C6D7EDF003A5D8C /* StandardOperators.swift in Sources */,
@@ -714,6 +722,7 @@
 			files = (
 				806479E91C6D7EDF003A5D8C /* Node+KeyPaths.swift in Sources */,
 				80647A0C1C6D7EDF003A5D8C /* Logging.swift in Sources */,
+				8010E2921C6D80A80032F804 /* Genome+Json.swift in Sources */,
 				80647A111C6D7EDF003A5D8C /* Foundation.swift in Sources */,
 				806479E41C6D7EDF003A5D8C /* Transformers.swift in Sources */,
 				806479D51C6D7EDF003A5D8C /* MappableObject.swift in Sources */,
@@ -724,7 +733,6 @@
 				806479FD1C6D7EDF003A5D8C /* CollectionInitializers.swift in Sources */,
 				80647A161C6D7EDF003A5D8C /* Node+Foundation.swift in Sources */,
 				80647A021C6D7EDF003A5D8C /* Errors.swift in Sources */,
-				806479CB1C6D7EDF003A5D8C /* Deprecations.swift in Sources */,
 				806479D01C6D7EDF003A5D8C /* Map.swift in Sources */,
 				806479F31C6D7EDF003A5D8C /* NodeConvertibleType.swift in Sources */,
 				806479DF1C6D7EDF003A5D8C /* StandardOperators.swift in Sources */,
@@ -744,12 +752,12 @@
 				80647A031C6D7EDF003A5D8C /* KeyType.swift in Sources */,
 				80647A081C6D7EDF003A5D8C /* Logging.swift in Sources */,
 				806479CC1C6D7EDF003A5D8C /* Map.swift in Sources */,
+				8010E28E1C6D80A80032F804 /* Genome+Json.swift in Sources */,
 				806479EA1C6D7EDF003A5D8C /* Node.swift in Sources */,
 				806479DB1C6D7EDF003A5D8C /* StandardOperators.swift in Sources */,
 				806479D61C6D7EDF003A5D8C /* SettableOperator.swift in Sources */,
 				8052E7621BB58102004E08F6 /* ViewController.swift in Sources */,
 				806479C21C6D7EDF003A5D8C /* BackingDataType.swift in Sources */,
-				806479C71C6D7EDF003A5D8C /* Deprecations.swift in Sources */,
 				806479EF1C6D7EDF003A5D8C /* NodeConvertibleType.swift in Sources */,
 				806479F91C6D7EDF003A5D8C /* CollectionInitializers.swift in Sources */,
 				806479E51C6D7EDF003A5D8C /* Node+KeyPaths.swift in Sources */,

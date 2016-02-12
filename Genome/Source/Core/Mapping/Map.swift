@@ -45,19 +45,19 @@ public final class Map {
     }
     
     // MARK: Initialization
-    
+
     /**
-    The designated initializer for mapping from Node
-    
-    :param: node    the node that will be used in the mapping
-    :param: context the context that will be used in the mapping
-    
-    :returns: an initialized map ready to map an object
-    */
-    public init(node: Node, context: Context = EmptyNode) {
+     The designated initializer for mapping from Node
+     
+     :param: node    the node that will be used in the mapping
+     :param: context the context that will be used in the mapping
+     
+     :returns: an initialized map ready to map an object
+     */
+    public init<T: BackingDataType>(node: T, context: Context = EmptyNode) {
         self.type = .FromNode
         
-        self.node = node
+        self.node = Node(node)
         self.context = context
     }
     

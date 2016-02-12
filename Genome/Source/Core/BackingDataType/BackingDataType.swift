@@ -21,7 +21,7 @@ public protocol BackingDataType: NodeConvertibleType, Context {
     var arrayValue: [Self]? { get }
     var objectValue: [String : Self]? { get }
     
-    init(_ backingData: Node)
+    init(_ node: Node)
 }
 
 extension BackingDataType {
@@ -119,10 +119,9 @@ extension NodeConvertibleType {
 // MARK: Mappable Object
 
 extension MappableObject {
-    public init<T: BackingDataType>(data: T, context: [String : AnyObject] = [:]) throws {
+    public init<T: BackingDataType>(data: T, context: Context = EmptyNode) throws {
         let safeNode = Node(data)
-        let safeContext = Node(context)
-        try self.init(node: safeNode, context: safeContext)
+        try self.init(node: safeNode, context: context)
     }
     
     public init<T: BackingDataType>(data: [String : T], context: [String : AnyObject] = [:]) throws {
