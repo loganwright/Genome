@@ -57,6 +57,10 @@ extension MappableBase {
 }
 
 extension NodeConvertibleType {
+    public static func newInstance(json: Json, context: Context = EmptyNode) throws -> Self {
+        return try newInstance(Node(json), context: context)
+    }
+    
     public func jsonRepresentation() throws -> Json {
         let node = try nodeRepresentation()
         return node.dataRepresentation()
@@ -111,25 +115,12 @@ extension Map {
 }
 
 @available(*, deprecated=3.0, renamed="NodeConvertibleType")
-public protocol JsonConvertibleType: NodeConvertibleType {
-    static func newInstance(json: Json, context: Context) throws -> Self
-    func jsonRepresentation() throws -> Json
-}
-
-extension JsonConvertibleType {
-    static func newInstance(node: Node, context: Context) throws -> Self {
-        return try newInstance(node.dataRepresentation(), context: context)
-    }
-    
-    func nodeRepresentation() throws -> Node {
-        return try jsonRepresentation().toNode()
-    }
-}
+typealias JsonConvertibleType = NodeConvertibleType
 
 // MARK: Json
 
-extension Json : JsonConvertibleType {
-    public static func newInstance(json: Json, context: Context = EmptyJson) -> Json {
+extension Json : NodeConvertibleType {
+    public static func newInstance(json: Json, context: Context = EmptyNode) -> Json {
         return json
     }
     
@@ -138,7 +129,7 @@ extension Json : JsonConvertibleType {
     }
 }
 
-extension Array where Element : JsonConvertibleType {
+extension Array where Element : NodeConvertibleType {
     
     @available(*, deprecated=3.0, renamed="init(data: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
@@ -153,7 +144,7 @@ extension Array where Element : JsonConvertibleType {
     }
 }
 
-extension Set where Element : JsonConvertibleType {
+extension Set where Element : NodeConvertibleType {
     
     @available(*, deprecated=3.0, renamed="init(data: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {

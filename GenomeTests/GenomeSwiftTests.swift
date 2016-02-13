@@ -131,9 +131,13 @@ class GenomeSideLoadTests: XCTestCase {
         XCTAssert(allFoods.count == 4)
 
         var peeps: [Person] = try! [Person](node: nodeArrayOfPeople, context: SideLoadTestNode)
-        peeps = peeps.map { (var person) -> Person in person.associateFavoriteFoods(allFoods); return person }
+        peeps = peeps.map { person -> Person in
+            var mutable = person
+            mutable.associateFavoriteFoods(allFoods)
+            return mutable
+        }
         XCTAssert(peeps.count == 2)
-        
+    
         let a = peeps.first!
         let aBirth = NSDate.dateWithBirthdayString("12-10-85")
         XCTAssert(a.name == "A")
