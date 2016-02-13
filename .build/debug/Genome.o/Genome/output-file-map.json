@@ -1,0 +1,95 @@
+{
+  "": {
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/master.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/BackingDataType.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/BackingDataType.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/BackingDataType.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/BackingDataType~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/BackingDataType.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/CollectionInitializers.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/CollectionInitializers.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/CollectionInitializers.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/CollectionInitializers~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/CollectionInitializers.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Errors.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Errors.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Errors.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Errors~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Errors.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Genome+Json.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Genome+Json.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Genome+Json.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Genome+Json~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Genome+Json.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/KeyType.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/KeyType.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/KeyType.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/KeyType~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/KeyType.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Logging.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Logging.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Logging.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Logging~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Logging.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Map.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Map.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Map.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Map~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Map.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/MappableObject.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/MappableObject.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/MappableObject.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/MappableObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/MappableObject.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Node+KeyPaths.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Node+KeyPaths.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Node+KeyPaths.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Node+KeyPaths~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Node+KeyPaths.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Node.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Node.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Node.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Node~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Node.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/NodeConvertibleType.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/NodeConvertibleType.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/NodeConvertibleType.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/NodeConvertibleType~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/NodeConvertibleType.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/NodeRepresentation.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/NodeRepresentation.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/NodeRepresentation.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/NodeRepresentation~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/NodeRepresentation.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/SettableOperator.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/SettableOperator.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/SettableOperator.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/SettableOperator~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/SettableOperator.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/StandardOperators.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/StandardOperators.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/StandardOperators.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/StandardOperators~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/StandardOperators.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Source/Transformers.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Transformers.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Source/Transformers.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Transformers~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/Genome.o/Genome/Transformers.swiftdeps"
+  }
+}

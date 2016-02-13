@@ -1,0 +1,35 @@
+{
+  "": {
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/master.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Packages/Swift-PureJsonSerializer-1.1.3/Source/Json.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/Json.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/Source/Json.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/Json~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/Json.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Packages/Swift-PureJsonSerializer-1.1.3/Source/JsonParser.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/JsonParser.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/Source/JsonParser.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/JsonParser~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/JsonParser.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Packages/Swift-PureJsonSerializer-1.1.3/Source/JsonSerializer.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/JsonSerializer.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/Source/JsonSerializer.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/JsonSerializer~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/JsonSerializer.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Packages/Swift-PureJsonSerializer-1.1.3/Source/ParseError.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/ParseError.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/Source/ParseError.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/ParseError~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/ParseError.swiftdeps"
+  },
+  "/Users/loganwright/Dropbox/Programming/xCode/Genome/Packages/Swift-PureJsonSerializer-1.1.3/Source/StringUtils.swift": {
+    "dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/StringUtils.d",
+    "object": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/Source/StringUtils.swift.o",
+    "swiftmodule": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/StringUtils~partial.swiftmodule",
+    "swift-dependencies": "/Users/loganwright/Dropbox/Programming/xCode/Genome/.build/debug/PureJsonSerializer.o/PureJsonSerializer/StringUtils.swiftdeps"
+  }
+}
