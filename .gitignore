@@ -18,6 +18,10 @@ DerivedData
 *.xcuserstate
 *.xcsmblueprint
 
+# Swift Package Manager
+.build/
+Packages/
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
