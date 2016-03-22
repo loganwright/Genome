@@ -23,14 +23,14 @@ Pod::Spec.new do |spec|
     fs.dependency 'Genome/Core'
   end
 
-  spec.subspec "Json" do |js|
+  spec.subspec "PureJson" do |js|
     js.source_files = 'Genome/Source/Json/**/*.{swift}'
     js.dependency 'Genome/Core'
     js.dependency 'PureJsonSerializer'
   end
 
   spec.subspec "Default" do |ds|
-    ds.dependency 'Genome/Json'
+    ds.dependency 'Genome/PureJson'
     ds.dependency 'Genome/Foundation'
   end
 
