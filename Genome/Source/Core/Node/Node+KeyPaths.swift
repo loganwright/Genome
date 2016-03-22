@@ -25,7 +25,7 @@ extension Node {
             mutableObject[first] = subdict
         }
         
-        self = .from(mutableObject)
+        self = Node(mutableObject)
     }
     
     public func gnm_valueForKeyPath(keyPath: String) -> Node? {

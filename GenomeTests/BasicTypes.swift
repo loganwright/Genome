@@ -9,16 +9,17 @@
 import XCTest
 import Foundation
 
+import PureJsonSerializer
 @testable import Genome
 
 class BasicTypeTexts: XCTestCase {
 
-    let BasicTestNode: [String : Node] = [
-        "int" : .from(1),
-        "float" : .from(1.5),
-        "double" : .from(2.5),
-        "bool" : .from(true),
-        "string" : .from("hello")
+    let BasicTestNode: [String : Json] = [
+        "int" : 1,
+        "float" : 1.5,
+        "double" : 2.5,
+        "bool" : true,
+        "string" : "hello"
     ]
     
     struct Basic : BasicMappable, CustomStringConvertible {
@@ -42,11 +43,11 @@ class BasicTypeTexts: XCTestCase {
     }
     
     let BasicArraysTestNode: [String : Node] = [
-        "ints" : .from([1]),
-        "floats" : .from([1.5]),
-        "doubles" : .from([2.5]),
-        "bools" : .from([true]),
-        "strings" : .from(["hello"])
+        "ints" : [1],
+        "floats" : [1.5],
+        "doubles" : [2.5],
+        "bools" : [true],
+        "strings" : ["hello"]
     ]
     
     struct BasicArrays : BasicMappable, CustomStringConvertible {
@@ -70,7 +71,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic(node: .ObjectValue(BasicTestNode))
+        let basic = try! Basic(data: BasicTestNode)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)

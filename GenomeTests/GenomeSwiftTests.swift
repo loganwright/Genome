@@ -150,7 +150,7 @@ class GenomeSideLoadTests: XCTestCase {
         
         let m = Map()
         try! peeps <~> m
-        print("mnode: \(m.toNode)")
+        print("mnode: \(m.node)")
     }
     
 }

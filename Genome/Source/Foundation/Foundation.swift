@@ -7,14 +7,15 @@
 //
 //  MIT
 
+import Foundation
+
 extension MappableObject {
     public init(node: AnyObject, context: [String : AnyObject] = [:]) throws {
-        let safeNode = Node.from(node)
-        let safeContext = Node.from(context)
-        try self.init(node: safeNode, context: safeContext)
+        let safeNode = Node(node)
+        try self.init(node: safeNode, context: context)
     }
     
     public init(node: [String : AnyObject], context: [String : AnyObject] = [:]) throws {
-        try self.init(node: node as AnyObject, context: context)
+        try self.init(node: Node(node), context: context)
     }
 }

@@ -6,17 +6,18 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
-public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatable {
-    
+public enum Node {
     case NullValue
     case BooleanValue(Bool)
     case NumberValue(Double)
     case StringValue(String)
     case ArrayValue([Node])
     case ObjectValue([String:Node])
-    
-    // MARK: Initialization
-    
+}
+
+// MARK: Initialization
+
+extension Node {
     public init(_ value: Bool) {
         self = .BooleanValue(value)
     }
@@ -35,28 +36,6 @@ public enum Node: CustomStringConvertible, CustomDebugStringConvertible, Equatab
     
     public init(_ value: [String : Node]) {
         self = .ObjectValue(value)
-    }
-    
-    // MARK: From
-    
-    public static func from(value: Bool) -> Node {
-        return .BooleanValue(value)
-    }
-    
-    public static func from(value: Double) -> Node {
-        return .NumberValue(value)
-    }
-    
-    public static func from(value: String) -> Node {
-        return .StringValue(value)
-    }
-    
-    public static func from(value: [Node]) -> Node {
-        return .ArrayValue(value)
-    }
-    
-    public static func from(value: [String : Node]) -> Node {
-        return .ObjectValue(value)
     }
 }
 
@@ -129,9 +108,22 @@ extension Node {
 
 extension Node {
     public subscript(index: Int) -> Node? {
-        assert(index >= 0)
-        guard let array = arrayValue where index < array.count else { return nil }
-        return array[index]
+        get {
+            assert(index >= 0)
+            guard let array = arrayValue where index < array.count else { return nil }
+            return array[index]
+        }
+        set {
+            assert(index >= 0)
+            guard let array = arrayValue where index < array.count else { return }
+            var mutable = array
+            if let new = newValue {
+                mutable[index] = new
+            } else {
+                mutable.removeAtIndex(index)
+            }
+            self = .ArrayValue(mutable)
+        }
     }
     
     public subscript(key: String) -> Node? {
@@ -143,12 +135,12 @@ extension Node {
             guard let object = objectValue else { fatalError("Unable to set string subscript on non-object type!") }
             var mutableObject = object
             mutableObject[key] = newValue
-            self = .from(mutableObject)
+            self = Node(mutableObject)
         }
     }
 }
 
-extension Node {
+extension Node: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
         case .NullValue:
@@ -183,6 +175,8 @@ extension Node {
         }
     }
 }
+
+extension Node: Equatable {}
 
 public func ==(lhs: Node, rhs: Node) -> Bool {
     switch lhs {

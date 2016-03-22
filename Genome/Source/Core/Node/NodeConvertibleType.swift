@@ -29,7 +29,7 @@ public protocol NodeConvertibleType {
 
 // MARK: Node
 
-extension Node : NodeConvertibleType {
+extension Node: NodeConvertibleType {
     public static func newInstance(node: Node, context: Context = EmptyNode) -> Node {
         return node
     }
@@ -41,9 +41,9 @@ extension Node : NodeConvertibleType {
 
 // MARK: String
 
-extension String : NodeConvertibleType {
+extension String: NodeConvertibleType {
     public func nodeRepresentation() throws -> Node {
-        return .from(self)
+        return Node(self)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> String {
@@ -56,9 +56,9 @@ extension String : NodeConvertibleType {
 
 // MARK: Boolean
 
-extension Bool : NodeConvertibleType {
+extension Bool: NodeConvertibleType {
     public func nodeRepresentation() throws -> Node {
-        return .from(self)
+        return Node(self)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Bool {
@@ -71,16 +71,16 @@ extension Bool : NodeConvertibleType {
 
 // MARK: UnsignedIntegerType
 
-extension UInt : NodeConvertibleType {}
-extension UInt8 : NodeConvertibleType {}
-extension UInt16 : NodeConvertibleType {}
-extension UInt32 : NodeConvertibleType {}
-extension UInt64 : NodeConvertibleType {}
+extension UInt: NodeConvertibleType {}
+extension UInt8: NodeConvertibleType {}
+extension UInt16: NodeConvertibleType {}
+extension UInt32: NodeConvertibleType {}
+extension UInt64: NodeConvertibleType {}
 
 extension UnsignedIntegerType {
     public func nodeRepresentation() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
-        return .from(double)
+        return Node(double)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
@@ -94,16 +94,16 @@ extension UnsignedIntegerType {
 
 // MARK: SignedIntegerType
 
-extension Int : NodeConvertibleType {}
-extension Int8 : NodeConvertibleType {}
-extension Int16 : NodeConvertibleType {}
-extension Int32 : NodeConvertibleType {}
-extension Int64 : NodeConvertibleType {}
+extension Int: NodeConvertibleType {}
+extension Int8: NodeConvertibleType {}
+extension Int16: NodeConvertibleType {}
+extension Int32: NodeConvertibleType {}
+extension Int64: NodeConvertibleType {}
 
 extension SignedIntegerType {
     public func nodeRepresentation() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
-        return .from(double)
+        return Node(double)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
@@ -117,26 +117,26 @@ extension SignedIntegerType {
 
 // MARK: FloatingPointType
 
-extension Float : NodeConvertibleFloatingPointType {
+extension Float: NodeConvertibleFloatingPointType {
     public var doubleValue: Double {
         return Double(self)
     }
 }
 
-extension Double : NodeConvertibleFloatingPointType {
+extension Double: NodeConvertibleFloatingPointType {
     public var doubleValue: Double {
         return Double(self)
     }
 }
 
-public protocol NodeConvertibleFloatingPointType : NodeConvertibleType {
+public protocol NodeConvertibleFloatingPointType: NodeConvertibleType {
     var doubleValue: Double { get }
     init(_ other: Double)
 }
 
 extension NodeConvertibleFloatingPointType {
     public func nodeRepresentation() throws -> Node {
-        return .from(doubleValue)
+        return Node(doubleValue)
     }
     
     public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
@@ -150,16 +150,11 @@ extension NodeConvertibleFloatingPointType {
 // MARK: Convenience
 
 extension Node {
-    public init(_ dictionary: [String : NodeConvertibleType]) throws{
-        self = try Node.from(dictionary)
-    }
-    
-    public static func from(dictionary: [String : NodeConvertibleType]) throws -> Node {
+    public init(_ dictionary: [String : NodeConvertibleType]) throws {
         var mutable: [String : Node] = [:]
         try dictionary.forEach { key, value in
             mutable[key] = try value.nodeRepresentation()
         }
-        
-        return .from(mutable)
+        self.init(Node(mutable))
     }
 }

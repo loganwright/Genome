@@ -20,7 +20,7 @@ extension MappableBase {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
-        return map.toNode
+        return map.node
     }
 }
 
@@ -66,7 +66,7 @@ extension BasicMappable {
 
 // MARK: Inheritable Object
 
-public class Object : MappableObject {
+public class Object: MappableObject {
     required public init(map: Map) throws {}
     
     public func sequence(map: Map) throws {}

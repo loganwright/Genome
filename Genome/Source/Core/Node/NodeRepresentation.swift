@@ -12,7 +12,7 @@
 extension CollectionType where Generator.Element: NodeConvertibleType {
     public func nodeRepresentation() throws -> Node {
         let array = try map { try $0.nodeRepresentation() }
-        return .from(array)
+        return Node(array)
     }
 }
 
