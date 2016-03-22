@@ -7,4 +7,5 @@ before_install:
   - gem install cocoapods
 script:
   - xctool -workspace Genome.xcworkspace -scheme Genome -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-  - xctool test -workspace Genome.xcworkspace -scheme GenomeTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - echo "Running xcodebuild instead of xctool temporarily to work around xctool bug"
+  - xcodebuild test -workspace Genome.xcworkspace -scheme GenomeTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
