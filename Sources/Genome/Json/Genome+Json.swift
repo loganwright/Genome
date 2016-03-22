@@ -6,7 +6,7 @@
 //  Copyright © 2016 lowriDevs. All rights reserved.
 //
 
-import PureJsonSerializer
+@_exported import PureJsonSerializer
 
 // MARK: BackingDataType
 
