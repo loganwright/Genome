@@ -109,12 +109,10 @@ extension Node {
 extension Node {
     public subscript(index: Int) -> Node? {
         get {
-            assert(index >= 0)
             guard let array = arrayValue where index < array.count else { return nil }
             return array[index]
         }
         set {
-            assert(index >= 0)
             guard let array = arrayValue where index < array.count else { return }
             var mutable = array
             if let new = newValue {

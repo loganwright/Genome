@@ -38,43 +38,43 @@ extension Json: BackingDataType {
     }
     
     
-    public static func makeInstance(node: Node, context: Context) throws -> Json {
+    public static func makeWith(node: Node, context: Context) throws -> Json {
         return Json(node)
     }
     
-    public func nodeRepresentation() throws -> Node {
-        return toNode()
+    public func toNode() throws -> Node {
+        return Node(self)
     }
 }
 
 // MARK: Convenience
 
 extension MappableBase {
-    public func jsonRepresentation() throws -> Json {
-        let node = try nodeRepresentation()
-        return node.dataRepresentation()
+    public func toJson() throws -> Json {
+        let node = try toNode()
+        return node.toData()
     }
 }
 
 extension NodeConvertibleType {
-    public func jsonRepresentation() throws -> Json {
-        let node = try nodeRepresentation()
-        return node.dataRepresentation()
+    public func toJson() throws -> Json {
+        let node = try toNode()
+        return node.toData()
     }
 }
 
 extension SequenceType where Generator.Element: NodeConvertibleType {
-    public func jsonRepresentation() throws -> Json {
-        let array = try map { try $0.jsonRepresentation() }
+    public func toJson() throws -> Json {
+        let array = try map { try $0.toJson() }
         return .init(array)
     }
 }
 
 extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertibleType {
-    public func jsonRepresentation() throws -> Json {
+    public func toJson() throws -> Json {
         var mutable: [String : Json] = [:]
         try self.forEach { key, value in
-            mutable["\(key)"] = try value.jsonRepresentation()
+            mutable["\(key)"] = try value.toJson()
         }
         return .ObjectValue(mutable)
     }
@@ -88,13 +88,43 @@ extension Map {
 
 // MARK: Deprecations
 
-public let EmptyJson = Json.ObjectValue([:])
-
 extension MappableObject {
-    public init(js: Json, context: Context = Json.ObjectValue([:])) throws {
+    public init(js: Json, context: Context = EmptyNode) throws {
         try self.init(node: js, context: context)
     }
 }
+
+public protocol JsonConvertibleType: NodeConvertibleType {
+    static func makeWith(json: Json, context: Context) throws -> Self
+    func toJson() throws -> Json
+}
+
+extension JsonConvertibleType {
+    static func makeWith(node: Node, context: Context) throws -> Self {
+        return try makeWith(node.toData(), context: context)
+    }
+    
+    func toNode() throws -> Node {
+        return try toJson().toNode()
+    }
+}
+
+// MARK: Json
+
+extension Json : JsonConvertibleType {
+    public static func makeWith(json: Json, context: Context = EmptyNode) -> Json {
+        return json
+    }
+    
+    public func toJson() -> Json {
+        return self
+    }
+}
+
+// MARK: Deprecations
+
+@available(*, deprecated=3.0, renamed="EmptyNode")
+public let EmptyJson = Json.ObjectValue([:])
 
 extension Map {
     @available(*, deprecated=3.0, renamed="init(node: context: default)")
@@ -103,50 +133,20 @@ extension Map {
     }
 }
 
-public protocol JsonConvertibleType: NodeConvertibleType {
-    static func makeInstance(json: Json, context: Context) throws -> Self
-    func jsonRepresentation() throws -> Json
-}
-
-extension JsonConvertibleType {
-    static func makeInstance(node: Node, context: Context) throws -> Self {
-        return try makeInstance(node.dataRepresentation(), context: context)
-    }
-    
-    func nodeRepresentation() throws -> Node {
-        return try jsonRepresentation().toNode()
-    }
-}
-
-// MARK: Json
-
-extension Json : JsonConvertibleType {
-    public static func makeInstance(json: Json, context: Context = EmptyJson) -> Json {
-        return json
-    }
-    
-    public func jsonRepresentation() -> Json {
-        return self
-    }
-}
-
 extension Array where Element : JsonConvertibleType {
-    
     @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
         let array = js.arrayValue ?? [js]
         try self.init(js: array, context: context)
     }
     
-    
     @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: [Json], context: Context = EmptyJson) throws {
-        self = try js.map { try Element.makeInstance($0, context: context) }
+        self = try js.map { try Element.makeWith($0, context: context) }
     }
 }
 
 extension Set where Element : JsonConvertibleType {
-    
     @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
         let array = js.arrayValue ?? [js]
@@ -155,13 +155,12 @@ extension Set where Element : JsonConvertibleType {
     
     @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: [Json], context: Context = EmptyJson) throws {
-        let array = try js.map { try Element.makeInstance($0, context: context) }
+        let array = try js.map { try Element.makeWith($0, context: context) }
         self.init(array)
     }
 }
 
 extension FromNodeTransformer {
-    
     @available(*, deprecated=3.0, renamed="transformToNode")
     public func transformToJson<OutputJsonType: NodeConvertibleType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<NodeType, TransformedType, OutputJsonType> {
         let toJsonTransformer = ToNodeTransformer(map: map, transformer: transformer)
@@ -170,13 +169,11 @@ extension FromNodeTransformer {
 }
 
 extension ToNodeTransformer {
-    
     @available(*, deprecated=3.0, renamed="transformFromNode")
     public func transformFromJson<InputJsonType>(transformer: InputJsonType throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputNodeType> {
         let fromJsonTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromJsonTransformer, toNodeTransformer: self)
     }
-    
     
     @available(*, deprecated=3.0, renamed="transformFromNode")
     public func transformFromJson<InputJsonType>(transformer: InputJsonType? throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputNodeType> {

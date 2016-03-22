@@ -64,14 +64,14 @@ extension Node {
 }
 
 extension NodeConvertibleType {
-    static func makeInstance(node: AnyObject, context: Context = EmptyNode) throws -> Self {
-        return try makeInstance(Node(node), context: context)
+    static func makeWith(node: AnyObject, context: Context = EmptyNode) throws -> Self {
+        return try makeWith(Node(node), context: context)
     }
 }
 
 extension MappableBase {
     public func foundationJson() throws -> AnyObject {
-        return try nodeRepresentation().anyValue
+        return try toNode().anyValue
     }
     
     public func foundationDictionary() throws -> [String : AnyObject]? {
@@ -91,7 +91,7 @@ public extension Array where Element : NodeConvertibleType {
     }
     
     public init(node: [AnyObject], context: Context = EmptyNode) throws {
-        self = try node.map { try Element.makeInstance($0, context: context) }
+        self = try node.map { try Element.makeWith($0, context: context) }
     }
 }
 
@@ -102,7 +102,7 @@ public extension Set where Element : NodeConvertibleType {
     }
     
     public init(node: [AnyObject], context: Context = EmptyNode) throws {
-        let array = try node.map { try Element.makeInstance($0, context: context) }
+        let array = try node.map { try Element.makeWith($0, context: context) }
         self.init(array)
     }
 }

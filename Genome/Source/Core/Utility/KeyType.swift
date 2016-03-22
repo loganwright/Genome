@@ -10,19 +10,19 @@
 /**
 Genome automatically uses keypath, which means given the following:
 
-[ 
-    "one" : [
-        "two" : "hello"
+    [
+        "one" : [
+            "two" : "hello"
+        ]
     ]
-]
 
 If you pass a key "one.two", the library will automatically fetch "hello" by default.
 
 If however you have the following:
 
-[
-    "one.two" : "hello"
-]
+    [
+        "one.two" : "hello"
+    ]
 
 To access the value at "one.two", use `map[.Key("one.two")]` to assert that it is not key path components.
 

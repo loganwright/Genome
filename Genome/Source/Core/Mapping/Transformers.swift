@@ -90,7 +90,7 @@ public final class FromNodeTransformer<NodeType: NodeConvertibleType, Transforme
             validNode = try enforceValueExists(node)
         }
         
-        let input = try NodeType.makeInstance(validNode, context: validNode)
+        let input = try NodeType.makeWith(validNode, context: validNode)
         return try transformer(input)
     }
 }
@@ -114,7 +114,7 @@ public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertibleT
     
     internal func transformValue(value: ValueType) throws -> Node {
         let transformed = try transformer(value)
-        return try transformed.nodeRepresentation()
+        return try transformed.toNode()
     }
 }
 

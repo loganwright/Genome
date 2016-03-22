@@ -147,9 +147,9 @@ class GenomeSideLoadTests: XCTestCase {
         
         // Assert Node
         
-        let node = try! peeps.first!.nodeRepresentation()
+        let node = try! peeps.first!.toNode()
         print("Write node tests \(node)")
-        let peepsNode = try! peeps.nodeRepresentation()
+        let peepsNode = try! peeps.toNode()
         print("Peeps: \(peepsNode)")
         
         let m = Map()

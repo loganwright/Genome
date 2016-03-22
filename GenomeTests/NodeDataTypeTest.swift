@@ -19,36 +19,36 @@ class NodeDataTypeTest: XCTestCase {
 
     func testIntegers() {
         
-        let int = try! Int.makeInstance(integerNodeValue)
+        let int = try! Int.makeWith(integerNodeValue)
         XCTAssert(int == integerValue)
         
-        let int8 = try! Int8.makeInstance(integerNodeValue)
+        let int8 = try! Int8.makeWith(integerNodeValue)
         XCTAssert(int8 == Int8(integerValue))
         
-        let int16 = try! Int16.makeInstance(integerNodeValue)
+        let int16 = try! Int16.makeWith(integerNodeValue)
         XCTAssert(int16 == Int16(integerValue))
         
-        let int32 = try! Int32.makeInstance(integerNodeValue)
+        let int32 = try! Int32.makeWith(integerNodeValue)
         XCTAssert(int32 == Int32(integerValue))
         
-        let int64 = try! Int64.makeInstance(integerNodeValue)
+        let int64 = try! Int64.makeWith(integerNodeValue)
         XCTAssert(int64 == Int64(integerValue))
     }
 
     func testUnsignedIntegers() {
-        let uint = try! UInt.makeInstance(integerNodeValue)
+        let uint = try! UInt.makeWith(integerNodeValue)
         XCTAssert(uint == UInt(integerValue))
         
-        let uint8 = try! UInt8.makeInstance(integerNodeValue)
+        let uint8 = try! UInt8.makeWith(integerNodeValue)
         XCTAssert(uint8 == UInt8(integerValue))
         
-        let uint16 = try! UInt16.makeInstance(integerNodeValue)
+        let uint16 = try! UInt16.makeWith(integerNodeValue)
         XCTAssert(uint16 == UInt16(integerValue))
         
-        let uint32 = try! UInt32.makeInstance(integerNodeValue)
+        let uint32 = try! UInt32.makeWith(integerNodeValue)
         XCTAssert(uint32 == UInt32(integerValue))
         
-        let uint64 = try! UInt64.makeInstance(integerNodeValue)
+        let uint64 = try! UInt64.makeWith(integerNodeValue)
         XCTAssert(uint64 == UInt64(integerValue))
     }
 }

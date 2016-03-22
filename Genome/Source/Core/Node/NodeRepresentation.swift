@@ -10,17 +10,17 @@
 // MARK: To Node
 
 extension CollectionType where Generator.Element: NodeConvertibleType {
-    public func nodeRepresentation() throws -> Node {
-        let array = try map { try $0.nodeRepresentation() }
+    public func toNode() throws -> Node {
+        let array = try map { try $0.toNode() }
         return Node(array)
     }
 }
 
 extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertibleType {
-    public func nodeRepresentation() throws -> Node {
+    public func toNode() throws -> Node {
         var mutable: [String : Node] = [:]
         try self.forEach { key, value in
-            mutable["\(key)"] = try value.nodeRepresentation()
+            mutable["\(key)"] = try value.toNode()
         }
         return .ObjectValue(mutable)
     }

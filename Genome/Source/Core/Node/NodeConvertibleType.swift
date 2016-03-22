@@ -23,18 +23,18 @@ extension Dictionary : Context {}
 // MARK: NodeConvertibleType
 
 public protocol NodeConvertibleType {
-    static func makeInstance(node: Node, context: Context) throws -> Self
-    func nodeRepresentation() throws -> Node
+    static func makeWith(node: Node, context: Context) throws -> Self
+    func toNode() throws -> Node
 }
 
 // MARK: Node
 
 extension Node: NodeConvertibleType {
-    public static func makeInstance(node: Node, context: Context = EmptyNode) -> Node {
+    public static func makeWith(node: Node, context: Context = EmptyNode) -> Node {
         return node
     }
     
-    public func nodeRepresentation() -> Node {
+    public func toNode() -> Node {
         return self
     }
 }
@@ -42,11 +42,11 @@ extension Node: NodeConvertibleType {
 // MARK: String
 
 extension String: NodeConvertibleType {
-    public func nodeRepresentation() throws -> Node {
+    public func toNode() throws -> Node {
         return Node(self)
     }
     
-    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> String {
+    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> String {
         guard let string = node.stringValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -57,11 +57,11 @@ extension String: NodeConvertibleType {
 // MARK: Boolean
 
 extension Bool: NodeConvertibleType {
-    public func nodeRepresentation() throws -> Node {
+    public func toNode() throws -> Node {
         return Node(self)
     }
     
-    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Bool {
+    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Bool {
         guard let bool = node.boolValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -78,12 +78,12 @@ extension UInt32: NodeConvertibleType {}
 extension UInt64: NodeConvertibleType {}
 
 extension UnsignedIntegerType {
-    public func nodeRepresentation() throws -> Node {
+    public func toNode() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
         return Node(double)
     }
     
-    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let int = node.uintValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -101,12 +101,12 @@ extension Int32: NodeConvertibleType {}
 extension Int64: NodeConvertibleType {}
 
 extension SignedIntegerType {
-    public func nodeRepresentation() throws -> Node {
+    public func toNode() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
         return Node(double)
     }
     
-    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let int = node.intValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -135,11 +135,11 @@ public protocol NodeConvertibleFloatingPointType: NodeConvertibleType {
 }
 
 extension NodeConvertibleFloatingPointType {
-    public func nodeRepresentation() throws -> Node {
+    public func toNode() throws -> Node {
         return Node(doubleValue)
     }
     
-    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let double = node.doubleValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -153,7 +153,7 @@ extension Node {
     public init(_ dictionary: [String : NodeConvertibleType]) throws {
         var mutable: [String : Node] = [:]
         try dictionary.forEach { key, value in
-            mutable[key] = try value.nodeRepresentation()
+            mutable[key] = try value.toNode()
         }
         self.init(Node(mutable))
     }

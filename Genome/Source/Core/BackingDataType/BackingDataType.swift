@@ -25,17 +25,11 @@ public protocol BackingDataType: NodeConvertibleType, Context {
 }
 
 extension BackingDataType {
-    public static func makeInstance(node: Node, context: Context) throws -> Self {
+    public static func makeWith(node: Node, context: Context) throws -> Self {
         return self.init(node)
     }
     
-    public func nodeRepresentation() throws -> Node {
-        return toNode()
-    }
-}
-
-extension BackingDataType {
-    public func toNode() -> Node {
+    public func toNode() throws -> Node {
         return Node(self)
     }
 }
@@ -79,7 +73,7 @@ extension Node: BackingDataType {
 }
 
 extension Node {
-    public func dataRepresentation<T: BackingDataType>() -> T {
+    public func toData<T: BackingDataType>() -> T {
         return T.init(self)
     }
 }
@@ -111,8 +105,8 @@ extension Node {
 // MARK: Node Convertible
 
 extension NodeConvertibleType {
-    static func makeInstance<T: BackingDataType>(node: T, context: Context = EmptyNode) throws -> Self {
-        return try makeInstance(Node(node), context: context)
+    static func makeWith<T: BackingDataType>(node: T, context: Context = EmptyNode) throws -> Self {
+        return try makeWith(Node(node), context: context)
     }
 }
 
@@ -135,7 +129,7 @@ extension MappableObject {
     }
     
     // NodeConvertibleTypeConformance
-    public static func makeInstance<T: BackingDataType>(data data: T, context: Context = EmptyNode) throws -> Self {
+    public static func makeWith<T: BackingDataType>(data data: T, context: Context = EmptyNode) throws -> Self {
         let node = Node(data)
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
