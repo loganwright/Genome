@@ -21,9 +21,9 @@ Removing Foundation dependencies for core functionality has always been a goal o
 
 This means that going forward, we'll be using the new `Node` type.  The new `Node` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Node = "HumanName"`.  When converting from data or a string, use `let node = try Node.deserialize(nodeData)`.  
 
-There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'Cocoapods', '~> 1.0.0'`.
+There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'CocoaPods', '~> 1.0.0'`.
 
-If you're not using Cocoapods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
+If you're not using CocoaPods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
 
 Happy Mapping!
 
@@ -75,7 +75,7 @@ With the introduction of Swift 2.0, we were given an entirely new error handling
 
 If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/Genome.playground/Sources">sources</a>  directory.
 
-It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">cocoapods.</a>  Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
+It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">CocoaPods.</a>  Here is a personal CocoaPods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">CocoaPods Setup Guide</a>
 
 ```Ruby
 pod 'Genome', '~> 2.0.0'
