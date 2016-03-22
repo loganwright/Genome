@@ -71,7 +71,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic(data: BasicTestNode)
+        let basic = try! Basic(node: BasicTestNode)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)

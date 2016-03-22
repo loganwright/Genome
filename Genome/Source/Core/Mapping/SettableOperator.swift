@@ -123,7 +123,7 @@ public prefix func <~ <T: NodeConvertibleType>(map: Map) throws -> T {
     try enforceMapType(map, expectedType: .FromNode)
     let result = try enforceResultExists(map, type: T.self)
     do {
-        return try T.newInstance(result, context: map.context)
+        return try T.makeInstance(result, context: map.context)
     } catch {
         let error = MappingError.UnableToMap(key: map.lastKey, error: error)
         throw logError(error)
@@ -154,7 +154,7 @@ public prefix func <~ <T: NodeConvertibleType>(map: Map) throws -> [String : T] 
     
     var mappedDictionary: [String : T] = [:]
     for (key, value) in nodeDictionary {
-        let mappedValue = try T.newInstance(value, context: map.context)
+        let mappedValue = try T.makeInstance(value, context: map.context)
         mappedDictionary[key] = mappedValue
     }
     return mappedDictionary

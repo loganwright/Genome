@@ -90,7 +90,7 @@ public final class FromNodeTransformer<NodeType: NodeConvertibleType, Transforme
             validNode = try enforceValueExists(node)
         }
         
-        let input = try NodeType.newInstance(validNode, context: validNode)
+        let input = try NodeType.makeInstance(validNode, context: validNode)
         return try transformer(input)
     }
 }

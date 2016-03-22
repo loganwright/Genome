@@ -64,8 +64,8 @@ extension Node {
 }
 
 extension NodeConvertibleType {
-    static func newInstance(data: AnyObject, context: Context = EmptyNode) throws -> Self {
-        return try newInstance(Node(data), context: context)
+    static func makeInstance(node: AnyObject, context: Context = EmptyNode) throws -> Self {
+        return try makeInstance(Node(node), context: context)
     }
 }
 
@@ -91,7 +91,7 @@ public extension Array where Element : NodeConvertibleType {
     }
     
     public init(node: [AnyObject], context: Context = EmptyNode) throws {
-        self = try node.map { try Element.newInstance($0, context: context) }
+        self = try node.map { try Element.makeInstance($0, context: context) }
     }
 }
 
@@ -102,7 +102,7 @@ public extension Set where Element : NodeConvertibleType {
     }
     
     public init(node: [AnyObject], context: Context = EmptyNode) throws {
-        let array = try node.map { try Element.newInstance($0, context: context) }
+        let array = try node.map { try Element.makeInstance($0, context: context) }
         self.init(array)
     }
 }

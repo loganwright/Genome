@@ -23,14 +23,14 @@ extension Dictionary : Context {}
 // MARK: NodeConvertibleType
 
 public protocol NodeConvertibleType {
-    static func newInstance(node: Node, context: Context) throws -> Self
+    static func makeInstance(node: Node, context: Context) throws -> Self
     func nodeRepresentation() throws -> Node
 }
 
 // MARK: Node
 
 extension Node: NodeConvertibleType {
-    public static func newInstance(node: Node, context: Context = EmptyNode) -> Node {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) -> Node {
         return node
     }
     
@@ -46,7 +46,7 @@ extension String: NodeConvertibleType {
         return Node(self)
     }
     
-    public static func newInstance(node: Node, context: Context = EmptyNode) throws -> String {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> String {
         guard let string = node.stringValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -61,7 +61,7 @@ extension Bool: NodeConvertibleType {
         return Node(self)
     }
     
-    public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Bool {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Bool {
         guard let bool = node.boolValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -83,7 +83,7 @@ extension UnsignedIntegerType {
         return Node(double)
     }
     
-    public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let int = node.uintValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -106,7 +106,7 @@ extension SignedIntegerType {
         return Node(double)
     }
     
-    public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let int = node.intValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -139,7 +139,7 @@ extension NodeConvertibleFloatingPointType {
         return Node(doubleValue)
     }
     
-    public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let double = node.doubleValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }

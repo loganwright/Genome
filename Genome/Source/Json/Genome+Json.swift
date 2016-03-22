@@ -38,7 +38,7 @@ extension Json: BackingDataType {
     }
     
     
-    public static func newInstance(node: Node, context: Context) throws -> Json {
+    public static func makeInstance(node: Node, context: Context) throws -> Json {
         return Json(node)
     }
     
@@ -88,37 +88,29 @@ extension Map {
 
 // MARK: Deprecations
 
-@available(*, deprecated=3.0, renamed="EmptyNode")
 public let EmptyJson = Json.ObjectValue([:])
 
 extension MappableObject {
-    @available(*, deprecated=3.0, renamed="init(data: context: default)")
     public init(js: Json, context: Context = Json.ObjectValue([:])) throws {
-        try self.init(data: js, context: context)
+        try self.init(node: js, context: context)
     }
 }
 
 extension Map {
-    @available(*, deprecated=3.0, renamed="json")
-    public var toJson: Json {
-        return Json(node)
-    }
-
     @available(*, deprecated=3.0, renamed="init(node: context: default)")
     public convenience init(json: Json, context: Context = EmptyNode) {
         self.init(node: json, context: context)
     }
 }
 
-@available(*, deprecated=3.0, renamed="NodeConvertibleType")
 public protocol JsonConvertibleType: NodeConvertibleType {
-    static func newInstance(json: Json, context: Context) throws -> Self
+    static func makeInstance(json: Json, context: Context) throws -> Self
     func jsonRepresentation() throws -> Json
 }
 
 extension JsonConvertibleType {
-    static func newInstance(node: Node, context: Context) throws -> Self {
-        return try newInstance(node.dataRepresentation(), context: context)
+    static func makeInstance(node: Node, context: Context) throws -> Self {
+        return try makeInstance(node.dataRepresentation(), context: context)
     }
     
     func nodeRepresentation() throws -> Node {
@@ -129,7 +121,7 @@ extension JsonConvertibleType {
 // MARK: Json
 
 extension Json : JsonConvertibleType {
-    public static func newInstance(json: Json, context: Context = EmptyJson) -> Json {
+    public static func makeInstance(json: Json, context: Context = EmptyJson) -> Json {
         return json
     }
     
@@ -140,30 +132,30 @@ extension Json : JsonConvertibleType {
 
 extension Array where Element : JsonConvertibleType {
     
-    @available(*, deprecated=3.0, renamed="init(data: context:)")
+    @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
         let array = js.arrayValue ?? [js]
         try self.init(js: array, context: context)
     }
     
     
-    @available(*, deprecated=3.0, renamed="init(data: context:)")
+    @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: [Json], context: Context = EmptyJson) throws {
-        self = try js.map { try Element.newInstance($0, context: context) }
+        self = try js.map { try Element.makeInstance($0, context: context) }
     }
 }
 
 extension Set where Element : JsonConvertibleType {
     
-    @available(*, deprecated=3.0, renamed="init(data: context:)")
+    @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
         let array = js.arrayValue ?? [js]
         try self.init(js: array, context: context)
     }
     
-    @available(*, deprecated=3.0, renamed="init(data: context:)")
+    @available(*, deprecated=3.0, renamed="init(node: context:)")
     public init(js: [Json], context: Context = EmptyJson) throws {
-        let array = try js.map { try Element.newInstance($0, context: context) }
+        let array = try js.map { try Element.makeInstance($0, context: context) }
         self.init(array)
     }
 }

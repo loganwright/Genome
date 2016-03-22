@@ -39,7 +39,7 @@ extension MappableObject {
     }
     
     // NodeConvertibleTypeConformance
-    public static func newInstance(node: Node, context: Context = EmptyNode) throws -> Self {
+    public static func makeInstance(node: Node, context: Context = EmptyNode) throws -> Self {
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -71,7 +71,7 @@ public class Object: MappableObject {
     
     public func sequence(map: Map) throws {}
     
-    public static func newInstance(node: Node, context: Context) throws -> Self {
+    public static func makeInstance(node: Node, context: Context) throws -> Self {
         let map = Map(node: node, context: context)
         let new = try self.init(map: map)
         return new

@@ -25,7 +25,7 @@ public protocol BackingDataType: NodeConvertibleType, Context {
 }
 
 extension BackingDataType {
-    public static func newInstance(node: Node, context: Context) throws -> Self {
+    public static func makeInstance(node: Node, context: Context) throws -> Self {
         return self.init(node)
     }
     
@@ -111,22 +111,22 @@ extension Node {
 // MARK: Node Convertible
 
 extension NodeConvertibleType {
-    static func newInstance<T: BackingDataType>(data: T, context: Context = EmptyNode) throws -> Self {
-        return try newInstance(Node(data), context: context)
+    static func makeInstance<T: BackingDataType>(node: T, context: Context = EmptyNode) throws -> Self {
+        return try makeInstance(Node(node), context: context)
     }
 }
 
 // MARK: Mappable Object
 
 extension MappableObject {
-    public init<T: BackingDataType>(data: T, context: Context = EmptyNode) throws {
-        let safeNode = Node(data)
+    public init<T: BackingDataType>(node: T, context: Context = EmptyNode) throws {
+        let safeNode = Node(node)
         try self.init(node: safeNode, context: context)
     }
     
-    public init<T: BackingDataType>(data: [String : T], context: [String : AnyObject] = [:]) throws {
+    public init<T: BackingDataType>(node: [String : T], context: [String : AnyObject] = [:]) throws {
         var mapped: [String : Node] = [:]
-        data.forEach { key, value in
+        node.forEach { key, value in
             mapped[key] = Node(value)
         }
     
@@ -135,7 +135,7 @@ extension MappableObject {
     }
     
     // NodeConvertibleTypeConformance
-    public static func newInstance<T: BackingDataType>(data data: T, context: Context = EmptyNode) throws -> Self {
+    public static func makeInstance<T: BackingDataType>(data data: T, context: Context = EmptyNode) throws -> Self {
         let node = Node(data)
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
