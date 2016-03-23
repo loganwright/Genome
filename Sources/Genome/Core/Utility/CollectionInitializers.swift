@@ -16,7 +16,7 @@ public extension Array where Element : NodeConvertibleType {
     }
     
     public init<T: BackingDataType>(node: [T], context: Context = EmptyNode) throws {
-        self = try node.map { try Element.newInstance($0, context: context) }
+        self = try node.map { try Element.makeWith($0, context: context) }
     }
 }
 
@@ -27,7 +27,7 @@ public extension Set where Element : NodeConvertibleType {
     }
     
     public init<T: BackingDataType>(node: [T], context: Context = EmptyNode) throws {
-        let array = try node.map { try Element.newInstance($0, context: context) }
+        let array = try node.map { try Element.makeWith($0, context: context) }
         self.init(array)
     }
 }

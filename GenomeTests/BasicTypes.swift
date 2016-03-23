@@ -71,14 +71,14 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() {
-        let basic = try! Basic(data: BasicTestNode)
+        let basic = try! Basic(node: BasicTestNode)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let node = try! basic.nodeRepresentation()
+        let node = try! basic.toNode()
         let int = node["int"]!.intValue!
         let float = node["float"]!.floatValue!
         let double = node["double"]!.doubleValue!
@@ -99,7 +99,7 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let node = try! basic.nodeRepresentation()
+        let node = try! basic.toNode()
         let ints = node["ints"]!.arrayValue!.flatMap { $0.intValue }
         let floats = node["floats"]!.arrayValue!.flatMap { $0.floatValue }
         let doubles = node["doubles"]!.arrayValue!.flatMap { $0.doubleValue }

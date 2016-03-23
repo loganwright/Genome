@@ -32,3 +32,7 @@ Pods/
 Carthage/Checkouts
 
 Carthage/Build
+
+# Swift Package Manager
+.build/
+Packages/

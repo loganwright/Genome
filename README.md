@@ -5,31 +5,16 @@
 
 <h2 align="center">Failure-Driven Object Mapping in Swift</h2>
 
-Genome has gone Swift!  If you're looking for the original, ObjC implementation, you can find it <a href="https://github.com/LoganWright/Genome/tree/0.1">here</a>!  The ObjC version is no longer maintained, and any new developments will be done in Swift.
 
-<h1 align="center">Genome 2.0.0</h1>
+<h4>Genome 3.0.0</h4>
 
-With the 2.0.0 release, there are some breaking syntax adjustments that you should be aware of.  One of the major changes is the removal of the dreaded and confusing `<~?` operator.  By structuring differently, special cases for optionality are no longer necessary, and all direct set mappings can use `<~` or the newly added `extract` function.  This also positions the library to better adapt when containers of conforming objects can conform themselves. The goal here would be reducing the amount of overload functions necessary.
+Genome has gone to 3.0.0, largely spearheaded by the efforts of @Marxon13. The biggest change to the library is that it is now data type agnostic. This means that Genome is no longer dependent on Json only. This means that supporting a new data type like xml, or <a href="https://github.com/Marxon13/Chromosome">csv</a> is easy. For those of you using Json, it should be the same Genome you've been using with a few syntax tweaks.
 
-<h1 align="center">Genome 2.1.0</h1>
-
-With the 2.1.0 release, `Json` has been replaced with a file type independent `Node` object. This positions the library to gain serializers and deserializers for various file types other than JSON. NSData support has been temporarily removed, as the dependency that provided it has been phased out. It will be re-added with the serialization and deserialization support. `NSJSONSerialization` can be used perform the conversion from `NSData` to `[String:AnyObject]` while serialization support is coming.
-
-#### Pure
-
-Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out that it snuck into the `1.0.0` version.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  
-
-This means that going forward, we'll be using the new `Node` type.  The new `Node` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Node = "HumanName"`.  When converting from data or a string, use `let node = try Node.deserialize(nodeData)`.  
-
-There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'Cocoapods', '~> 1.0.0'`.
-
-If you're not using Cocoapods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
-
-Happy Mapping!
+Most of the syntax updates have been around clarity and conformance to Swift 3 api guidelines. The rest are related to the replacement of Json with an agnostic Node type.
 
 ### Building Project
 
-Just build the project using the Genome.xcodeproj file in the root of the repository.
+Genome uses CocoaPods. You'll need to open Genome.xcworkspace and run `pod install`
 
 ### Why
 
@@ -75,7 +60,7 @@ With the introduction of Swift 2.0, we were given an entirely new error handling
 
 If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/Genome.playground/Sources">sources</a>  directory.
 
-It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">cocoapods.</a>  Here is a personal cocoapods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">Cocoapods Setup Guide</a>
+It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">CocoaPods.</a>  Here is a personal CocoaPods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">CocoaPods Setup Guide</a>
 
 ```Ruby
 pod 'Genome', '~> 2.0.0'
@@ -507,3 +492,21 @@ loggers = []
 
 Genome.loggers = []
 ```
+
+# RELEASE information
+
+<h1 align="center">Genome 2.0.0</h1>
+
+With the 2.0.0 release, there are some breaking syntax adjustments that you should be aware of.  One of the major changes is the removal of the dreaded and confusing `<~?` operator.  By structuring differently, special cases for optionality are no longer necessary, and all direct set mappings can use `<~` or the newly added `extract` function.  This also positions the library to better adapt when containers of conforming objects can conform themselves. The goal here would be reducing the amount of overload functions necessary.
+
+#### Pure
+
+Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out that it snuck into the `1.0.0` version.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  
+
+This means that going forward, we'll be using the new `Node` type.  The new `Node` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Node = "HumanName"`.  When converting from data or a string, use `let node = try Node.deserialize(nodeData)`.  
+
+There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'CocoaPods', '~> 1.0.0'`.
+
+If you're not using CocoaPods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
+
+Happy Mapping!

@@ -15,22 +15,22 @@ Pod::Spec.new do |spec|
   spec.default_subspec = "Default"
 
   spec.subspec "Core" do |cs|
-    cs.source_files = 'Genome/Source/Core/**/*.{swift}'
+    cs.source_files = 'Sources/Genome/Core/**/*.{swift}'
   end
 
   spec.subspec "Foundation" do |fs|
-    fs.source_files = 'Genome/Source/Foundation/**/*.{swift}'
+    fs.source_files = 'Sources/Genome/Foundation/**/*.{swift}'
     fs.dependency 'Genome/Core'
   end
 
-  spec.subspec "Json" do |js|
-    js.source_files = 'Genome/Source/Json/**/*.{swift}'
+  spec.subspec "PureJson" do |js|
+    js.source_files = 'Sources/Genome/Json/**/*.{swift}'
     js.dependency 'Genome/Core'
     js.dependency 'PureJsonSerializer'
   end
 
   spec.subspec "Default" do |ds|
-    ds.dependency 'Genome/Json'
+    ds.dependency 'Genome/PureJson'
     ds.dependency 'Genome/Foundation'
   end
 

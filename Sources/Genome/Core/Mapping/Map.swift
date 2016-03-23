@@ -126,17 +126,17 @@ public final class Map {
 
 extension Map {
     internal func setToLastKey<T : NodeConvertibleType>(any: T?) throws {
-        try setToLastKey(any?.nodeRepresentation())
+        try setToLastKey(any?.toNode())
     }
     
     internal func setToLastKey<T : NodeConvertibleType>(any: [T]?) throws {
-        try setToLastKey(any?.nodeRepresentation())
+        try setToLastKey(any?.toNode())
     }
     
     internal func setToLastKey<T : NodeConvertibleType>(any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
-            return try innerArray.nodeRepresentation()
+            return try innerArray.toNode()
         }
         try setToLastKey(Node(node))
     }
@@ -145,7 +145,7 @@ extension Map {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.nodeRepresentation()
+            node[key] = try value.toNode()
         }
         try setToLastKey(Node(node))
     }
@@ -154,13 +154,13 @@ extension Map {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.nodeRepresentation()
+            node[key] = try value.toNode()
         }
         try setToLastKey(Node(node))
     }
     
     internal func setToLastKey<T : NodeConvertibleType>(any: Set<T>?) throws {
-        try setToLastKey(any?.nodeRepresentation())
+        try setToLastKey(any?.toNode())
     }
 }
 
