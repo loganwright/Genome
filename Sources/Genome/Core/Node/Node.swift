@@ -61,21 +61,24 @@ extension Node {
         }
     }
     
-    public var floatValue: Float? {
-        guard let double = doubleValue else { return nil }
-        return Float(double)
-    }
-    
-    public var doubleValue: Double? {
-        guard case let .NumberValue(double) = self else {
+    public var numberValue: Double? {
+        guard case let .NumberValue(number) = self else {
             return nil
         }
         
-        return double
+        return number
+    }
+    
+    public var floatValue: Float? {
+        return numberValue.flatMap(Float.init)
+    }
+    
+    public var doubleValue: Double? {
+        return numberValue
     }
     
     public var intValue: Int? {
-        guard case let .NumberValue(double) = self where double % 1 == 0 else {
+        guard let double = numberValue where double % 1 == 0 else {
             return nil
         }
         
@@ -83,7 +86,7 @@ extension Node {
     }
     
     public var uintValue: UInt? {
-        guard let intValue = intValue else { return nil }
+        guard let intValue = intValue where intValue >= 0 else { return nil }
         return UInt(intValue)
     }
     

@@ -16,24 +16,23 @@ extension Json: BackingDataType {
     }
     
     public init(_ node: Node) {
-        if let string = node.stringValue {
-            self = .StringValue(string)
-        } else if let number = node.numberValue {
-            self = .NumberValue(number)
-        } else if let bool = node.boolValue {
+        switch node {
+        case let .StringValue(str):
+            self = .StringValue(str)
+        case let .NumberValue(num):
+            self = .NumberValue(num)
+        case let .BooleanValue(bool):
             self = .BooleanValue(bool)
-        } else if let array = node.arrayValue {
-            self = .ArrayValue(array.map(Json.init))
-        } else if let object = node.objectValue {
+        case let .ArrayValue(arr):
+            self = .ArrayValue(arr.map(Json.init))
+        case let .ObjectValue(obj):
             var mutable: [String : Json] = [:]
-            object.forEach { key, val in
+            obj.forEach { key, val in
                 mutable[key] = Json(val)
             }
             self = .ObjectValue(mutable)
-        } else if node.isNull {
-            self = Json.NullValue
-        } else {
-            fatalError("Unable to convert data: \(node)")
+        case .NullValue:
+            self = .NullValue
         }
     }
     
@@ -43,7 +42,25 @@ extension Json: BackingDataType {
     }
     
     public func toNode() throws -> Node {
-        return Node(self)
+        switch self {
+        case let .StringValue(str):
+            return .StringValue(str)
+        case let .NumberValue(num):
+            return .NumberValue(num)
+        case let .BooleanValue(bool):
+            return .BooleanValue(bool)
+        case let .ArrayValue(arr):
+            let mapped = try arr.map { try $0.toNode() }
+            return .ArrayValue(mapped)
+        case let .ObjectValue(obj):
+            var mutable: [String : Node] = [:]
+            try obj.forEach { key, val in
+                mutable[key] = try val.toNode()
+            }
+            return .ObjectValue(mutable)
+        case .NullValue:
+            return .NullValue
+        }
     }
 }
 
@@ -52,14 +69,14 @@ extension Json: BackingDataType {
 extension MappableBase {
     public func toJson() throws -> Json {
         let node = try toNode()
-        return node.toData()
+        return try node.toData()
     }
 }
 
 extension NodeConvertibleType {
     public func toJson() throws -> Json {
         let node = try toNode()
-        return node.toData()
+        return try node.toData()
     }
 }
 
@@ -128,8 +145,8 @@ public let EmptyJson = Json.ObjectValue([:])
 
 extension Map {
     @available(*, deprecated=3.0, renamed="init(node: context: default)")
-    public convenience init(json: Json, context: Context = EmptyNode) {
-        self.init(node: json, context: context)
+    public convenience init(json: Json, context: Context = EmptyNode) throws {
+        try self.init(data: json, context: context)
     }
 }
 
