@@ -10,23 +10,27 @@
 // MARK: MappableObject Initialization
 
 public extension Array where Element : NodeConvertibleType {
-    public init<T: BackingDataType>(node: T, context: Context = EmptyNode) throws {
+    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
+        let node = data.toNode()
         let array = node.arrayValue ?? [node]
         try self.init(node: array, context: context)
     }
     
-    public init<T: BackingDataType>(node: [T], context: Context = EmptyNode) throws {
+    public init<T: BackingDataType>(node data: [T], context: Context = EmptyNode) throws {
+        let node = data.map { $0.toNode() }
         self = try node.map { try Element.makeWith($0, context: context) }
     }
 }
 
 public extension Set where Element : NodeConvertibleType {
-    public init<T: BackingDataType>(node: T, context: Context = EmptyNode) throws {
+    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
+        let node = data.toNode()
         let array = node.arrayValue ?? [node]
         try self.init(node: array, context: context)
     }
     
-    public init<T: BackingDataType>(node: [T], context: Context = EmptyNode) throws {
+    public init<T: BackingDataType>(node data: [T], context: Context = EmptyNode) throws {
+        let node = data.map { $0.toNode() }
         let array = try node.map { try Element.makeWith($0, context: context) }
         self.init(array)
     }

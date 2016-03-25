@@ -15,33 +15,30 @@ extension Json: BackingDataType {
         return doubleValue
     }
     
-    public init(_ node: Node) {
+    public static func makeWith(node: Node, context: Context) -> Json {
         switch node {
         case let .StringValue(str):
-            self = .StringValue(str)
+            return .StringValue(str)
         case let .NumberValue(num):
-            self = .NumberValue(num)
+            return .NumberValue(num)
         case let .BooleanValue(bool):
-            self = .BooleanValue(bool)
+            return .BooleanValue(bool)
         case let .ArrayValue(arr):
-            self = .ArrayValue(arr.map(Json.init))
+            let mapped = arr.map { Json.makeWith($0, context: context) }
+            return .ArrayValue(mapped)
         case let .ObjectValue(obj):
             var mutable: [String : Json] = [:]
             obj.forEach { key, val in
-                mutable[key] = Json(val)
+                mutable[key] = Json.makeWith(node, context: context)
             }
-            self = .ObjectValue(mutable)
+            return .ObjectValue(mutable)
         case .NullValue:
-            self = .NullValue
+            return .NullValue
         }
+
     }
     
-    
-    public static func makeWith(node: Node, context: Context) throws -> Json {
-        return Json(node)
-    }
-    
-    public func toNode() throws -> Node {
+    public func toNode() -> Node {
         switch self {
         case let .StringValue(str):
             return .StringValue(str)
@@ -50,12 +47,12 @@ extension Json: BackingDataType {
         case let .BooleanValue(bool):
             return .BooleanValue(bool)
         case let .ArrayValue(arr):
-            let mapped = try arr.map { try $0.toNode() }
+            let mapped = arr.map { $0.toNode() }
             return .ArrayValue(mapped)
         case let .ObjectValue(obj):
             var mutable: [String : Node] = [:]
-            try obj.forEach { key, val in
-                mutable[key] = try val.toNode()
+            obj.forEach { key, val in
+                mutable[key] = val.toNode()
             }
             return .ObjectValue(mutable)
         case .NullValue:
@@ -99,7 +96,7 @@ extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertibleT
 
 extension Map {
     public var json: Json {
-        return Json(node)
+        return Json.makeWith(node, context: node)
     }
 }
 
@@ -118,7 +115,8 @@ public protocol JsonConvertibleType: NodeConvertibleType {
 
 extension JsonConvertibleType {
     static func makeWith(node: Node, context: Context) throws -> Self {
-        return try makeWith(node.toData(), context: context)
+        let json: Json = try node.toData()
+        return try makeWith(json, context: context)
     }
     
     func toNode() throws -> Node {
@@ -145,8 +143,8 @@ public let EmptyJson = Json.ObjectValue([:])
 
 extension Map {
     @available(*, deprecated=3.0, renamed="init(node: context: default)")
-    public convenience init(json: Json, context: Context = EmptyNode) throws {
-        try self.init(data: json, context: context)
+    public convenience init(json: Json, context: Context = EmptyNode) {
+        self.init(node: json, context: context)
     }
 }
 

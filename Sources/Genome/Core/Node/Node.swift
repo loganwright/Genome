@@ -30,13 +30,27 @@ extension Node {
         self = .StringValue(value)
     }
     
-    public init(_ value: [Node]) {
-        self = .ArrayValue(value)
-    }
-    
     public init(_ value: [String : Node]) {
         self = .ObjectValue(value)
     }
+
+    public init<T: IntegerType>(_ value: T) {
+        self = .NumberValue(Double(value.toIntMax()))
+    }
+    
+    public init<T : SequenceType where T.Generator.Element == Node>(_ value: T) {
+        let array = [Node](value)
+        self = .ArrayValue(array)
+    }
+    
+    public init<T : SequenceType where T.Generator.Element == (key: String, value: Node)>(_ seq: T) {
+        var obj: [String : Node] = [:]
+        seq.forEach { key, val in
+            obj[key] = val
+        }
+        self = .ObjectValue(obj)
+    }
+
 }
 
 // MARK: Convenience

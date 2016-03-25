@@ -29,7 +29,7 @@ public protocol NodeConvertibleType {
 
 // MARK: Node
 
-extension Node: NodeConvertibleType {
+extension Node: NodeConvertibleType, BackingDataType { // Can conform to both if non-throwing implementations
     public static func makeWith(node: Node, context: Context = EmptyNode) -> Node {
         return node
     }
@@ -155,6 +155,6 @@ extension Node {
         try dictionary.forEach { key, value in
             mutable[key] = try value.toNode()
         }
-        self.init(Node(mutable))
+        self = .ObjectValue(mutable)
     }
 }

@@ -54,14 +54,10 @@ public final class Map {
      
      :returns: an initialized map ready to map an object
      */
-    public convenience init<T: BackingDataType>(data: T, context: Context = EmptyNode) throws {
-        self.init(node: try data.toNode(), context: context)
-    }
-    
-    public init(node: Node, context: Context = EmptyNode) {
+    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) {
         self.type = .FromNode
         
-        self.node = node
+        self.node = data.toNode()
         self.context = context
     }
     
