@@ -40,4 +40,12 @@ Pod::Spec.new do |spec|
     ds.dependency 'Genome/Foundation'
     ds.frameworks = 'CoreData'
   end
+
+  spec.subspec "Realm" do |cd|
+    ds.source_files = 'Sources/Genome/Realm/**/*.{swift}'
+    ds.dependency 'Genome/Core'
+    ds.dependency 'Genome/Foundation'
+    ds.dependency = 'RealmSwift'
+  end
+
 end
