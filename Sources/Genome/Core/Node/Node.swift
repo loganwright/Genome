@@ -34,16 +34,16 @@ extension Node {
         self = .ObjectValue(value)
     }
 
-    public init<T: IntegerType>(_ value: T) {
+    public init<T: Integer>(_ value: T) {
         self = .NumberValue(Double(value.toIntMax()))
     }
     
-    public init<T : SequenceType where T.Generator.Element == Node>(_ value: T) {
+    public init<T : Sequence where T.Iterator.Element == Node>(_ value: T) {
         let array = [Node](value)
         self = .ArrayValue(array)
     }
     
-    public init<T : SequenceType where T.Generator.Element == (key: String, value: Node)>(_ seq: T) {
+    public init<T : Sequence where T.Iterator.Element == (key: String, value: Node)>(_ seq: T) {
         var obj: [String : Node] = [:]
         seq.forEach { key, val in
             obj[key] = val
@@ -135,7 +135,7 @@ extension Node {
             if let new = newValue {
                 mutable[index] = new
             } else {
-                mutable.removeAtIndex(index)
+                mutable.remove(at: index)
             }
             self = .ArrayValue(mutable)
         }

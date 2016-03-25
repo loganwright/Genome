@@ -7,13 +7,13 @@
 //  MIT
 //
 
-public var loggers: [ErrorType -> Void] = [defaultLogger]
+public var loggers: [ErrorProtocol -> Void] = [defaultLogger]
 
-private func defaultLogger(error: ErrorType) {
+private func defaultLogger(error: ErrorProtocol) {
     print(error)
 }
 
-internal func logError(error: ErrorType) -> ErrorType {
+internal func logError(error: ErrorProtocol) -> ErrorProtocol {
     loggers.forEach {
         $0(error)
     }

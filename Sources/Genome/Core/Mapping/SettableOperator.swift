@@ -204,7 +204,7 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Node {
     }
 }
 
-private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
+private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorProtocol {
     let message = "Found: \(result) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
     return error

@@ -77,7 +77,7 @@ extension UInt16: NodeConvertibleType {}
 extension UInt32: NodeConvertibleType {}
 extension UInt64: NodeConvertibleType {}
 
-extension UnsignedIntegerType {
+extension UnsignedInteger {
     public func toNode() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
         return Node(double)
@@ -100,7 +100,7 @@ extension Int16: NodeConvertibleType {}
 extension Int32: NodeConvertibleType {}
 extension Int64: NodeConvertibleType {}
 
-extension SignedIntegerType {
+extension SignedInteger {
     public func toNode() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
         return Node(double)

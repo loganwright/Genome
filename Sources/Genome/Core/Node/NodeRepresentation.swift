@@ -9,7 +9,7 @@
 
 // MARK: To Node
 
-extension CollectionType where Generator.Element: NodeConvertibleType {
+extension Collection where Iterator.Element: NodeConvertibleType {
     public func toNode() throws -> Node {
         let array = try map { try $0.toNode() }
         return Node(array)

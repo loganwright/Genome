@@ -49,7 +49,7 @@ public class Transformer<InputType, OutputType> {
         
     }
     
-    private func unexpectedInput<ValueType>(value: ValueType) -> ErrorType {
+    private func unexpectedInput<ValueType>(value: ValueType) -> ErrorProtocol {
         let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKey)"
         return TransformationError.UnexpectedInputType(message)
     }

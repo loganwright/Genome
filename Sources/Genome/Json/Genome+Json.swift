@@ -73,7 +73,7 @@ extension NodeConvertibleType {
     }
 }
 
-extension SequenceType where Generator.Element: NodeConvertibleType {
+extension Sequence where Iterator.Element: NodeConvertibleType {
     public func toJson() throws -> Json {
         let array = try map { try $0.toJson() }
         return .init(array)
@@ -134,37 +134,37 @@ extension Json : JsonConvertibleType {
 
 // MARK: Deprecations
 
-@available(*, deprecated=3.0, renamed="EmptyNode")
+@available(*, deprecated: 3.0, renamed: "EmptyNode")
 public let EmptyJson = Json.ObjectValue([:])
 
 extension Map {
-    @available(*, deprecated=3.0, renamed="init(node: context: default)")
+    @available(*, deprecated: 3.0, renamed: "init(node: context: default)")
     public convenience init(json: Json, context: Context = EmptyNode) {
         self.init(node: json, context: context)
     }
 }
 
 extension Array where Element : JsonConvertibleType {
-    @available(*, deprecated=3.0, renamed="init(node: context:)")
+    @available(*, deprecated: 3.0, renamed: "init(node: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
         let array = js.arrayValue ?? [js]
         try self.init(js: array, context: context)
     }
     
-    @available(*, deprecated=3.0, renamed="init(node: context:)")
+    @available(*, deprecated: 3.0, renamed: "init(node: context:)")
     public init(js: [Json], context: Context = EmptyJson) throws {
         self = try js.map { try Element.makeWith($0, context: context) }
     }
 }
 
 extension Set where Element : JsonConvertibleType {
-    @available(*, deprecated=3.0, renamed="init(node: context:)")
+    @available(*, deprecated: 3.0, renamed: "init(node: context:)")
     public init(js: Json, context: Context = EmptyJson) throws {
         let array = js.arrayValue ?? [js]
         try self.init(js: array, context: context)
     }
     
-    @available(*, deprecated=3.0, renamed="init(node: context:)")
+    @available(*, deprecated: 3.0, renamed: "init(node: context:)")
     public init(js: [Json], context: Context = EmptyJson) throws {
         let array = try js.map { try Element.makeWith($0, context: context) }
         self.init(array)
@@ -172,7 +172,7 @@ extension Set where Element : JsonConvertibleType {
 }
 
 extension FromNodeTransformer {
-    @available(*, deprecated=3.0, renamed="transformToNode")
+    @available(*, deprecated: 3.0, renamed: "transformToNode")
     public func transformToJson<OutputJsonType: NodeConvertibleType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<NodeType, TransformedType, OutputJsonType> {
         let toJsonTransformer = ToNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: self, toNodeTransformer: toJsonTransformer)
@@ -180,13 +180,13 @@ extension FromNodeTransformer {
 }
 
 extension ToNodeTransformer {
-    @available(*, deprecated=3.0, renamed="transformFromNode")
+    @available(*, deprecated: 3.0, renamed: "transformFromNode")
     public func transformFromJson<InputJsonType>(transformer: InputJsonType throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputNodeType> {
         let fromJsonTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromJsonTransformer, toNodeTransformer: self)
     }
     
-    @available(*, deprecated=3.0, renamed="transformFromNode")
+    @available(*, deprecated: 3.0, renamed: "transformFromNode")
     public func transformFromJson<InputJsonType>(transformer: InputJsonType? throws -> ValueType) -> TwoWayTransformer<InputJsonType, ValueType, OutputNodeType> {
         let fromJsonTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromJsonTransformer, toNodeTransformer: self)
@@ -194,17 +194,17 @@ extension ToNodeTransformer {
 }
 
 public extension Map {
-    @available(*, deprecated=3.0, renamed="transformFromNode")
+    @available(*, deprecated: 3.0, renamed: "transformFromNode")
     public func transformFromJson<JsonType: NodeConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromNodeTransformer<JsonType, TransformedType> {
         return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    @available(*, deprecated=3.0, renamed="transformFromNode")
+    @available(*, deprecated: 3.0, renamed: "transformFromNode")
     public func transformFromJson<JsonType: NodeConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromNodeTransformer<JsonType, TransformedType> {
         return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    @available(*, deprecated=3.0, renamed="transformToNode")
+    @available(*, deprecated: 3.0, renamed: "transformToNode")
     public func transformToJson<ValueType, JsonOutputType: NodeConvertibleType>(transformer: ValueType throws -> JsonOutputType) -> ToNodeTransformer<ValueType, JsonOutputType> {
         return ToNodeTransformer(map: self, transformer: transformer)
     }

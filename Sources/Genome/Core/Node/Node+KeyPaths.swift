@@ -14,12 +14,12 @@ extension Node {
         
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return }
-        keys.removeAtIndex(0)
+        keys.remove(at: 0)
         
         if keys.isEmpty {
             mutableObject[first] = val
         } else {
-            let rejoined = keys.joinWithSeparator(".")
+            let rejoined = keys.joined(separator: ".")
             var subdict: Node = mutableObject[first] ?? .ObjectValue([:])
             subdict.gnm_setValue(val, forKeyPath: rejoined)
             mutableObject[first] = subdict
@@ -32,10 +32,10 @@ extension Node {
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return nil }
         guard let value = self[first] else { return nil }
-        keys.removeAtIndex(0)
+        keys.remove(at: 0)
         
         guard !keys.isEmpty else { return value }
-        let rejoined = keys.joinWithSeparator(".")
+        let rejoined = keys.joined(separator: ".")
         return value.gnm_valueForKeyPath(rejoined)
     }
 }

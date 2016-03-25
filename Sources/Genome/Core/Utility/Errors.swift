@@ -7,26 +7,26 @@
 //  MIT
 //
 
-public enum NodeConvertibleError: ErrorType {
+public enum NodeConvertibleError: ErrorProtocol {
     case UnsupportedType(String)
     case UnableToConvert(node: Node, toType: String)
 }
 
-public enum MappingError: ErrorType {
-    case UnableToMap(key: KeyType, error: ErrorType)
+public enum MappingError: ErrorProtocol {
+    case UnableToMap(key: KeyType, error: ErrorProtocol)
     case UnexpectedOperationType(String)
 }
 
-public enum SequenceError: ErrorType {
+public enum SequenceError: ErrorProtocol {
     case FoundNil(String)
     case UnexpectedValue(String)
 }
 
-public enum TransformationError: ErrorType {
+public enum TransformationError: ErrorProtocol {
     case UnexpectedInputType(String)
 }
 
-public enum RawConversionError: ErrorType {
+public enum RawConversionError: ErrorProtocol {
     case UnableToConvertToNode
     case UnableToConvertFromNode(raw: Any, ofType: String, expected: String)
 }
