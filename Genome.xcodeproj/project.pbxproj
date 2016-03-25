@@ -336,8 +336,8 @@
 				800E73E71CA103DF004BD742 /* Map.swift */,
 				800E73E81CA103DF004BD742 /* MappableObject.swift */,
 				800E73E91CA103DF004BD742 /* SettableOperator.swift */,
-				800E73EA1CA103DF004BD742 /* StandardOperators.swift */,
 				800E73EB1CA103DF004BD742 /* Transformers.swift */,
+				800E73EA1CA103DF004BD742 /* StandardOperators.swift */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";

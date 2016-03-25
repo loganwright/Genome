@@ -154,6 +154,54 @@ public extension Map {
 
 // MARK: Operators
 
+#if swift(>=3.0)
+    
+    public func <~> <T: NodeConvertibleType, NodeInputType>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
+        switch rhs.map.type {
+        case .FromNode:
+            try lhs <~ rhs
+        case .ToNode:
+            try lhs ~> rhs.map
+        }
+    }
+    
+    public func <~> <T: NodeConvertibleType, NodeOutputType: NodeConvertibleType>(lhs: inout T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
+        switch rhs.map.type {
+        case .FromNode:
+            try lhs <~ rhs.map
+        case .ToNode:
+            try lhs ~> rhs
+        }
+    }
+    
+    public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertibleType>(lhs: inout TransformedType, rhs: TwoWayTransformer<NodeInput, TransformedType, NodeOutput>) throws {
+        switch rhs.map.type {
+        case .FromNode:
+            try lhs <~ rhs.fromNodeTransformer
+        case .ToNode:
+            try lhs ~> rhs.toNodeTransformer
+        }
+    }
+    
+    public func <~ <T, NodeInputType: NodeConvertibleType>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
+        switch rhs.map.type {
+        case .FromNode:
+            try lhs = rhs.transformValue(rhs.map.result)
+        case .ToNode:
+            break
+        }
+    }
+    
+    public func ~> <T, NodeOutputType: NodeConvertibleType>(lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
+        switch rhs.map.type {
+        case .FromNode:
+            break
+        case .ToNode:
+            let output = try rhs.transformValue(lhs)
+            try rhs.map.setToLastKey(output)
+        }
+    }
+#else
 public func <~> <T: NodeConvertibleType, NodeInputType>(inout lhs: T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
     case .FromNode:
@@ -199,3 +247,4 @@ public func ~> <T, NodeOutputType: NodeConvertibleType>(lhs: T, rhs: ToNodeTrans
         try rhs.map.setToLastKey(output)
     }
 }
+#endif
