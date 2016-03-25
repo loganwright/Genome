@@ -109,6 +109,11 @@
 		80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
 		80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
 		80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745781CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F745791CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 		D5362EF2195109A58DF4C35F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28B575D4DD4868AE631CEFA /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -163,6 +168,7 @@
 		8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
 		80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BackingDataType+Foundation.swift"; path = "Sources/Genome/Foundation/BackingDataType+Foundation.swift"; sourceTree = SOURCE_ROOT; };
+		80F745771CA4C911005BEF2E /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		B28B575D4DD4868AE631CEFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 				806479AB1C6D7EDF003A5D8C /* Core */,
 				806479BF1C6D7EDF003A5D8C /* Foundation */,
 				8010E28C1C6D809A0032F804 /* Json */,
+				80F745761CA4C911005BEF2E /* CoreData */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -359,6 +366,15 @@
 			);
 			path = Foundation;
 			sourceTree = "<group>";
+		};
+		80F745761CA4C911005BEF2E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				80F745771CA4C911005BEF2E /* CoreData.swift */,
+			);
+			name = CoreData;
+			path = Sources/Genome/CoreData;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -663,6 +679,7 @@
 				800E742D1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74321CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73EE1CA103DF004BD742 /* Map.swift in Sources */,
+				80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E41CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F81CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74441CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -688,6 +705,7 @@
 				800E742E1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74331CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73EF1CA103DF004BD742 /* Map.swift in Sources */,
+				80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E51CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F91CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74451CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -713,6 +731,7 @@
 				800E742C1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74311CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73ED1CA103DF004BD742 /* Map.swift in Sources */,
+				80F745791CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E31CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F71CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74431CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -738,6 +757,7 @@
 				800E742F1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74341CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73F01CA103DF004BD742 /* Map.swift in Sources */,
+				80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E61CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73FA1CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74461CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -759,6 +779,7 @@
 				800E74371CA10407004BD742 /* Foundation.swift in Sources */,
 				800E74301CA103FA004BD742 /* Logging.swift in Sources */,
 				800E74001CA103DF004BD742 /* Transformers.swift in Sources */,
+				80F745781CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73FB1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E73E21CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F11CA103DF004BD742 /* MappableObject.swift in Sources */,

@@ -4,6 +4,9 @@ let package = Package(
     name: "Genome",
     dependencies: [
       .Package(url: "https://github.com/gfx/Swift-PureJsonSerializer.git", majorVersion: 1)
+    ],
+    exclude: [
+        "Genome/CoreData"
     ]
 )
 
