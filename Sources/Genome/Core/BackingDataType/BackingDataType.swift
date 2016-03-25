@@ -6,8 +6,6 @@
 //  Copyright © 2016 lowriDevs. All rights reserved.
 //
 
-import Foundation
-
 // MARK: BackingDataType 
 
 /**
@@ -52,16 +50,6 @@ extension NodeConvertibleType {
 extension MappableObject {
     public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
         let node = data.toNode()
-        try self.init(node: node, context: context)
-    }
-    
-    public init<T: BackingDataType>(node: [String : T], context: [String : AnyObject] = [:]) throws {
-        var mapped: [String : Node] = [:]
-        node.forEach { key, value in
-            mapped[key] = value.toNode()
-        }
-    
-        let node = Node(mapped)
         try self.init(node: node, context: context)
     }
     

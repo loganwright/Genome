@@ -104,6 +104,11 @@
 		8052E78A1BB58178004E08F6 /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */; };
 		80A300B41C14E55300DDE54D /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */; };
 		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
+		80F745711CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745721CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 		D5362EF2195109A58DF4C35F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28B575D4DD4868AE631CEFA /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -157,6 +162,7 @@
 		8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
+		80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BackingDataType+Foundation.swift"; path = "Sources/Genome/Foundation/BackingDataType+Foundation.swift"; sourceTree = SOURCE_ROOT; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		B28B575D4DD4868AE631CEFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +353,7 @@
 		806479BF1C6D7EDF003A5D8C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */,
 				800E74351CA10407004BD742 /* Foundation.swift */,
 				800E74361CA10407004BD742 /* Node+Foundation.swift */,
 			);
@@ -648,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FD1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E74281CA103FA004BD742 /* Errors.swift in Sources */,
 				800E74391CA10407004BD742 /* Foundation.swift in Sources */,
@@ -672,6 +680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FE1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E74291CA103FA004BD742 /* Errors.swift in Sources */,
 				800E743A1CA10407004BD742 /* Foundation.swift in Sources */,
@@ -696,6 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745721CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FC1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E74271CA103FA004BD742 /* Errors.swift in Sources */,
 				800E74381CA10407004BD742 /* Foundation.swift in Sources */,
@@ -720,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FF1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E742A1CA103FA004BD742 /* Errors.swift in Sources */,
 				800E743B1CA10407004BD742 /* Foundation.swift in Sources */,
@@ -752,6 +763,7 @@
 				800E73E21CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F11CA103DF004BD742 /* MappableObject.swift in Sources */,
 				800E73F61CA103DF004BD742 /* SettableOperator.swift in Sources */,
+				80F745711CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E74091CA103E9004BD742 /* Node.swift in Sources */,
 				8052E7621BB58102004E08F6 /* ViewController.swift in Sources */,
 				800E74211CA103FA004BD742 /* CollectionInitializers.swift in Sources */,

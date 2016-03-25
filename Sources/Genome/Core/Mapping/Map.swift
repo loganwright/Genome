@@ -52,7 +52,7 @@ public final class Map {
      :param: node    the node that will be used in the mapping
      :param: context the context that will be used in the mapping
      
-     :returns: an initialized map ready to map an object
+     :returns: an initialized fromNode map ready to map an object
      */
     public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) {
         self.type = .FromNode
@@ -64,7 +64,7 @@ public final class Map {
     /**
      The designated initializer for mapping to Node
      
-     - returns: an initialized map ready to generate a node
+     - returns: an initialized toNode map ready to generate a node
      */
     public init() {
         self.type = .ToNode

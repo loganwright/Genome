@@ -11,7 +11,7 @@ import Foundation
 
 extension MappableObject {
     public init(node: AnyObject, context: [String : AnyObject] = [:]) throws {
-        let safeNode = Node(node)
+        let safeNode = try Node(node)
         try self.init(node: safeNode, context: context)
     }
     

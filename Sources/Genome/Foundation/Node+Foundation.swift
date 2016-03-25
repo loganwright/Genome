@@ -9,35 +9,36 @@
 import Foundation
 
 extension Node {
-    public init(_ any: AnyObject) {
+    public init(_ any: AnyObject) throws {
         switch any {
             // If we're coming from foundation, it will be an `NSNumber`.
             //This represents double, integer, and boolean.
         case let number as Double:
+            // When coming from ObjC AnyObject, this will represent all Integer types and boolean
             self = .NumberValue(number)
         case let string as String:
             self = .StringValue(string)
         case let object as [String : AnyObject]:
-            self = Node(object)
+            self = try .init(object)
         case let array as [AnyObject]:
-            self = .ArrayValue(array.map(Node.init))
+            self = .ArrayValue(try array.map(Node.init))
         case _ as NSNull:
             self = .NullValue
         default:
-            fatalError("Unsupported foundation type")
+            self = .NullValue
         }
     }
     
-    public init(_ any: [String : AnyObject]) {
+    public init(_ any: [String : AnyObject]) throws {
         var mutable: [String : Node] = [:]
-        any.forEach { key, val in
-            mutable[key] = Node(val)
+        try any.forEach { key, val in
+            mutable[key] = try Node(val)
         }
         self = .ObjectValue(mutable)
     }
     
-    public init(_ any: [AnyObject]) {
-        let array = any.map(Node.init)
+    public init(_ any: [AnyObject]) throws {
+        let array = try any.map(Node.init)
         self = .ArrayValue(array)
     }
     

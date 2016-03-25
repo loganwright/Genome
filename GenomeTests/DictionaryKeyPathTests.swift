@@ -18,7 +18,7 @@ class DictionaryKeyPathTests: XCTestCase {
             ]
         ]
         
-        var node = Node(TestDictionary)
+        var node = try! Node(TestDictionary)
 
         let value: String! = node.gnm_valueForKeyPath("one.two")?.stringValue
         XCTAssert(value == "Found me!")

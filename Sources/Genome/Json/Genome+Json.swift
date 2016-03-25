@@ -11,8 +11,26 @@ import PureJsonSerializer
 // MARK: BackingDataType
 
 extension Json: BackingDataType {
-    public var numberValue: Double? {
-        return doubleValue
+    public func toNode() -> Node {
+        switch self {
+        case let .StringValue(str):
+            return .StringValue(str)
+        case let .NumberValue(num):
+            return .NumberValue(num)
+        case let .BooleanValue(bool):
+            return .BooleanValue(bool)
+        case let .ArrayValue(arr):
+            let mapped = arr.map { $0.toNode() }
+            return .ArrayValue(mapped)
+        case let .ObjectValue(obj):
+            var mutable: [String : Node] = [:]
+            obj.forEach { key, val in
+                mutable[key] = val.toNode()
+            }
+            return .ObjectValue(mutable)
+        case .NullValue:
+            return .NullValue
+        }
     }
     
     public static func makeWith(node: Node, context: Context) -> Json {
@@ -36,28 +54,6 @@ extension Json: BackingDataType {
             return .NullValue
         }
 
-    }
-    
-    public func toNode() -> Node {
-        switch self {
-        case let .StringValue(str):
-            return .StringValue(str)
-        case let .NumberValue(num):
-            return .NumberValue(num)
-        case let .BooleanValue(bool):
-            return .BooleanValue(bool)
-        case let .ArrayValue(arr):
-            let mapped = arr.map { $0.toNode() }
-            return .ArrayValue(mapped)
-        case let .ObjectValue(obj):
-            var mutable: [String : Node] = [:]
-            obj.forEach { key, val in
-                mutable[key] = val.toNode()
-            }
-            return .ObjectValue(mutable)
-        case .NullValue:
-            return .NullValue
-        }
     }
 }
 
