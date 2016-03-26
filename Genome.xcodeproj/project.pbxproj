@@ -114,11 +114,6 @@
 		80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
 		80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
 		80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
-		80F7457F1CA4CE09005BEF2E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7457E1CA4CE09005BEF2E /* Realm.swift */; };
-		80F745801CA4CE09005BEF2E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7457E1CA4CE09005BEF2E /* Realm.swift */; };
-		80F745811CA4CE09005BEF2E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7457E1CA4CE09005BEF2E /* Realm.swift */; };
-		80F745821CA4CE09005BEF2E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7457E1CA4CE09005BEF2E /* Realm.swift */; };
-		80F745831CA4CE09005BEF2E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7457E1CA4CE09005BEF2E /* Realm.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -173,7 +168,6 @@
 		80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
 		80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BackingDataType+Foundation.swift"; path = "Sources/Genome/Foundation/BackingDataType+Foundation.swift"; sourceTree = SOURCE_ROOT; };
 		80F745771CA4C911005BEF2E /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		80F7457E1CA4CE09005BEF2E /* Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		B28B575D4DD4868AE631CEFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,7 +236,6 @@
 				806479BF1C6D7EDF003A5D8C /* Foundation */,
 				8010E28C1C6D809A0032F804 /* Json */,
 				80F745761CA4C911005BEF2E /* CoreData */,
-				80F7457D1CA4CE09005BEF2E /* Realm */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -379,15 +372,6 @@
 			);
 			name = CoreData;
 			path = Sources/Genome/CoreData;
-			sourceTree = SOURCE_ROOT;
-		};
-		80F7457D1CA4CE09005BEF2E /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				80F7457E1CA4CE09005BEF2E /* Realm.swift */,
-			);
-			name = Realm;
-			path = Sources/Genome/Realm;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -649,7 +633,6 @@
 				800E743E1CA10407004BD742 /* Node+Foundation.swift in Sources */,
 				800E74151CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
 				800E74021CA103DF004BD742 /* Transformers.swift in Sources */,
-				80F745811CA4CE09005BEF2E /* Realm.swift in Sources */,
 				800E74231CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
 				800E741A1CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
 				800E74101CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
@@ -676,7 +659,6 @@
 				800E743F1CA10407004BD742 /* Node+Foundation.swift in Sources */,
 				800E74161CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
 				800E74031CA103DF004BD742 /* Transformers.swift in Sources */,
-				80F745821CA4CE09005BEF2E /* Realm.swift in Sources */,
 				800E74241CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
 				800E741B1CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
 				800E74111CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
@@ -703,7 +685,6 @@
 				800E743D1CA10407004BD742 /* Node+Foundation.swift in Sources */,
 				800E74141CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
 				800E74011CA103DF004BD742 /* Transformers.swift in Sources */,
-				80F745801CA4CE09005BEF2E /* Realm.swift in Sources */,
 				800E74221CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
 				800E74191CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
 				800E740F1CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
@@ -730,7 +711,6 @@
 				800E74401CA10407004BD742 /* Node+Foundation.swift in Sources */,
 				800E74171CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
 				800E74041CA103DF004BD742 /* Transformers.swift in Sources */,
-				80F745831CA4CE09005BEF2E /* Realm.swift in Sources */,
 				800E74251CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
 				800E741C1CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
 				800E74121CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
@@ -745,7 +725,6 @@
 				800E743C1CA10407004BD742 /* Node+Foundation.swift in Sources */,
 				800E74371CA10407004BD742 /* Foundation.swift in Sources */,
 				800E74301CA103FA004BD742 /* Logging.swift in Sources */,
-				80F7457F1CA4CE09005BEF2E /* Realm.swift in Sources */,
 				800E74001CA103DF004BD742 /* Transformers.swift in Sources */,
 				80F745781CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73FB1CA103DF004BD742 /* StandardOperators.swift in Sources */,

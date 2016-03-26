@@ -60,7 +60,7 @@ extension String: NodeConvertibleType {
         self = try self.dynamicType.makeWith(node, context: context)
     }
     
-    static func makeWith(node: Node, context: Context) throws -> String {
+    private static func makeWith(node: Node, context: Context) throws -> String {
         guard let string = node.stringValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -79,7 +79,7 @@ extension Bool: NodeConvertibleType {
         self = try self.dynamicType.makeWith(node, context: context)
     }
     
-    static func makeWith(node: Node, context: Context) throws -> Bool {
+    private static func makeWith(node: Node, context: Context) throws -> Bool {
         guard let bool = node.boolValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -101,12 +101,11 @@ extension UnsignedInteger {
         return Node(double)
     }
     
-    
     public init(node: Node, context: Context) throws {
         self = try Self.makeWith(node, context: context)
     }
     
-    static func makeWith(node: Node, context: Context) throws -> Self {
+    private static func makeWith(node: Node, context: Context) throws -> Self {
         guard let int = node.uintValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -133,7 +132,7 @@ extension SignedInteger {
         self = try Self.makeWith(node, context: context)
     }
     
-    static func makeWith(node: Node, context: Context) throws -> Self {
+    private static func makeWith(node: Node, context: Context) throws -> Self {
         guard let int = node.intValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(Self.self)"))
         }
@@ -170,7 +169,7 @@ extension NodeConvertibleFloatingPointType {
         self = try Self.makeWith(node, context: context)
     }
     
-    static func makeWith(node: Node, context: Context) throws -> Self {
+    private static func makeWith(node: Node, context: Context) throws -> Self {
         guard let double = node.doubleValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(Self.self)"))
         }

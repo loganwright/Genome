@@ -2,7 +2,7 @@ import CoreData
 
 extension NSManagedObjectContext : Context {}
 
-public class ManagedObject: NSManagedObject, MappableBase { //, ComplexMappable {
+public class ManagedObject: NSManagedObject, MappableBase { 
     
     public enum Error: ErrorProtocol {
         case ExpectedManagedObjectContext

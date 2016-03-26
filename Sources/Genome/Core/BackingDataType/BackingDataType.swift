@@ -15,9 +15,10 @@
  *  conversions between backing data and the internal Node type
  *  It's main difference is that it is a non-failable operation.
  *
- *  Backing data should always be representable as a Node.
+ *  Backing data should always be representable as a Node without error
 */
 public protocol BackingDataType: Context {
+    // TODO: Maybe NodeConvertible is ok here, ie: NodeConvertible => Node => NodeConvertible (Json => Node => Mapped Object)
     init(node: Node, context: Context)
     func toNode() -> Node
 }
@@ -52,7 +53,7 @@ extension MappableObject {
         self = try Self.makeWith(data, context: context)
     }
     
-    static func makeWith<T: BackingDataType>(data: T, context: Context) throws -> Self {
+    private static func makeWith<T: BackingDataType>(data: T, context: Context) throws -> Self {
         let node = data.toNode()
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
