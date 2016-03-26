@@ -18,13 +18,13 @@
  *  Backing data should always be representable as a Node.
 */
 public protocol BackingDataType: Context {
-    static func makeWith(node: Node, context: Context) -> Self
+    init(node: Node, context: Context)
     func toNode() -> Node
 }
 
 extension BackingDataType {
-    static func makeWith(node: Node) -> Self {
-        return makeWith(node, context: node)
+    public init(node: Node) {
+        self.init(node: node, context: node)
     }
 }
 
@@ -32,16 +32,16 @@ extension BackingDataType {
 
 extension Node {
     public func toData<T: BackingDataType>() throws -> T {
-        return T.makeWith(self)
+        return T.init(node: self)
     }
 }
 
 // MARK: Node Convertible
 
 extension NodeConvertibleType {
-    static func makeWith<T: BackingDataType>(node data: T) throws -> Self {
+    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
         let node = data.toNode()
-        return try makeWith(node, context: node)
+        try self.init(node: node, context: context)
     }
 }
 
@@ -49,12 +49,10 @@ extension NodeConvertibleType {
 
 extension MappableObject {
     public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
-        let node = data.toNode()
-        try self.init(node: node, context: context)
+        self = try Self.makeWith(data, context: context)
     }
     
-    // NodeConvertibleTypeConformance
-    public static func makeWith<T: BackingDataType>(data data: T, context: Context = EmptyNode) throws -> Self {
+    static func makeWith<T: BackingDataType>(data: T, context: Context) throws -> Self {
         let node = data.toNode()
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))

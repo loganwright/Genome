@@ -24,7 +24,7 @@ extension MappableBase {
     
     init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
         let node = data.toNode()
-        self = try Self.makeWith(node, context: context)
+        self = try Self.init(node: node, context: context)
     }
 }
 
@@ -40,14 +40,6 @@ extension MappableObject {
     public init(node: Node, context: Context = EmptyNode) throws {
         let map = Map(node: node, context: context)
         try self.init(map: map)
-    }
-    
-    // NodeConvertibleTypeConformance
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
-        guard let _ = node.objectValue else {
-            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
-        }
-        return try self.init(node: node, context: context)
     }
 }
 
@@ -74,12 +66,6 @@ public class Object: MappableObject {
     required public init(map: Map) throws {}
     
     public func sequence(map: Map) throws {}
-    
-    public static func makeWith(node: Node, context: Context) throws -> Self {
-        let map = Map(node: node, context: context)
-        let new = try self.init(map: map)
-        return new
-    }
 }
 
 
@@ -87,11 +73,4 @@ public class BasicObject: BasicMappable {
     required public init() throws {}
     
     public func sequence(map: Map) throws {}
-    
-    public static func makeWith(node: Node, context: Context) throws -> Self {
-        let map = Map(node: node, context: context)
-        let new = try self.init()
-        try new.sequence(map)
-        return new
-    }
 }

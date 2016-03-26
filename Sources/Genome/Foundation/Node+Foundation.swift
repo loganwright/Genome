@@ -66,7 +66,7 @@ extension Node {
 
 extension NodeConvertibleType {
     static func makeWith(node: AnyObject, context: Context = EmptyNode) throws -> Self {
-        return try makeWith(Node(node), context: context)
+        return try self.init(node: Node(node), context: context)
     }
 }
 
