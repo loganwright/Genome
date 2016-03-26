@@ -10,7 +10,7 @@
 // MARK: ToNode
 #if swift(>=3.0)
     
-    public func ~> <T : NodeConvertibleType>(reference: T!, map: Map) throws {
+    public func ~> <T : NodeConvertible>(reference: T!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -19,7 +19,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [T]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -28,7 +28,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [[T]]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [[T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -37,7 +37,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [String : T]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [String : T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -46,7 +46,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [String : [T]]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [String : [T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -55,7 +55,7 @@
         }
     }
     
-    public func ~> <T : NodeConvertibleType>(reference: Set<T>!, map: Map) throws {
+    public func ~> <T : NodeConvertible>(reference: Set<T>!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -68,7 +68,7 @@
     
     infix operator <~ {}
     
-    public func <~ <T: NodeConvertibleType>(reference: inout T, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout T, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -77,7 +77,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout T!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout T!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -86,7 +86,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout T?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout T?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -95,7 +95,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [T], map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [T], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -104,7 +104,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [T]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -113,7 +113,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [T]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -122,7 +122,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [[T]], map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [[T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -131,7 +131,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [[T]]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [[T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -140,7 +140,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [[T]]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [[T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -149,7 +149,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [String : T], map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [String : T], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -158,7 +158,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [String : T]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [String : T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -167,7 +167,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [String : T]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [String : T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -176,7 +176,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [String : [T]], map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [String : [T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -185,7 +185,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [String : [T]]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [String : [T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -194,7 +194,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout [String : [T]]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout [String : [T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -203,7 +203,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout Set<T>, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout Set<T>, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -212,7 +212,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout Set<T>!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout Set<T>!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -221,7 +221,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(reference: inout Set<T>?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(reference: inout Set<T>?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -234,7 +234,7 @@
     
     infix operator <~> {}
     
-    public func <~> <T: NodeConvertibleType>(reference: inout T, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout T, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -243,7 +243,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout T!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout T!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -252,7 +252,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout T?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout T?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -261,7 +261,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [T], map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [T], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -270,7 +270,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [T]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -279,7 +279,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [T]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -288,7 +288,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [[T]], map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [[T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -297,7 +297,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [[T]]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [[T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -306,7 +306,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [[T]]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [[T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -315,7 +315,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [String : T], map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [String : T], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -324,7 +324,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [String : T]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [String : T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -333,7 +333,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [String : T]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [String : T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -342,7 +342,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [String : [T]], map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [String : [T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -351,7 +351,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [String : [T]]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [String : [T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -360,7 +360,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout [String : [T]]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout [String : [T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -369,7 +369,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout Set<T>, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout Set<T>, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -378,7 +378,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout Set<T>!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout Set<T>!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -387,7 +387,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(reference: inout Set<T>?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(reference: inout Set<T>?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -397,7 +397,7 @@
     }
     
 #else
-    public func ~> <T : NodeConvertibleType>(reference: T!, map: Map) throws {
+    public func ~> <T : NodeConvertible>(reference: T!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -406,7 +406,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [T]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -415,7 +415,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [[T]]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [[T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -424,7 +424,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [String : T]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [String : T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -433,7 +433,7 @@
         }
     }
     
-    public func ~> <T: NodeConvertibleType>(reference: [String : [T]]!, map: Map) throws {
+    public func ~> <T: NodeConvertible>(reference: [String : [T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -442,7 +442,7 @@
         }
     }
     
-    public func ~> <T : NodeConvertibleType>(reference: Set<T>!, map: Map) throws {
+    public func ~> <T : NodeConvertible>(reference: Set<T>!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try map.setToLastKey(reference)
@@ -455,7 +455,7 @@
     
     infix operator <~ {}
     
-    public func <~ <T: NodeConvertibleType>(inout reference: T, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: T, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -464,7 +464,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: T!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: T!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -473,7 +473,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: T?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: T?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -482,7 +482,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [T], map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [T], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -491,7 +491,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [T]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -500,7 +500,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [T]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -509,7 +509,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [[T]], map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [[T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -518,7 +518,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [[T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -527,7 +527,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [[T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -536,7 +536,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [String : T], map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [String : T], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -545,7 +545,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [String : T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -554,7 +554,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [String : T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -563,7 +563,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [String : [T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -572,7 +572,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [String : [T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -581,7 +581,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: [String : [T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -590,7 +590,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: Set<T>, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: Set<T>, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -599,7 +599,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: Set<T>!, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -608,7 +608,7 @@
         }
     }
     
-    public func <~ <T: NodeConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+    public func <~ <T: NodeConvertible>(inout reference: Set<T>?, map: Map) throws {
         switch map.type {
         case .ToNode:
             break
@@ -621,7 +621,7 @@
     
     infix operator <~> {}
     
-    public func <~> <T: NodeConvertibleType>(inout reference: T, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: T, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -630,7 +630,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: T!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: T!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -639,7 +639,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: T?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: T?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -648,7 +648,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [T], map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [T], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -657,7 +657,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [T]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -666,7 +666,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [T]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -675,7 +675,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [[T]], map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [[T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -684,7 +684,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [[T]]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [[T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -693,7 +693,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [[T]]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [[T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -702,7 +702,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [String : T], map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [String : T], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -711,7 +711,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [String : T]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [String : T]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -720,7 +720,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [String : T]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [String : T]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -729,7 +729,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]], map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [String : [T]], map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -738,7 +738,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]]!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [String : [T]]!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -747,7 +747,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: [String : [T]]?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: [String : [T]]?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -756,7 +756,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: Set<T>, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: Set<T>, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -765,7 +765,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: Set<T>!, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: Set<T>!, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map
@@ -774,7 +774,7 @@
         }
     }
     
-    public func <~> <T: NodeConvertibleType>(inout reference: Set<T>?, map: Map) throws {
+    public func <~> <T: NodeConvertible>(inout reference: Set<T>?, map: Map) throws {
         switch map.type {
         case .ToNode:
             try reference ~> map

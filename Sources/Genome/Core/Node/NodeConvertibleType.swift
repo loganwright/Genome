@@ -20,14 +20,14 @@ extension Node : Context {}
 extension Array : Context {}
 extension Dictionary : Context {}
 
-// MARK: NodeConvertibleType
+// MARK: NodeConvertible
 
-public protocol NodeConvertibleType {
+public protocol NodeConvertible {
     init(node: Node, context: Context) throws
     func toNode() throws -> Node
 }
 
-extension NodeConvertibleType {
+extension NodeConvertible {
     public init(node: Node) throws {
         try self.init(node: node, context: node)
     }
@@ -39,7 +39,7 @@ extension NodeConvertibleType {
 
 // MARK: Node
 
-extension Node: NodeConvertibleType { // Can conform to both if non-throwing implementations
+extension Node: NodeConvertible { // Can conform to both if non-throwing implementations
     public init(node: Node, context: Context) {
         self = node
     }
@@ -51,7 +51,7 @@ extension Node: NodeConvertibleType { // Can conform to both if non-throwing imp
 
 // MARK: String
 
-extension String: NodeConvertibleType {
+extension String: NodeConvertible {
     public func toNode() throws -> Node {
         return Node(self)
     }
@@ -70,7 +70,7 @@ extension String: NodeConvertibleType {
 
 // MARK: Boolean
 
-extension Bool: NodeConvertibleType {
+extension Bool: NodeConvertible {
     public func toNode() throws -> Node {
         return Node(self)
     }
@@ -89,11 +89,11 @@ extension Bool: NodeConvertibleType {
 
 // MARK: UnsignedIntegerType
 
-extension UInt: NodeConvertibleType {}
-extension UInt8: NodeConvertibleType {}
-extension UInt16: NodeConvertibleType {}
-extension UInt32: NodeConvertibleType {}
-extension UInt64: NodeConvertibleType {}
+extension UInt: NodeConvertible {}
+extension UInt8: NodeConvertible {}
+extension UInt16: NodeConvertible {}
+extension UInt32: NodeConvertible {}
+extension UInt64: NodeConvertible {}
 
 #if swift(>=3.0)
 extension UnsignedInteger {
@@ -137,11 +137,11 @@ extension UnsignedInteger {
 
 // MARK: SignedIntegerType
 
-extension Int: NodeConvertibleType {}
-extension Int8: NodeConvertibleType {}
-extension Int16: NodeConvertibleType {}
-extension Int32: NodeConvertibleType {}
-extension Int64: NodeConvertibleType {}
+extension Int: NodeConvertible {}
+extension Int8: NodeConvertible {}
+extension Int16: NodeConvertible {}
+extension Int32: NodeConvertible {}
+extension Int64: NodeConvertible {}
 
 #if swift(>=3.0)
 extension SignedInteger {
@@ -196,7 +196,7 @@ extension Double: NodeConvertibleFloatingPointType {
     }
 }
 
-public protocol NodeConvertibleFloatingPointType: NodeConvertibleType {
+public protocol NodeConvertibleFloatingPointType: NodeConvertible {
     var doubleValue: Double { get }
     init(_ other: Double)
 }
@@ -221,7 +221,7 @@ extension NodeConvertibleFloatingPointType {
 // MARK: Convenience
 
 extension Node {
-    public init(_ dictionary: [String : NodeConvertibleType]) throws {
+    public init(_ dictionary: [String : NodeConvertible]) throws {
         var mutable: [String : Node] = [:]
         try dictionary.forEach { key, value in
             mutable[key] = try value.toNode()

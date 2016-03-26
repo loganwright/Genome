@@ -1,5 +1,5 @@
 //
-//  BackingDataType.swift
+//  BackingData.swift
 //  Genome
 //
 //  Created by Logan Wright on 2/10/16.
@@ -13,20 +13,20 @@
  *  as Json, XML, Yaml, or CSV
  *
  */
-public typealias BackingDataType = NodeConvertibleType
+public typealias BackingData = NodeConvertible
 
 // MARK: Node
 
 extension Node {
-    public func toData<T: BackingDataType>() throws -> T {
+    public func toData<T: BackingData>() throws -> T {
         return try T.init(node: self)
     }
 }
 
 // MARK: Node Convertible
 
-extension NodeConvertibleType {
-    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
+extension NodeConvertible {
+    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
         let node = try data.toNode()
         try self.init(node: node, context: context)
     }
@@ -35,11 +35,11 @@ extension NodeConvertibleType {
 // MARK: Mappable Object
 
 extension MappableObject {
-    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
+    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
         self = try Self.makeWith(data, context: context)
     }
     
-    private static func makeWith<T: BackingDataType>(data: T, context: Context) throws -> Self {
+    private static func makeWith<T: BackingData>(data: T, context: Context) throws -> Self {
         let node = try data.toNode()
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))

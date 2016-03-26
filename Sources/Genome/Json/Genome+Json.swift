@@ -8,9 +8,9 @@
 //
 //import PureJsonSerializer
 //
-//// MARK: BackingDataType
+//// MARK: BackingData
 //
-//extension Json: BackingDataType {
+//extension Json: BackingData {
 //    public func toNode() -> Node {
 //        switch self {
 //        case let .StringValue(str):
@@ -66,21 +66,21 @@
 //    }
 //}
 //
-//extension NodeConvertibleType {
+//extension NodeConvertible {
 //    public func toJson() throws -> Json {
 //        let node = try toNode()
 //        return try node.toData()
 //    }
 //}
 //
-//extension Sequence where Iterator.Element: NodeConvertibleType {
+//extension Sequence where Iterator.Element: NodeConvertible {
 //    public func toJson() throws -> Json {
 //        let array = try map { try $0.toJson() }
 //        return .init(array)
 //    }
 //}
 //
-//extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertibleType {
+//extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertible {
 //    public func toJson() throws -> Json {
 //        var mutable: [String : Json] = [:]
 //        try self.forEach { key, value in
@@ -104,7 +104,7 @@
 //    }
 //}
 //
-//public protocol JsonConvertibleType: NodeConvertibleType {
+//public protocol JsonConvertibleType: NodeConvertible {
 //    static func makeWith(json: Json, context: Context) throws -> Self
 //    func toJson() throws -> Json
 //}
@@ -173,7 +173,7 @@
 //
 //extension FromNodeTransformer {
 //    @available(*, deprecated: 3.0, renamed: "transformToNode")
-//    public func transformToJson<OutputJsonType: NodeConvertibleType>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<NodeType, TransformedType, OutputJsonType> {
+//    public func transformToJson<OutputJsonType: NodeConvertible>(transformer: TransformedType throws -> OutputJsonType) -> TwoWayTransformer<NodeType, TransformedType, OutputJsonType> {
 //        let toJsonTransformer = ToNodeTransformer(map: map, transformer: transformer)
 //        return TwoWayTransformer(fromNodeTransformer: self, toNodeTransformer: toJsonTransformer)
 //    }
@@ -195,17 +195,17 @@
 //
 //public extension Map {
 //    @available(*, deprecated: 3.0, renamed: "transformFromNode")
-//    public func transformFromJson<JsonType: NodeConvertibleType, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromNodeTransformer<JsonType, TransformedType> {
+//    public func transformFromJson<JsonType: NodeConvertible, TransformedType>(transformer: JsonType throws -> TransformedType) -> FromNodeTransformer<JsonType, TransformedType> {
 //        return FromNodeTransformer(map: self, transformer: transformer)
 //    }
 //    
 //    @available(*, deprecated: 3.0, renamed: "transformFromNode")
-//    public func transformFromJson<JsonType: NodeConvertibleType, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromNodeTransformer<JsonType, TransformedType> {
+//    public func transformFromJson<JsonType: NodeConvertible, TransformedType>(transformer: JsonType? throws -> TransformedType) -> FromNodeTransformer<JsonType, TransformedType> {
 //        return FromNodeTransformer(map: self, transformer: transformer)
 //    }
 //    
 //    @available(*, deprecated: 3.0, renamed: "transformToNode")
-//    public func transformToJson<ValueType, JsonOutputType: NodeConvertibleType>(transformer: ValueType throws -> JsonOutputType) -> ToNodeTransformer<ValueType, JsonOutputType> {
+//    public func transformToJson<ValueType, JsonOutputType: NodeConvertible>(transformer: ValueType throws -> JsonOutputType) -> ToNodeTransformer<ValueType, JsonOutputType> {
 //        return ToNodeTransformer(map: self, transformer: transformer)
 //    }
 //}

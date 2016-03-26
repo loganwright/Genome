@@ -64,7 +64,7 @@ extension Node {
     }
 }
 
-extension NodeConvertibleType {
+extension NodeConvertible {
     public init(node: AnyObject, context: Context = EmptyNode) throws {
         try self.init(node: Node(node), context: context)
     }
@@ -85,7 +85,7 @@ extension MappableBase {
 }
 
 
-public extension Array where Element : NodeConvertibleType {
+public extension Array where Element : NodeConvertible {
     public init(node: AnyObject, context: Context = EmptyNode) throws {
         let array = node as? [AnyObject] ?? [node]
         try self.init(node: array, context: context)
@@ -96,7 +96,7 @@ public extension Array where Element : NodeConvertibleType {
     }
 }
 
-public extension Set where Element : NodeConvertibleType {
+public extension Set where Element : NodeConvertible {
     public init(node: AnyObject, context: Context = EmptyNode) throws {
         let array = node as? [AnyObject] ?? [node]
         try self.init(node: array, context: context)

@@ -9,7 +9,7 @@
 
 // MARK: MappableBase
 
-public protocol MappableBase : NodeConvertibleType {
+public protocol MappableBase : NodeConvertible {
     mutating func sequence(map: Map) throws -> Void
 }
 
@@ -22,7 +22,7 @@ extension MappableBase {
         return map.node
     }
     
-    init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
+    init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
         let node = try data.toNode()
         self = try Self.init(node: node, context: context)
     }

@@ -10,14 +10,14 @@
 // MARK: To Node
 
 #if swift(>=3.0)
-extension Collection where Iterator.Element: NodeConvertibleType {
+extension Collection where Iterator.Element: NodeConvertible {
     public func toNode() throws -> Node {
         let array = try map { try $0.toNode() }
         return Node(array)
     }
 }
 #else
-    extension CollectionType where Generator.Element: NodeConvertibleType {
+    extension CollectionType where Generator.Element: NodeConvertible {
         public func toNode() throws -> Node {
             let array = try map { try $0.toNode() }
             return Node(array)
@@ -25,7 +25,7 @@ extension Collection where Iterator.Element: NodeConvertibleType {
     }
 #endif
 
-extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertibleType {
+extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertible {
     public func toNode() throws -> Node {
         var mutable: [String : Node] = [:]
         try self.forEach { key, value in
