@@ -1,5 +1,5 @@
-import CoreData
-
+//import CoreData
+//
 //extension NSManagedObjectContext : Context {}
 //
 //public class ManagedObject: NSManagedObject, MappableBase {

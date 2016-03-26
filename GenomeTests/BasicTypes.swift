@@ -9,12 +9,12 @@
 import XCTest
 import Foundation
 
-import PureJsonSerializer
+//import PureJsonSerializer
 @testable import Genome
 
 class BasicTypeTexts: XCTestCase {
 
-    let BasicTestNode: [String : Json] = [
+    let BasicTestNode: [String : Node] = [
         "int" : 1,
         "float" : 1.5,
         "double" : 2.5,

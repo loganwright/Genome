@@ -23,8 +23,27 @@ extension Dictionary : Context {}
 // MARK: NodeConvertibleType
 
 public protocol NodeConvertibleType {
+    //    associatedtype CreatedType
+    //    static func makeWith<T: NodeConvertibleType>(node: Node, context: Context, type: T.Type) throws -> T
     static func makeWith(node: Node, context: Context) throws -> Self
     func toNode() throws -> Node
+}
+
+extension NodeConvertibleType {
+    public init(node: Node, context: Context) throws {
+        self = try createWith(node, context: context, type: Self.self)
+    }
+    
+    public static func makeWith(node: Node) throws -> Self {
+        return try makeWith(node, context: node)
+    }
+}
+
+/**
+ Sneaky way to trick generics into allowing me to have an initializer that calls a static function from protocol
+ */
+private func createWith<T: NodeConvertibleType>(node: Node, context: Context, type: T.Type) throws -> T {
+    return try type.makeWith(node, context: context)
 }
 
 // MARK: Node
