@@ -34,6 +34,7 @@ extension Node {
         self = .ObjectValue(value)
     }
 
+    #if swift(>=3.0)
     public init<T: Integer>(_ value: T) {
         self = .NumberValue(Double(value.toIntMax()))
     }
@@ -50,7 +51,24 @@ extension Node {
         }
         self = .ObjectValue(obj)
     }
-
+    #else
+    public init<T: IntegerType>(_ value: T) {
+        self = .NumberValue(Double(value.toIntMax()))
+    }
+    
+    public init<T : SequenceType where T.Generator.Element == Node>(_ value: T) {
+        let array = [Node](value)
+        self = .ArrayValue(array)
+    }
+    
+    public init<T : SequenceType where T.Generator.Element == (key: String, value: Node)>(_ seq: T) {
+        var obj: [String : Node] = [:]
+        seq.forEach { key, val in
+            obj[key] = val
+        }
+        self = .ObjectValue(obj)
+    }
+    #endif
 }
 
 // MARK: Convenience
@@ -135,7 +153,11 @@ extension Node {
             if let new = newValue {
                 mutable[index] = new
             } else {
-                mutable.remove(at: index)
+                #if swift(>=3.0)
+                    mutable.remove(at: index)
+                #else
+                    mutable.removeAtIndex(index)
+                #endif
             }
             self = .ArrayValue(mutable)
         }

@@ -6,7 +6,7 @@ let package = Package(
       // .Package(url: "https://github.com/gfx/Swift-PureJsonSerializer.git", majorVersion: 1)
     ],
     exclude: [
-        "Sources/Genome/CoreData"
+        "Sources/Genome/CoreData",
         "Sources/Genome/Json"
     ]
 )

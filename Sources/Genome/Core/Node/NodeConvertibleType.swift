@@ -95,6 +95,7 @@ extension UInt16: NodeConvertibleType {}
 extension UInt32: NodeConvertibleType {}
 extension UInt64: NodeConvertibleType {}
 
+#if swift(>=3.0)
 extension UnsignedInteger {
     public func toNode() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
@@ -113,6 +114,26 @@ extension UnsignedInteger {
         return self.init(int.toUIntMax())
     }
 }
+#else
+    extension UnsignedIntegerType {
+        public func toNode() throws -> Node {
+            let double = Double(UIntMax(self.toUIntMax()))
+            return Node(double)
+        }
+        
+        public init(node: Node, context: Context) throws {
+            self = try Self.makeWith(node, context: context)
+        }
+        
+        private static func makeWith(node: Node, context: Context) throws -> Self {
+            guard let int = node.uintValue else {
+                throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
+            }
+            
+            return self.init(int.toUIntMax())
+        }
+    }
+#endif
 
 // MARK: SignedIntegerType
 
@@ -122,6 +143,7 @@ extension Int16: NodeConvertibleType {}
 extension Int32: NodeConvertibleType {}
 extension Int64: NodeConvertibleType {}
 
+#if swift(>=3.0)
 extension SignedInteger {
     public func toNode() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
@@ -140,7 +162,26 @@ extension SignedInteger {
         return self.init(int.toIntMax())
     }
 }
-
+#else
+    extension SignedIntegerType {
+        public func toNode() throws -> Node {
+            let double = Double(IntMax(self.toIntMax()))
+            return Node(double)
+        }
+        
+        public init(node: Node, context: Context) throws {
+            self = try Self.makeWith(node, context: context)
+        }
+        
+        private static func makeWith(node: Node, context: Context) throws -> Self {
+            guard let int = node.intValue else {
+                throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(Self.self)"))
+            }
+            
+            return self.init(int.toIntMax())
+        }
+    }
+#endif
 // MARK: FloatingPointType
 
 extension Float: NodeConvertibleFloatingPointType {
