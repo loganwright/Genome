@@ -39,7 +39,7 @@ extension NodeConvertibleType {
 
 // MARK: Node
 
-extension Node: NodeConvertibleType, BackingDataType { // Can conform to both if non-throwing implementations
+extension Node: NodeConvertibleType { // Can conform to both if non-throwing implementations
     public init(node: Node, context: Context) {
         self = node
     }

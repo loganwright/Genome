@@ -23,7 +23,7 @@ extension MappableBase {
     }
     
     init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
-        let node = data.toNode()
+        let node = try data.toNode()
         self = try Self.init(node: node, context: context)
     }
 }

@@ -47,17 +47,25 @@ public final class Map {
     // MARK: Initialization
 
     /**
+     A convenience mappable initializer that takes any conforming backing data
+     
+     :param: node    the backing data that will be used in the mapping
+     :param: context the context that will be used in the mapping
+     */
+    public convenience init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
+        self.init(node: try data.toNode(), context: context)
+    }
+    
+    /**
      The designated initializer for mapping from Node
      
      :param: node    the node that will be used in the mapping
      :param: context the context that will be used in the mapping
-     
-     :returns: an initialized fromNode map ready to map an object
      */
-    public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) {
+    public init(node: Node, context: Context = EmptyNode) {
         self.type = .FromNode
         
-        self.node = data.toNode()
+        self.node = node
         self.context = context
     }
     

@@ -6,34 +6,20 @@
 //  Copyright © 2016 lowriDevs. All rights reserved.
 //
 
-// MARK: BackingDataType 
-
 /**
- *  Use this protocol for easy transformations to and from Node
+ *  This is purely a convenience name for more semantic clarity
  *
- *  Similar to NodeConvertibleType, but this is included to facilitate confident
- *  conversions between backing data and the internal Node type
- *  It's main difference is that it is a non-failable operation.
+ *  Its intention is to be used as a bridge for data types such
+ *  as Json, XML, Yaml, or CSV
  *
- *  Backing data should always be representable as a Node without error
-*/
-public protocol BackingDataType: Context {
-    // TODO: Maybe NodeConvertible is ok here, ie: NodeConvertible => Node => NodeConvertible (Json => Node => Mapped Object)
-    init(node: Node, context: Context)
-    func toNode() -> Node
-}
-
-extension BackingDataType {
-    public init(node: Node) {
-        self.init(node: node, context: node)
-    }
-}
+ */
+public typealias BackingDataType = NodeConvertibleType
 
 // MARK: Node
 
 extension Node {
     public func toData<T: BackingDataType>() throws -> T {
-        return T.init(node: self)
+        return try T.init(node: self)
     }
 }
 
@@ -41,7 +27,7 @@ extension Node {
 
 extension NodeConvertibleType {
     public init<T: BackingDataType>(node data: T, context: Context = EmptyNode) throws {
-        let node = data.toNode()
+        let node = try data.toNode()
         try self.init(node: node, context: context)
     }
 }
@@ -54,7 +40,7 @@ extension MappableObject {
     }
     
     private static func makeWith<T: BackingDataType>(data: T, context: Context) throws -> Self {
-        let node = data.toNode()
+        let node = try data.toNode()
         guard let _ = node.objectValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
