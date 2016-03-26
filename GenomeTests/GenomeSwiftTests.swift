@@ -97,13 +97,21 @@ extension NSDate {
     class func dateWithBirthdayString(string: String?) -> NSDate? {
         let df = NSDateFormatter()
         df.dateFormat = "mm-d-yy"
+        #if swift(>=3.0)
         return df.date(from: string!)!
+        #else
+        return df.dateFromString(string!)!
+        #endif
     }
     
     class func birthdayStringWithDate(date: NSDate?) -> String {
         let df = NSDateFormatter()
         df.dateFormat = "mm-d-yy"
+        #if swift(>=3.0)
         return df.string(from: date!)
+        #else
+        return df.stringFromDate(date!)
+        #endif
     }
 }
 
