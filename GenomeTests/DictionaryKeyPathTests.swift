@@ -20,10 +20,10 @@ class DictionaryKeyPathTests: XCTestCase {
         
         var node = try! Node(TestDictionary)
 
-        let value: String! = node.gnm_valueForKeyPath("one.two")?.stringValue
+        let value: String! = node.get(forKeyPath: "one.two")?.stringValue
         XCTAssert(value == "Found me!")
-        node.gnm_setValue("Hello!", forKeyPath: "path.to.new.value")
-        let setVal: String! = node.gnm_valueForKeyPath("path.to.new.value")?.stringValue
+        node.set("Hello!", forKeyPath: "path.to.new.value")
+        let setVal: String! = node.get(forKeyPath: "path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
     }
     

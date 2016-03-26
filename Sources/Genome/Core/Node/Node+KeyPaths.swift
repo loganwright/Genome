@@ -8,7 +8,7 @@
 //
 
 extension Node {
-    public mutating func gnm_setValue(val: Node, forKeyPath keyPath: String) {
+    public mutating func set(val: Node, forKeyPath keyPath: String) {
         guard let object = self.objectValue else { return }
         var mutableObject = object
         
@@ -29,14 +29,14 @@ extension Node {
                 let rejoined = keys.joinWithSeparator(".")
             #endif
             var subdict: Node = mutableObject[first] ?? .ObjectValue([:])
-            subdict.gnm_setValue(val, forKeyPath: rejoined)
+            subdict.set(val, forKeyPath: rejoined)
             mutableObject[first] = subdict
         }
         
         self = Node(mutableObject)
     }
     
-    public func gnm_valueForKeyPath(keyPath: String) -> Node? {
+    public func get(forKeyPath keyPath: String) -> Node? {
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return nil }
         guard let value = self[first] else { return nil }
@@ -52,7 +52,7 @@ extension Node {
         #else
             let rejoined = keys.joinWithSeparator(".")
         #endif
-        return value.gnm_valueForKeyPath(rejoined)
+        return value.get(forKeyPath: rejoined)
     }
 }
 

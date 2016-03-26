@@ -96,7 +96,7 @@ public final class Map {
         case let .Key(key):
             result = node[key]
         case let .KeyPath(keyPath):
-            result = node.gnm_valueForKeyPath(keyPath)
+            result = node.get(forKeyPath: keyPath)
         }
         return self
     }
@@ -116,7 +116,7 @@ public final class Map {
         case let .Key(key):
             self.node[key] = node
         case let .KeyPath(keyPath):
-            self.node.gnm_setValue(node, forKeyPath: keyPath)
+            self.node.set(node, forKeyPath: keyPath)
         }
     }
     
