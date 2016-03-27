@@ -163,13 +163,40 @@ extension Node {
         }
     }
     
-    public var floatValue: Float? {
-        return numberValue.flatMap(Float.init)
+    public var doubleValue: Double? {
+        switch TypeEnforcing {
+        case .strict:
+            return strictDoubleValue
+        case .fuzzy:
+            return fuzzyDoubleValue
+        }
     }
     
-    public var doubleValue: Double? {
-        return numberValue
+    public var strictDoubleValue: Double? {
+        return strictNumberValue
     }
+    
+    public var fuzzyDoubleValue: Double? {
+        return fuzzyNumberValue
+    }
+    
+    public var floatValue: Float? {
+        switch TypeEnforcing {
+        case .strict:
+            return strictFloatValue
+        case .fuzzy:
+            return fuzzyFloatValue
+        }
+    }
+    
+    public var strictFloatValue: Float? {
+        return strictNumberValue.flatMap(Float.init)
+    }
+    
+    public var fuzzyFloatValue: Float? {
+        return fuzzyNumberValue.flatMap(Float.init)
+    }
+    
 }
 
 extension Node {
@@ -312,10 +339,28 @@ extension Node {
     }
     
     public var fuzzyObjectValue: [String : Node]? {
-        // I'm not sure if there's anything else that should map to an object.
-        // Possibly string w/ `&` or something,
-        // the issue is if there's no `&`, should it return empty dictionary?
-        return strictObjectValue
+        /*
+         I'm not sure that string should map to object this way, but the goal 
+         of fuzzy mapping is to try and fulfill the intent of the caller.
+         in this case, if a string properly maps to a dictionary, we should return it.
+         */
+        if let o = strictObjectValue {
+            return o
+        } else if let s = strictStringValue {
+            if s.isEmpty { return [:] }
+            
+            var mutable: [String : Node] = [:]
+            s.keyValuePairs().forEach { k, v in
+                mutable[k] = Node(v)
+            }
+            
+            // If our string has value, and the object doesn't,
+            // didn't have an object string
+            if !s.isEmpty && mutable.isEmpty { return nil }
+            return mutable
+        } else {
+            return nil
+        }
     }
 }
 
@@ -393,24 +438,56 @@ extension Node: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Node: Equatable {}
 
+// TODO: Decide if equality should be fuzzy or strict, or possibly a separate toggle
 public func ==(lhs: Node, rhs: Node) -> Bool {
+    switch TypeEnforcing {
+    case .strict:
+        return strictEquals(lhs, rhs)
+    case .fuzzy:
+        return fuzzyEquals(lhs, rhs)
+    }
+}
+
+private func strictEquals(lhs: Node, _ rhs: Node) -> Bool {
     switch lhs {
     case .null:
         return rhs.isNull
     case .bool(let lhsValue):
-        guard let rhsValue = rhs.boolValue else { return false }
+        guard case .bool(let rhsValue) = rhs else { return false }
         return lhsValue == rhsValue
     case .string(let lhsValue):
-        guard let rhsValue = rhs.stringValue else { return false }
+        guard case .string(let rhsValue) = rhs else { return false }
         return lhsValue == rhsValue
     case .number(let lhsValue):
-        guard let rhsValue = rhs.doubleValue else { return false }
+        guard case .number(let rhsValue) = rhs else { return false }
         return lhsValue == rhsValue
     case .array(let lhsValue):
-        guard let rhsValue = rhs.arrayValue else { return false }
+        guard case .array(let rhsValue) = rhs else { return false }
         return lhsValue == rhsValue
     case .object(let lhsValue):
-        guard let rhsValue = rhs.objectValue else { return false }
+        guard case .object(let rhsValue) = rhs else { return false }
+        return lhsValue == rhsValue
+    }
+}
+
+private func fuzzyEquals(lhs: Node, _ rhs: Node) -> Bool {
+    switch lhs {
+    case .null:
+        return rhs.isNull
+    case .bool(let lhsValue):
+        guard let rhsValue = rhs.fuzzyBoolValue else { return false }
+        return lhsValue == rhsValue
+    case .string(let lhsValue):
+        guard let rhsValue = rhs.fuzzyStringValue else { return false }
+        return lhsValue == rhsValue
+    case .number(let lhsValue):
+        guard let rhsValue = rhs.fuzzyNumberValue else { return false }
+        return lhsValue == rhsValue
+    case .array(let lhsValue):
+        guard let rhsValue = rhs.fuzzyArrayValue else { return false }
+        return lhsValue == rhsValue
+    case .object(let lhsValue):
+        guard let rhsValue = rhs.fuzzyObjectValue else { return false }
         return lhsValue == rhsValue
     }
 }
@@ -502,94 +579,32 @@ extension Bool {
     }
 }
 
-//extension String {
-//    /**
-//     Parses `key=value` pair data separated by `&`.
-//     
-//     - returns: String dictionary of parsed data
-//     */
-//    internal func keyValuePairs() -> [String: String]? {
-//        var data: [String: String] = [:]
-//        
-//        for pair in self.split("&") {
-//            let tokens = pair.split("=", maxSplits: 1)
-//            
-//            if
-//                let name = tokens.first,
-//                let value = tokens.last,
-//                let parsedName = try? String(percentEncoded: name) {
-//                data[parsedName] = try? String(percentEncoded: value)
-//            }
-//        }
-//        
-//        return data.isEmpty ? nil : data
-//    }
-//}
-//
-//// FROM: Zewo - String
-//
-//extension String {
-//    public func split(separator: Character, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [String] {
-//        return characters.split(separator: separator, maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences).map(String.init)
-//    }
-//    
-//    public init(percentEncoded: String) throws {
-//        struct Error: ErrorProtocol, CustomStringConvertible {
-//            let description: String
-//        }
-//        
-//        let spaceCharacter: UInt8 = 32
-//        let percentCharacter: UInt8 = 37
-//        let plusCharacter: UInt8 = 43
-//        
-//        var encodedBytes: [UInt8] = [] + percentEncoded.utf8
-//        var decodedBytes: [UInt8] = []
-//        var i = 0
-//        
-//        while i < encodedBytes.count {
-//            let currentCharacter = encodedBytes[i]
-//            
-//            switch currentCharacter {
-//            case percentCharacter:
-//                let unicodeA = UnicodeScalar(encodedBytes[i + 1])
-//                let unicodeB = UnicodeScalar(encodedBytes[i + 2])
-//                
-//                let hexString = "\(unicodeA)\(unicodeB)"
-//                
-//                
-//                
-//                guard let character = Int(hexString, radix: 16) else {
-//                    throw Error(description: "Invalid string")
-//                }
-//                
-//                decodedBytes.append(UInt8(character))
-//                i += 3
-//                
-//            case plusCharacter:
-//                decodedBytes.append(spaceCharacter)
-//                i += 1
-//                
-//            default:
-//                decodedBytes.append(currentCharacter)
-//                i += 1
-//            }
-//        }
-//        
-//        var string = ""
-//        var decoder = UTF8()
-//        var iterator = decodedBytes.makeIterator()
-//        var finished = false
-//        
-//        while !finished {
-//            let decodingResult = decoder.decode(&iterator)
-//            switch decodingResult {
-//            case .scalarValue(let char): string.append(char)
-//            case .emptyInput: finished = true
-//            case .error:
-//                throw Error(description: "UTF-8 decoding failed")
-//            }
-//        }
-//        
-//        self.init(string)
-//    }
-//}
+extension String {
+    /**
+     Parses `key=value` pair data separated by `&`.
+     
+     - returns: String dictionary of parsed data
+     */
+    internal func keyValuePairs() -> [String: String] {
+        var data: [String: String] = [:]
+        
+        for pair in self.split("&") {
+            let tokens = pair.split("=", maxSplits: 1)
+            guard
+                let name = tokens.first,
+                let value = tokens.last
+                else { continue }
+            data[name] = value
+        }
+        
+        return data
+    }
+}
+
+// FROM: Zewo - String
+
+extension String {
+    public func split(separator: Character, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [String] {
+        return characters.split(separator: separator, maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences).map(String.init)
+    }
+}
