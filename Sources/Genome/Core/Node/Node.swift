@@ -315,7 +315,7 @@ extension Node {
             return s.characters
                 .split { $0 == "," }
                 .map(String.init)
-                .map { Node($0) }
+                .map { Node.string($0) }
         } else {
             return nil
         }
@@ -560,10 +560,17 @@ extension Bool {
      This function seeks to replicate the expected behavior of `var boolValue: Bool` on `NSString`.  Any variant of `yes`, `y`, `true`, `t`, or any numerical value greater than 0 will be considered `true`
      */
     public init(_ string: String) {
-        let cleaned = string
-            .lowercased()
-            .characters
-            .first ?? "n"
+        #if swift(>=3.0)
+            let cleaned = string
+                .lowercased()
+                .characters
+                .first ?? "n"
+        #else
+            let cleaned = string
+                .lowercaseString
+                .characters
+                .first ?? "n"
+        #endif
         
         switch cleaned {
         case "t", "y", "1":
@@ -605,6 +612,10 @@ extension String {
 
 extension String {
     public func split(separator: Character, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [String] {
+        #if swift(>=3.0)
         return characters.split(separator: separator, maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences).map(String.init)
+        #else
+        return characters.split(separator, maxSplit: maxSplits, allowEmptySlices: omittingEmptySubsequences).map(String.init)
+        #endif
     }
 }
