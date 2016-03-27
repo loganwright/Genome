@@ -49,17 +49,10 @@ public class Transformer<InputType, OutputType> {
         
     }
     
-    #if swift(>=3.0)
     private func unexpectedInput<ValueType>(value: ValueType) -> ErrorProtocol {
         let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKey)"
         return TransformationError.UnexpectedInputType(message)
     }
-    #else
-    private func unexpectedInput<ValueType>(value: ValueType) -> ErrorType {
-        let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKey)"
-        return TransformationError.UnexpectedInputType(message)
-    }
-    #endif
     
     private func enforceValueExists<T>(value: T?) throws -> T {
         if let unwrapped = value {

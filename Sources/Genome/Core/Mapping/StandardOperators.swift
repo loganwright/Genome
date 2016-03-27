@@ -8,8 +8,8 @@
 //
 
 // MARK: ToNode
-#if swift(>=3.0)
-    
+
+#if swift(>=3.0)    
     public func ~> <T : NodeConvertible>(reference: T!, map: Map) throws {
         switch map.type {
         case .ToNode:

@@ -203,19 +203,11 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Node {
     }
 }
 
-#if swift(>=3.0)
 private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorProtocol {
     let message = "Found: \(result) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
     let error = SequenceError.UnexpectedValue(message)
     return error
 }
-#else
-    private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyType, targetType: U.Type) -> ErrorType {
-        let message = "Found: \(result) Expected: \(T.self) KeyPath: \(keyPath) TargetType: \(U.self)"
-        let error = SequenceError.UnexpectedValue(message)
-        return error
-    }
-#endif
 
 private func expectNodeDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : Node] {
     let result = try enforceResultExists(map, type: T.self)

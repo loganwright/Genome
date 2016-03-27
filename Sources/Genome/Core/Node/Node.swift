@@ -6,6 +6,38 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
+// MARK: Legacy
+
+#if swift(>=3.0)
+#else
+    public typealias ErrorProtocol = ErrorType
+    public typealias Collection = CollectionType
+    public typealias Sequence = SequenceType
+    public typealias Integer = IntegerType
+    public typealias UnsignedInteger = UnsignedIntegerType
+    public typealias SignedInteger = SignedIntegerType
+    
+    extension Array {
+        mutating func remove(at index: Int) {
+            removeAtIndex(index)
+        }
+    }
+    
+    extension SequenceType where Generator.Element == String {
+        
+        /// Interpose the `separator` between elements of `self`, then concatenate
+        /// the result.  For example:
+        ///
+        ///     ["foo", "bar", "baz"].joinWithSeparator("-|-") // "foo-|-bar-|-baz"
+        @warn_unused_result
+        public func joined(separator separator: String) -> String {
+            return joinWithSeparator(separator)
+        }
+    }
+#endif
+
+// MARK: Type Enforcing
+
 public enum TypeEnforcingLevel {
     case strict
     case fuzzy
@@ -49,11 +81,11 @@ extension Node {
         self = .object(value)
     }
 
-    #if swift(>=3.0)
     public init<T: Integer>(_ value: T) {
         self = .number(Double(value.toIntMax()))
     }
     
+    #if swift(>=3.0)
     public init<T : Sequence where T.Iterator.Element == Node>(_ value: T) {
         let array = [Node](value)
         self = .array(array)
@@ -67,10 +99,6 @@ extension Node {
         self = .object(obj)
     }
     #else
-    public init<T: IntegerType>(_ value: T) {
-        self = .number(Double(value.toIntMax()))
-    }
-    
     public init<T : SequenceType where T.Generator.Element == Node>(_ value: T) {
         let array = [Node](value)
         self = .array(array)
@@ -376,11 +404,7 @@ extension Node {
             if let new = newValue {
                 mutable[index] = new
             } else {
-                #if swift(>=3.0)
-                    mutable.remove(at: index)
-                #else
-                    mutable.removeAtIndex(index)
-                #endif
+                mutable.remove(at: index)
             }
             self = .array(mutable)
         }

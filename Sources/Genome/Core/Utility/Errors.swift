@@ -7,7 +7,6 @@
 //  MIT
 //
 
-#if swift(>=3.0)
 public enum NodeConvertibleError: ErrorProtocol {
     case UnsupportedType(String)
     case UnableToConvert(node: Node, toType: String)
@@ -31,28 +30,3 @@ public enum RawConversionError: ErrorProtocol {
     case UnableToConvertToNode
     case UnableToConvertFromNode(raw: Any, ofType: String, expected: String)
 }
-#else
-    public enum NodeConvertibleError: ErrorType {
-        case UnsupportedType(String)
-        case UnableToConvert(node: Node, toType: String)
-    }
-    
-    public enum MappingError: ErrorType {
-        case UnableToMap(key: KeyType, error: ErrorType)
-        case UnexpectedOperationType(String)
-    }
-    
-    public enum SequenceError: ErrorType {
-        case FoundNil(String)
-        case UnexpectedValue(String)
-    }
-    
-    public enum TransformationError: ErrorType {
-        case UnexpectedInputType(String)
-    }
-    
-    public enum RawConversionError: ErrorType {
-        case UnableToConvertToNode
-        case UnableToConvertFromNode(raw: Any, ofType: String, expected: String)
-    }
-#endif

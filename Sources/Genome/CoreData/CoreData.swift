@@ -1,25 +1,13 @@
 import CoreData
 
-#if swift(>=3.0)
-#else
-    public typealias ErrorProtocol = ErrorType
-#endif
-
 extension NSManagedObjectContext : Context {}
 
 public class ManagedObject: NSManagedObject, MappableBase {
     
-//    #if swift(>=3.0)
     public enum Error: ErrorProtocol {
         case ExpectedManagedObjectContext
         case UnableToCreateObject
     }
-//    #else
-//    public enum Error: ErrorType {
-//        case ExpectedManagedObjectContext
-//        case UnableToCreateObject
-//    }
-//    #endif
     
     // MARK: EntityName
     
