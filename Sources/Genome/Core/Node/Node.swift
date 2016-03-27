@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
-public enum TypeEnforcing {
+public enum TypeEnforcingLevel {
     case strict
     case fuzzy
     
@@ -19,44 +19,44 @@ public enum TypeEnforcing {
     }
 }
 
-public var TypeEnforcingLevel: TypeEnforcing = .strict
+public var TypeEnforcing: TypeEnforcingLevel = .strict
 
 public enum Node {
-    case NullValue
-    case BooleanValue(Bool)
-    case NumberValue(Double)
-    case StringValue(String)
-    case ArrayValue([Node])
-    case ObjectValue([String:Node])
+    case null
+    case bool(Bool)
+    case number(Double)
+    case string(String)
+    case array([Node])
+    case object([String:Node])
 }
 
 // MARK: Initialization
 
 extension Node {
     public init(_ value: Bool) {
-        self = .BooleanValue(value)
+        self = .bool(value)
     }
     
     public init(_ value: Double) {
-        self = .NumberValue(value)
+        self = .number(value)
     }
     
     public init(_ value: String) {
-        self = .StringValue(value)
+        self = .string(value)
     }
     
     public init(_ value: [String : Node]) {
-        self = .ObjectValue(value)
+        self = .object(value)
     }
 
     #if swift(>=3.0)
     public init<T: Integer>(_ value: T) {
-        self = .NumberValue(Double(value.toIntMax()))
+        self = .number(Double(value.toIntMax()))
     }
     
     public init<T : Sequence where T.Iterator.Element == Node>(_ value: T) {
         let array = [Node](value)
-        self = .ArrayValue(array)
+        self = .array(array)
     }
     
     public init<T : Sequence where T.Iterator.Element == (key: String, value: Node)>(_ seq: T) {
@@ -64,16 +64,16 @@ extension Node {
         seq.forEach { key, val in
             obj[key] = val
         }
-        self = .ObjectValue(obj)
+        self = .object(obj)
     }
     #else
     public init<T: IntegerType>(_ value: T) {
-        self = .NumberValue(Double(value.toIntMax()))
+        self = .number(Double(value.toIntMax()))
     }
     
     public init<T : SequenceType where T.Generator.Element == Node>(_ value: T) {
         let array = [Node](value)
-        self = .ArrayValue(array)
+        self = .array(array)
     }
     
     public init<T : SequenceType where T.Generator.Element == (key: String, value: Node)>(_ seq: T) {
@@ -81,7 +81,7 @@ extension Node {
         seq.forEach { key, val in
             obj[key] = val
         }
-        self = .ObjectValue(obj)
+        self = .object(obj)
     }
     #endif
 }
@@ -91,14 +91,14 @@ extension Node {
 extension Node {
     public var isNull: Bool {
         // Type enforcing level doesn't really apply here
-        guard case .NullValue = self else { return false }
+        guard case .null = self else { return false }
         return true
     }
 }
 
 extension Node {
     public var boolValue: Bool? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictBoolValue
         case .fuzzy:
@@ -107,7 +107,7 @@ extension Node {
     }
     
     public var strictBoolValue: Bool? {
-        if case let .BooleanValue(bool) = self {
+        if case let .bool(bool) = self {
             return bool
         } else if let integer = intValue where integer == 1 || integer == 0 {
             // When converting from foundation type `[String : AnyObject]`, something that I see as important,
@@ -135,7 +135,7 @@ extension Node {
 
 extension Node {
     public var numberValue: Double? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictNumberValue
         case .fuzzy:
@@ -144,7 +144,7 @@ extension Node {
     }
     
     public var strictNumberValue: Double? {
-        guard case let .NumberValue(number) = self else {
+        guard case let .number(number) = self else {
             return nil
         }
         
@@ -174,7 +174,7 @@ extension Node {
 
 extension Node {
     public var intValue: Int? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictIntValue
         case .fuzzy:
@@ -205,7 +205,7 @@ extension Node {
 
 extension Node {
     public var uintValue: UInt? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictUIntValue
         case .fuzzy:
@@ -235,7 +235,7 @@ extension Node {
 
 extension Node {
     public var stringValue: String? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictStringValue
         case .fuzzy:
@@ -244,7 +244,7 @@ extension Node {
     }
     
     public var strictStringValue: String? {
-        guard case let .StringValue(string) = self else {
+        guard case let .string(string) = self else {
             return nil
         }
         
@@ -268,7 +268,7 @@ extension Node {
 
 extension Node {
     public var arrayValue: [Node]? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictArrayValue
         case .fuzzy:
@@ -277,7 +277,7 @@ extension Node {
     }
     
     public var strictArrayValue: [Node]? {
-        guard case let .ArrayValue(array) = self else { return nil }
+        guard case let .array(array) = self else { return nil }
         return array
     }
     
@@ -297,7 +297,7 @@ extension Node {
 
 extension Node {
     public var objectValue: [String : Node]? {
-        switch TypeEnforcingLevel {
+        switch TypeEnforcing {
         case .strict:
             return strictObjectValue
         case .fuzzy:
@@ -307,7 +307,7 @@ extension Node {
     }
     
     public var strictObjectValue: [String : Node]? {
-        guard case let .ObjectValue(object) = self else { return nil }
+        guard case let .object(object) = self else { return nil }
         return object
     }
     
@@ -337,7 +337,7 @@ extension Node {
                     mutable.removeAtIndex(index)
                 #endif
             }
-            self = .ArrayValue(mutable)
+            self = .array(mutable)
         }
     }
     
@@ -358,34 +358,34 @@ extension Node {
 extension Node: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
-        case .NullValue:
+        case .null:
             return "NULL"
-        case let .BooleanValue(boolean):
+        case let .bool(boolean):
             return boolean ? "true" : "false"
-        case let .StringValue(string):
+        case let .string(string):
             return string
-        case let .NumberValue(number):
+        case let .number(number):
             return number.description
-        case let .ArrayValue(array):
+        case let .array(array):
             return array.description
-        case let .ObjectValue(object):
+        case let .object(object):
             return object.description
         }
     }
     
     public var debugDescription: String {
         switch self {
-        case .NullValue:
+        case .null:
             return "NULL".debugDescription
-        case let .BooleanValue(boolean):
+        case let .bool(boolean):
             return boolean ? "true".debugDescription : "false".debugDescription
-        case let .StringValue(string):
+        case let .string(string):
             return string.debugDescription
-        case let .NumberValue(number):
+        case let .number(number):
             return number.description
-        case let .ArrayValue(array):
+        case let .array(array):
             return array.debugDescription
-        case let .ObjectValue(object):
+        case let .object(object):
             return object.debugDescription
         }
     }
@@ -395,21 +395,21 @@ extension Node: Equatable {}
 
 public func ==(lhs: Node, rhs: Node) -> Bool {
     switch lhs {
-    case .NullValue:
+    case .null:
         return rhs.isNull
-    case .BooleanValue(let lhsValue):
+    case .bool(let lhsValue):
         guard let rhsValue = rhs.boolValue else { return false }
         return lhsValue == rhsValue
-    case .StringValue(let lhsValue):
+    case .string(let lhsValue):
         guard let rhsValue = rhs.stringValue else { return false }
         return lhsValue == rhsValue
-    case .NumberValue(let lhsValue):
+    case .number(let lhsValue):
         guard let rhsValue = rhs.doubleValue else { return false }
         return lhsValue == rhsValue
-    case .ArrayValue(let lhsValue):
+    case .array(let lhsValue):
         guard let rhsValue = rhs.arrayValue else { return false }
         return lhsValue == rhsValue
-    case .ObjectValue(let lhsValue):
+    case .object(let lhsValue):
         guard let rhsValue = rhs.objectValue else { return false }
         return lhsValue == rhsValue
     }
@@ -419,25 +419,25 @@ public func ==(lhs: Node, rhs: Node) -> Bool {
 
 extension Node: NilLiteralConvertible {
     public init(nilLiteral value: Void) {
-        self = .NullValue
+        self = .null
     }
 }
 
 extension Node: BooleanLiteralConvertible {
     public init(booleanLiteral value: BooleanLiteralType) {
-        self = .BooleanValue(value)
+        self = .bool(value)
     }
 }
 
 extension Node: IntegerLiteralConvertible {
     public init(integerLiteral value: IntegerLiteralType) {
-        self = .NumberValue(Double(value))
+        self = .number(Double(value))
     }
 }
 
 extension Node: FloatLiteralConvertible {
     public init(floatLiteral value: FloatLiteralType) {
-        self = .NumberValue(Double(value))
+        self = .number(Double(value))
     }
 }
 
@@ -446,21 +446,21 @@ extension Node: StringLiteralConvertible {
     public typealias ExtendedGraphemeClusterLiteralType = String
     
     public init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
-        self = .StringValue(value)
+        self = .string(value)
     }
     
     public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterType) {
-        self = .StringValue(value)
+        self = .string(value)
     }
     
     public init(stringLiteral value: StringLiteralType) {
-        self = .StringValue(value)
+        self = .string(value)
     }
 }
 
 extension Node: ArrayLiteralConvertible {
     public init(arrayLiteral elements: Node...) {
-        self = .ArrayValue(elements)
+        self = .array(elements)
     }
 }
 
@@ -470,7 +470,7 @@ extension Node: DictionaryLiteralConvertible {
         elements.forEach { key, value in
             object[key] = value
         }
-        self = .ObjectValue(object)
+        self = .object(object)
     }
 }
 

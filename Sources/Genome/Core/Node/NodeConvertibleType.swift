@@ -9,7 +9,7 @@
 
 // MARK: Constants
 
-public let EmptyNode = Node.ObjectValue([:])
+public let EmptyNode = Node.object([:])
 
 // MARK: Context
 
@@ -226,6 +226,6 @@ extension Node {
         try dictionary.forEach { key, value in
             mutable[key] = try value.toNode()
         }
-        self = .ObjectValue(mutable)
+        self = .object(mutable)
     }
 }

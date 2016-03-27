@@ -28,7 +28,7 @@ extension Node {
             #else
                 let rejoined = keys.joinWithSeparator(".")
             #endif
-            var subdict: Node = mutableObject[first] ?? .ObjectValue([:])
+            var subdict: Node = mutableObject[first] ?? .object([:])
             subdict.set(val, forKeyPath: rejoined)
             mutableObject[first] = subdict
         }

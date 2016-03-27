@@ -31,6 +31,6 @@ extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertible 
         try self.forEach { key, value in
             mutable["\(key)"] = try value.toNode()
         }
-        return .ObjectValue(mutable)
+        return .object(mutable)
     }
 }

@@ -13,45 +13,45 @@
 //extension Json: BackingData {
 //    public func toNode() -> Node {
 //        switch self {
-//        case let .StringValue(str):
-//            return .StringValue(str)
-//        case let .NumberValue(num):
-//            return .NumberValue(num)
-//        case let .BooleanValue(bool):
-//            return .BooleanValue(bool)
-//        case let .ArrayValue(arr):
+//        case let .string(str):
+//            return .string(str)
+//        case let .number(num):
+//            return .number(num)
+//        case let .bool(bool):
+//            return .bool(bool)
+//        case let .array(arr):
 //            let mapped = arr.map { $0.toNode() }
-//            return .ArrayValue(mapped)
-//        case let .ObjectValue(obj):
+//            return .array(mapped)
+//        case let .object(obj):
 //            var mutable: [String : Node] = [:]
 //            obj.forEach { key, val in
 //                mutable[key] = val.toNode()
 //            }
-//            return .ObjectValue(mutable)
-//        case .NullValue:
-//            return .NullValue
+//            return .object(mutable)
+//        case .null:
+//            return .null
 //        }
 //    }
 //    
 //    public static func makeWith(node: Node, context: Context) -> Json {
 //        switch node {
-//        case let .StringValue(str):
-//            return .StringValue(str)
-//        case let .NumberValue(num):
-//            return .NumberValue(num)
-//        case let .BooleanValue(bool):
-//            return .BooleanValue(bool)
-//        case let .ArrayValue(arr):
+//        case let .string(str):
+//            return .string(str)
+//        case let .number(num):
+//            return .number(num)
+//        case let .bool(bool):
+//            return .bool(bool)
+//        case let .array(arr):
 //            let mapped = arr.map { Json.makeWith($0, context: context) }
-//            return .ArrayValue(mapped)
-//        case let .ObjectValue(obj):
+//            return .array(mapped)
+//        case let .object(obj):
 //            var mutable: [String : Json] = [:]
 //            obj.forEach { key, val in
 //                mutable[key] = Json.makeWith(node, context: context)
 //            }
-//            return .ObjectValue(mutable)
-//        case .NullValue:
-//            return .NullValue
+//            return .object(mutable)
+//        case .null:
+//            return .null
 //        }
 //
 //    }
@@ -86,7 +86,7 @@
 //        try self.forEach { key, value in
 //            mutable["\(key)"] = try value.toJson()
 //        }
-//        return .ObjectValue(mutable)
+//        return .object(mutable)
 //    }
 //}
 //
@@ -135,7 +135,7 @@
 //// MARK: Deprecations
 //
 //@available(*, deprecated: 3.0, renamed: "EmptyNode")
-//public let EmptyJson = Json.ObjectValue([:])
+//public let EmptyJson = Json.object([:])
 //
 //extension Map {
 //    @available(*, deprecated: 3.0, renamed: "init(node: context: default)")

@@ -15,7 +15,7 @@ class NodeDataTypeTest: XCTestCase {
     // 127 is Int8 max, unless you want to change the way this test is setup,
     // the value must be somewhere between 0 and 127
     let integerValue: Int = 127
-    lazy var integerNodeValue: Node = .NumberValue(Double(self.integerValue))
+    lazy var integerNodeValue: Node = .number(Double(self.integerValue))
 
     func testIntegers() {
         

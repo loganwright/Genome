@@ -92,7 +92,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() {
-        let basic = try! BasicArrays(node: .ObjectValue(BasicArraysTestNode))
+        let basic = try! BasicArrays(node: .object(BasicArraysTestNode))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])

@@ -15,17 +15,17 @@ extension Node {
             //This represents double, integer, and boolean.
         case let number as Double:
             // When coming from ObjC AnyObject, this will represent all Integer types and boolean
-            self = .NumberValue(number)
+            self = .number(number)
         case let string as String:
-            self = .StringValue(string)
+            self = .string(string)
         case let object as [String : AnyObject]:
             self = try .init(object)
         case let array as [AnyObject]:
-            self = .ArrayValue(try array.map(Node.init))
+            self = .array(try array.map(Node.init))
         case _ as NSNull:
-            self = .NullValue
+            self = .null
         default:
-            self = .NullValue
+            self = .null
         }
     }
     
@@ -34,31 +34,31 @@ extension Node {
         try any.forEach { key, val in
             mutable[key] = try Node(val)
         }
-        self = .ObjectValue(mutable)
+        self = .object(mutable)
     }
     
     public init(_ any: [AnyObject]) throws {
         let array = try any.map(Node.init)
-        self = .ArrayValue(array)
+        self = .array(array)
     }
     
     public var anyValue: AnyObject {
         switch self {
-        case .ObjectValue(let ob):
+        case .object(let ob):
             var mapped: [String : AnyObject] = [:]
             ob.forEach { key, val in
                 mapped[key] = val.anyValue
             }
             return mapped
-        case .ArrayValue(let array):
+        case .array(let array):
             return array.map { $0.anyValue }
-        case .BooleanValue(let bool):
+        case .bool(let bool):
             return bool
-        case .NumberValue(let number):
+        case .number(let number):
             return number
-        case .StringValue(let string):
+        case .string(let string):
             return string
-        case .NullValue:
+        case .null:
             return NSNull()
         }
     }
