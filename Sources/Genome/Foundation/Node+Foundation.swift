@@ -19,7 +19,7 @@ extension Node {
         case let string as String:
             self = .string(string)
         case let object as [String : AnyObject]:
-            self = try .init(object)
+            self = try Node(object)
         case let array as [AnyObject]:
             self = .array(try array.map(Node.init))
         case _ as NSNull:
