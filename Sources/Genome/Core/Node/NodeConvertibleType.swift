@@ -31,10 +31,6 @@ extension NodeConvertible {
     public init(node: Node) throws {
         try self.init(node: node, context: node)
     }
-    
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
-        return try self.init(node: node, context: context)
-    }
 }
 
 // MARK: Node

@@ -25,7 +25,7 @@ public class ManagedObject: NSManagedObject, MappableBase {
 }
 
 extension MappableBase where Self: ManagedObject {
-    public init(node: Node, context: Context = EmptyNode) throws {
+    public init(node: Node, context: Context) throws {
         let map = Map(node: node, context: context)
         self = try make(Self.self, with: map)
     }
