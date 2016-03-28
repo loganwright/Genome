@@ -104,8 +104,17 @@
 		8052E78A1BB58178004E08F6 /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */; };
 		80A300B41C14E55300DDE54D /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */; };
 		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
+		80F745711CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745721CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
+		80F745781CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F745791CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
+		80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
 		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
-		D5362EF2195109A58DF4C35F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28B575D4DD4868AE631CEFA /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +166,8 @@
 		8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
+		80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BackingDataType+Foundation.swift"; path = "Sources/Genome/Foundation/BackingDataType+Foundation.swift"; sourceTree = SOURCE_ROOT; };
+		80F745771CA4C911005BEF2E /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		B28B575D4DD4868AE631CEFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,7 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5362EF2195109A58DF4C35F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +235,7 @@
 				806479AB1C6D7EDF003A5D8C /* Core */,
 				806479BF1C6D7EDF003A5D8C /* Foundation */,
 				8010E28C1C6D809A0032F804 /* Json */,
+				80F745761CA4C911005BEF2E /* CoreData */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -316,8 +327,8 @@
 				800E73E71CA103DF004BD742 /* Map.swift */,
 				800E73E81CA103DF004BD742 /* MappableObject.swift */,
 				800E73E91CA103DF004BD742 /* SettableOperator.swift */,
-				800E73EA1CA103DF004BD742 /* StandardOperators.swift */,
 				800E73EB1CA103DF004BD742 /* Transformers.swift */,
+				800E73EA1CA103DF004BD742 /* StandardOperators.swift */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
@@ -347,11 +358,21 @@
 		806479BF1C6D7EDF003A5D8C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */,
 				800E74351CA10407004BD742 /* Foundation.swift */,
 				800E74361CA10407004BD742 /* Node+Foundation.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
+		};
+		80F745761CA4C911005BEF2E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				80F745771CA4C911005BEF2E /* CoreData.swift */,
+			);
+			name = CoreData;
+			path = Sources/Genome/CoreData;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -462,12 +483,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8052E7791BB58102004E08F6 /* Build configuration list for PBXNativeTarget "Genome" */;
 			buildPhases = (
-				5937A9437E105D8C1B09AE7A /* Check Pods Manifest.lock */,
 				8052E7581BB58102004E08F6 /* Sources */,
 				8052E7591BB58102004E08F6 /* Frameworks */,
 				8052E75A1BB58102004E08F6 /* Resources */,
-				FF3F8EE2CF2B91BDC2938218 /* Embed Pods Frameworks */,
-				6139514835CFE4BE7E69AF78 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -595,59 +613,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		5937A9437E105D8C1B09AE7A /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6139514835CFE4BE7E69AF78 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF3F8EE2CF2B91BDC2938218 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		3D5396C71BBA89D600791B49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FD1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E74281CA103FA004BD742 /* Errors.swift in Sources */,
 				800E74391CA10407004BD742 /* Foundation.swift in Sources */,
@@ -655,6 +626,7 @@
 				800E742D1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74321CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73EE1CA103DF004BD742 /* Map.swift in Sources */,
+				80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E41CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F81CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74441CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -672,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FE1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E74291CA103FA004BD742 /* Errors.swift in Sources */,
 				800E743A1CA10407004BD742 /* Foundation.swift in Sources */,
@@ -679,6 +652,7 @@
 				800E742E1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74331CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73EF1CA103DF004BD742 /* Map.swift in Sources */,
+				80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E51CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F91CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74451CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -696,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745721CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FC1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E74271CA103FA004BD742 /* Errors.swift in Sources */,
 				800E74381CA10407004BD742 /* Foundation.swift in Sources */,
@@ -703,6 +678,7 @@
 				800E742C1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74311CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73ED1CA103DF004BD742 /* Map.swift in Sources */,
+				80F745791CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E31CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F71CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74431CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -720,6 +696,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E73FF1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E742A1CA103FA004BD742 /* Errors.swift in Sources */,
 				800E743B1CA10407004BD742 /* Foundation.swift in Sources */,
@@ -727,6 +704,7 @@
 				800E742F1CA103FA004BD742 /* KeyType.swift in Sources */,
 				800E74341CA103FA004BD742 /* Logging.swift in Sources */,
 				800E73F01CA103DF004BD742 /* Map.swift in Sources */,
+				80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73E61CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73FA1CA103DF004BD742 /* SettableOperator.swift in Sources */,
 				800E74461CA10410004BD742 /* Genome+Json.swift in Sources */,
@@ -748,10 +726,12 @@
 				800E74371CA10407004BD742 /* Foundation.swift in Sources */,
 				800E74301CA103FA004BD742 /* Logging.swift in Sources */,
 				800E74001CA103DF004BD742 /* Transformers.swift in Sources */,
+				80F745781CA4C911005BEF2E /* CoreData.swift in Sources */,
 				800E73FB1CA103DF004BD742 /* StandardOperators.swift in Sources */,
 				800E73E21CA103CC004BD742 /* BackingDataType.swift in Sources */,
 				800E73F11CA103DF004BD742 /* MappableObject.swift in Sources */,
 				800E73F61CA103DF004BD742 /* SettableOperator.swift in Sources */,
+				80F745711CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
 				800E74091CA103E9004BD742 /* Node.swift in Sources */,
 				8052E7621BB58102004E08F6 /* ViewController.swift in Sources */,
 				800E74211CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
@@ -1108,7 +1088,6 @@
 		};
 		8052E77A1BB58102004E08F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74EC82E9933E8161F1E8FACE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Genome/Info.plist;
@@ -1120,7 +1099,6 @@
 		};
 		8052E77B1BB58102004E08F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Genome/Info.plist;

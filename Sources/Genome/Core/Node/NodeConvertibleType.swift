@@ -9,7 +9,7 @@
 
 // MARK: Constants
 
-public let EmptyNode = Node.ObjectValue([:])
+public let EmptyNode = Node.object([:])
 
 // MARK: Context
 
@@ -20,18 +20,24 @@ extension Node : Context {}
 extension Array : Context {}
 extension Dictionary : Context {}
 
-// MARK: NodeConvertibleType
+// MARK: NodeConvertible
 
-public protocol NodeConvertibleType {
-    static func makeWith(node: Node, context: Context) throws -> Self
+public protocol NodeConvertible {
+    init(node: Node, context: Context) throws
     func toNode() throws -> Node
+}
+
+extension NodeConvertible {
+    public init(node: Node) throws {
+        try self.init(node: node, context: node)
+    }
 }
 
 // MARK: Node
 
-extension Node: NodeConvertibleType {
-    public static func makeWith(node: Node, context: Context = EmptyNode) -> Node {
-        return node
+extension Node: NodeConvertible { // Can conform to both if non-throwing implementations
+    public init(node: Node, context: Context) {
+        self = node
     }
     
     public func toNode() -> Node {
@@ -41,12 +47,16 @@ extension Node: NodeConvertibleType {
 
 // MARK: String
 
-extension String: NodeConvertibleType {
+extension String: NodeConvertible {
     public func toNode() throws -> Node {
         return Node(self)
     }
     
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> String {
+    public init(node: Node, context: Context) throws {
+        self = try self.dynamicType.makeWith(node, context: context)
+    }
+    
+    private static func makeWith(node: Node, context: Context) throws -> String {
         guard let string = node.stringValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -56,12 +66,16 @@ extension String: NodeConvertibleType {
 
 // MARK: Boolean
 
-extension Bool: NodeConvertibleType {
+extension Bool: NodeConvertible {
     public func toNode() throws -> Node {
         return Node(self)
     }
     
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Bool {
+    public init(node: Node, context: Context) throws {
+        self = try self.dynamicType.makeWith(node, context: context)
+    }
+    
+    private static func makeWith(node: Node, context: Context) throws -> Bool {
         guard let bool = node.boolValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -69,21 +83,25 @@ extension Bool: NodeConvertibleType {
     }
 }
 
-// MARK: UnsignedIntegerType
+// MARK: UnsignedInteger
 
-extension UInt: NodeConvertibleType {}
-extension UInt8: NodeConvertibleType {}
-extension UInt16: NodeConvertibleType {}
-extension UInt32: NodeConvertibleType {}
-extension UInt64: NodeConvertibleType {}
+extension UInt: NodeConvertible {}
+extension UInt8: NodeConvertible {}
+extension UInt16: NodeConvertible {}
+extension UInt32: NodeConvertible {}
+extension UInt64: NodeConvertible {}
 
-extension UnsignedIntegerType {
+extension UnsignedInteger {
     public func toNode() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
         return Node(double)
     }
     
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
+    public init(node: Node, context: Context) throws {
+        self = try Self.makeWith(node, context: context)
+    }
+    
+    private static func makeWith(node: Node, context: Context) throws -> Self {
         guard let int = node.uintValue else {
             throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
         }
@@ -92,30 +110,34 @@ extension UnsignedIntegerType {
     }
 }
 
-// MARK: SignedIntegerType
+// MARK: SignedInteger
 
-extension Int: NodeConvertibleType {}
-extension Int8: NodeConvertibleType {}
-extension Int16: NodeConvertibleType {}
-extension Int32: NodeConvertibleType {}
-extension Int64: NodeConvertibleType {}
+extension Int: NodeConvertible {}
+extension Int8: NodeConvertible {}
+extension Int16: NodeConvertible {}
+extension Int32: NodeConvertible {}
+extension Int64: NodeConvertible {}
 
-extension SignedIntegerType {
+extension SignedInteger {
     public func toNode() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
         return Node(double)
     }
     
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
+    public init(node: Node, context: Context) throws {
+        self = try Self.makeWith(node, context: context)
+    }
+    
+    private static func makeWith(node: Node, context: Context) throws -> Self {
         guard let int = node.intValue else {
-            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
+            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(Self.self)"))
         }
         
         return self.init(int.toIntMax())
     }
 }
 
-// MARK: FloatingPointType
+// MARK: FloatingPoint
 
 extension Float: NodeConvertibleFloatingPointType {
     public var doubleValue: Double {
@@ -129,7 +151,7 @@ extension Double: NodeConvertibleFloatingPointType {
     }
 }
 
-public protocol NodeConvertibleFloatingPointType: NodeConvertibleType {
+public protocol NodeConvertibleFloatingPointType: NodeConvertible {
     var doubleValue: Double { get }
     init(_ other: Double)
 }
@@ -139,9 +161,13 @@ extension NodeConvertibleFloatingPointType {
         return Node(doubleValue)
     }
     
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
+    public init(node: Node, context: Context) throws {
+        self = try Self.makeWith(node, context: context)
+    }
+    
+    private static func makeWith(node: Node, context: Context) throws -> Self {
         guard let double = node.doubleValue else {
-            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
+            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(Self.self)"))
         }
         return self.init(double)
     }
@@ -150,11 +176,11 @@ extension NodeConvertibleFloatingPointType {
 // MARK: Convenience
 
 extension Node {
-    public init(_ dictionary: [String : NodeConvertibleType]) throws {
+    public init(_ dictionary: [String : NodeConvertible]) throws {
         var mutable: [String : Node] = [:]
         try dictionary.forEach { key, value in
             mutable[key] = try value.toNode()
         }
-        self.init(Node(mutable))
+        self = .object(mutable)
     }
 }

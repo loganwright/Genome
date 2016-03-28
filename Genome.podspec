@@ -34,4 +34,10 @@ Pod::Spec.new do |spec|
     ds.dependency 'Genome/Foundation'
   end
 
+  spec.subspec "CoreData" do |cd|
+    ds.source_files = 'Sources/Genome/CoreData/**/*.{swift}'
+    ds.dependency 'Genome/Core'
+    ds.dependency 'Genome/Foundation'
+    ds.frameworks = 'CoreData'
+  end
 end

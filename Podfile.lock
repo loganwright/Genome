@@ -1,10 +1,1 @@
-PODS:
-  - PureJsonSerializer (1.0.2)
-
-DEPENDENCIES:
-  - PureJsonSerializer
-
-SPEC CHECKSUMS:
-  PureJsonSerializer: 81d6bc0e21ed4b837193279aa3d29981f75f9057
-
 COCOAPODS: 0.39.0

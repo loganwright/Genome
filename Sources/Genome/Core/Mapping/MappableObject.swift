@@ -9,18 +9,22 @@
 
 // MARK: MappableBase
 
-public protocol MappableBase : NodeConvertibleType {
+public protocol MappableBase : NodeConvertible {
     mutating func sequence(map: Map) throws -> Void
 }
 
 extension MappableBase {
-    
     /// Used to convert an object back into node
     public func toNode() throws -> Node {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
         return map.node
+    }
+    
+    init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
+        let node = try data.toNode()
+        self = try Self.init(node: node, context: context)
     }
 }
 
@@ -36,14 +40,6 @@ extension MappableObject {
     public init(node: Node, context: Context = EmptyNode) throws {
         let map = Map(node: node, context: context)
         try self.init(map: map)
-    }
-    
-    // NodeConvertibleTypeConformance
-    public static func makeWith(node: Node, context: Context = EmptyNode) throws -> Self {
-        guard let _ = node.objectValue else {
-            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
-        }
-        return try self.init(node: node, context: context)
     }
 }
 
@@ -70,10 +66,11 @@ public class Object: MappableObject {
     required public init(map: Map) throws {}
     
     public func sequence(map: Map) throws {}
+}
+
+
+public class BasicObject: BasicMappable {
+    required public init() throws {}
     
-    public static func makeWith(node: Node, context: Context) throws -> Self {
-        let map = Map(node: node, context: context)
-        let new = try self.init(map: map)
-        return new
-    }
+    public func sequence(map: Map) throws {}
 }

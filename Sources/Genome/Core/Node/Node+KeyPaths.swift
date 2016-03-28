@@ -8,35 +8,35 @@
 //
 
 extension Node {
-    public mutating func gnm_setValue(val: Node, forKeyPath keyPath: String) {
+    public mutating func set(val: Node, forKeyPath keyPath: String) {
         guard let object = self.objectValue else { return }
         var mutableObject = object
         
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return }
-        keys.removeAtIndex(0)
+        keys.remove(at: 0)
         
         if keys.isEmpty {
             mutableObject[first] = val
         } else {
-            let rejoined = keys.joinWithSeparator(".")
-            var subdict: Node = mutableObject[first] ?? .ObjectValue([:])
-            subdict.gnm_setValue(val, forKeyPath: rejoined)
+            let rejoined = keys.joined(separator: ".")
+            var subdict: Node = mutableObject[first] ?? .object([:])
+            subdict.set(val, forKeyPath: rejoined)
             mutableObject[first] = subdict
         }
         
         self = Node(mutableObject)
     }
     
-    public func gnm_valueForKeyPath(keyPath: String) -> Node? {
+    public func get(forKeyPath keyPath: String) -> Node? {
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return nil }
         guard let value = self[first] else { return nil }
-        keys.removeAtIndex(0)
+        keys.remove(at: 0)
         
         guard !keys.isEmpty else { return value }
-        let rejoined = keys.joinWithSeparator(".")
-        return value.gnm_valueForKeyPath(rejoined)
+        let rejoined = keys.joined(separator: ".")
+        return value.get(forKeyPath: rejoined)
     }
 }
 

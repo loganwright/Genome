@@ -47,24 +47,32 @@ public final class Map {
     // MARK: Initialization
 
     /**
+     A convenience mappable initializer that takes any conforming backing data
+     
+     :param: node    the backing data that will be used in the mapping
+     :param: context the context that will be used in the mapping
+     */
+    public convenience init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
+        self.init(node: try data.toNode(), context: context)
+    }
+    
+    /**
      The designated initializer for mapping from Node
      
      :param: node    the node that will be used in the mapping
      :param: context the context that will be used in the mapping
-     
-     :returns: an initialized map ready to map an object
      */
-    public init<T: BackingDataType>(node: T, context: Context = EmptyNode) {
+    public init(node: Node, context: Context = EmptyNode) {
         self.type = .FromNode
         
-        self.node = Node(node)
+        self.node = node
         self.context = context
     }
     
     /**
      The designated initializer for mapping to Node
      
-     - returns: an initialized map ready to generate a node
+     - returns: an initialized toNode map ready to generate a node
      */
     public init() {
         self.type = .ToNode
@@ -88,7 +96,7 @@ public final class Map {
         case let .Key(key):
             result = node[key]
         case let .KeyPath(keyPath):
-            result = node.gnm_valueForKeyPath(keyPath)
+            result = node.get(forKeyPath: keyPath)
         }
         return self
     }
@@ -108,7 +116,7 @@ public final class Map {
         case let .Key(key):
             self.node[key] = node
         case let .KeyPath(keyPath):
-            self.node.gnm_setValue(node, forKeyPath: keyPath)
+            self.node.set(node, forKeyPath: keyPath)
         }
     }
     
@@ -125,15 +133,15 @@ public final class Map {
 }
 
 extension Map {
-    internal func setToLastKey<T : NodeConvertibleType>(any: T?) throws {
+    internal func setToLastKey<T : NodeConvertible>(any: T?) throws {
         try setToLastKey(any?.toNode())
     }
     
-    internal func setToLastKey<T : NodeConvertibleType>(any: [T]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(any: [T]?) throws {
         try setToLastKey(any?.toNode())
     }
     
-    internal func setToLastKey<T : NodeConvertibleType>(any: [[T]]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
             return try innerArray.toNode()
@@ -141,7 +149,7 @@ extension Map {
         try setToLastKey(Node(node))
     }
     
-    internal func setToLastKey<T : NodeConvertibleType>(any: [String : T]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(any: [String : T]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
@@ -150,7 +158,7 @@ extension Map {
         try setToLastKey(Node(node))
     }
     
-    internal func setToLastKey<T : NodeConvertibleType>(any: [String : [T]]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(any: [String : [T]]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
@@ -159,7 +167,7 @@ extension Map {
         try setToLastKey(Node(node))
     }
     
-    internal func setToLastKey<T : NodeConvertibleType>(any: Set<T>?) throws {
+    internal func setToLastKey<T : NodeConvertible>(any: Set<T>?) throws {
         try setToLastKey(any?.toNode())
     }
 }

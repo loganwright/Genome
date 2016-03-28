@@ -9,12 +9,12 @@
 import XCTest
 import Foundation
 
-import PureJsonSerializer
+//import PureJsonSerializer
 @testable import Genome
 
 class BasicTypeTexts: XCTestCase {
 
-    let BasicTestNode: [String : Json] = [
+    let BasicTestNode: [String : Node] = [
         "int" : 1,
         "float" : 1.5,
         "double" : 2.5,
@@ -92,7 +92,7 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() {
-        let basic = try! BasicArrays(node: .ObjectValue(BasicArraysTestNode))
+        let basic = try! BasicArrays(node: .object(BasicArraysTestNode))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])
