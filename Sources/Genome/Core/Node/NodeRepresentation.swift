@@ -10,17 +10,23 @@
 // MARK: To Node
 
 #if swift(>=3.0)
-extension Collection where Iterator.Element: NodeConvertible {
+extension SequenceType where Iterator.Element: NodeConvertible {
     public func toNode() throws -> Node {
         let array = try map { try $0.toNode() }
         return Node(array)
     }
+    public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
+        return try toNode().toData()
+    }
 }
 #else
-    extension CollectionType where Generator.Element: NodeConvertible {
+    extension SequenceType where Generator.Element: NodeConvertible {
         public func toNode() throws -> Node {
             let array = try map { try $0.toNode() }
             return Node(array)
+        }
+        public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
+            return try toNode().toData()
         }
     }
 #endif
@@ -32,5 +38,9 @@ extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertible 
             mutable["\(key)"] = try value.toNode()
         }
         return .object(mutable)
+    }
+
+    public func toData<T: BackingData>(type: T.Type = T.self) throws -> Node {
+        return try toNode().toData()
     }
 }

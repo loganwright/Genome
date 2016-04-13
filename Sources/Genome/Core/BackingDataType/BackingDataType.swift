@@ -42,7 +42,7 @@ extension MappableObject {
     private static func makeWith<T: BackingData>(data: T, context: Context) throws -> Self {
         let node = try data.toNode()
         guard let _ = node.objectValue else {
-            throw logError(.UnableToConvert(node: node, toType: "\(self)"))
+            throw log(.UnableToConvert(node: node, to: "\(self)"))
         }
         return try self.init(node: node, context: context)
     }

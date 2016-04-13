@@ -226,7 +226,7 @@ class SettableOperatorTest: XCTestCase {
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: let key, error: let error) {
             XCTAssert(key == KeyType.KeyPath("int"))
-            if case NodeConvertibleError.UnableToConvert(node: _, toType: _) = error { }
+            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
             else {
                 XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
             }
@@ -310,7 +310,7 @@ class SettableOperatorTest: XCTestCase {
             let _: String? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch MappingError.UnableToMap(key: _, error: let error) {
-            if case NodeConvertibleError.UnableToConvert(node: _, toType: _) = error { }
+            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
             else {
                 XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
             }

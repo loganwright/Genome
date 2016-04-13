@@ -9,16 +9,16 @@
 
 public enum NodeConvertibleError: ErrorProtocol {
     case UnsupportedType(String)
-    case UnableToConvert(node: Node, toType: String)
+    case UnableToConvert(node: Node, to: String)
 }
 
 public enum MappingError: ErrorProtocol {
     case UnableToMap(key: KeyType, error: ErrorProtocol)
-    case UnexpectedOperationType(String)
+    case UnexpectedOperationType(got: Map.OperationType, expected: Map.OperationType)
 }
 
 public enum SequenceError: ErrorProtocol {
-    case FoundNil(String)
+    case FoundNil(key: KeyType, expected: String)
     case UnexpectedValue(String)
 }
 

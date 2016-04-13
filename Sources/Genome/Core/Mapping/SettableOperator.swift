@@ -167,7 +167,7 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T {
         return try T.init(node: result, context: map.context)
     } catch {
         let error = MappingError.UnableToMap(key: map.lastKey, error: error)
-        throw logError(error)
+        throw log(error)
     }
 }
 
@@ -231,7 +231,7 @@ public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeT
 
 private func enforceMapType(map: Map, expectedType: Map.OperationType) throws {
     if map.type != expectedType {
-        throw logError(MappingError.UnexpectedOperationType("Received mapping operation of type: \(map.type) expected: \(expectedType)"))
+        throw log(.UnexpectedOperationType(got: map.type, expected: expectedType))
     }
 }
 
@@ -239,9 +239,8 @@ private func enforceResultExists<T>(map: Map, type: T.Type) throws -> Node {
     if let result = map.result {
         return result
     } else {
-        let message = "Key: \(map.lastKey) TargetType: \(T.self)"
-        let error = SequenceError.FoundNil(message)
-        throw logError(error)
+        let error = SequenceError.FoundNil(key: map.lastKey, expected: "\(T.self)")
+        throw log(error)
     }
 }
 
@@ -257,7 +256,7 @@ private func expectNodeDictionaryWithMap<T>(map: Map, targetType: T.Type) throws
         return j
     } else {
         let error = unexpectedResult(result, expected: [String : Node].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
+        throw log(error)
     }
 }
 
@@ -265,7 +264,7 @@ private func expectNodeDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type
     let result = try enforceResultExists(map, type: T.self)
     guard let object = result.objectValue else {
         let error = unexpectedResult(result, expected: [String : AnyObject].self, keyPath: map.lastKey, targetType: T.self)
-        throw logError(error)
+        throw log(error)
     }
     
     var mutable: [String : [Node]] = [:]

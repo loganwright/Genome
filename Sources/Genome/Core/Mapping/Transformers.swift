@@ -34,7 +34,7 @@ public class Transformer<InputType, OutputType> {
         if let input = value as? InputType {
             return try transformer(input)
         } else {
-            throw logError(unexpectedInput(value))
+            throw log(unexpectedInput(value))
         }
     }
     
@@ -59,7 +59,7 @@ public class Transformer<InputType, OutputType> {
             return unwrapped
         } else {
             let error = TransformationError.UnexpectedInputType("Unexpectedly found nil input.  KeyPath: \(map.lastKey) Expected: \(InputType.self)")
-            throw logError(error)
+            throw log(error)
         }
     }
 }

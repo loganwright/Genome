@@ -125,9 +125,7 @@ public final class Map {
      */
     private func assertOperationTypeToNode() throws {
         if type != .ToNode {
-            let error = MappingError
-                .UnexpectedOperationType("Received mapping operation of type: \(type) expected: \(OperationType.ToNode)")
-            throw logError(error)
+            throw log(.UnexpectedOperationType(got: type, expected: OperationType.ToNode))
         }
     }
 }

@@ -33,7 +33,7 @@ extension MappableBase where Self: ManagedObject {
 
 private func make<T: ManagedObject>(type: T.Type, with map: Map) throws -> T {
     guard let context = map.context as? NSManagedObjectContext else {
-        throw logError(T.Error.ExpectedManagedObjectContext)
+        throw log(T.Error.ExpectedManagedObjectContext)
     }
     #if swift(>=3.0)
         let entity = NSEntityDescription.entity(forName: T.entityName, in: context)
@@ -41,7 +41,7 @@ private func make<T: ManagedObject>(type: T.Type, with map: Map) throws -> T {
         let entity = NSEntityDescription.entityForName(T.entityName, inManagedObjectContext: context)
     #endif
     guard let new = entity as? T else {
-        throw logError(T.Error.UnableToCreateObject)
+        throw log(T.Error.UnableToCreateObject)
     }
         
     try new.sequence(map)
