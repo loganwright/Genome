@@ -18,8 +18,8 @@ public typealias BackingData = NodeConvertible
 // MARK: Node
 
 extension Node {
-    public func toData<T: BackingData>() throws -> T {
-        return try T.init(node: self)
+    public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
+        return try type.init(node: self)
     }
 }
 
@@ -42,7 +42,7 @@ extension MappableObject {
     private static func makeWith<T: BackingData>(data: T, context: Context) throws -> Self {
         let node = try data.toNode()
         guard let _ = node.objectValue else {
-            throw logError(NodeConvertibleError.UnableToConvert(node: node, toType: "\(self)"))
+            throw logError(.UnableToConvert(node: node, toType: "\(self)"))
         }
         return try self.init(node: node, context: context)
     }

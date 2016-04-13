@@ -19,3 +19,8 @@ internal func logError(error: ErrorProtocol) -> ErrorProtocol {
     }
     return error
 }
+
+internal func logError(error: NodeConvertibleError) -> ErrorProtocol {
+    return logError(error as ErrorProtocol)
+}
+

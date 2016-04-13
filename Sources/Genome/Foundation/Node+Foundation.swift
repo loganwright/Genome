@@ -84,7 +84,6 @@ extension MappableBase {
     }
 }
 
-
 public extension Array where Element : NodeConvertible {
     public init(node: AnyObject, context: Context = EmptyNode) throws {
         let array = node as? [AnyObject] ?? [node]

@@ -17,64 +17,106 @@ extension Map {
     
     // MARK: Transforming
     
-    public func extract<T, InputType: NodeConvertible>(keyType: KeyType, transformer: InputType throws -> T) throws -> T {
-        return try <~self[keyType].transformFromNode(transformer)
+    public func extract<T, InputType: NodeConvertible>(
+        keyType: KeyType,
+        transformer: InputType throws -> T)
+        throws -> T {
+            return try <~self[keyType].transformFromNode(transformer)
     }
     
-    public func extract<T, InputType: NodeConvertible>(keyType: KeyType, transformer: InputType? throws -> T) throws -> T {
-        return try <~self[keyType].transformFromNode(transformer)
+    public func extract<T, InputType: NodeConvertible>(
+        keyType: KeyType,
+        transformer: InputType? throws -> T)
+        throws -> T {
+            return try <~self[keyType].transformFromNode(transformer)
     }
 
     // MARK: Optional Extractions
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> T? {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> T? {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [T]? {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [T]? {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [[T]]? {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [[T]]? {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [String : T]? {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [String : T]? {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [String : [T]]? {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [String : [T]]? {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> Set<T>? {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> Set<T>? {
+            return try <~self[keyType]
     }
     
     // MARK: Non Optional Extractions
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> T {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> T {
+            return try <~self[keyType]
+    }
+
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [T] {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [T] {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [[T]] {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [[T]] {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [String : T] {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [String : T] {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> [String : [T]] {
+            return try <~self[keyType]
     }
     
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> [String : [T]] {
-        return try <~self[keyType]
-    }
-    
-    public func extract<T : NodeConvertible>(keyType: KeyType) throws -> Set<T> {
-        return try <~self[keyType]
+    public func extract<T : NodeConvertible>(
+        keyType: KeyType,
+        to type: T.Type = T.self)
+        throws -> Set<T> {
+            return try <~self[keyType]
     }
 }
 

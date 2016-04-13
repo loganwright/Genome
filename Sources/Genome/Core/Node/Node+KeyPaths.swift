@@ -27,7 +27,7 @@ extension Node {
         
         self = Node(mutableObject)
     }
-    
+
     public func get(forKeyPath keyPath: String) -> Node? {
         var keys = keyPath.gnm_keypathComponents()
         guard let first = keys.first else { return nil }

@@ -102,12 +102,12 @@ public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertible>
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformFromNode<InputNodeType>(transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+    public func transformFromNode<InputNodeType: NodeConvertible>(transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
         let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    public func transformFromNode<InputNodeType>(transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+    public func transformFromNode<InputNodeType: NodeConvertible>(transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
         let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }

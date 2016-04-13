@@ -70,15 +70,15 @@ class BasicTypeTexts: XCTestCase {
         }
     }
     
-    func testBasic() {
-        let basic = try! Basic(node: BasicTestNode)
+    func testBasic() throws {
+        let basic = try Basic(node: BasicTestNode)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let node = try! basic.toNode()
+        let node = try basic.toNode()
         let int = node["int"]!.intValue!
         let float = node["float"]!.floatValue!
         let double = node["double"]!.doubleValue!
@@ -91,15 +91,15 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(string == "hello")
     }
     
-    func testBasicArrays() {
-        let basic = try! BasicArrays(node: .object(BasicArraysTestNode))
+    func testBasicArrays() throws {
+        let basic = try BasicArrays(node: .object(BasicArraysTestNode))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let node = try! basic.toNode()
+        let node = try basic.toNode()
         let ints = node["ints"]!.arrayValue!.flatMap { $0.intValue }
         let floats = node["floats"]!.arrayValue!.flatMap { $0.floatValue }
         let doubles = node["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
@@ -110,6 +110,57 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(doubles == [2.5])
         XCTAssert(bools == [true])
         XCTAssert(strings == ["hello"])
+    }
+
+    func testFoundationBool() throws {
+        let v = true
+        let n = try Node(v as AnyObject)
+        XCTAssert(n.boolValue == v)
+    }
+
+    func testFoundationInt() throws {
+        let v = 235
+        let n = try Node(v as AnyObject)
+        XCTAssert(n.intValue == v)
+    }
+
+    func testFoundationDouble() throws {
+        let v = 1.0
+        let n = try Node(v as AnyObject)
+        XCTAssert(n.doubleValue == v)
+    }
+
+    func testFoundationString() throws {
+        let v = "hello foundation"
+        let n = try Node(v as AnyObject)
+        XCTAssert(n.stringValue == v)
+    }
+
+    func testFoundationArray() throws {
+        let v = [1,2,3,4,5]
+        let n = try Node(v as AnyObject)
+        let a = n.arrayValue ?? []
+        XCTAssert(a.flatMap { $0.intValue } == v)
+    }
+
+    func testFoundationObject() throws {
+        let v = [
+            "hello" : "world"
+        ]
+        let n = try Node(v as AnyObject)
+        let o = n.objectValue ?? [:]
+        var mapped: [String : String] = [:]
+        o.forEach { key, val in
+            guard let str = val.stringValue else { return }
+            mapped[key] = str
+        }
+        XCTAssert(mapped == v)
+    }
+
+    func testFoundationNull() throws {
+        let v = NSNull()
+        let n = try Node(v as AnyObject)
+        XCTAssert(n.isNull)
     }
 }
 

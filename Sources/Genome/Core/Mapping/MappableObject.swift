@@ -22,9 +22,16 @@ extension MappableBase {
         return map.node
     }
     
-    init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
+    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
         let node = try data.toNode()
         self = try Self.init(node: node, context: context)
+    }
+}
+
+extension MappableBase {
+    public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
+        let node = try toNode()
+        return try node.toData()
     }
 }
 
