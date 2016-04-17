@@ -225,7 +225,7 @@ class SettableOperatorTest: XCTestCase {
             let _: String = try <~map["int"]
             XCTFail("Incorrect type should throw error")
         } catch NodeConvertibleError.UnableToConvert(_) {
-//            XCTAssert(key == KeyType.KeyPath("int"))
+//            XCTAssert(key == Key.KeyPath("int"))
 //            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
 //            else {
 //                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
@@ -239,7 +239,7 @@ class SettableOperatorTest: XCTestCase {
             let _: Person = try <~map["int"]
             XCTFail("Incorrect type should throw error")
         } catch Error.SequenceError.foundNil(_) {
-//            XCTAssert(key == KeyType.KeyPath("int"))
+//            XCTAssert(key == Key.KeyPath("int"))
 //            if case Error.SequenceError.foundNil(_) = error { }
 //            else {
 //                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
@@ -323,7 +323,7 @@ class SettableOperatorTest: XCTestCase {
             let _: Person? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch Error.SequenceError.foundNil(_) {
-//            XCTAssert(key == KeyType.KeyPath("int"))
+//            XCTAssert(key == Key.KeyPath("int"))
 //            if case Error.SequenceError.foundNil(_) = error { }
 //            else {
 //                XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")

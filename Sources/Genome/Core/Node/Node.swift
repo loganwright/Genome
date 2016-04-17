@@ -6,36 +6,6 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
-// MARK: Legacy
-
-#if swift(>=3.0)
-#else
-    public typealias ErrorProtocol = ErrorType
-    public typealias Collection = CollectionType
-    public typealias Sequence = SequenceType
-    public typealias Integer = IntegerType
-    public typealias UnsignedInteger = UnsignedIntegerType
-    public typealias SignedInteger = SignedIntegerType
-    
-    extension Array {
-        mutating func remove(at index: Int) {
-            removeAtIndex(index)
-        }
-    }
-    
-    extension SequenceType where Generator.Element == String {
-        
-        /// Interpose the `separator` between elements of `self`, then concatenate
-        /// the result.  For example:
-        ///
-        ///     ["foo", "bar", "baz"].joinWithSeparator("-|-") // "foo-|-bar-|-baz"
-        @warn_unused_result
-        public func joined(separator separator: String) -> String {
-            return joinWithSeparator(separator)
-        }
-    }
-#endif
-
 // MARK: Type Enforcing
 
 public enum TypeEnforcingLevel {
@@ -84,8 +54,7 @@ extension Node {
     public init<T: Integer>(_ value: T) {
         self = .number(Double(value.toIntMax()))
     }
-    
-    #if swift(>=3.0)
+
     public init<T : Sequence where T.Iterator.Element == Node>(_ value: T) {
         let array = [Node](value)
         self = .array(array)
@@ -98,20 +67,6 @@ extension Node {
         }
         self = .object(obj)
     }
-    #else
-    public init<T : SequenceType where T.Generator.Element == Node>(_ value: T) {
-        let array = [Node](value)
-        self = .array(array)
-    }
-    
-    public init<T : SequenceType where T.Generator.Element == (key: String, value: Node)>(_ seq: T) {
-        var obj: [String : Node] = [:]
-        seq.forEach { key, val in
-            obj[key] = val
-        }
-        self = .object(obj)
-    }
-    #endif
 }
 
 // MARK: Convenience
@@ -584,18 +539,11 @@ extension Bool {
      This function seeks to replicate the expected behavior of `var boolValue: Bool` on `NSString`.  Any variant of `yes`, `y`, `true`, `t`, or any numerical value greater than 0 will be considered `true`
      */
     public init(_ string: String) {
-        #if swift(>=3.0)
-            let cleaned = string
-                .lowercased()
-                .characters
-                .first ?? "n"
-        #else
-            let cleaned = string
-                .lowercaseString
-                .characters
-                .first ?? "n"
-        #endif
-        
+        let cleaned = string
+            .lowercased()
+            .characters
+            .first ?? "n"
+
         switch cleaned {
         case "t", "y", "1":
             self = true
@@ -636,10 +584,10 @@ extension String {
 
 extension String {
     public func split(separator: Character, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [String] {
-        #if swift(>=3.0)
-        return characters.split(separator: separator, maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences).map(String.init)
-        #else
-        return characters.split(separator, maxSplit: maxSplits, allowEmptySlices: omittingEmptySubsequences).map(String.init)
-        #endif
+        return characters
+            .split(separator: separator,
+                   maxSplits: maxSplits,
+                   omittingEmptySubsequences: omittingEmptySubsequences)
+            .map(String.init)
     }
 }

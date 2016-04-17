@@ -33,7 +33,7 @@ public final class Map {
     // MARK: Private
     
     /// The last key accessed -- Used to reverse Node Operations
-    internal private(set) var lastKey: KeyType = .KeyPath("")
+    internal private(set) var lastKey: Key = .KeyPath("")
     
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: Node? {
@@ -54,7 +54,7 @@ public final class Map {
 //
 //    internal func result() throws -> Node {
 //        guard let val = lastResult else {
-//            throw Error.foundNil(for: <#T##KeyType#>, expected: <#T##T#>)
+//            throw Error.foundNil(for: <#T##Key#>, expected: <#T##T#>)
 //        }
 //    }
 
@@ -104,13 +104,13 @@ public final class Map {
     
     :returns: returns an instance of self that can be passed to the mappable operator
     */
-    public subscript(keyType: KeyType) -> Map {
-        lastKey = keyType
-        switch keyType {
-        case let .Key(key):
-            result = node[key]
-        case let .KeyPath(keyPath):
-            result = node.get(forKeyPath: keyPath)
+    public subscript(key: Key) -> Map {
+        lastKey = key
+        switch key {
+        case let .Key(k):
+            result = node[k]
+        case let .KeyPath(path):
+            result = node.get(forKeyPath: path)
         }
         return self
     }

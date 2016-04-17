@@ -31,12 +31,12 @@ To access the value at "one.two", use `map[.Key("one.two")]` to assert that it i
 - KeyPath: default
 - Key:     used for keys w/ '.'
 */
-public enum KeyType {
+public enum Key {
     case KeyPath(String)
     case Key(String)
 }
 
-extension KeyType : CustomStringConvertible {
+extension Key : CustomStringConvertible {
     public var description: String {
         switch self {
         case let .Key(key):
@@ -47,7 +47,7 @@ extension KeyType : CustomStringConvertible {
     }
 }
 
-extension KeyType : StringLiteralConvertible {
+extension Key : StringLiteralConvertible {
     public typealias RawValue = StringLiteralType
     public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
     public typealias UnicodeScalarLiteralType = StringLiteralType
@@ -76,14 +76,14 @@ extension KeyType : StringLiteralConvertible {
     }
 }
 
-extension KeyType : Hashable {
+extension Key : Hashable {
     public var hashValue: Int {
         let underlyingValue = keyPath ?? key
-        return "KeyType:\(underlyingValue)".hashValue
+        return "Key:\(underlyingValue)".hashValue
     }
 }
 
-extension KeyType : Equatable {
+extension Key : Equatable {
     public var keyPath: String? {
         guard case let .KeyPath(keyPath) = self else { return nil }
         return keyPath
@@ -95,6 +95,6 @@ extension KeyType : Equatable {
     }
 }
 
-public func ==(lhs: KeyType, rhs: KeyType) -> Bool {
+public func ==(lhs: Key, rhs: Key) -> Bool {
     return lhs.key == rhs.key || lhs.keyPath == rhs.keyPath
 }
