@@ -30,8 +30,8 @@ public extension Set where Element : NodeConvertible {
     }
     
     public init<T: BackingData>(with data: [T], in context: Context = EmptyNode) throws {
-        let node = try data.map { try $0.toNode() }
-        let array = try node.map { try Element.init(with: $0, in: context) }
+        let nodes = try data.map { try $0.toNode() }
+        let array = try nodes.map { try Element.init(with: $0, in: context) }
         self.init(array)
     }
 }
