@@ -72,7 +72,7 @@ extension NodeConvertible {
 
 extension MappableBase {
     public func foundationJson() throws -> AnyObject {
-        return try toNode().anyValue
+        return try makeNode().anyValue
     }
     
     public func foundationDictionary() throws -> [String : AnyObject]? {

@@ -26,12 +26,12 @@ class FromNodeOperatorTest: XCTestCase {
             self.lastName = lastName
         }
         
-        init(map: Map) throws {
+        init(with map: Map) throws {
             try firstName = map.extract("first_name")
             try lastName = map.extract("last_name")
         }
         
-        mutating func sequence(map: Map) throws -> Void {
+        mutating func sequence(_ map: Map) throws -> Void {
             try firstName ~> map["first_name"]
             try lastName ~> map["last_name"]
         }

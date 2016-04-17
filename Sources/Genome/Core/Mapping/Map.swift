@@ -53,7 +53,7 @@ public final class Map {
      :param: context the context that will be used in the mapping
      */
     public convenience init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        self.init(node: try data.toNode(), context: context)
+        self.init(node: try data.makeNode(), context: context)
     }
     
     /**
@@ -109,7 +109,7 @@ public final class Map {
     :param: any the value to set to the node for the value of the last key
     */
     internal func setToLastKey(_ node: Node?) throws {
-        try assertOperationTypeToNode()
+        try assertOperationTypemakeNode()
         guard let node = node else { return }
         
         switch lastKey {
@@ -123,7 +123,7 @@ public final class Map {
     /**
      Ensure that we're running the appropriate operation type
      */
-    private func assertOperationTypeToNode() throws {
+    private func assertOperationTypemakeNode() throws {
         if type != .ToNode {
             throw log(.UnexpectedOperationType(got: type, expected: OperationType.ToNode))
         }
@@ -132,17 +132,17 @@ public final class Map {
 
 extension Map {
     internal func setToLastKey<T : NodeConvertible>(_ any: T?) throws {
-        try setToLastKey(any?.toNode())
+        try setToLastKey(any?.makeNode())
     }
     
     internal func setToLastKey<T : NodeConvertible>(_ any: [T]?) throws {
-        try setToLastKey(any?.toNode())
+        try setToLastKey(any?.makeNode())
     }
     
     internal func setToLastKey<T : NodeConvertible>(_ any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
-            return try innerArray.toNode()
+            return try innerArray.makeNode()
         }
         try setToLastKey(Node(node))
     }
@@ -151,7 +151,7 @@ extension Map {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.toNode()
+            node[key] = try value.makeNode()
         }
         try setToLastKey(Node(node))
     }
@@ -160,13 +160,13 @@ extension Map {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.toNode()
+            node[key] = try value.makeNode()
         }
         try setToLastKey(Node(node))
     }
     
     internal func setToLastKey<T : NodeConvertible>(_ any: Set<T>?) throws {
-        try setToLastKey(any?.toNode())
+        try setToLastKey(any?.makeNode())
     }
 }
 

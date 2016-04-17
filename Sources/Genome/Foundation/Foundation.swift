@@ -10,7 +10,7 @@
 import Foundation
 
 extension MappableObject {
-    public init(node: AnyObject, context: [String : AnyObject] = [:]) throws {
+    public init(with node: AnyObject, in context: [String : AnyObject] = [:]) throws {
         try self.init(node: try Node(node), context: context)
     }
     

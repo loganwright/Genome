@@ -23,24 +23,24 @@ extension Dictionary : Context {}
 // MARK: NodeConvertible
 
 public protocol NodeConvertible {
-    init(node: Node, context: Context) throws
-    func toNode() throws -> Node
+    init(with node: Node, in context: Context) throws
+    func makeNode() throws -> Node
 }
 
 extension NodeConvertible {
-    public init(node: Node) throws {
-        try self.init(node: node, context: node)
+    public init(with node: Node) throws {
+        try self.init(with: node, in: node)
     }
 }
 
 // MARK: Node
 
 extension Node: NodeConvertible { // Can conform to both if non-throwing implementations
-    public init(node: Node, context: Context) {
+    public init(with node: Node, in context: Context) {
         self = node
     }
     
-    public func toNode() -> Node {
+    public func makeNode() -> Node {
         return self
     }
 }
@@ -48,11 +48,11 @@ extension Node: NodeConvertible { // Can conform to both if non-throwing impleme
 // MARK: String
 
 extension String: NodeConvertible {
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         return Node(self)
     }
     
-    public init(node: Node, context: Context) throws {
+    public init(with node: Node, in context: Context) throws {
         self = try self.dynamicType.makeWith(node: node, context: context)
     }
     
@@ -67,11 +67,11 @@ extension String: NodeConvertible {
 // MARK: Boolean
 
 extension Bool: NodeConvertible {
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         return Node(self)
     }
     
-    public init(node: Node, context: Context) throws {
+    public init(with node: Node, in context: Context) throws {
         self = try self.dynamicType.makeWith(node: node, context: context)
     }
     
@@ -92,12 +92,12 @@ extension UInt32: NodeConvertible {}
 extension UInt64: NodeConvertible {}
 
 extension UnsignedInteger {
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         let double = Double(UIntMax(self.toUIntMax()))
         return Node(double)
     }
     
-    public init(node: Node, context: Context) throws {
+    public init(with node: Node, in context: Context) throws {
         self = try Self.makeWith(node: node, context: context)
     }
     
@@ -119,12 +119,12 @@ extension Int32: NodeConvertible {}
 extension Int64: NodeConvertible {}
 
 extension SignedInteger {
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         let double = Double(IntMax(self.toIntMax()))
         return Node(double)
     }
     
-    public init(node: Node, context: Context) throws {
+    public init(with node: Node, in context: Context) throws {
         self = try Self.makeWith(node: node, context: context)
     }
     
@@ -157,11 +157,11 @@ public protocol NodeConvertibleFloatingPointType: NodeConvertible {
 }
 
 extension NodeConvertibleFloatingPointType {
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         return Node(doubleValue)
     }
     
-    public init(node: Node, context: Context) throws {
+    public init(with node: Node, in context: Context) throws {
         self = try Self.makeWith(node: node, context: context)
     }
     
@@ -179,7 +179,7 @@ extension Node {
     public init(_ dictionary: [String : NodeConvertible]) throws {
         var mutable: [String : Node] = [:]
         try dictionary.forEach { key, value in
-            mutable[key] = try value.toNode()
+            mutable[key] = try value.makeNode()
         }
         self = .object(mutable)
     }

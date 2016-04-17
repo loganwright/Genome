@@ -29,7 +29,7 @@ class BasicTypeTexts: XCTestCase {
         var bool = false
         var string = ""
         
-        mutating func sequence(map: Map) throws -> Void {
+        mutating func sequence(_ map: Map) throws -> Void {
             try int <~> map["int"]
             try float <~> map["float"]
             try double <~> map["double"]
@@ -57,7 +57,7 @@ class BasicTypeTexts: XCTestCase {
         var bools: [Bool] = []
         var strings: [String] = []
         
-        mutating func sequence(map: Map) throws -> Void {
+        mutating func sequence(_ map: Map) throws -> Void {
             try ints <~> map["ints"]
             try floats <~> map["floats"]
             try doubles <~> map["doubles"]
@@ -71,14 +71,14 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasic() throws {
-        let basic = try Basic(node: BasicTestNode)
+        let basic = try Basic(with: BasicTestNode)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let node = try basic.toNode()
+        let node = try basic.makeNode()
         let int = node["int"]!.intValue!
         let float = node["float"]!.floatValue!
         let double = node["double"]!.doubleValue!
@@ -92,14 +92,14 @@ class BasicTypeTexts: XCTestCase {
     }
     
     func testBasicArrays() throws {
-        let basic = try BasicArrays(node: .object(BasicArraysTestNode))
+        let basic = try BasicArrays(with: .object(BasicArraysTestNode))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let node = try basic.toNode()
+        let node = try basic.makeNode()
         let ints = node["ints"]!.arrayValue!.flatMap { $0.intValue }
         let floats = node["floats"]!.arrayValue!.flatMap { $0.floatValue }
         let doubles = node["doubles"]!.arrayValue!.flatMap { $0.doubleValue }

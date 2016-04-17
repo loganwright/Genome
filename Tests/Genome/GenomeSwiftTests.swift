@@ -50,7 +50,7 @@ struct Food : BasicMappable, Equatable {
     var name: String = ""
     var tastiness: Int?
  
-    mutating func sequence(map op: Map) throws -> Void {
+    mutating func sequence(_ op: Map) throws -> Void {
         try id <~> op["id"]
         try name <~> op["name"]
         try tastiness <~> op["tastiness"]
@@ -63,7 +63,7 @@ struct Person : BasicMappable {
     var birthday: NSDate?
     var favoriteFoods: [Food] = []
     
-    mutating func sequence(map: Map) throws -> Void {
+    mutating func sequence(_ map: Map) throws -> Void {
         try name <~> map["name"]
         
         try birthday <~> map["birthday"]
@@ -168,9 +168,9 @@ class GenomeSideLoadTests: XCTestCase {
         
         // Assert Node
         
-        let node = try! peeps.first!.toNode()
+        let node = try! peeps.first!.makeNode()
         print("Write node tests \(node)")
-        let peepsNode = try! peeps.toNode()
+        let peepsNode = try! peeps.makeNode()
         print("Peeps: \(peepsNode)")
         
         let m = Map()

@@ -16,7 +16,7 @@ class ToNodeOperatorTest: XCTestCase {
         
         var name: String = ""
         
-        mutating func sequence(map: Map) throws -> Void {
+        mutating func sequence(_ map: Map) throws -> Void {
             try name <~> map["name"]
         }
         
@@ -55,7 +55,7 @@ class ToNodeOperatorTest: XCTestCase {
         var optionalNil: String?
         var optionalNotNil: String? = "not nil"
         
-        init(map: Map) {
+        init(with map: Map) {
             name = try! map.extract("name")
             foundedYear = try! map.extract("founded_in")
             
@@ -83,7 +83,7 @@ class ToNodeOperatorTest: XCTestCase {
             employeesOptionalSet = try! map.extract("employees")
         }
         
-        func sequence(map: Map) throws -> Void {
+        func sequence(_ map: Map) throws -> Void {
             try name ~> map["name"]
             try foundedYear ~> map["foundedYear"]
             
@@ -165,7 +165,7 @@ class ToNodeOperatorTest: XCTestCase {
     lazy var goodBusiness: Business = try! Business(node: self.businessNode)
     
     func test() {
-        let node = try! goodBusiness.toNode()
+        let node = try! goodBusiness.makeNode()
         
         // Basic type
         let name = node["name"]!.stringValue!

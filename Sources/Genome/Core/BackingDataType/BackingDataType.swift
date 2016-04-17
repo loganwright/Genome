@@ -27,8 +27,8 @@ extension Node {
 
 extension NodeConvertible {
     public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        let node = try data.toNode()
-        try self.init(node: node, context: context)
+        let node = try data.makeNode()
+        try self.init(with: node, in: context)
     }
 }
 
@@ -40,10 +40,10 @@ extension MappableObject {
     }
     
     private static func makeWith<T: BackingData>(data: T, context: Context) throws -> Self {
-        let node = try data.toNode()
+        let node = try data.makeNode()
         guard let _ = node.objectValue else {
             throw log(.UnableToConvert(node: node, to: "\(self)"))
         }
-        return try self.init(node: node, context: context)
+        return try self.init(with: node, in: context)
     }
 }

@@ -10,27 +10,27 @@
 // MARK: MappableBase
 
 public protocol MappableBase : NodeConvertible {
-    mutating func sequence(map: Map) throws -> Void
+    mutating func sequence(_ map: Map) throws -> Void
 }
 
 extension MappableBase {
     /// Used to convert an object back into node
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         let map = Map()
         var mutable = self
-        try mutable.sequence(map: map)
+        try mutable.sequence(map)
         return map.node
     }
     
     public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        let node = try data.toNode()
-        self = try Self.init(node: node, context: context)
+        let node = try data.makeNode()
+        self = try Self.init(with: node, in: context)
     }
 }
 
 extension MappableBase {
     public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
-        let node = try toNode()
+        let node = try makeNode()
         return try node.toData()
     }
 }
@@ -38,17 +38,20 @@ extension MappableBase {
 // MARK: MappableObject
 
 public protocol MappableObject: MappableBase {
-    init(map: Map) throws
+    init(with map: Map) throws
 }
 
 extension MappableObject {
-    public func sequence(map: Map) throws {
-        print("")
-    }
-    
-    public init(node: Node, context: Context = EmptyNode) throws {
+//    public override func sequence(with map: Map) throws {
+//
+//    }
+//    public func sequence(map: Map) throws {
+//        print("")
+//    }
+
+    public init(with node: Node, in context: Context = EmptyNode) throws {
         let map = Map(node: node, context: context)
-        try self.init(map: map)
+        try self.init(with: map)
     }
 }
 
@@ -63,23 +66,23 @@ public protocol BasicMappable: MappableObject {
 }
 
 extension BasicMappable {
-    public init(map: Map) throws {
+    public init(with map: Map) throws {
         try self.init()
-        try sequence(map: map)
+        try sequence(map)
     }
 }
 
 // MARK: Inheritable Object
 
 public class Object: MappableObject {
-    required public init(map: Map) throws {}
+    required public init(with map: Map) throws {}
     
-    public func sequence(map: Map) throws {}
+    public func sequence(_ map: Map) throws {}
 }
 
 
 public class BasicObject: BasicMappable {
     required public init() throws {}
     
-    public func sequence(map: Map) throws {}
+    public func sequence(_ map: Map) throws {}
 }

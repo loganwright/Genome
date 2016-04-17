@@ -11,36 +11,36 @@
 
 #if swift(>=3.0)
     extension Sequence where Iterator.Element: NodeConvertible {
-        public func toNode() throws -> Node {
-            let array = try map { try $0.toNode() }
+        public func makeNode() throws -> Node {
+            let array = try map { try $0.makeNode() }
             return Node(array)
         }
         public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
-            return try toNode().toData()
+            return try makeNode().toData()
         }
     }
 #else
     extension SequenceType where Generator.Element: NodeConvertible {
-        public func toNode() throws -> Node {
-            let array = try map { try $0.toNode() }
+        public func makeNode() throws -> Node {
+            let array = try map { try $0.makeNode() }
             return Node(array)
         }
         public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
-            return try toNode().toData()
+            return try makeNode().toData()
         }
     }
 #endif
 
 extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertible {
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         var mutable: [String : Node] = [:]
         try self.forEach { key, value in
-            mutable["\(key)"] = try value.toNode()
+            mutable["\(key)"] = try value.makeNode()
         }
         return .object(mutable)
     }
 
     public func toData<T: BackingData>(type: T.Type = T.self) throws -> Node {
-        return try toNode().toData()
+        return try makeNode().toData()
     }
 }
