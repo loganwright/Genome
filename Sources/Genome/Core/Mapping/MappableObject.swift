@@ -42,12 +42,9 @@ public protocol MappableObject: MappableBase {
 }
 
 extension MappableObject {
-//    public override func sequence(with map: Map) throws {
-//
-//    }
-//    public func sequence(map: Map) throws {
-//        print("")
-//    }
+    public func sequence(_ map: Map) throws {
+        // Empty
+    }
 
     public init(with node: Node, in context: Context = EmptyNode) throws {
         let map = Map(node: node, context: context)

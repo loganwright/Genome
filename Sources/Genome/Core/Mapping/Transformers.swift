@@ -30,11 +30,7 @@ public class Transformer<InputType, OutputType> {
         self.map = map
         self.transformer = transformer
     }
-    
-    internal func transform(_ value: InputType) throws -> OutputType {
-        return try transformer(value)
-    }
-    
+
     internal func transform(_ value: InputType?) throws -> OutputType {
         return try transformer(value)
     }
@@ -43,7 +39,8 @@ public class Transformer<InputType, OutputType> {
 
 // MARK: From Node
 
-public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedType> : Transformer<NodeType, TransformedType> {
+public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedType>
+                   : Transformer<NodeType, TransformedType> {
     override public init(map: Map, transformer: NodeType throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
@@ -51,10 +48,14 @@ public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedTyp
     override public init(map: Map, transformer: NodeType? throws -> TransformedType) {
         super.init(map: map, transformer: transformer)
     }
-    
-    public func transformToNode<OutputNodeType: NodeConvertible>(with transformer: TransformedType throws -> OutputNodeType) -> TwoWayTransformer<NodeType, TransformedType, OutputNodeType> {
-        let toNodeTransformer = ToNodeTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromNodeTransformer: self, toNodeTransformer: toNodeTransformer)
+
+    public func transformToNode
+        <OutputNodeType: NodeConvertible>(
+        with transformer: TransformedType throws -> OutputNodeType)
+        -> TwoWayTransformer<NodeType, TransformedType, OutputNodeType> {
+            let toNodeTransformer = ToNodeTransformer(map: map, transformer: transformer)
+            return TwoWayTransformer(fromNodeTransformer: self,
+                                     toNodeTransformer: toNodeTransformer)
     }
     
     internal func transform(_ node: Node?) throws -> TransformedType {
@@ -69,19 +70,29 @@ public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedTyp
 
 // MARK: To Node
 
-public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertible> : Transformer<ValueType, OutputNodeType> {
+public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertible>
+                   : Transformer<ValueType, OutputNodeType> {
+
     override public init(map: Map, transformer: ValueType throws -> OutputNodeType) {
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformFromNode<InputNodeType: NodeConvertible>(with transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
-        let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
+    public func transformFromNode
+        <InputNodeType: NodeConvertible>
+        (with transformer: InputNodeType throws -> ValueType)
+        -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+            let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
+            return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer,
+                                     toNodeTransformer: self)
     }
     
-    public func transformFromNode<InputNodeType: NodeConvertible>(with transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
-        let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
-        return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
+    public func transformFromNode
+        <InputNodeType: NodeConvertible>
+        (with transformer: InputNodeType? throws -> ValueType)
+        -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+            let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
+            return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer,
+                                     toNodeTransformer: self)
     }
     
     internal func transform(_ value: ValueType) throws -> Node {
@@ -92,17 +103,19 @@ public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertible>
 
 // MARK: Two Way Transformer
 
-public final class TwoWayTransformer<InputNodeType: NodeConvertible, TransformedType, OutputNodeType: NodeConvertible> {
-    
+public final class TwoWayTransformer<InputNodeType: NodeConvertible,
+                                     TransformedType,
+                                     OutputNodeType: NodeConvertible> {
     var map: Map {
         let toMap = toNodeTransformer.map
         return toMap
     }
-    
+
     public let fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>
     public let toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>
-    
-    public init(fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>, toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>) {
+
+    public init(fromNodeTransformer: FromNodeTransformer<InputNodeType, TransformedType>,
+                toNodeTransformer: ToNodeTransformer<TransformedType, OutputNodeType>) {
         self.fromNodeTransformer = fromNodeTransformer
         self.toNodeTransformer = toNodeTransformer
     }
@@ -111,22 +124,33 @@ public final class TwoWayTransformer<InputNodeType: NodeConvertible, Transformed
 // MARK: Map Extensions
 
 public extension Map {
-    public func transformFromNode<NodeType: NodeConvertible, TransformedType>(with transformer: NodeType throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
-        return FromNodeTransformer(map: self, transformer: transformer)
+    public func transformFromNode
+        <NodeType: NodeConvertible, TransformedType>
+        (with transformer: NodeType throws -> TransformedType)
+        -> FromNodeTransformer<NodeType, TransformedType> {
+            return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformFromNode<NodeType: NodeConvertible, TransformedType>(with transformer: NodeType? throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
-        return FromNodeTransformer(map: self, transformer: transformer)
+    public func transformFromNode
+        <NodeType: NodeConvertible, TransformedType>
+        (with transformer: NodeType? throws -> TransformedType)
+        -> FromNodeTransformer<NodeType, TransformedType> {
+            return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformToNode<ValueType, NodeOutputType: NodeConvertible>(with transformer: ValueType throws -> NodeOutputType) -> ToNodeTransformer<ValueType, NodeOutputType> {
-        return ToNodeTransformer(map: self, transformer: transformer)
+    public func transformToNode
+        <ValueType, NodeOutputType: NodeConvertible>
+        (with transformer: ValueType throws -> NodeOutputType)
+        -> ToNodeTransformer<ValueType, NodeOutputType> {
+            return ToNodeTransformer(map: self, transformer: transformer)
     }
 }
 
 // MARK: Operators
 
-public func <~> <T: NodeConvertible, NodeInputType>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
+public func <~> <T: NodeConvertible, NodeInputType>
+    (lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
+
     switch rhs.map.type {
     case .fromNode:
         try lhs <~ rhs
@@ -135,7 +159,9 @@ public func <~> <T: NodeConvertible, NodeInputType>(lhs: inout T, rhs: FromNodeT
     }
 }
 
-public func <~> <T: NodeConvertible, NodeOutputType: NodeConvertible>(lhs: inout T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
+public func <~> <T: NodeConvertible, NodeOutputType: NodeConvertible>
+    (lhs: inout T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
+
     switch rhs.map.type {
     case .fromNode:
         try lhs <~ rhs.map
@@ -144,7 +170,10 @@ public func <~> <T: NodeConvertible, NodeOutputType: NodeConvertible>(lhs: inout
     }
 }
 
-public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertible>(lhs: inout TransformedType, rhs: TwoWayTransformer<NodeInput, TransformedType, NodeOutput>) throws {
+public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertible>
+    (lhs: inout TransformedType,
+     rhs: TwoWayTransformer<NodeInput, TransformedType, NodeOutput>) throws {
+
     switch rhs.map.type {
     case .fromNode:
         try lhs <~ rhs.fromNodeTransformer
@@ -153,7 +182,9 @@ public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertible>(lhs: i
     }
 }
 
-public func <~ <T, NodeInputType: NodeConvertible>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
+public func <~ <T, NodeInputType: NodeConvertible>
+    (lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
+
     switch rhs.map.type {
     case .fromNode:
         try lhs = rhs.transform(rhs.map.result)
@@ -162,7 +193,9 @@ public func <~ <T, NodeInputType: NodeConvertible>(lhs: inout T, rhs: FromNodeTr
     }
 }
 
-public func ~> <T, NodeOutputType: NodeConvertible>(lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
+public func ~> <T, NodeOutputType: NodeConvertible>
+    (lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
+
     switch rhs.map.type {
     case .fromNode:
         break

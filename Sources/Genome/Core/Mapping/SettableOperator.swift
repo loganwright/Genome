@@ -215,13 +215,7 @@ public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeT
 
 extension Map {
     private func enforceFromNode() throws {
-        try enforceOperationType(expecting: .fromNode)
-    }
-
-    private func enforceOperationType(expecting: OperationType) throws {
-        if type != expecting {
-            throw log(.UnexpectedOperationType(got: type, expected: expecting))
-        }
+        try type.assert(equals: .fromNode)
     }
 
     private func enforceResult<T>(targeting: T.Type) throws -> Node {
@@ -252,7 +246,7 @@ extension Map {
 }
 
 extension Node {
-    var arrayOfArrays: [[Node]] {
+    private var arrayOfArrays: [[Node]] {
         let array = arrayValue ?? [self]
         // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
         let possibleArrayOfArrays = array.flatMap { $0.arrayValue }

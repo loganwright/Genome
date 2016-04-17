@@ -8,7 +8,7 @@
 
 // MARK: Type Enforcing
 
-public enum TypeEnforcingLevel {
+public enum TypeEnforcementLevel {
     case strict
     case fuzzy
     
@@ -21,7 +21,7 @@ public enum TypeEnforcingLevel {
     }
 }
 
-public var TypeEnforcing: TypeEnforcingLevel = .strict
+public var typeEnforcementLevel: TypeEnforcementLevel = .strict
 
 public enum Node {
     case null
@@ -73,15 +73,33 @@ extension Node {
 
 extension Node {
     public var isNull: Bool {
-        // Type enforcing level doesn't really apply here
+        switch typeEnforcementLevel {
+        case .strict:
+            return strictIsNull
+        case .fuzzy:
+            return fuzzyIsNull
+        }
+    }
+
+    public var strictIsNull: Bool {
         guard case .null = self else { return false }
         return true
+    }
+
+    public var fuzzyIsNull: Bool {
+        if strictIsNull {
+            return true
+        } else if let s = stringValue {
+            return s == "null"
+        } else {
+            return false
+        }
     }
 }
 
 extension Node {
     public var boolValue: Bool? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictBoolValue
         case .fuzzy:
@@ -118,7 +136,7 @@ extension Node {
 
 extension Node {
     public var numberValue: Double? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictNumberValue
         case .fuzzy:
@@ -147,7 +165,7 @@ extension Node {
     }
     
     public var doubleValue: Double? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictDoubleValue
         case .fuzzy:
@@ -164,7 +182,7 @@ extension Node {
     }
     
     public var floatValue: Float? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictFloatValue
         case .fuzzy:
@@ -184,7 +202,7 @@ extension Node {
 
 extension Node {
     public var intValue: Int? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictIntValue
         case .fuzzy:
@@ -215,7 +233,7 @@ extension Node {
 
 extension Node {
     public var uintValue: UInt? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictUIntValue
         case .fuzzy:
@@ -245,7 +263,7 @@ extension Node {
 
 extension Node {
     public var stringValue: String? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictStringValue
         case .fuzzy:
@@ -278,7 +296,7 @@ extension Node {
 
 extension Node {
     public var arrayValue: [Node]? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictArrayValue
         case .fuzzy:
@@ -307,7 +325,7 @@ extension Node {
 
 extension Node {
     public var objectValue: [String : Node]? {
-        switch TypeEnforcing {
+        switch typeEnforcementLevel {
         case .strict:
             return strictObjectValue
         case .fuzzy:
@@ -419,7 +437,7 @@ extension Node: Equatable {}
 
 // TODO: Decide if equality should be fuzzy or strict, or possibly a separate toggle
 public func ==(lhs: Node, rhs: Node) -> Bool {
-    switch TypeEnforcing {
+    switch typeEnforcementLevel {
     case .strict:
         return strictEquals(lhs: lhs, rhs)
     case .fuzzy:
