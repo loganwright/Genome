@@ -67,8 +67,8 @@ struct Person : BasicMappable {
         try name <~> map["name"]
         
         try birthday <~> map["birthday"]
-            .transformFromNode(transformer: NSDate.dateWithBirthdayString)
-            .transformToNode(transformer: NSDate.birthdayStringWithDate)
+            .transformFromNode(with: NSDate.dateWithBirthdayString)
+            .transformToNode(with: NSDate.birthdayStringWithDate)
         
         try favoriteFoodIds <~> map["favorite_food_ids"]
     }

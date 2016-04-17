@@ -24,7 +24,7 @@ class TransformTest: XCTestCase {
         XCTAssert(settableString == "modified: world")
         
         let nonOptionalString = ""
-        try! nonOptionalString ~> map["test"].transformToNode(transformer: optStringToString)
+        try! nonOptionalString ~> map["test"].transformToNode(with: optStringToString)
     }
     
     func stringToString(input: String) -> String {

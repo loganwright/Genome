@@ -21,14 +21,14 @@ extension Map {
         _ keyType: Key,
         transformer: InputType throws -> T)
         throws -> T {
-            return try <~self[keyType].transformFromNode(transformer: transformer)
+            return try <~self[keyType].transformFromNode(with: transformer)
     }
     
     public func extract<T, InputType: NodeConvertible>(
         _ keyType: Key,
         transformer: InputType? throws -> T)
         throws -> T {
-            return try <~self[keyType].transformFromNode(transformer: transformer)
+            return try <~self[keyType].transformFromNode(with: transformer)
     }
 
     // MARK: Optional Extractions
@@ -208,7 +208,7 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]] {
 
 public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeTransformer<NodeInputType, T>) throws -> T {
     try transformer.map.enforceFromNode()
-    return try transformer.transformValue(node: transformer.map.result)
+    return try transformer.transform(transformer.map.result)
 }
 
 // MARK: Enforcers

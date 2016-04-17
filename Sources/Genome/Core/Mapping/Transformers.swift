@@ -30,28 +30,18 @@ public class Transformer<InputType, OutputType> {
         self.allowsNil = true
     }
     
-    internal func transform<T>(value: T) throws -> OutputType {
-        if let input = value as? InputType {
-            return try transformer(input)
-        } else {
-            throw log(unexpectedInput(value: value))
-        }
+    internal func transform(_ value: InputType) throws -> OutputType {
+        return try transformer(value)
     }
     
-    internal func transform<T>(value: T?) throws -> OutputType {
+    internal func transform(_ value: InputType?) throws -> OutputType {
         if allowsNil {
             guard let unwrapped = value else { return try transformer(nil) }
-            return try transform(value: unwrapped)
+            return try transform(unwrapped)
         } else {
             let unwrapped = try enforceExists(value: value)
-            return try transform(value: unwrapped)
+            return try transform(unwrapped)
         }
-        
-    }
-    
-    private func unexpectedInput<ValueType>(value: ValueType) -> ErrorProtocol {
-        let message = "Unexpected Input: \(value) ofType: \(ValueType.self) Expected: \(InputType.self) KeyPath: \(map.lastKey)"
-        return TransformationError.UnexpectedInputType(message)
     }
     
     private func enforceExists<T>(value: T?) throws -> T {
@@ -76,12 +66,12 @@ public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedTyp
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformToNode<OutputNodeType: NodeConvertible>(transformer: TransformedType throws -> OutputNodeType) -> TwoWayTransformer<NodeType, TransformedType, OutputNodeType> {
+    public func transformToNode<OutputNodeType: NodeConvertible>(with transformer: TransformedType throws -> OutputNodeType) -> TwoWayTransformer<NodeType, TransformedType, OutputNodeType> {
         let toNodeTransformer = ToNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: self, toNodeTransformer: toNodeTransformer)
     }
     
-    internal func transformValue(node: Node?) throws -> TransformedType {
+    internal func transform(_ node: Node?) throws -> TransformedType {
         let validNode: Node
         if allowsNil {
             guard let unwrapped = node else { return try transformer(nil) }
@@ -102,17 +92,17 @@ public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertible>
         super.init(map: map, transformer: transformer)
     }
     
-    public func transformFromNode<InputNodeType: NodeConvertible>(transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+    public func transformFromNode<InputNodeType: NodeConvertible>(with transformer: InputNodeType throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
         let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    public func transformFromNode<InputNodeType: NodeConvertible>(transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
+    public func transformFromNode<InputNodeType: NodeConvertible>(with transformer: InputNodeType? throws -> ValueType) -> TwoWayTransformer<InputNodeType, ValueType, OutputNodeType> {
         let fromNodeTransformer = FromNodeTransformer(map: map, transformer: transformer)
         return TwoWayTransformer(fromNodeTransformer: fromNodeTransformer, toNodeTransformer: self)
     }
     
-    internal func transformValue(value: ValueType) throws -> Node {
+    internal func transform(_ value: ValueType) throws -> Node {
         let transformed = try transformer(value)
         return try transformed.toNode()
     }
@@ -139,15 +129,15 @@ public final class TwoWayTransformer<InputNodeType: NodeConvertible, Transformed
 // MARK: Map Extensions
 
 public extension Map {
-    public func transformFromNode<NodeType: NodeConvertible, TransformedType>(transformer: NodeType throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
+    public func transformFromNode<NodeType: NodeConvertible, TransformedType>(with transformer: NodeType throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
         return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformFromNode<NodeType: NodeConvertible, TransformedType>(transformer: NodeType? throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
+    public func transformFromNode<NodeType: NodeConvertible, TransformedType>(with transformer: NodeType? throws -> TransformedType) -> FromNodeTransformer<NodeType, TransformedType> {
         return FromNodeTransformer(map: self, transformer: transformer)
     }
     
-    public func transformToNode<ValueType, NodeOutputType: NodeConvertible>(transformer: ValueType throws -> NodeOutputType) -> ToNodeTransformer<ValueType, NodeOutputType> {
+    public func transformToNode<ValueType, NodeOutputType: NodeConvertible>(with transformer: ValueType throws -> NodeOutputType) -> ToNodeTransformer<ValueType, NodeOutputType> {
         return ToNodeTransformer(map: self, transformer: transformer)
     }
 }
@@ -184,7 +174,7 @@ public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertible>(lhs: i
 public func <~ <T, NodeInputType: NodeConvertible>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
     case .FromNode:
-        try lhs = rhs.transformValue(node: rhs.map.result)
+        try lhs = rhs.transform(rhs.map.result)
     case .ToNode:
         break
     }
@@ -195,7 +185,7 @@ public func ~> <T, NodeOutputType: NodeConvertible>(lhs: T, rhs: ToNodeTransform
     case .FromNode:
         break
     case .ToNode:
-        let output = try rhs.transformValue(value: lhs)
+        let output = try rhs.transform(lhs)
         try rhs.map.setToLastKey(output)
     }
 }
