@@ -215,7 +215,7 @@ public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeT
 
 extension Map {
     private func enforceFromNode() throws {
-        try enforceOperationType(expecting: .FromNode)
+        try enforceOperationType(expecting: .fromNode)
     }
 
     private func enforceOperationType(expecting: OperationType) throws {

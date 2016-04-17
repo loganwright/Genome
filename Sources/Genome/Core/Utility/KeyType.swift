@@ -32,17 +32,17 @@ To access the value at "one.two", use `map[.Key("one.two")]` to assert that it i
 - Key:     used for keys w/ '.'
 */
 public enum Key {
-    case KeyPath(String)
-    case Key(String)
+    case path(String)
+    case standard(String)
 }
 
 extension Key : CustomStringConvertible {
     public var description: String {
         switch self {
-        case let .Key(key):
-            return ".Key(\(key))"
-        case let .KeyPath(keyPath):
-            return ".KeyPath(\(keyPath))"
+        case let .standard(key):
+            return ".standard(\(key))"
+        case let .path(keyPath):
+            return ".path(\(keyPath))"
         }
     }
 }
@@ -72,7 +72,7 @@ extension Key : StringLiteralConvertible {
     
     public init(_ string: String) {
         // defaults to keypath
-        self = .KeyPath(string)
+        self = .path(string)
     }
 }
 
@@ -85,12 +85,12 @@ extension Key : Hashable {
 
 extension Key : Equatable {
     public var keyPath: String? {
-        guard case let .KeyPath(keyPath) = self else { return nil }
+        guard case let .path(keyPath) = self else { return nil }
         return keyPath
     }
     
     public var key: String? {
-        guard case let .Key(key) = self else { return nil }
+        guard case let .standard(key) = self else { return nil }
         return key
     }
 }

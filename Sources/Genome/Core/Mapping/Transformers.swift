@@ -128,45 +128,45 @@ public extension Map {
 
 public func <~> <T: NodeConvertible, NodeInputType>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
-    case .FromNode:
+    case .fromNode:
         try lhs <~ rhs
-    case .ToNode:
+    case .toNode:
         try lhs ~> rhs.map
     }
 }
 
 public func <~> <T: NodeConvertible, NodeOutputType: NodeConvertible>(lhs: inout T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
     switch rhs.map.type {
-    case .FromNode:
+    case .fromNode:
         try lhs <~ rhs.map
-    case .ToNode:
+    case .toNode:
         try lhs ~> rhs
     }
 }
 
 public func <~> <NodeInput, TransformedType, NodeOutput: NodeConvertible>(lhs: inout TransformedType, rhs: TwoWayTransformer<NodeInput, TransformedType, NodeOutput>) throws {
     switch rhs.map.type {
-    case .FromNode:
+    case .fromNode:
         try lhs <~ rhs.fromNodeTransformer
-    case .ToNode:
+    case .toNode:
         try lhs ~> rhs.toNodeTransformer
     }
 }
 
 public func <~ <T, NodeInputType: NodeConvertible>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
     switch rhs.map.type {
-    case .FromNode:
+    case .fromNode:
         try lhs = rhs.transform(rhs.map.result)
-    case .ToNode:
+    case .toNode:
         break
     }
 }
 
 public func ~> <T, NodeOutputType: NodeConvertible>(lhs: T, rhs: ToNodeTransformer<T, NodeOutputType>) throws {
     switch rhs.map.type {
-    case .FromNode:
+    case .fromNode:
         break
-    case .ToNode:
+    case .toNode:
         let output = try rhs.transform(lhs)
         try rhs.map.setToLastKey(output)
     }

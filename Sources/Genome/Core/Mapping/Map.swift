@@ -17,8 +17,8 @@ public final class Map {
     - FromNode: transforming a node dictionary representation into an object
     */
     public enum OperationType {
-        case ToNode
-        case FromNode
+        case toNode
+        case fromNode
     }
     
     /// The type of operation for the current map
@@ -33,7 +33,7 @@ public final class Map {
     // MARK: Private
     
     /// The last key accessed -- Used to reverse Node Operations
-    internal private(set) var lastKey: Key = .KeyPath("")
+    internal private(set) var lastKey: Key = .path("")
     
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: Node? {
@@ -43,20 +43,6 @@ public final class Map {
             }
         }
     }
-
-//    private var lastResult: Node? {
-//        didSet {
-//            if let unwrapped = lastResult where unwrapped.isNull {
-//                lastResult = nil
-//            }
-//        }
-//    }
-//
-//    internal func result() throws -> Node {
-//        guard let val = lastResult else {
-//            throw Error.foundNil(for: <#T##Key#>, expected: <#T##T#>)
-//        }
-//    }
 
     // MARK: Initialization
 
@@ -77,7 +63,7 @@ public final class Map {
      :param: context the context that will be used in the mapping
      */
     public init(node: Node, context: Context = EmptyNode) {
-        self.type = .FromNode
+        self.type = .fromNode
         
         self.node = node
         self.context = context
@@ -89,7 +75,7 @@ public final class Map {
      - returns: an initialized toNode map ready to generate a node
      */
     public init() {
-        self.type = .ToNode
+        self.type = .toNode
         
         self.node = [:]
         self.context = EmptyNode
@@ -107,44 +93,28 @@ public final class Map {
     public subscript(key: Key) -> Map {
         lastKey = key
         switch key {
-        case let .Key(k):
+        case let .standard(k):
             result = node[k]
-        case let .KeyPath(path):
+        case let .path(path):
             result = node.get(forKeyPath: path)
         }
         return self
     }
-    
-    // MARK: To Node
-    
-    /**
-    Accept 'Any' type and convert for things like Int that don't conform to AnyObject, but can be put into Node Dict and pass a cast to 'AnyObject'
-    
-    :param: any the value to set to the node for the value of the last key
-    */
-    internal func setToLastKey(_ node: Node?) throws {
-        try assertOperationTypemakeNode()
-        guard let node = node else { return }
-        
-        switch lastKey {
-        case let .Key(key):
-            self.node[key] = node
-        case let .KeyPath(keyPath):
-            self.node.set(val: node, forKeyPath: keyPath)
-        }
-    }
-    
-    /**
-     Ensure that we're running the appropriate operation type
-     */
-    private func assertOperationTypemakeNode() throws {
-        if type != .ToNode {
-            throw log(.UnexpectedOperationType(got: type, expected: OperationType.ToNode))
-        }
-    }
 }
 
 extension Map {
+    internal func setToLastKey(_ node: Node?) throws {
+        try type.assert(equals: .toNode)
+        guard let node = node else { return }
+
+        switch lastKey {
+        case let .standard(key):
+            self.node[key] = node
+        case let .path(keyPath):
+            self.node.set(val: node, forKeyPath: keyPath)
+        }
+    }
+
     internal func setToLastKey<T : NodeConvertible>(_ any: T?) throws {
         try setToLastKey(any?.toNode())
     }
@@ -158,7 +128,7 @@ extension Map {
         let node: [Node] = try any.map { innerArray in
             return try innerArray.toNode()
         }
-        try setToLastKey(Node(node))
+        try setToLastKey(node.toNode())
     }
     
     internal func setToLastKey<T : NodeConvertible>(_ any: [String : T]?) throws {
@@ -181,6 +151,14 @@ extension Map {
     
     internal func setToLastKey<T : NodeConvertible>(_ any: Set<T>?) throws {
         try setToLastKey(any?.toNode())
+    }
+}
+
+extension Map.OperationType {
+    func assert(equals expected: Map.OperationType) throws {
+        if self != expected {
+            throw log(.UnexpectedOperationType(got: self, expected: expected))
+        }
     }
 }
 
