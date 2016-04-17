@@ -18,16 +18,35 @@ public typealias BackingData = NodeConvertible
 // MARK: Node
 
 extension Node {
-    public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
-        return try type.init(node: self)
+    /**
+     Map the node back to a data type
+
+     - parameter type: the type to map to -- can be inferred
+
+     - throws: if mapping fails
+
+     - returns: data representation of object
+     */
+    public func toData<T: BackingData>(_ type: T.Type = T.self) throws -> T {
+        return try type.init(with: self, in: self)
     }
 }
 
 // MARK: Node Convertible
 
 extension NodeConvertible {
-    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        let node = try data.makeNode()
+
+    /**
+     Used to initialize a convertible from another node convertible. 
+     Usually a backing data type ie: Json, yml, CSV, etc.
+
+     - parameter data:    representation to be converted
+     - parameter context: context within to init
+
+     - throws: if mapping fails
+     */
+    public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
+        let node = try data.toNode()
         try self.init(with: node, in: context)
     }
 }
@@ -35,15 +54,11 @@ extension NodeConvertible {
 // MARK: Mappable Object
 
 extension MappableObject {
-    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        self = try Self.makeWith(data: data, context: context)
-    }
-    
-    private static func makeWith<T: BackingData>(data: T, context: Context) throws -> Self {
-        let node = try data.makeNode()
+    public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
+        let node = try data.toNode()
         guard let _ = node.objectValue else {
-            throw log(.UnableToConvert(node: node, to: "\(self)"))
+            throw log(.UnableToConvert(node: node, to: "\(Self.self)"))
         }
-        return try self.init(with: node, in: context)
+        try self.init(with: node, in: context)
     }
 }

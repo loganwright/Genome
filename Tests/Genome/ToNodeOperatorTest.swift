@@ -165,7 +165,7 @@ class ToNodeOperatorTest: XCTestCase {
     lazy var goodBusiness: Business = try! Business(node: self.businessNode)
     
     func test() {
-        let node = try! goodBusiness.makeNode()
+        let node = try! goodBusiness.toNode()
         
         // Basic type
         let name = node["name"]!.stringValue!

@@ -10,28 +10,28 @@
 // MARK: MappableObject Initialization
 
 public extension Array where Element : NodeConvertible {
-    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        let node = try data.makeNode()
+    public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
+        let node = try data.toNode()
         let array = node.arrayValue ?? [node]
-        try self.init(node: array, context: context)
+        try self.init(with: array, in: context)
     }
     
-    public init<T: BackingData>(node data: [T], context: Context = EmptyNode) throws {
-        let node = try data.map { try $0.makeNode() }
-        self = try node.map { try Element.init(node: $0, context: context) }
+    public init<T: BackingData>(with data: [T], in context: Context = EmptyNode) throws {
+        let node = try data.map { try $0.toNode() }
+        self = try node.map { try Element.init(with: $0, in: context) }
     }
 }
 
 public extension Set where Element : NodeConvertible {
-    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        let node = try data.makeNode()
+    public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
+        let node = try data.toNode()
         let array = node.arrayValue ?? [node]
-        try self.init(node: array, context: context)
+        try self.init(with: array, in: context)
     }
     
-    public init<T: BackingData>(node data: [T], context: Context = EmptyNode) throws {
-        let node = try data.map { try $0.makeNode() }
-        let array = try node.map { try Element.init(node: $0, context: context) }
+    public init<T: BackingData>(with data: [T], in context: Context = EmptyNode) throws {
+        let node = try data.map { try $0.toNode() }
+        let array = try node.map { try Element.init(with: $0, in: context) }
         self.init(array)
     }
 }

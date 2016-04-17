@@ -148,10 +148,10 @@ class GenomeSideLoadTests: XCTestCase {
 
         let foodsJs = SideLoadTestNode["foods"]!
         print("FoodsJs: \(foodsJs)")
-        let allFoods = try! [Food].init(node: foodsJs, context: SideLoadTestNode)
+        let allFoods = try! [Food].init(with: foodsJs, in: SideLoadTestNode)
         XCTAssert(allFoods.count == 4)
 
-        var peeps: [Person] = try! [Person](node: nodeArrayOfPeople, context: SideLoadTestNode)
+        var peeps: [Person] = try! [Person](with: nodeArrayOfPeople, in: SideLoadTestNode)
         peeps = peeps.map { (person) -> Person in
             var mutable = person
             mutable.associateFavoriteFoods(foods: allFoods);
@@ -168,9 +168,9 @@ class GenomeSideLoadTests: XCTestCase {
         
         // Assert Node
         
-        let node = try! peeps.first!.makeNode()
+        let node = try! peeps.first!.toNode()
         print("Write node tests \(node)")
-        let peepsNode = try! peeps.makeNode()
+        let peepsNode = try! peeps.toNode()
         print("Peeps: \(peepsNode)")
         
         let m = Map()

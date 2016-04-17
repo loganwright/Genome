@@ -30,7 +30,7 @@ public class Transformer<InputType, OutputType> {
         self.allowsNil = true
     }
     
-    internal func transformValue<T>(value: T) throws -> OutputType {
+    internal func transform<T>(value: T) throws -> OutputType {
         if let input = value as? InputType {
             return try transformer(input)
         } else {
@@ -38,13 +38,13 @@ public class Transformer<InputType, OutputType> {
         }
     }
     
-    internal func transformValue<T>(value: T?) throws -> OutputType {
+    internal func transform<T>(value: T?) throws -> OutputType {
         if allowsNil {
             guard let unwrapped = value else { return try transformer(nil) }
-            return try transformValue(value: unwrapped)
+            return try transform(value: unwrapped)
         } else {
-            let unwrapped = try enforceValueExists(value: value)
-            return try transformValue(value: unwrapped)
+            let unwrapped = try enforceExists(value: value)
+            return try transform(value: unwrapped)
         }
         
     }
@@ -54,7 +54,7 @@ public class Transformer<InputType, OutputType> {
         return TransformationError.UnexpectedInputType(message)
     }
     
-    private func enforceValueExists<T>(value: T?) throws -> T {
+    private func enforceExists<T>(value: T?) throws -> T {
         if let unwrapped = value {
             return unwrapped
         } else {
@@ -87,10 +87,10 @@ public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedTyp
             guard let unwrapped = node else { return try transformer(nil) }
             validNode = unwrapped
         } else {
-            validNode = try enforceValueExists(value: node)
+            validNode = try enforceExists(value: node)
         }
         
-        let input = try NodeType.init(node: validNode, context: validNode)
+        let input = try NodeType.init(with: validNode, in: validNode)
         return try transformer(input)
     }
 }
@@ -114,7 +114,7 @@ public final class ToNodeTransformer<ValueType, OutputNodeType: NodeConvertible>
     
     internal func transformValue(value: ValueType) throws -> Node {
         let transformed = try transformer(value)
-        return try transformed.makeNode()
+        return try transformed.toNode()
     }
 }
 

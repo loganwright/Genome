@@ -224,68 +224,68 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: String = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch MappingError.UnableToMap(key: let key, error: let error) {
-            XCTAssert(key == KeyType.KeyPath("int"))
-            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
-            else {
-                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
-            }
+        } catch NodeConvertibleError.UnableToConvert(_) {
+//            XCTAssert(key == KeyType.KeyPath("int"))
+//            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
+//            else {
+//                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
+//            }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
         
         // Unexpected Type - Mappable Object
         do {
             let _: Person = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch MappingError.UnableToMap(key: let key, error: let error) {
-            XCTAssert(key == KeyType.KeyPath("int"))
-            if case SequenceError.FoundNil(_) = error { }
-            else {
-                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
-            }
+        } catch Error.SequenceError.foundNil(_) {
+//            XCTAssert(key == KeyType.KeyPath("int"))
+//            if case Error.SequenceError.foundNil(_) = error { }
+//            else {
+//                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
+//            }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Unexpected Type - Mappable Array
         do {
             let _: [Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.unexpected)")
         }
 
         // Unexpected Type - Mappable Array of Arrays
         do {
             let _: [[Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.unexpected)")
         }
 
         // Unexpected Type - Mappable Dictionary
         do {
             let _: [String : Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch Error.SequenceError.unexpected(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.unexpected)")
         }
 
         // Unexpected Type - Mappable Dictionary of Arrays
         do {
             let _: [String : [Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch Error.SequenceError.unexpected(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.unexpected)")
         }
         
         // Unexpected Type - Transformable
@@ -309,66 +309,66 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: String? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch MappingError.UnableToMap(key: _, error: let error) {
-            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
-            else {
-                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
-            }
+        } catch NodeConvertibleError.UnableToConvert(_) {
+//            if case NodeConvertibleError.UnableToConvert(node: _, to: _) = error { }
+//            else {
+//                XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
+//            }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(MappingError.UnableToMap)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
 
         // Unexpected Value - Mappable Object
         do {
             let _: Person? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch MappingError.UnableToMap(key: let key, error: let error) {
-            XCTAssert(key == KeyType.KeyPath("int"))
-            if case SequenceError.FoundNil(_) = error { }
-            else {
-                XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
-            }
+        } catch Error.SequenceError.foundNil(_) {
+//            XCTAssert(key == KeyType.KeyPath("int"))
+//            if case Error.SequenceError.foundNil(_) = error { }
+//            else {
+//                XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
+//            }
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(MappingError.UnableToMap)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         // Unexpected Value - Mappable Array
         do {
             let _: [Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Unexpected Value - Mappable Array of Arrays
         do {
             let _: [[Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Unexpected Value - Mappable Dictionary
         do {
             let _: [String : Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch Error.SequenceError.unexpected(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Unexpected Value - Mappable Dictionary of Arrays
         do {
             let _: [String : [Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch SequenceError.UnexpectedValue(_) {
+        } catch Error.SequenceError.unexpected(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.UnexpectedValue)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
 
         // Unexpected Input Type (nil) - Transformable
@@ -393,60 +393,60 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: String = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Expected Non-Nil - Mappable
         do {
             let _: Person = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Expected Non-Nil - Mappable Array
         do {
             let _: [Person] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Expected Non-Nil - Mappable Array of Arrays
         do {
             let _: [[Person]] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Expected Non-Nil - Mappable Dictionary
         do {
             let _: [String : Person] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Expected Non-Nil - Mappable Dictionary of Arrays
         do {
             let _: [String : [Person]] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch SequenceError.FoundNil(_) {
+        } catch Error.SequenceError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(SequenceError.FoundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.SequenceError.foundNil)")
         }
         
         // Expected Non-Nil - Transformable

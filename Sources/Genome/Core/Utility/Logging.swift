@@ -28,7 +28,7 @@ internal func log(_ error: MappingError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }
 
-internal func log(_ error: SequenceError) -> ErrorProtocol {
+internal func log(_ error: Error.SequenceError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }
 

@@ -78,7 +78,7 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let node = try basic.makeNode()
+        let node = try basic.toNode()
         let int = node["int"]!.intValue!
         let float = node["float"]!.floatValue!
         let double = node["double"]!.doubleValue!
@@ -99,7 +99,7 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let node = try basic.makeNode()
+        let node = try basic.toNode()
         let ints = node["ints"]!.arrayValue!.flatMap { $0.intValue }
         let floats = node["floats"]!.arrayValue!.flatMap { $0.floatValue }
         let doubles = node["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
@@ -114,31 +114,31 @@ class BasicTypeTexts: XCTestCase {
 
     func testFoundationBool() throws {
         let v = true
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         XCTAssert(n.boolValue == v)
     }
 
     func testFoundationInt() throws {
         let v = 235
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         XCTAssert(n.intValue == v)
     }
 
     func testFoundationDouble() throws {
         let v = 1.0
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         XCTAssert(n.doubleValue == v)
     }
 
     func testFoundationString() throws {
         let v = "hello foundation"
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         XCTAssert(n.stringValue == v)
     }
 
     func testFoundationArray() throws {
         let v = [1,2,3,4,5]
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         let a = n.arrayValue ?? []
         XCTAssert(a.flatMap { $0.intValue } == v)
     }
@@ -147,7 +147,7 @@ class BasicTypeTexts: XCTestCase {
         let v = [
             "hello" : "world"
         ]
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         let o = n.objectValue ?? [:]
         var mapped: [String : String] = [:]
         o.forEach { key, val in
@@ -159,7 +159,7 @@ class BasicTypeTexts: XCTestCase {
 
     func testFoundationNull() throws {
         let v = NSNull()
-        let n = try Node(v as AnyObject)
+        let n = Node(v as AnyObject)
         XCTAssert(n.isNull)
     }
 }
