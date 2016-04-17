@@ -13,29 +13,29 @@ private func defaultLogger(error: ErrorProtocol) {
     print(error)
 }
 
-internal func log(error: ErrorProtocol) -> ErrorProtocol {
+internal func log(_ error: ErrorProtocol) -> ErrorProtocol {
     loggers.forEach {
         $0(error)
     }
     return error
 }
 
-internal func log(error: NodeConvertibleError) -> ErrorProtocol {
+internal func log(_ error: NodeConvertibleError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }
 
-internal func log(error: MappingError) -> ErrorProtocol {
+internal func log(_ error: MappingError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }
 
-internal func log(error: SequenceError) -> ErrorProtocol {
+internal func log(_ error: SequenceError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }
 
-internal func log(error: TransformationError) -> ErrorProtocol {
+internal func log(_ error: TransformationError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }
 
-internal func log(error: RawConversionError) -> ErrorProtocol {
+internal func log(_ error: RawConversionError) -> ErrorProtocol {
     return log(error as ErrorProtocol)
 }

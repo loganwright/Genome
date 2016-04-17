@@ -36,7 +36,7 @@ extension NodeConvertible {
 
 extension MappableObject {
     public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        self = try Self.makeWith(data, context: context)
+        self = try Self.makeWith(data: data, context: context)
     }
     
     private static func makeWith<T: BackingData>(data: T, context: Context) throws -> Self {

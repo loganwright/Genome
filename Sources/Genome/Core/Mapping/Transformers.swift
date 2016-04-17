@@ -34,17 +34,17 @@ public class Transformer<InputType, OutputType> {
         if let input = value as? InputType {
             return try transformer(input)
         } else {
-            throw log(unexpectedInput(value))
+            throw log(unexpectedInput(value: value))
         }
     }
     
     internal func transformValue<T>(value: T?) throws -> OutputType {
         if allowsNil {
             guard let unwrapped = value else { return try transformer(nil) }
-            return try transformValue(unwrapped)
+            return try transformValue(value: unwrapped)
         } else {
-            let unwrapped = try enforceValueExists(value)
-            return try transformValue(unwrapped)
+            let unwrapped = try enforceValueExists(value: value)
+            return try transformValue(value: unwrapped)
         }
         
     }
@@ -87,7 +87,7 @@ public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedTyp
             guard let unwrapped = node else { return try transformer(nil) }
             validNode = unwrapped
         } else {
-            validNode = try enforceValueExists(node)
+            validNode = try enforceValueExists(value: node)
         }
         
         let input = try NodeType.init(node: validNode, context: validNode)
@@ -186,7 +186,7 @@ public extension Map {
     public func <~ <T, NodeInputType: NodeConvertible>(lhs: inout T, rhs: FromNodeTransformer<NodeInputType, T>) throws {
         switch rhs.map.type {
         case .FromNode:
-            try lhs = rhs.transformValue(rhs.map.result)
+            try lhs = rhs.transformValue(node: rhs.map.result)
         case .ToNode:
             break
         }
@@ -197,7 +197,7 @@ public extension Map {
         case .FromNode:
             break
         case .ToNode:
-            let output = try rhs.transformValue(lhs)
+            let output = try rhs.transformValue(value: lhs)
             try rhs.map.setToLastKey(output)
         }
     }

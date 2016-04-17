@@ -22,7 +22,7 @@ class DictionaryKeyPathTests: XCTestCase {
 
         let value: String! = node.get(forKeyPath: "one.two")?.stringValue
         XCTAssert(value == "Found me!")
-        node.set("Hello!", forKeyPath: "path.to.new.value")
+        node.set(val: "Hello!", forKeyPath: "path.to.new.value")
         let setVal: String! = node.get(forKeyPath: "path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
     }

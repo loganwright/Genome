@@ -108,7 +108,7 @@ public final class Map {
     
     :param: any the value to set to the node for the value of the last key
     */
-    internal func setToLastKey(node: Node?) throws {
+    internal func setToLastKey(_ node: Node?) throws {
         try assertOperationTypeToNode()
         guard let node = node else { return }
         
@@ -116,7 +116,7 @@ public final class Map {
         case let .Key(key):
             self.node[key] = node
         case let .KeyPath(keyPath):
-            self.node.set(node, forKeyPath: keyPath)
+            self.node.set(val: node, forKeyPath: keyPath)
         }
     }
     
@@ -131,15 +131,15 @@ public final class Map {
 }
 
 extension Map {
-    internal func setToLastKey<T : NodeConvertible>(any: T?) throws {
+    internal func setToLastKey<T : NodeConvertible>(_ any: T?) throws {
         try setToLastKey(any?.toNode())
     }
     
-    internal func setToLastKey<T : NodeConvertible>(any: [T]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(_ any: [T]?) throws {
         try setToLastKey(any?.toNode())
     }
     
-    internal func setToLastKey<T : NodeConvertible>(any: [[T]]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(_ any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
             return try innerArray.toNode()
@@ -147,7 +147,7 @@ extension Map {
         try setToLastKey(Node(node))
     }
     
-    internal func setToLastKey<T : NodeConvertible>(any: [String : T]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(_ any: [String : T]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
@@ -156,7 +156,7 @@ extension Map {
         try setToLastKey(Node(node))
     }
     
-    internal func setToLastKey<T : NodeConvertible>(any: [String : [T]]?) throws {
+    internal func setToLastKey<T : NodeConvertible>(_ any: [String : [T]]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
@@ -165,7 +165,7 @@ extension Map {
         try setToLastKey(Node(node))
     }
     
-    internal func setToLastKey<T : NodeConvertible>(any: Set<T>?) throws {
+    internal func setToLastKey<T : NodeConvertible>(_ any: Set<T>?) throws {
         try setToLastKey(any?.toNode())
     }
 }

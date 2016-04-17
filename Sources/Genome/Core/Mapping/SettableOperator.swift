@@ -18,58 +18,58 @@ extension Map {
     // MARK: Transforming
     
     public func extract<T, InputType: NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         transformer: InputType throws -> T)
         throws -> T {
-            return try <~self[keyType].transformFromNode(transformer)
+            return try <~self[keyType].transformFromNode(transformer: transformer)
     }
     
     public func extract<T, InputType: NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         transformer: InputType? throws -> T)
         throws -> T {
-            return try <~self[keyType].transformFromNode(transformer)
+            return try <~self[keyType].transformFromNode(transformer: transformer)
     }
 
     // MARK: Optional Extractions
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> T? {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [T]? {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [[T]]? {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [String : T]? {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [String : [T]]? {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> Set<T>? {
             return try <~self[keyType]
@@ -78,42 +78,42 @@ extension Map {
     // MARK: Non Optional Extractions
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> T {
             return try <~self[keyType]
     }
 
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [T] {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [[T]] {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [String : T] {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> [String : [T]] {
             return try <~self[keyType]
     }
     
     public func extract<T : NodeConvertible>(
-        keyType: KeyType,
+        _ keyType: KeyType,
         to type: T.Type = T.self)
         throws -> Set<T> {
             return try <~self[keyType]
@@ -123,37 +123,37 @@ extension Map {
 /// ****
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T? {
-    try enforceMapType(map, expectedType: .FromNode)
+    try enforceMapType(map: map, expectedType: .FromNode)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as T
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [T]? {
-    try enforceMapType(map, expectedType: .FromNode)
+    try enforceMapType(map: map, expectedType: .FromNode)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [T]
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [[T]]? {
-    try enforceMapType(map, expectedType: .FromNode)
+    try enforceMapType(map: map, expectedType: .FromNode)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [[T]]
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T]? {
-    try enforceMapType(map, expectedType: .FromNode)
+    try enforceMapType(map: map, expectedType: .FromNode)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : T]
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]]? {
-    try enforceMapType(map, expectedType: .FromNode)
+    try enforceMapType(map: map, expectedType: .FromNode)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as [String : [T]]
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T>? {
-    try enforceMapType(map, expectedType: .FromNode)
+    try enforceMapType(map: map, expectedType: .FromNode)
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
     return try <~map as Set<T>
 }
@@ -161,8 +161,8 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T>? {
 // MARK: Non-Optional Casters
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T {
-    try enforceMapType(map, expectedType: .FromNode)
-    let result = try enforceResultExists(map, type: T.self)
+    try enforceMapType(map: map, expectedType: .FromNode)
+    let result = try enforceResultExists(map: map, type: T.self)
     do {
         return try T.init(node: result, context: map.context)
     } catch {
@@ -172,14 +172,14 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T {
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [T] {
-    try enforceMapType(map, expectedType: .FromNode)
-    let result = try enforceResultExists(map, type: [T].self)
+    try enforceMapType(map: map, expectedType: .FromNode)
+    let result = try enforceResultExists(map: map, type: [T].self)
     return try [T](node: result, context: map.context)
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [[T]] {
-    try enforceMapType(map, expectedType: .FromNode)
-    let result = try enforceResultExists(map, type: [[T]].self)
+    try enforceMapType(map: map, expectedType: .FromNode)
+    let result = try enforceResultExists(map: map, type: [[T]].self)
     let array = result.arrayValue ?? [result]
     
     // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
@@ -190,8 +190,8 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [[T]] {
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T] {
-    try enforceMapType(map, expectedType: .FromNode)
-    let nodeDictionary = try expectNodeDictionaryWithMap(map, targetType: [String : T].self)
+    try enforceMapType(map: map, expectedType: .FromNode)
+    let nodeDictionary = try expectNodeDictionaryWithMap(map: map, targetType: [String : T].self)
     
     var mappedDictionary: [String : T] = [:]
     for (key, value) in nodeDictionary {
@@ -202,8 +202,8 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T] {
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]] {
-    try enforceMapType(map, expectedType: .FromNode)
-    let nodeDictionaryOfArrays = try expectNodeDictionaryOfArraysWithMap(map, targetType: [String : [T]].self)
+    try enforceMapType(map: map, expectedType: .FromNode)
+    let nodeDictionaryOfArrays = try expectNodeDictionaryOfArraysWithMap(map: map, targetType: [String : [T]].self)
     
     var mappedDictionaryOfArrays: [String : [T]] = [:]
     for (key, value) in nodeDictionaryOfArrays {
@@ -214,8 +214,8 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]] {
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T> {
-    try enforceMapType(map, expectedType: .FromNode)
-    let result = try enforceResultExists(map, type: T.self)
+    try enforceMapType(map: map, expectedType: .FromNode)
+    let result = try enforceResultExists(map: map, type: T.self)
     let nodeArray = result.arrayValue ?? [result]
     return Set<T>(try [T](node: Node(nodeArray), context: map.context))
 }
@@ -223,8 +223,8 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T> {
 // MARK: Transformables
 
 public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeTransformer<NodeInputType, T>) throws -> T {
-    try enforceMapType(transformer.map, expectedType: .FromNode)
-    return try transformer.transformValue(transformer.map.result)
+    try enforceMapType(map: transformer.map, expectedType: .FromNode)
+    return try transformer.transformValue(node: transformer.map.result)
 }
 
 // MARK: Enforcers
@@ -251,19 +251,19 @@ private func unexpectedResult<T, U>(result: Any, expected: T.Type, keyPath: KeyT
 }
 
 private func expectNodeDictionaryWithMap<T>(map: Map, targetType: T.Type) throws -> [String : Node] {
-    let result = try enforceResultExists(map, type: T.self)
+    let result = try enforceResultExists(map: map, type: T.self)
     if let j = result.objectValue {
         return j
     } else {
-        let error = unexpectedResult(result, expected: [String : Node].self, keyPath: map.lastKey, targetType: T.self)
+        let error = unexpectedResult(result: result, expected: [String : Node].self, keyPath: map.lastKey, targetType: T.self)
         throw log(error)
     }
 }
 
 private func expectNodeDictionaryOfArraysWithMap<T>(map: Map, targetType: T.Type) throws -> [String : [Node]] {
-    let result = try enforceResultExists(map, type: T.self)
+    let result = try enforceResultExists(map: map, type: T.self)
     guard let object = result.objectValue else {
-        let error = unexpectedResult(result, expected: [String : AnyObject].self, keyPath: map.lastKey, targetType: T.self)
+        let error = unexpectedResult(result: result, expected: [String : AnyObject].self, keyPath: map.lastKey, targetType: T.self)
         throw log(error)
     }
     

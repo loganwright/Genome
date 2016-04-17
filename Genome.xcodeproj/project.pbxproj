@@ -7,485 +7,188 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		800E73E21CA103CC004BD742 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E11CA103CC004BD742 /* BackingDataType.swift */; };
-		800E73E31CA103CC004BD742 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E11CA103CC004BD742 /* BackingDataType.swift */; };
-		800E73E41CA103CC004BD742 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E11CA103CC004BD742 /* BackingDataType.swift */; };
-		800E73E51CA103CC004BD742 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E11CA103CC004BD742 /* BackingDataType.swift */; };
-		800E73E61CA103CC004BD742 /* BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E11CA103CC004BD742 /* BackingDataType.swift */; };
-		800E73EC1CA103DF004BD742 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E71CA103DF004BD742 /* Map.swift */; };
-		800E73ED1CA103DF004BD742 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E71CA103DF004BD742 /* Map.swift */; };
-		800E73EE1CA103DF004BD742 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E71CA103DF004BD742 /* Map.swift */; };
-		800E73EF1CA103DF004BD742 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E71CA103DF004BD742 /* Map.swift */; };
-		800E73F01CA103DF004BD742 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E71CA103DF004BD742 /* Map.swift */; };
-		800E73F11CA103DF004BD742 /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E81CA103DF004BD742 /* MappableObject.swift */; };
-		800E73F21CA103DF004BD742 /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E81CA103DF004BD742 /* MappableObject.swift */; };
-		800E73F31CA103DF004BD742 /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E81CA103DF004BD742 /* MappableObject.swift */; };
-		800E73F41CA103DF004BD742 /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E81CA103DF004BD742 /* MappableObject.swift */; };
-		800E73F51CA103DF004BD742 /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E81CA103DF004BD742 /* MappableObject.swift */; };
-		800E73F61CA103DF004BD742 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E91CA103DF004BD742 /* SettableOperator.swift */; };
-		800E73F71CA103DF004BD742 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E91CA103DF004BD742 /* SettableOperator.swift */; };
-		800E73F81CA103DF004BD742 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E91CA103DF004BD742 /* SettableOperator.swift */; };
-		800E73F91CA103DF004BD742 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E91CA103DF004BD742 /* SettableOperator.swift */; };
-		800E73FA1CA103DF004BD742 /* SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73E91CA103DF004BD742 /* SettableOperator.swift */; };
-		800E73FB1CA103DF004BD742 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EA1CA103DF004BD742 /* StandardOperators.swift */; };
-		800E73FC1CA103DF004BD742 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EA1CA103DF004BD742 /* StandardOperators.swift */; };
-		800E73FD1CA103DF004BD742 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EA1CA103DF004BD742 /* StandardOperators.swift */; };
-		800E73FE1CA103DF004BD742 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EA1CA103DF004BD742 /* StandardOperators.swift */; };
-		800E73FF1CA103DF004BD742 /* StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EA1CA103DF004BD742 /* StandardOperators.swift */; };
-		800E74001CA103DF004BD742 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EB1CA103DF004BD742 /* Transformers.swift */; };
-		800E74011CA103DF004BD742 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EB1CA103DF004BD742 /* Transformers.swift */; };
-		800E74021CA103DF004BD742 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EB1CA103DF004BD742 /* Transformers.swift */; };
-		800E74031CA103DF004BD742 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EB1CA103DF004BD742 /* Transformers.swift */; };
-		800E74041CA103DF004BD742 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E73EB1CA103DF004BD742 /* Transformers.swift */; };
-		800E74091CA103E9004BD742 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74051CA103E9004BD742 /* Node.swift */; };
-		800E740A1CA103E9004BD742 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74051CA103E9004BD742 /* Node.swift */; };
-		800E740B1CA103E9004BD742 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74051CA103E9004BD742 /* Node.swift */; };
-		800E740C1CA103E9004BD742 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74051CA103E9004BD742 /* Node.swift */; };
-		800E740D1CA103E9004BD742 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74051CA103E9004BD742 /* Node.swift */; };
-		800E740E1CA103E9004BD742 /* Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74061CA103E9004BD742 /* Node+KeyPaths.swift */; };
-		800E740F1CA103E9004BD742 /* Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74061CA103E9004BD742 /* Node+KeyPaths.swift */; };
-		800E74101CA103E9004BD742 /* Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74061CA103E9004BD742 /* Node+KeyPaths.swift */; };
-		800E74111CA103E9004BD742 /* Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74061CA103E9004BD742 /* Node+KeyPaths.swift */; };
-		800E74121CA103E9004BD742 /* Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74061CA103E9004BD742 /* Node+KeyPaths.swift */; };
-		800E74131CA103E9004BD742 /* NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74071CA103E9004BD742 /* NodeConvertibleType.swift */; };
-		800E74141CA103E9004BD742 /* NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74071CA103E9004BD742 /* NodeConvertibleType.swift */; };
-		800E74151CA103E9004BD742 /* NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74071CA103E9004BD742 /* NodeConvertibleType.swift */; };
-		800E74161CA103E9004BD742 /* NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74071CA103E9004BD742 /* NodeConvertibleType.swift */; };
-		800E74171CA103E9004BD742 /* NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74071CA103E9004BD742 /* NodeConvertibleType.swift */; };
-		800E74181CA103E9004BD742 /* NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74081CA103E9004BD742 /* NodeRepresentation.swift */; };
-		800E74191CA103E9004BD742 /* NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74081CA103E9004BD742 /* NodeRepresentation.swift */; };
-		800E741A1CA103E9004BD742 /* NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74081CA103E9004BD742 /* NodeRepresentation.swift */; };
-		800E741B1CA103E9004BD742 /* NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74081CA103E9004BD742 /* NodeRepresentation.swift */; };
-		800E741C1CA103E9004BD742 /* NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74081CA103E9004BD742 /* NodeRepresentation.swift */; };
-		800E74211CA103FA004BD742 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741D1CA103FA004BD742 /* CollectionInitializers.swift */; };
-		800E74221CA103FA004BD742 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741D1CA103FA004BD742 /* CollectionInitializers.swift */; };
-		800E74231CA103FA004BD742 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741D1CA103FA004BD742 /* CollectionInitializers.swift */; };
-		800E74241CA103FA004BD742 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741D1CA103FA004BD742 /* CollectionInitializers.swift */; };
-		800E74251CA103FA004BD742 /* CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741D1CA103FA004BD742 /* CollectionInitializers.swift */; };
-		800E74261CA103FA004BD742 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741E1CA103FA004BD742 /* Errors.swift */; };
-		800E74271CA103FA004BD742 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741E1CA103FA004BD742 /* Errors.swift */; };
-		800E74281CA103FA004BD742 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741E1CA103FA004BD742 /* Errors.swift */; };
-		800E74291CA103FA004BD742 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741E1CA103FA004BD742 /* Errors.swift */; };
-		800E742A1CA103FA004BD742 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741E1CA103FA004BD742 /* Errors.swift */; };
-		800E742B1CA103FA004BD742 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741F1CA103FA004BD742 /* KeyType.swift */; };
-		800E742C1CA103FA004BD742 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741F1CA103FA004BD742 /* KeyType.swift */; };
-		800E742D1CA103FA004BD742 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741F1CA103FA004BD742 /* KeyType.swift */; };
-		800E742E1CA103FA004BD742 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741F1CA103FA004BD742 /* KeyType.swift */; };
-		800E742F1CA103FA004BD742 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E741F1CA103FA004BD742 /* KeyType.swift */; };
-		800E74301CA103FA004BD742 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74201CA103FA004BD742 /* Logging.swift */; };
-		800E74311CA103FA004BD742 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74201CA103FA004BD742 /* Logging.swift */; };
-		800E74321CA103FA004BD742 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74201CA103FA004BD742 /* Logging.swift */; };
-		800E74331CA103FA004BD742 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74201CA103FA004BD742 /* Logging.swift */; };
-		800E74341CA103FA004BD742 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74201CA103FA004BD742 /* Logging.swift */; };
-		800E74371CA10407004BD742 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74351CA10407004BD742 /* Foundation.swift */; };
-		800E74381CA10407004BD742 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74351CA10407004BD742 /* Foundation.swift */; };
-		800E74391CA10407004BD742 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74351CA10407004BD742 /* Foundation.swift */; };
-		800E743A1CA10407004BD742 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74351CA10407004BD742 /* Foundation.swift */; };
-		800E743B1CA10407004BD742 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74351CA10407004BD742 /* Foundation.swift */; };
-		800E743C1CA10407004BD742 /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74361CA10407004BD742 /* Node+Foundation.swift */; };
-		800E743D1CA10407004BD742 /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74361CA10407004BD742 /* Node+Foundation.swift */; };
-		800E743E1CA10407004BD742 /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74361CA10407004BD742 /* Node+Foundation.swift */; };
-		800E743F1CA10407004BD742 /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74361CA10407004BD742 /* Node+Foundation.swift */; };
-		800E74401CA10407004BD742 /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74361CA10407004BD742 /* Node+Foundation.swift */; };
-		800E74421CA10410004BD742 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74411CA10410004BD742 /* Genome+Json.swift */; };
-		800E74431CA10410004BD742 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74411CA10410004BD742 /* Genome+Json.swift */; };
-		800E74441CA10410004BD742 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74411CA10410004BD742 /* Genome+Json.swift */; };
-		800E74451CA10410004BD742 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74411CA10410004BD742 /* Genome+Json.swift */; };
-		800E74461CA10410004BD742 /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E74411CA10410004BD742 /* Genome+Json.swift */; };
-		8052E7601BB58102004E08F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E75F1BB58102004E08F6 /* AppDelegate.swift */; };
-		8052E7621BB58102004E08F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7611BB58102004E08F6 /* ViewController.swift */; };
-		8052E7651BB58102004E08F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7631BB58102004E08F6 /* Main.storyboard */; };
-		8052E7671BB58102004E08F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7661BB58102004E08F6 /* Assets.xcassets */; };
-		8052E76A1BB58102004E08F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8052E7681BB58102004E08F6 /* LaunchScreen.storyboard */; };
-		8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E77F1BB58177004E08F6 /* BasicTypes.swift */; };
-		8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */; };
-		8052E7871BB58178004E08F6 /* FromNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7811BB58178004E08F6 /* FromNodeOperatorTest.swift */; };
-		8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */; };
-		8052E78A1BB58178004E08F6 /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */; };
-		80A300B41C14E55300DDE54D /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */; };
-		80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */; };
-		80F745711CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
-		80F745721CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
-		80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
-		80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
-		80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */; };
-		80F745781CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
-		80F745791CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
-		80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
-		80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
-		80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F745771CA4C911005BEF2E /* CoreData.swift */; };
-		80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC8F191BB6CEE30069CC5A /* TransformTests.swift */; };
+		_LinkFileRef_Genome /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
+		__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */; };
+		"__src_cc_ref_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */; };
+		"__src_cc_ref_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift */; };
+		__src_cc_ref_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift */; };
+		"__src_cc_ref_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift */; };
+		__src_cc_ref_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8052E7711BB58102004E08F6 /* PBXContainerItemProxy */ = {
+		80DFC5581CC31BD700496A08 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8052E7541BB58102004E08F6 /* Project object */;
+			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8052E75B1BB58102004E08F6;
+			remoteGlobalIDString = "______Target_Genome";
 			remoteInfo = Genome;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3D5396CC1BBA89D600791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D5396E81BBA8A2800791B49 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DCE37371BB9D9A300D0100C /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		68088C071BC5F5D000B5A733 /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		74EC82E9933E8161F1E8FACE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		800E73E11CA103CC004BD742 /* BackingDataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackingDataType.swift; path = Sources/Genome/Core/BackingDataType/BackingDataType.swift; sourceTree = SOURCE_ROOT; };
-		800E73E71CA103DF004BD742 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Genome/Core/Mapping/Map.swift; sourceTree = SOURCE_ROOT; };
-		800E73E81CA103DF004BD742 /* MappableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MappableObject.swift; path = Sources/Genome/Core/Mapping/MappableObject.swift; sourceTree = SOURCE_ROOT; };
-		800E73E91CA103DF004BD742 /* SettableOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettableOperator.swift; path = Sources/Genome/Core/Mapping/SettableOperator.swift; sourceTree = SOURCE_ROOT; };
-		800E73EA1CA103DF004BD742 /* StandardOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StandardOperators.swift; path = Sources/Genome/Core/Mapping/StandardOperators.swift; sourceTree = SOURCE_ROOT; };
-		800E73EB1CA103DF004BD742 /* Transformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformers.swift; path = Sources/Genome/Core/Mapping/Transformers.swift; sourceTree = SOURCE_ROOT; };
-		800E74051CA103E9004BD742 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Node.swift; path = Sources/Genome/Core/Node/Node.swift; sourceTree = SOURCE_ROOT; };
-		800E74061CA103E9004BD742 /* Node+KeyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Node+KeyPaths.swift"; path = "Sources/Genome/Core/Node/Node+KeyPaths.swift"; sourceTree = SOURCE_ROOT; };
-		800E74071CA103E9004BD742 /* NodeConvertibleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeConvertibleType.swift; path = Sources/Genome/Core/Node/NodeConvertibleType.swift; sourceTree = SOURCE_ROOT; };
-		800E74081CA103E9004BD742 /* NodeRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeRepresentation.swift; path = Sources/Genome/Core/Node/NodeRepresentation.swift; sourceTree = SOURCE_ROOT; };
-		800E741D1CA103FA004BD742 /* CollectionInitializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionInitializers.swift; path = Sources/Genome/Core/Utility/CollectionInitializers.swift; sourceTree = SOURCE_ROOT; };
-		800E741E1CA103FA004BD742 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Genome/Core/Utility/Errors.swift; sourceTree = SOURCE_ROOT; };
-		800E741F1CA103FA004BD742 /* KeyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyType.swift; path = Sources/Genome/Core/Utility/KeyType.swift; sourceTree = SOURCE_ROOT; };
-		800E74201CA103FA004BD742 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Sources/Genome/Core/Utility/Logging.swift; sourceTree = SOURCE_ROOT; };
-		800E74351CA10407004BD742 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Foundation.swift; path = Sources/Genome/Foundation/Foundation.swift; sourceTree = SOURCE_ROOT; };
-		800E74361CA10407004BD742 /* Node+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Node+Foundation.swift"; path = "Sources/Genome/Foundation/Node+Foundation.swift"; sourceTree = SOURCE_ROOT; };
-		800E74411CA10410004BD742 /* Genome+Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Genome+Json.swift"; path = "Sources/Genome/Json/Genome+Json.swift"; sourceTree = SOURCE_ROOT; };
-		8052E75C1BB58102004E08F6 /* Genome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genome.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8052E75F1BB58102004E08F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8052E7611BB58102004E08F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8052E7641BB58102004E08F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8052E7661BB58102004E08F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8052E7691BB58102004E08F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8052E76B1BB58102004E08F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8052E7701BB58102004E08F6 /* GenomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8052E7761BB58102004E08F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8052E77F1BB58177004E08F6 /* BasicTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
-		8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
-		8052E7811BB58178004E08F6 /* FromNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromNodeOperatorTest.swift; sourceTree = "<group>"; };
-		8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenomeSwiftTests.swift; sourceTree = "<group>"; };
-		8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
-		80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BackingDataType+Foundation.swift"; path = "Sources/Genome/Foundation/BackingDataType+Foundation.swift"; sourceTree = SOURCE_ROOT; };
-		80F745771CA4C911005BEF2E /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		80FC8F191BB6CEE30069CC5A /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
-		B28B575D4DD4868AE631CEFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = /Users/loganwright/Dropbox/Programming/xCode/Genome/Package.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/BackingDataType/BackingDataType.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Map.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/MappableObject.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/SettableOperator.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/StandardOperators.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Transformers.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node/Node+KeyPaths.swift"; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/Node.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeConvertibleType.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeRepresentation.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/CollectionInitializers.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Errors.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/KeyType.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Logging.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation/BackingDataType+Foundation.swift"; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foundation/Foundation.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation/Node+Foundation.swift"; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromNodeOperatorTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenomeSwiftTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableOperatorTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
+		"_____Product_Genome" /* libGenome.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenome.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = GenomeTestSuite.xctest; path = Genome.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3D5396C81BBA89D600791B49 /* Frameworks */ = {
+		"___LinkPhase_Genome" /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D5396E41BBA8A2800791B49 /* Frameworks */ = {
+		"___LinkPhase_GenomeTestSuite" /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE37331BB9D9A300D0100C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8052E7591BB58102004E08F6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8052E76D1BB58102004E08F6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				_LinkFileRef_Genome /* libGenome.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		258958715379F116CC5DCCD3 /* Frameworks */ = {
+		Dependencies_ /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				B28B575D4DD4868AE631CEFA /* Pods.framework */,
 			);
-			name = Frameworks;
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		7EC3370F4B3F6099236D1076 /* Pods */ = {
+		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				74EC82E9933E8161F1E8FACE /* Pods.debug.xcconfig */,
-				E2166A70E071DAD62B61D795 /* Pods.release.xcconfig */,
+				"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */,
 			);
-			name = Pods;
+			name = Tests;
 			sourceTree = "<group>";
 		};
-		8003F2AA1C489586000ADD91 /* Source */ = {
+		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
-				806479AB1C6D7EDF003A5D8C /* Core */,
-				806479BF1C6D7EDF003A5D8C /* Foundation */,
-				8010E28C1C6D809A0032F804 /* Json */,
-				80F745761CA4C911005BEF2E /* CoreData */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		8010E28C1C6D809A0032F804 /* Json */ = {
-			isa = PBXGroup;
-			children = (
-				800E74411CA10410004BD742 /* Genome+Json.swift */,
-			);
-			path = Json;
-			sourceTree = "<group>";
-		};
-		8052E7531BB58102004E08F6 = {
-			isa = PBXGroup;
-			children = (
-				8052E75E1BB58102004E08F6 /* Genome */,
-				8052E7731BB58102004E08F6 /* GenomeTests */,
-				8052E75D1BB58102004E08F6 /* Products */,
-				7EC3370F4B3F6099236D1076 /* Pods */,
-				258958715379F116CC5DCCD3 /* Frameworks */,
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Sources_" /* Sources */,
+				Dependencies_ /* Dependencies */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8052E75D1BB58102004E08F6 /* Products */ = {
+		"____Products_" /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8052E75C1BB58102004E08F6 /* Genome.app */,
-				8052E7701BB58102004E08F6 /* GenomeTests.xctest */,
-				3DCE37371BB9D9A300D0100C /* Genome.framework */,
-				3D5396CC1BBA89D600791B49 /* Genome.framework */,
-				3D5396E81BBA8A2800791B49 /* Genome.framework */,
-				68088C071BC5F5D000B5A733 /* Genome.framework */,
+				TestProducts_ /* Tests */,
+				"_____Product_Genome" /* libGenome.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8052E75E1BB58102004E08F6 /* Genome */ = {
+		"_____Sources_" /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8003F2AA1C489586000ADD91 /* Source */,
-				8052E75F1BB58102004E08F6 /* AppDelegate.swift */,
-				8052E7611BB58102004E08F6 /* ViewController.swift */,
-				8052E7631BB58102004E08F6 /* Main.storyboard */,
-				8052E7661BB58102004E08F6 /* Assets.xcassets */,
-				8052E7681BB58102004E08F6 /* LaunchScreen.storyboard */,
-				8052E76B1BB58102004E08F6 /* Info.plist */,
+				"_______Group_Genome" /* Genome */,
 			);
-			path = Genome;
+			name = Sources;
 			sourceTree = "<group>";
 		};
-		8052E7731BB58102004E08F6 /* GenomeTests */ = {
+		"_______Group_Genome" /* Genome */ = {
 			isa = PBXGroup;
 			children = (
-				8052E77F1BB58177004E08F6 /* BasicTypes.swift */,
-				8052E7801BB58178004E08F6 /* DictionaryKeyPathTests.swift */,
-				8052E7811BB58178004E08F6 /* FromNodeOperatorTest.swift */,
-				8052E7821BB58178004E08F6 /* GenomeSwiftTests.swift */,
-				8052E7831BB58178004E08F6 /* SettableOperatorTest.swift */,
-				8052E7841BB58178004E08F6 /* ToNodeOperatorTest.swift */,
-				80FC8F191BB6CEE30069CC5A /* TransformTests.swift */,
-				80A300B31C14E55300DDE54D /* NodeDataTypeTest.swift */,
-				8052E7761BB58102004E08F6 /* Info.plist */,
+				"__PBXFileRef_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift */,
+				__PBXFileRef_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift */,
+				"__PBXFileRef_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift */,
+				__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */,
+				"__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */,
+				__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */,
+				__PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */,
+				__PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */,
+				__PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */,
+				__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */,
+				__PBXFileRef_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift */,
+				__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */,
 			);
-			path = GenomeTests;
+			name = Genome;
+			path = Sources/Genome;
 			sourceTree = "<group>";
 		};
-		806479AB1C6D7EDF003A5D8C /* Core */ = {
+		"_______Group_GenomeTestSuite" /* Genome.testsuite */ = {
 			isa = PBXGroup;
 			children = (
-				806479AC1C6D7EDF003A5D8C /* BackingDataType */,
-				806479AF1C6D7EDF003A5D8C /* Mapping */,
-				806479B51C6D7EDF003A5D8C /* Node */,
-				806479BA1C6D7EDF003A5D8C /* Utility */,
+				__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */,
+				__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */,
+				__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */,
+				__PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */,
+				__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */,
+				__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */,
+				__PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */,
+				__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */,
 			);
-			path = Core;
+			name = Genome.testsuite;
+			path = Tests/Genome;
 			sourceTree = "<group>";
 		};
-		806479AC1C6D7EDF003A5D8C /* BackingDataType */ = {
+		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				800E73E11CA103CC004BD742 /* BackingDataType.swift */,
+				"_______Group_GenomeTestSuite" /* Genome.testsuite */,
 			);
-			path = BackingDataType;
+			name = Tests;
 			sourceTree = "<group>";
-		};
-		806479AF1C6D7EDF003A5D8C /* Mapping */ = {
-			isa = PBXGroup;
-			children = (
-				800E73E71CA103DF004BD742 /* Map.swift */,
-				800E73E81CA103DF004BD742 /* MappableObject.swift */,
-				800E73E91CA103DF004BD742 /* SettableOperator.swift */,
-				800E73EB1CA103DF004BD742 /* Transformers.swift */,
-				800E73EA1CA103DF004BD742 /* StandardOperators.swift */,
-			);
-			path = Mapping;
-			sourceTree = "<group>";
-		};
-		806479B51C6D7EDF003A5D8C /* Node */ = {
-			isa = PBXGroup;
-			children = (
-				800E74051CA103E9004BD742 /* Node.swift */,
-				800E74061CA103E9004BD742 /* Node+KeyPaths.swift */,
-				800E74071CA103E9004BD742 /* NodeConvertibleType.swift */,
-				800E74081CA103E9004BD742 /* NodeRepresentation.swift */,
-			);
-			path = Node;
-			sourceTree = "<group>";
-		};
-		806479BA1C6D7EDF003A5D8C /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				800E741D1CA103FA004BD742 /* CollectionInitializers.swift */,
-				800E741E1CA103FA004BD742 /* Errors.swift */,
-				800E741F1CA103FA004BD742 /* KeyType.swift */,
-				800E74201CA103FA004BD742 /* Logging.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		806479BF1C6D7EDF003A5D8C /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				80F745701CA4BBF3005BEF2E /* BackingDataType+Foundation.swift */,
-				800E74351CA10407004BD742 /* Foundation.swift */,
-				800E74361CA10407004BD742 /* Node+Foundation.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		80F745761CA4C911005BEF2E /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				80F745771CA4C911005BEF2E /* CoreData.swift */,
-			);
-			name = CoreData;
-			path = Sources/Genome/CoreData;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		3D5396C91BBA89D600791B49 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D5396E51BBA8A2800791B49 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE37341BB9D9A300D0100C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68088C021BC5F5D000B5A733 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		3D5396CB1BBA89D600791B49 /* Genome-OSX */ = {
+		"______Target_Genome" /* Genome */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D5396DD1BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX" */;
+			buildConfigurationList = "_______Confs_Genome" /* Build configuration list for PBXNativeTarget "Genome" */;
 			buildPhases = (
-				3D5396C71BBA89D600791B49 /* Sources */,
-				3D5396C81BBA89D600791B49 /* Frameworks */,
-				3D5396C91BBA89D600791B49 /* Headers */,
-				3D5396CA1BBA89D600791B49 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Genome-OSX";
-			productName = "Genome-OSX";
-			productReference = 3D5396CC1BBA89D600791B49 /* Genome.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3D5396E71BBA8A2800791B49 /* Genome-watchOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D5396ED1BBA8A2800791B49 /* Build configuration list for PBXNativeTarget "Genome-watchOS" */;
-			buildPhases = (
-				3D5396E31BBA8A2800791B49 /* Sources */,
-				3D5396E41BBA8A2800791B49 /* Frameworks */,
-				3D5396E51BBA8A2800791B49 /* Headers */,
-				3D5396E61BBA8A2800791B49 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Genome-watchOS";
-			productName = "Genome-watchOS";
-			productReference = 3D5396E81BBA8A2800791B49 /* Genome.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3DCE37361BB9D9A300D0100C /* Genome-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3DCE374C1BB9D9A300D0100C /* Build configuration list for PBXNativeTarget "Genome-iOS" */;
-			buildPhases = (
-				3DCE37321BB9D9A300D0100C /* Sources */,
-				3DCE37331BB9D9A300D0100C /* Frameworks */,
-				3DCE37341BB9D9A300D0100C /* Headers */,
-				3DCE37351BB9D9A300D0100C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Genome-iOS";
-			productName = "Genome-iOS";
-			productReference = 3DCE37371BB9D9A300D0100C /* Genome.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		68088BF51BC5F5D000B5A733 /* Genome-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68088C041BC5F5D000B5A733 /* Build configuration list for PBXNativeTarget "Genome-tvOS" */;
-			buildPhases = (
-				68088BF61BC5F5D000B5A733 /* Sources */,
-				68088C021BC5F5D000B5A733 /* Headers */,
-				68088C031BC5F5D000B5A733 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Genome-tvOS";
-			productName = "Genome-watchOS";
-			productReference = 68088C071BC5F5D000B5A733 /* Genome.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		8052E75B1BB58102004E08F6 /* Genome */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8052E7791BB58102004E08F6 /* Build configuration list for PBXNativeTarget "Genome" */;
-			buildPhases = (
-				8052E7581BB58102004E08F6 /* Sources */,
-				8052E7591BB58102004E08F6 /* Frameworks */,
-				8052E75A1BB58102004E08F6 /* Resources */,
+				CompilePhase_Genome /* Sources */,
+				"___LinkPhase_Genome" /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -493,712 +196,203 @@
 			);
 			name = Genome;
 			productName = Genome;
-			productReference = 8052E75C1BB58102004E08F6 /* Genome.app */;
-			productType = "com.apple.product-type.application";
+			productReference = "_____Product_Genome" /* libGenome.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
-		8052E76F1BB58102004E08F6 /* GenomeTests */ = {
+		"______Target_GenomeTestSuite" /* Genome.testsuite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8052E77C1BB58102004E08F6 /* Build configuration list for PBXNativeTarget "GenomeTests" */;
+			buildConfigurationList = "_______Confs_GenomeTestSuite" /* Build configuration list for PBXNativeTarget "Genome.testsuite" */;
 			buildPhases = (
-				8052E76C1BB58102004E08F6 /* Sources */,
-				8052E76D1BB58102004E08F6 /* Frameworks */,
-				8052E76E1BB58102004E08F6 /* Resources */,
+				CompilePhase_GenomeTestSuite /* Sources */,
+				"___LinkPhase_GenomeTestSuite" /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8052E7721BB58102004E08F6 /* PBXTargetDependency */,
+				__Dependency_Genome /* PBXTargetDependency */,
 			);
-			name = GenomeTests;
-			productName = GenomeTests;
-			productReference = 8052E7701BB58102004E08F6 /* GenomeTests.xctest */;
+			name = Genome.testsuite;
+			productName = GenomeTestSuite;
+			productReference = "_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8052E7541BB58102004E08F6 /* Project object */ = {
+		__RootObject_ /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = lowriDevs;
-				TargetAttributes = {
-					3D5396CB1BBA89D600791B49 = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					3D5396E71BBA8A2800791B49 = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					3DCE37361BB9D9A300D0100C = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					8052E75B1BB58102004E08F6 = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					8052E76F1BB58102004E08F6 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 8052E75B1BB58102004E08F6;
-					};
-				};
+				LastUpgradeCheck = 9999;
 			};
-			buildConfigurationList = 8052E7571BB58102004E08F6 /* Build configuration list for PBXProject "Genome" */;
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "Genome" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = 8052E7531BB58102004E08F6;
-			productRefGroup = 8052E75D1BB58102004E08F6 /* Products */;
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8052E75B1BB58102004E08F6 /* Genome */,
-				8052E76F1BB58102004E08F6 /* GenomeTests */,
-				3DCE37361BB9D9A300D0100C /* Genome-iOS */,
-				3D5396CB1BBA89D600791B49 /* Genome-OSX */,
-				3D5396E71BBA8A2800791B49 /* Genome-watchOS */,
-				68088BF51BC5F5D000B5A733 /* Genome-tvOS */,
+				"______Target_Genome" /* Genome */,
+				"______Target_GenomeTestSuite" /* Genome.testsuite */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		3D5396CA1BBA89D600791B49 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D5396E61BBA8A2800791B49 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE37351BB9D9A300D0100C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68088C031BC5F5D000B5A733 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8052E75A1BB58102004E08F6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8052E76A1BB58102004E08F6 /* LaunchScreen.storyboard in Resources */,
-				8052E7671BB58102004E08F6 /* Assets.xcassets in Resources */,
-				8052E7651BB58102004E08F6 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8052E76E1BB58102004E08F6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		3D5396C71BBA89D600791B49 /* Sources */ = {
+		CompilePhase_Genome /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				80F745731CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
-				800E73FD1CA103DF004BD742 /* StandardOperators.swift in Sources */,
-				800E74281CA103FA004BD742 /* Errors.swift in Sources */,
-				800E74391CA10407004BD742 /* Foundation.swift in Sources */,
-				800E73F31CA103DF004BD742 /* MappableObject.swift in Sources */,
-				800E742D1CA103FA004BD742 /* KeyType.swift in Sources */,
-				800E74321CA103FA004BD742 /* Logging.swift in Sources */,
-				800E73EE1CA103DF004BD742 /* Map.swift in Sources */,
-				80F7457A1CA4C911005BEF2E /* CoreData.swift in Sources */,
-				800E73E41CA103CC004BD742 /* BackingDataType.swift in Sources */,
-				800E73F81CA103DF004BD742 /* SettableOperator.swift in Sources */,
-				800E74441CA10410004BD742 /* Genome+Json.swift in Sources */,
-				800E743E1CA10407004BD742 /* Node+Foundation.swift in Sources */,
-				800E74151CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
-				800E74021CA103DF004BD742 /* Transformers.swift in Sources */,
-				800E74231CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
-				800E741A1CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
-				800E74101CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
-				800E740B1CA103E9004BD742 /* Node.swift in Sources */,
+				"__src_cc_ref_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift in Sources */,
+				"__src_cc_ref_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */,
+				"__src_cc_ref_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D5396E31BBA8A2800791B49 /* Sources */ = {
+		CompilePhase_GenomeTestSuite /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				80F745741CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
-				800E73FE1CA103DF004BD742 /* StandardOperators.swift in Sources */,
-				800E74291CA103FA004BD742 /* Errors.swift in Sources */,
-				800E743A1CA10407004BD742 /* Foundation.swift in Sources */,
-				800E73F41CA103DF004BD742 /* MappableObject.swift in Sources */,
-				800E742E1CA103FA004BD742 /* KeyType.swift in Sources */,
-				800E74331CA103FA004BD742 /* Logging.swift in Sources */,
-				800E73EF1CA103DF004BD742 /* Map.swift in Sources */,
-				80F7457B1CA4C911005BEF2E /* CoreData.swift in Sources */,
-				800E73E51CA103CC004BD742 /* BackingDataType.swift in Sources */,
-				800E73F91CA103DF004BD742 /* SettableOperator.swift in Sources */,
-				800E74451CA10410004BD742 /* Genome+Json.swift in Sources */,
-				800E743F1CA10407004BD742 /* Node+Foundation.swift in Sources */,
-				800E74161CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
-				800E74031CA103DF004BD742 /* Transformers.swift in Sources */,
-				800E74241CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
-				800E741B1CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
-				800E74111CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
-				800E740C1CA103E9004BD742 /* Node.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DCE37321BB9D9A300D0100C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80F745721CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
-				800E73FC1CA103DF004BD742 /* StandardOperators.swift in Sources */,
-				800E74271CA103FA004BD742 /* Errors.swift in Sources */,
-				800E74381CA10407004BD742 /* Foundation.swift in Sources */,
-				800E73F21CA103DF004BD742 /* MappableObject.swift in Sources */,
-				800E742C1CA103FA004BD742 /* KeyType.swift in Sources */,
-				800E74311CA103FA004BD742 /* Logging.swift in Sources */,
-				800E73ED1CA103DF004BD742 /* Map.swift in Sources */,
-				80F745791CA4C911005BEF2E /* CoreData.swift in Sources */,
-				800E73E31CA103CC004BD742 /* BackingDataType.swift in Sources */,
-				800E73F71CA103DF004BD742 /* SettableOperator.swift in Sources */,
-				800E74431CA10410004BD742 /* Genome+Json.swift in Sources */,
-				800E743D1CA10407004BD742 /* Node+Foundation.swift in Sources */,
-				800E74141CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
-				800E74011CA103DF004BD742 /* Transformers.swift in Sources */,
-				800E74221CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
-				800E74191CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
-				800E740F1CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
-				800E740A1CA103E9004BD742 /* Node.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68088BF61BC5F5D000B5A733 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80F745751CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
-				800E73FF1CA103DF004BD742 /* StandardOperators.swift in Sources */,
-				800E742A1CA103FA004BD742 /* Errors.swift in Sources */,
-				800E743B1CA10407004BD742 /* Foundation.swift in Sources */,
-				800E73F51CA103DF004BD742 /* MappableObject.swift in Sources */,
-				800E742F1CA103FA004BD742 /* KeyType.swift in Sources */,
-				800E74341CA103FA004BD742 /* Logging.swift in Sources */,
-				800E73F01CA103DF004BD742 /* Map.swift in Sources */,
-				80F7457C1CA4C911005BEF2E /* CoreData.swift in Sources */,
-				800E73E61CA103CC004BD742 /* BackingDataType.swift in Sources */,
-				800E73FA1CA103DF004BD742 /* SettableOperator.swift in Sources */,
-				800E74461CA10410004BD742 /* Genome+Json.swift in Sources */,
-				800E74401CA10407004BD742 /* Node+Foundation.swift in Sources */,
-				800E74171CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
-				800E74041CA103DF004BD742 /* Transformers.swift in Sources */,
-				800E74251CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
-				800E741C1CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
-				800E74121CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
-				800E740D1CA103E9004BD742 /* Node.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8052E7581BB58102004E08F6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				800E743C1CA10407004BD742 /* Node+Foundation.swift in Sources */,
-				800E74371CA10407004BD742 /* Foundation.swift in Sources */,
-				800E74301CA103FA004BD742 /* Logging.swift in Sources */,
-				800E74001CA103DF004BD742 /* Transformers.swift in Sources */,
-				80F745781CA4C911005BEF2E /* CoreData.swift in Sources */,
-				800E73FB1CA103DF004BD742 /* StandardOperators.swift in Sources */,
-				800E73E21CA103CC004BD742 /* BackingDataType.swift in Sources */,
-				800E73F11CA103DF004BD742 /* MappableObject.swift in Sources */,
-				800E73F61CA103DF004BD742 /* SettableOperator.swift in Sources */,
-				80F745711CA4BBF3005BEF2E /* BackingDataType+Foundation.swift in Sources */,
-				800E74091CA103E9004BD742 /* Node.swift in Sources */,
-				8052E7621BB58102004E08F6 /* ViewController.swift in Sources */,
-				800E74211CA103FA004BD742 /* CollectionInitializers.swift in Sources */,
-				800E73EC1CA103DF004BD742 /* Map.swift in Sources */,
-				800E74131CA103E9004BD742 /* NodeConvertibleType.swift in Sources */,
-				800E74261CA103FA004BD742 /* Errors.swift in Sources */,
-				8052E7601BB58102004E08F6 /* AppDelegate.swift in Sources */,
-				800E742B1CA103FA004BD742 /* KeyType.swift in Sources */,
-				800E74181CA103E9004BD742 /* NodeRepresentation.swift in Sources */,
-				800E740E1CA103E9004BD742 /* Node+KeyPaths.swift in Sources */,
-				800E74421CA10410004BD742 /* Genome+Json.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8052E76C1BB58102004E08F6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8052E7851BB58178004E08F6 /* BasicTypes.swift in Sources */,
-				8052E7881BB58178004E08F6 /* GenomeSwiftTests.swift in Sources */,
-				8052E78A1BB58178004E08F6 /* ToNodeOperatorTest.swift in Sources */,
-				8052E7861BB58178004E08F6 /* DictionaryKeyPathTests.swift in Sources */,
-				80FC8F1A1BB6CEE30069CC5A /* TransformTests.swift in Sources */,
-				80A300B51C15231400DDE54D /* SettableOperatorTest.swift in Sources */,
-				8052E7871BB58178004E08F6 /* FromNodeOperatorTest.swift in Sources */,
-				80A300B41C14E55300DDE54D /* NodeDataTypeTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8052E7721BB58102004E08F6 /* PBXTargetDependency */ = {
+		__Dependency_Genome /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8052E75B1BB58102004E08F6 /* Genome */;
-			targetProxy = 8052E7711BB58102004E08F6 /* PBXContainerItemProxy */;
+			target = "______Target_Genome" /* Genome */;
+			targetProxy = 80DFC5581CC31BD700496A08 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		8052E7631BB58102004E08F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8052E7641BB58102004E08F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8052E7681BB58102004E08F6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8052E7691BB58102004E08F6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		3D5396DE1BBA89D600791B49 /* Debug */ = {
+		_ReleaseConf_Genome /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-OSX";
-				PRODUCT_NAME = Genome;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3D5396DF1BBA89D600791B49 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-OSX";
-				PRODUCT_NAME = Genome;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3D5396EE1BBA8A2800791B49 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-watchOS";
-				PRODUCT_NAME = Genome;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		3D5396EF1BBA8A2800791B49 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-watchOS";
-				PRODUCT_NAME = Genome;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		3DCE37481BB9D9A300D0100C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-iOS";
-				PRODUCT_NAME = Genome;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3DCE37491BB9D9A300D0100C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-iOS";
-				PRODUCT_NAME = Genome;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		68088C051BC5F5D000B5A733 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOS";
-				PRODUCT_NAME = Genome;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		68088C061BC5F5D000B5A733 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
-				INFOPLIST_FILE = Genome/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.loganwright.Genome-tvOS";
-				PRODUCT_NAME = Genome;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		8052E7771BB58102004E08F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Genome;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeTestSuite /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = GenomeTestSuite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		"___DebugConf_Genome" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Genome;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		8052E7781BB58102004E08F6 /* Release */ = {
+		"___DebugConf_GenomeTestSuite" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8052E77A1BB58102004E08F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Genome/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.loganwright.Genome;
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = GenomeTestSuite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		8052E77B1BB58102004E08F6 /* Release */ = {
+		"_____Release_" /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Genome/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.loganwright.Genome;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		8052E77D1BB58102004E08F6 /* Debug */ = {
+		"_______Debug_" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = GenomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.loganwright.GenomeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Genome.app/Genome";
 			};
 			name = Debug;
-		};
-		8052E77E1BB58102004E08F6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = GenomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.loganwright.GenomeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Genome.app/Genome";
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3D5396DD1BBA89D600791B49 /* Build configuration list for PBXNativeTarget "Genome-OSX" */ = {
+		"___RootConfs_" /* Build configuration list for PBXProject "Genome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D5396DE1BBA89D600791B49 /* Debug */,
-				3D5396DF1BBA89D600791B49 /* Release */,
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		3D5396ED1BBA8A2800791B49 /* Build configuration list for PBXNativeTarget "Genome-watchOS" */ = {
+		"_______Confs_Genome" /* Build configuration list for PBXNativeTarget "Genome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D5396EE1BBA8A2800791B49 /* Debug */,
-				3D5396EF1BBA8A2800791B49 /* Release */,
+				"___DebugConf_Genome" /* Debug */,
+				_ReleaseConf_Genome /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		3DCE374C1BB9D9A300D0100C /* Build configuration list for PBXNativeTarget "Genome-iOS" */ = {
+		"_______Confs_GenomeTestSuite" /* Build configuration list for PBXNativeTarget "Genome.testsuite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3DCE37481BB9D9A300D0100C /* Debug */,
-				3DCE37491BB9D9A300D0100C /* Release */,
+				"___DebugConf_GenomeTestSuite" /* Debug */,
+				_ReleaseConf_GenomeTestSuite /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		68088C041BC5F5D000B5A733 /* Build configuration list for PBXNativeTarget "Genome-tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				68088C051BC5F5D000B5A733 /* Debug */,
-				68088C061BC5F5D000B5A733 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8052E7571BB58102004E08F6 /* Build configuration list for PBXProject "Genome" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8052E7771BB58102004E08F6 /* Debug */,
-				8052E7781BB58102004E08F6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8052E7791BB58102004E08F6 /* Build configuration list for PBXNativeTarget "Genome" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8052E77A1BB58102004E08F6 /* Debug */,
-				8052E77B1BB58102004E08F6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8052E77C1BB58102004E08F6 /* Build configuration list for PBXNativeTarget "GenomeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8052E77D1BB58102004E08F6 /* Debug */,
-				8052E77E1BB58102004E08F6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8052E7541BB58102004E08F6 /* Project object */;
+	rootObject = __RootObject_ /* Project object */;
 }

@@ -20,11 +20,11 @@ class TransformTest: XCTestCase {
         let map = Map(node: testNode)
         var settableString: String? = nil
         try! settableString <~ map["hello"]
-            .transformFromNode({ self.stringToString($0) })
+            .transformFromNode { self.stringToString(input: $0) }
         XCTAssert(settableString == "modified: world")
         
         let nonOptionalString = ""
-        try! nonOptionalString ~> map["test"].transformToNode(optStringToString)
+        try! nonOptionalString ~> map["test"].transformToNode(transformer: optStringToString)
     }
     
     func stringToString(input: String) -> String {

@@ -466,9 +466,9 @@ extension Node: Equatable {}
 public func ==(lhs: Node, rhs: Node) -> Bool {
     switch TypeEnforcing {
     case .strict:
-        return strictEquals(lhs, rhs)
+        return strictEquals(lhs: lhs, rhs)
     case .fuzzy:
-        return fuzzyEquals(lhs, rhs)
+        return fuzzyEquals(lhs: lhs, rhs)
     }
 }
 
@@ -619,8 +619,8 @@ extension String {
     internal func keyValuePairs() -> [String: String] {
         var data: [String: String] = [:]
         
-        for pair in self.split("&") {
-            let tokens = pair.split("=", maxSplits: 1)
+        for pair in self.split(separator: "&") {
+            let tokens = pair.split(separator: "=", maxSplits: 1)
             guard
                 let name = tokens.first,
                 let value = tokens.last

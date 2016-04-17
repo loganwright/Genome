@@ -18,7 +18,7 @@ extension MappableBase {
     public func toNode() throws -> Node {
         let map = Map()
         var mutable = self
-        try mutable.sequence(map)
+        try mutable.sequence(map: map)
         return map.node
     }
     
@@ -42,7 +42,9 @@ public protocol MappableObject: MappableBase {
 }
 
 extension MappableObject {
-    public func sequence(map: Map) throws { }
+    public func sequence(map: Map) throws {
+        print("")
+    }
     
     public init(node: Node, context: Context = EmptyNode) throws {
         let map = Map(node: node, context: context)
@@ -63,7 +65,7 @@ public protocol BasicMappable: MappableObject {
 extension BasicMappable {
     public init(map: Map) throws {
         try self.init()
-        try sequence(map)
+        try sequence(map: map)
     }
 }
 

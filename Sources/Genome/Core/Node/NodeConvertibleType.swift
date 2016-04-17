@@ -53,7 +53,7 @@ extension String: NodeConvertible {
     }
     
     public init(node: Node, context: Context) throws {
-        self = try self.dynamicType.makeWith(node, context: context)
+        self = try self.dynamicType.makeWith(node: node, context: context)
     }
     
     private static func makeWith(node: Node, context: Context) throws -> String {
@@ -72,7 +72,7 @@ extension Bool: NodeConvertible {
     }
     
     public init(node: Node, context: Context) throws {
-        self = try self.dynamicType.makeWith(node, context: context)
+        self = try self.dynamicType.makeWith(node: node, context: context)
     }
     
     private static func makeWith(node: Node, context: Context) throws -> Bool {
@@ -98,7 +98,7 @@ extension UnsignedInteger {
     }
     
     public init(node: Node, context: Context) throws {
-        self = try Self.makeWith(node, context: context)
+        self = try Self.makeWith(node: node, context: context)
     }
     
     private static func makeWith(node: Node, context: Context) throws -> Self {
@@ -125,7 +125,7 @@ extension SignedInteger {
     }
     
     public init(node: Node, context: Context) throws {
-        self = try Self.makeWith(node, context: context)
+        self = try Self.makeWith(node: node, context: context)
     }
     
     private static func makeWith(node: Node, context: Context) throws -> Self {
@@ -162,7 +162,7 @@ extension NodeConvertibleFloatingPointType {
     }
     
     public init(node: Node, context: Context) throws {
-        self = try Self.makeWith(node, context: context)
+        self = try Self.makeWith(node: node, context: context)
     }
     
     private static func makeWith(node: Node, context: Context) throws -> Self {

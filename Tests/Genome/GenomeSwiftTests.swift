@@ -50,7 +50,7 @@ struct Food : BasicMappable, Equatable {
     var name: String = ""
     var tastiness: Int?
  
-    mutating func sequence(op: Map) throws -> Void {
+    mutating func sequence(map op: Map) throws -> Void {
         try id <~> op["id"]
         try name <~> op["name"]
         try tastiness <~> op["tastiness"]
@@ -67,14 +67,15 @@ struct Person : BasicMappable {
         try name <~> map["name"]
         
         try birthday <~> map["birthday"]
-            .transformFromNode(NSDate.dateWithBirthdayString)
-            .transformToNode(NSDate.birthdayStringWithDate)
+            .transformFromNode(transformer: NSDate.dateWithBirthdayString)
+            .transformToNode(transformer: NSDate.birthdayStringWithDate)
         
         try favoriteFoodIds <~> map["favorite_food_ids"]
     }
     
     mutating func associateFavoriteFoods(foods: [Food]) {
         self.favoriteFoods = foods.filter { favoriteFoodIds.contains($0.id) }
+        print("\(name) has favorite foods: \(self.favoriteFoods) ids: \(favoriteFoodIds) input: \(foods)")
     }
 }
 
@@ -129,29 +130,41 @@ extension Person : CustomStringConvertible {
 }
 
 class GenomeSideLoadTests: XCTestCase {
-    
+
+    func testFood() throws {
+        let node: Node = [
+            "id" : 1,
+            "name" : "taco"
+        ]
+        let food = try Food(node: node)
+        XCTAssert(food.id == 1)
+        XCTAssert(food.name == "taco")
+    }
+
     func testSideLoad() {
         let nodeArrayOfPeople = SideLoadTestNode["people"]!
         let single: Person! = try! Person(node: nodeArrayOfPeople.arrayValue!.first!)
         XCTAssert(single != nil)
-        
-        let allFoods = try! [Food](node: SideLoadTestNode["foods"]!, context: SideLoadTestNode)
+
+        let foodsJs = SideLoadTestNode["foods"]!
+        print("FoodsJs: \(foodsJs)")
+        let allFoods = try! [Food].init(node: foodsJs, context: SideLoadTestNode)
         XCTAssert(allFoods.count == 4)
 
         var peeps: [Person] = try! [Person](node: nodeArrayOfPeople, context: SideLoadTestNode)
         peeps = peeps.map { (person) -> Person in
             var mutable = person
-            mutable.associateFavoriteFoods(allFoods);
+            mutable.associateFavoriteFoods(foods: allFoods);
             return mutable
         }
         XCTAssert(peeps.count == 2)
         
         let a = peeps.first!
-        let aBirth = NSDate.dateWithBirthdayString("12-10-85")
+        let aBirth = NSDate.dateWithBirthdayString(string: "12-10-85")
         XCTAssert(a.name == "A")
         XCTAssert(a.birthday == aBirth)
         XCTAssert(a.favoriteFoods.count == 3)
-        XCTAssert(allFoods.containsAll(a.favoriteFoods))
+        XCTAssert(allFoods.containsAll(all: a.favoriteFoods))
         
         // Assert Node
         
@@ -164,7 +177,7 @@ class GenomeSideLoadTests: XCTestCase {
         try! peeps <~> m
         print("mnode: \(m.node)")
     }
-    
+
 }
 
 // MARK: Standard Operator Tests
@@ -176,15 +189,15 @@ let StandardOperatorNode: Node = [
 
 class StandardOperatorTests: XCTestCase {
     
-    func testSideLoad() {
-        let map = Map(node: StandardOperatorNode)
-        var ints: [Int] = []
-        try! ints <~> map["ints"]
-        XCTAssert(ints == Ints.arrayValue!.flatMap { $0.intValue })
-        
-        var intsOptional: [Int]?
-        try! intsOptional <~> map["ints"]
-        XCTAssert(intsOptional! == Ints.arrayValue!.flatMap { $0.intValue })
-    }
+//    func testSideLoad() {
+//        let map = Map(node: StandardOperatorNode)
+//        var ints: [Int] = []
+//        try! ints <~> map["ints"]
+//        XCTAssert(ints == Ints.arrayValue!.flatMap { $0.intValue })
+//        
+//        var intsOptional: [Int]?
+//        try! intsOptional <~> map["ints"]
+//        XCTAssert(intsOptional! == Ints.arrayValue!.flatMap { $0.intValue })
+//    }
     
 }
