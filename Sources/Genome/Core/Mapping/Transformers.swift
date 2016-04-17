@@ -14,20 +14,21 @@ public class Transformer<InputType, OutputType> {
     internal let map: Map
     internal let transformer: InputType? throws -> OutputType
 
-    private var allowsNil: Bool
-    
     public init(map: Map, transformer: InputType throws -> OutputType) {
         self.map = map
-        self.transformer = { input in
-            return try transformer(input!)
+        self.transformer = { [weak map] input in
+            guard let unwrapped = input else {
+                let key = map?.lastKey ?? "unknown"
+                let error = TransformationError.foundNil(key: key, expected: "\(InputType.self)")
+                throw log(error)
+            }
+            return try transformer(unwrapped)
         }
-        self.allowsNil = false
     }
     
     public init(map: Map, transformer: InputType? throws -> OutputType) {
         self.map = map
         self.transformer = transformer
-        self.allowsNil = true
     }
     
     internal func transform(_ value: InputType) throws -> OutputType {
@@ -35,22 +36,7 @@ public class Transformer<InputType, OutputType> {
     }
     
     internal func transform(_ value: InputType?) throws -> OutputType {
-        if allowsNil {
-            guard let unwrapped = value else { return try transformer(nil) }
-            return try transform(unwrapped)
-        } else {
-            let unwrapped = try enforceExists(value: value)
-            return try transform(unwrapped)
-        }
-    }
-    
-    private func enforceExists<T>(value: T?) throws -> T {
-        if let unwrapped = value {
-            return unwrapped
-        } else {
-            let error = TransformationError.UnexpectedInputType("Unexpectedly found nil input.  KeyPath: \(map.lastKey) Expected: \(InputType.self)")
-            throw log(error)
-        }
+        return try transformer(value)
     }
 }
 
@@ -72,16 +58,12 @@ public final class FromNodeTransformer<NodeType: NodeConvertible, TransformedTyp
     }
     
     internal func transform(_ node: Node?) throws -> TransformedType {
-        let validNode: Node
-        if allowsNil {
-            guard let unwrapped = node else { return try transformer(nil) }
-            validNode = unwrapped
+        if let node = node {
+            let input = try NodeType.init(with: node, in: node)
+            return try transform(input)
         } else {
-            validNode = try enforceExists(value: node)
+            return try transform(Optional<NodeType>.none)
         }
-        
-        let input = try NodeType.init(with: validNode, in: validNode)
-        return try transformer(input)
     }
 }
 

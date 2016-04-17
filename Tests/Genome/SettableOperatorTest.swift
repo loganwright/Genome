@@ -299,7 +299,7 @@ class SettableOperatorTest: XCTestCase {
         } catch NodeConvertibleError.UnableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeConvertibleError.UnableToConvert)")
         }
     }
     
@@ -457,10 +457,10 @@ class SettableOperatorTest: XCTestCase {
                     return "Hello: \(input)"
             }
             XCTFail("nil value should throw error")
-        } catch TransformationError.UnexpectedInputType(_) {
+        } catch TransformationError.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.UnexpectedInputType)")
+            XCTFail("Incorrect Error: \(error) Expected: \(TransformationError.foundNil)")
         }
     }
     

@@ -47,7 +47,8 @@ public enum _SequenceError: ErrorProtocol {
 }
 
 public enum TransformationError: ErrorProtocol {
-    case UnexpectedInputType(String)
+    case foundNil(key: Key, expected: String)
+//    case UnexpectedInputType(String)
 }
 
 public enum RawConversionError: ErrorProtocol {
