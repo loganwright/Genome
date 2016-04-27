@@ -200,6 +200,6 @@ public func ~> <T, NodeOutputType: NodeConvertible>
         break
     case .toNode:
         let output = try rhs.transform(lhs)
-        try rhs.map.setToLastKey(output)
+        try rhs.map.setToLastPath(output)
     }
 }
