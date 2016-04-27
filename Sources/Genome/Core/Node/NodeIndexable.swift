@@ -38,6 +38,9 @@ public protocol NodeIndexable {
 }
 
 extension NodeIndexable {
+    /**
+     - see: NodeIndexable
+     */
     public func makeIndexableNode() -> Node {
         return self.dynamicType.makeIndexableNode()
     }

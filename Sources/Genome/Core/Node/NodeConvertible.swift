@@ -13,9 +13,14 @@ public let EmptyNode = Node.object([:])
 
 // MARK: Context
 
+/**
+ Sometimes convertible operations require a greater context beyond
+ just a Node.
+ 
+ Any object can conform to Context and be included in initialization
+ */
 public protocol Context {}
 
-extension Map : Context {}
 extension Node : Context {}
 extension Array : Context {}
 extension Dictionary : Context {}
@@ -33,6 +38,7 @@ extension Dictionary : Context {}
  Json => Node => Object
  */
 public protocol NodeConvertible {
+
     /**
      Initialiize the convertible with a node within a context.
      
@@ -41,7 +47,6 @@ public protocol NodeConvertible {
      to a context outside of the json ecosystem
      */
     init(with node: Node, in context: Context) throws
-    // TODO: Should with be from?
     
     /**
      Turn the convertible back into a node
@@ -149,6 +154,11 @@ extension SignedInteger {
 
 // MARK: FloatingPoint
 
+public protocol NodeConvertibleFloatingPointType: NodeConvertible {
+    var doubleValue: Double { get }
+    init(_ other: Double)
+}
+
 extension Float: NodeConvertibleFloatingPointType {
     public var doubleValue: Double {
         return Double(self)
@@ -159,11 +169,6 @@ extension Double: NodeConvertibleFloatingPointType {
     public var doubleValue: Double {
         return Double(self)
     }
-}
-
-public protocol NodeConvertibleFloatingPointType: NodeConvertible {
-    var doubleValue: Double { get }
-    init(_ other: Double)
 }
 
 extension NodeConvertibleFloatingPointType {
