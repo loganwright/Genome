@@ -223,8 +223,8 @@ extension Map {
         if let result = self.result {
             return result
         } else {
-            let error = Error.foundNil(for: lastKey, expected: "\(T.self)")
-            throw log(error)
+            throw ErrorFactory.foundNil(for: lastKey,
+                                        expected: T.self)
         }
     }
 
@@ -236,11 +236,10 @@ extension Map {
         if let j = result.objectValue {
             return j
         } else {
-            let error = Error.unexpectedValue(got: result,
-                                              expected: [String : Node].self,
-                                              for: lastKey,
-                                              target: T.self)
-            throw log(error)
+            throw ErrorFactory.unexpectedValue(got: result,
+                                               expected: [String : Node].self,
+                                               for: lastKey,
+                                               target: T.self)
         }
     }
 }

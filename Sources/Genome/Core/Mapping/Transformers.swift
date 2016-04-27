@@ -19,8 +19,8 @@ public class Transformer<InputType, OutputType> {
         self.transformer = { [weak map] input in
             guard let unwrapped = input else {
                 let key = map?.lastKey ?? "unknown"
-                let error = TransformationError.foundNil(key: key, expected: "\(InputType.self)")
-                throw log(error)
+                throw ErrorFactory.foundNil(for: key,
+                                            expected: InputType.self)
             }
             return try transformer(unwrapped)
         }

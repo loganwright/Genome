@@ -57,7 +57,7 @@ extension MappableObject {
     public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
         let node = try data.toNode()
         guard let _ = node.objectValue else {
-            throw log(.UnableToConvert(node: node, to: "\(Self.self)"))
+            throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
         try self.init(with: node, in: context)
     }

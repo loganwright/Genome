@@ -71,7 +71,7 @@ extension String: NodeConvertible {
     
     public init(with node: Node, in context: Context) throws {
         guard let string = node.stringValue else {
-            throw log(.UnableToConvert(node: node, to: "\(String.self)"))
+            throw ErrorFactory.unableToConvert(node, to: self.dynamicType)
         }
         self = string
     }
@@ -86,7 +86,7 @@ extension Bool: NodeConvertible {
     
     public init(with node: Node, in context: Context) throws {
         guard let bool = node.boolValue else {
-            throw log(.UnableToConvert(node: node, to: "\(Bool.self)"))
+            throw ErrorFactory.unableToConvert(node, to: self.dynamicType)
         }
         self = bool
     }
@@ -108,7 +108,7 @@ extension UnsignedInteger {
     
     public init(with node: Node, in context: Context) throws {
         guard let int = node.uintValue else {
-            throw log(.UnableToConvert(node: node, to: "\(Self.self)"))
+            throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
 
         self.init(int.toUIntMax())
@@ -131,7 +131,7 @@ extension SignedInteger {
     
     public init(with node: Node, in context: Context) throws {
         guard let int = node.intValue else {
-            throw log(.UnableToConvert(node: node, to: "\(Self.self)"))
+            throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
 
         self.init(int.toIntMax())
@@ -164,7 +164,7 @@ extension NodeConvertibleFloatingPointType {
     
     public init(with node: Node, in context: Context) throws {
         guard let double = node.doubleValue else {
-            throw log(.UnableToConvert(node: node, to: "\(Self.self)"))
+            throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
         self.init(double)
     }
@@ -179,5 +179,13 @@ extension Node {
             mutable[key] = try value.toNode()
         }
         self = .object(mutable)
+    }
+}
+
+extension Node {
+    public init(_ array: [NodeConvertible]) throws {
+        var mutable: [Node] = []
+        mutable = try array.map { try $0.toNode() }
+        self = .array(mutable)
     }
 }

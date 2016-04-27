@@ -93,7 +93,7 @@ class FromNodeOperatorTest: XCTestCase {
         ]
     ]
     
-    lazy var map: Map = Map(node: Node.object(self.node))
+    lazy var map: Map = Map(with: Node.object(self.node))
     
     func testBasicTypes() {
         var string = ""

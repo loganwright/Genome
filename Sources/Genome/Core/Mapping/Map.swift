@@ -52,8 +52,8 @@ public final class Map {
      :param: node    the backing data that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public convenience init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
-        self.init(node: try data.toNode(), context: context)
+    public convenience init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
+        self.init(with: try data.toNode(), in: context)
     }
     
     /**
@@ -62,7 +62,7 @@ public final class Map {
      :param: node    the node that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public init(node: Node, context: Context = EmptyNode) {
+    public init(with node: Node, in context: Context = EmptyNode) {
         self.type = .fromNode
         
         self.node = node
@@ -80,16 +80,18 @@ public final class Map {
         self.node = [:]
         self.context = EmptyNode
     }
-    
-    // MARK: Subscript
-    
+}
+
+// MARK: Subscript
+
+extension Map {
     /**
-    Basic subscripting
-    
-    :param: keyPath the keypath to use when getting the value from the backing node
-    
-    :returns: returns an instance of self that can be passed to the mappable operator
-    */
+     Basic subscripting
+
+     :param: keyPath the keypath to use when getting the value from the backing node
+
+     :returns: returns an instance of self that can be passed to the mappable operator
+     */
     public subscript(key: Key) -> Map {
         lastKey = key
         switch key {
@@ -101,6 +103,8 @@ public final class Map {
         return self
     }
 }
+
+// MARK: Setting
 
 extension Map {
     internal func setToLastKey(_ node: Node?) throws {
@@ -157,7 +161,7 @@ extension Map {
 extension Map.OperationType {
     func assert(equals expected: Map.OperationType) throws {
         if self != expected {
-            throw log(.UnexpectedOperationType(got: self, expected: expected))
+            throw Error.unexpectedOperation(got: self, expected: expected)
         }
     }
 }

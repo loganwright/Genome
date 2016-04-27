@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80DFC5591CC3247800496A08 /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */; };
-		80DFC55A1CC3247800496A08 /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */; };
-		80DFC55B1CC3247800496A08 /* FromNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */; };
-		80DFC55C1CC3247800496A08 /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */; };
-		80DFC55D1CC3247800496A08 /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */; };
-		80DFC55E1CC3247800496A08 /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */; };
-		80DFC55F1CC3247800496A08 /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */; };
 		_LinkFileRef_Genome /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
 		__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */; };
@@ -32,11 +25,18 @@
 		"__src_cc_ref_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift */; };
 		__src_cc_ref_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift */; };
 		"__src_cc_ref_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Foundation/Node+Foundation.swift" /* Foundation/Node+Foundation.swift */; };
+		__src_cc_ref_Tests/Genome/BasicTypes.swift /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */; };
+		__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */; };
+		__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */; };
 		__src_cc_ref_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */; };
+		__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */; };
+		__src_cc_ref_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */; };
+		__src_cc_ref_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */; };
+		__src_cc_ref_Tests/Genome/TransformTests.swift /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		80DFC5581CC31BD700496A08 /* PBXContainerItemProxy */ = {
+		8036426B1CD02FCB00CF2464 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
@@ -48,18 +48,18 @@
 /* Begin PBXFileReference section */
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = /Users/loganwright/Dropbox/Programming/xCode/Genome/Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/BackingDataType/BackingDataType.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Core/Mapping/Map.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Map.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/MappableObject.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Core/Mapping/SettableOperator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Core/Mapping/StandardOperators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/SettableOperator.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/StandardOperators.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Transformers.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node/Node+KeyPaths.swift"; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/Node.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeConvertibleType.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeRepresentation.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/CollectionInitializers.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Core/Utility/Errors.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		__PBXFileRef_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Core/Utility/KeyType.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Errors.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/KeyType.swift /* Core/Utility/KeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/KeyType.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Logging.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/Genome/Foundation/BackingDataType+Foundation.swift" /* Foundation/BackingDataType+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation/BackingDataType+Foundation.swift"; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Foundation/Foundation.swift /* Foundation/Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foundation/Foundation.swift; sourceTree = "<group>"; };
@@ -67,13 +67,13 @@
 		__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromNodeOperatorTest.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GenomeSwiftTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		__PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenomeSwiftTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettableOperatorTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableOperatorTest.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		"_____Product_Genome" /* libGenome.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenome.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = GenomeTestSuite.xctest; path = Genome.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeTestSuite" /* Genome.testsuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = Genome.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */,
+				"_____Product_GenomeTestSuite" /* Genome.testsuite.xctest */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -220,7 +220,7 @@
 			);
 			name = Genome.testsuite;
 			productName = GenomeTestSuite;
-			productReference = "_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */;
+			productReference = "_____Product_GenomeTestSuite" /* Genome.testsuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -278,14 +278,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				80DFC5591CC3247800496A08 /* BasicTypes.swift in Sources */,
+				__src_cc_ref_Tests/Genome/BasicTypes.swift /* BasicTypes.swift in Sources */,
+				__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift in Sources */,
+				__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift in Sources */,
 				__src_cc_ref_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift in Sources */,
-				80DFC55A1CC3247800496A08 /* DictionaryKeyPathTests.swift in Sources */,
-				80DFC55D1CC3247800496A08 /* SettableOperatorTest.swift in Sources */,
-				80DFC55C1CC3247800496A08 /* NodeDataTypeTest.swift in Sources */,
-				80DFC55B1CC3247800496A08 /* FromNodeOperatorTest.swift in Sources */,
-				80DFC55F1CC3247800496A08 /* TransformTests.swift in Sources */,
-				80DFC55E1CC3247800496A08 /* ToNodeOperatorTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/TransformTests.swift /* TransformTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +295,7 @@
 		__Dependency_Genome /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_Genome" /* Genome */;
-			targetProxy = 80DFC5581CC31BD700496A08 /* PBXContainerItemProxy */;
+			targetProxy = 8036426B1CD02FCB00CF2464 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

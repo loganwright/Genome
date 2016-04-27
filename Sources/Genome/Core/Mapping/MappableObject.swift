@@ -22,7 +22,7 @@ extension MappableBase {
         return map.node
     }
     
-    public init<T: BackingData>(node data: T, context: Context = EmptyNode) throws {
+    public init<T: BackingData>(node data: T, in context: Context = EmptyNode) throws {
         let node = try data.toNode()
         self = try Self.init(with: node, in: context)
     }
@@ -47,7 +47,7 @@ extension MappableObject {
     }
 
     public init(with node: Node, in context: Context = EmptyNode) throws {
-        let map = Map(node: node, context: context)
+        let map = Map(with: node, in: context)
         try self.init(with: map)
     }
 }
