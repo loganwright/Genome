@@ -14,9 +14,10 @@
 		__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */; };
-		"__src_cc_ref_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */; };
+		"__src_cc_ref_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */; };
-		__src_cc_ref_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */; };
@@ -36,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8036426B1CD02FCB00CF2464 /* PBXContainerItemProxy */ = {
+		8036426E1CD0644200CF2464 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
@@ -53,9 +54,10 @@
 		__PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/SettableOperator.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/StandardOperators.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Transformers.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node/Node+KeyPaths.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node/Node+Subscripting.swift"; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/Node.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeConvertibleType.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeConvertible.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeIndexable.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/NodeRepresentation.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/CollectionInitializers.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Errors.swift; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 		__PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		"_____Product_Genome" /* libGenome.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenome.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_GenomeTestSuite" /* Genome.testsuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = Genome.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = GenomeTestSuite.xctest; path = Genome.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +107,7 @@
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_____Product_GenomeTestSuite" /* Genome.testsuite.xctest */,
+				"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -150,9 +152,10 @@
 				__PBXFileRef_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift */,
 				__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */,
 				__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */,
-				"__PBXFileRef_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift */,
+				"__PBXFileRef_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift */,
 				__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */,
-				__PBXFileRef_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift */,
+				__PBXFileRef_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift */,
+				__PBXFileRef_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift */,
 				__PBXFileRef_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift */,
 				__PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */,
 				__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */,
@@ -220,7 +223,7 @@
 			);
 			name = Genome.testsuite;
 			productName = GenomeTestSuite;
-			productReference = "_____Product_GenomeTestSuite" /* Genome.testsuite.xctest */;
+			productReference = "_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -263,9 +266,10 @@
 				__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */,
-				"__src_cc_ref_Sources/Genome/Core/Node/Node+KeyPaths.swift" /* Core/Node/Node+KeyPaths.swift in Sources */,
+				"__src_cc_ref_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */,
-				__src_cc_ref_Sources/Genome/Core/Node/NodeConvertibleType.swift /* Core/Node/NodeConvertibleType.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
@@ -295,7 +299,7 @@
 		__Dependency_Genome /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_Genome" /* Genome */;
-			targetProxy = 8036426B1CD02FCB00CF2464 /* PBXContainerItemProxy */;
+			targetProxy = 8036426E1CD0644200CF2464 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

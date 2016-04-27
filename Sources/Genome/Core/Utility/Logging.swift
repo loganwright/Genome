@@ -10,7 +10,7 @@
 public var loggers: [ErrorProtocol -> Void] = [defaultLogger]
 
 private func defaultLogger(error: ErrorProtocol) {
-    print(error)
+    print("Genome.Error.\(error)")
 }
 
 extension ErrorProtocol {

@@ -218,14 +218,40 @@ class SettableOperatorTest: XCTestCase {
         let emptyPersons: [Person]? = try! <~map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
-    
+
+    func testDictionaryUnableToConvert() {
+        do {
+            let _: [String : Person] = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch Error.unableToConvert(node: _, targeting: _, path: let path) {
+            XCTAssert(path.count == 1)
+            XCTAssert(path.first as? String == "int")
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+        }
+    }
+
+    func testDictArrayUnableToConvert() {
+        // Unexpected Type - Mappable Dictionary of Arrays
+        do {
+            let _: [String : [Person]] = try <~map["int"]
+            XCTFail("Incorrect type should throw error")
+        } catch Error.unableToConvert(node: _, targeting: _, path: let path) {
+            XCTAssert(path.count == 1)
+            XCTAssert(path.first as? String == "int")
+        } catch {
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
+        }
+    }
+
     func testThatValueExistsButIsNotTheTypeExpectedNonOptional() {
         // Unexpected Type - Basic
         do {
             let _: String = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(_) {
-
+        } catch Error.unableToConvert(node: _, targeting: _, path: let path) {
+            XCTAssert(path.count == 1)
+            XCTAssert(path.first as? String == "int")
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
         }
@@ -247,7 +273,7 @@ class SettableOperatorTest: XCTestCase {
         } catch Error.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unexpected)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
         }
 
         // Unexpected Type - Mappable Array of Arrays
@@ -257,27 +283,7 @@ class SettableOperatorTest: XCTestCase {
         } catch Error.foundNil(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unexpected)")
-        }
-
-        // Unexpected Type - Mappable Dictionary
-        do {
-            let _: [String : Person] = try <~map["int"]
-            XCTFail("Incorrect type should throw error")
-        } catch Error.unexpected(_) {
-            
-        } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unexpected)")
-        }
-
-        // Unexpected Type - Mappable Dictionary of Arrays
-        do {
-            let _: [String : [Person]] = try <~map["int"]
-            XCTFail("Incorrect type should throw error")
-        } catch Error.unexpected(_) {
-            
-        } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unexpected)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
         }
         
         // Unexpected Type - Transformable
@@ -343,20 +349,20 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unexpected(_) {
+        } catch Error.unableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
         }
         
         // Unexpected Value - Mappable Dictionary of Arrays
         do {
             let _: [String : [Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unexpected(_) {
+        } catch Error.unableToConvert(_) {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
         }
 
         // Unexpected Input Type (nil) - Transformable

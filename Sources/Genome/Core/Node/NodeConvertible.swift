@@ -41,6 +41,15 @@ public protocol NodeConvertible {
      to a context outside of the json ecosystem
      */
     init(with node: Node, in context: Context) throws
+    // TODO: Should with be from?
+    
+    /**
+     Turn the convertible back into a node
+
+     - throws: if convertible can not create a Node
+
+     - returns: a node if possible
+     */
     func toNode() throws -> Node
 }
 

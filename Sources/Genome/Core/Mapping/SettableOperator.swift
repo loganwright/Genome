@@ -120,95 +120,131 @@ extension Map {
     }
 }
 
-/// ****
+// MARK: Settable Operators
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T? {
     try map.enforceFromNode()
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
-    return try <~map as T
+    return try execute(with: map,
+                       body: <~map as T)
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [T]? {
     try map.enforceFromNode()
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
-    return try <~map as [T]
+    return try execute(with: map,
+                       body: <~map as [T])
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [[T]]? {
     try map.enforceFromNode()
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
-    return try <~map as [[T]]
+    return try execute(with: map,
+                       body: <~map as [[T]])
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T]? {
     try map.enforceFromNode()
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
-    return try <~map as [String : T]
+    return try execute(with: map,
+                       body: <~map as [String : T])
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]]? {
     try map.enforceFromNode()
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
-    return try <~map as [String : [T]]
+    return try execute(with: map,
+                       body: <~map as [String : [T]])
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T>? {
     try map.enforceFromNode()
     guard let _ = map.result else { return nil } // Ok for Optionals to return nil
-    return try <~map as Set<T>
+    return try execute(with: map,
+                       body: <~map as Set<T>)
 }
 
 // MARK: Non-Optional Casters
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T {
     let result = try map.enforceResult(targeting: T.self)
-    return try T.init(with: result, in: map.context)
+    return try execute(with: map,
+                       body: T.init(with: result, in: map.context))
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [T] {
     let result = try map.enforceResult(targeting: [T].self)
-    return try [T].init(with: result, in: map.context)
+    return try execute(with: map,
+                       body: [T].init(with: result, in: map.context))
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T> {
     let result = try map.enforceResult(targeting: T.self)
-    let mapped = try [T].init(with: result, in: map.context)
+    let mapped = try execute(with: map,
+                             body: [T].init(with: result, in: map.context))
     return Set<T>(mapped)
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [[T]] {
     let result = try map.enforceResult(targeting: [[T]].self)
     let array = result.arrayOfArrays
-    return try array.map { try [T].init(with: $0, in: map.context) }
+    return try execute(with: map,
+                       body: array.map { try [T].init(with: $0, in: map.context) })
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T] {
-    let nodeDictionary = try map.expectNodeDictionary(targeting: [String : T].self)
+    let nodeDictionary = try execute(with: map,
+                                     body: map.expectNodeDictionary(targeting: [String : T].self))
     
     var mapped: [String : T] = [:]
     for (key, value) in nodeDictionary {
-        let mappedValue = try T.init(with: value, in: map.context)
-        mapped[key] = mappedValue
+        mapped[key] = try execute(with: map,
+                                  body: T.init(with: value, in: map.context))
     }
     return mapped
 }
 
 public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]] {
-    let nodeDictionaryOfArrays = try map.expectNodeDictionary(targeting: [String : [T]].self)
+    let type = [String : [T]].self
+    let nodeDictionaryOfArrays = try execute(with: map,
+                                             body: map.expectNodeDictionary(targeting: type))
 
-    var mappedDictionaryOfArrays: [String : [T]] = [:]
+    var mapped: [String : [T]] = [:]
     for (key, value) in nodeDictionaryOfArrays {
-        let mappedValue = try [T].init(with: value, in: map.context)
-        mappedDictionaryOfArrays[key] = mappedValue
+        mapped[key] = try execute(with: map,
+                                  body: [T].init(with: value, in: map.context))
     }
-    return mappedDictionaryOfArrays
+    return mapped
 }
 
 // MARK: Transformables
 
 public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeTransformer<NodeInputType, T>) throws -> T {
     try transformer.map.enforceFromNode()
-    return try transformer.transform(transformer.map.result)
+    return try execute(with: transformer.map,
+                       body: transformer.transform(transformer.map.result))
+}
+
+// MARK: Error Metadata
+
+/**
+ Used to wrap failable operations so that a given key path can be specified in error
+
+ - parameter map:  map being used in operation
+ - parameter body: the failable function to append metadata to
+
+ - throws: an error if body fails
+
+ - returns: the underlying value if possible
+ */
+private func execute<T>(with map: Map, body: @autoclosure Void throws -> T) throws -> T {
+    do {
+        return try body()
+    } catch let e as Error {
+        throw e.appendLastKeyPath(map.lastKey)
+    } catch {
+        throw error
+    }
 }
 
 // MARK: Enforcers
@@ -227,7 +263,6 @@ extension Map {
                                         expected: T.self)
         }
     }
-
 }
 
 extension Map {
@@ -236,10 +271,7 @@ extension Map {
         if let j = result.objectValue {
             return j
         } else {
-            throw ErrorFactory.unexpectedValue(got: result,
-                                               expected: [String : Node].self,
-                                               for: lastKey,
-                                               target: T.self)
+            throw ErrorFactory.unableToConvert(result, to: T.self)
         }
     }
 }
