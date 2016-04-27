@@ -132,7 +132,7 @@ private func execute<T>(with map: Map, body: @autoclosure Void throws -> T) thro
     do {
         return try body()
     } catch let e as Error {
-        throw e.appendLastKeyPath(map.lastKey)
+        throw e.appendLastKeyPath(map.lastPath)
     } catch {
         throw error
     }
@@ -150,7 +150,7 @@ extension Map {
         if let result = self.result {
             return result
         } else {
-            throw ErrorFactory.foundNil(for: lastKey,
+            throw ErrorFactory.foundNil(for: lastPath,
                                         expected: T.self)
         }
     }

@@ -32,9 +32,8 @@ public final class Map {
     
     // MARK: Private
 
-    // TODO: Rename
     /// The last key accessed -- Used to reverse Node Operations
-    internal private(set) var lastKey: [NodeIndexable] = []
+    internal private(set) var lastPath: [NodeIndexable] = []
     
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: Node? {
@@ -105,7 +104,7 @@ extension Map {
      :returns: returns an instance of self that can be passed to the mappable operator
      */
     public subscript(keys: [NodeIndexable]) -> Map {
-        lastKey = keys
+        lastPath = keys
         result = node[keys]
         return self
     }
@@ -124,7 +123,7 @@ extension Map {
     internal func setToLastPath(_ newValue: Node?) throws {
         try type.assert(equals: .toNode)
         guard let newValue = newValue else { return }
-        node[lastKey] = newValue
+        node[lastPath] = newValue
     }
 
     internal func setToLastPath<T : NodeConvertible>(_ any: T?) throws {
