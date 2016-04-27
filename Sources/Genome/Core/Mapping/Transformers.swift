@@ -18,7 +18,7 @@ public class Transformer<InputType, OutputType> {
         self.map = map
         self.transformer = { [weak map] input in
             guard let unwrapped = input else {
-                let key = map?.lastKey ?? "unknown"
+                let key = map?.lastKey ?? ["unknown"]
                 throw ErrorFactory.foundNil(for: key,
                                             expected: InputType.self)
             }

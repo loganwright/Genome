@@ -10,24 +10,24 @@
 public enum Error: ErrorProtocol {
     case unableToConvert(node: Node, to: String)
     case unexpectedOperation(got: Map.OperationType, expected: Map.OperationType)
-    case foundNil(key: Key, expected: String)
-    case unexpected(value: Any, key: Key, expectedType: String, targetType: String)
+    case foundNil(path: [NodeIndexable], expected: String)
+    case unexpected(value: Any, path: [NodeIndexable], expectedType: String, targetType: String)
 }
 
 internal struct ErrorFactory {
     static func unexpectedValue<T,U>(got value: Any,
                                 expected: T.Type,
-                                for key: Key,
+                                for path: [NodeIndexable],
                                 target: U.Type) -> Error {
         let error = Error.unexpected(value: value,
-                                     key: key,
+                                     path: path,
                                      expectedType: "\(expected)",
                                      targetType: "\(target)")
         return error.logged()
     }
 
-    static func foundNil<T>(for key: Key, expected: T.Type) -> Error {
-        let error = Error.foundNil(key: key,
+    static func foundNil<T>(for path: [NodeIndexable], expected: T.Type) -> Error {
+        let error = Error.foundNil(path: path,
                                    expected: "\(T.self)")
         return error.logged()
     }

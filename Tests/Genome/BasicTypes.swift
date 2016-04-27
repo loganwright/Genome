@@ -9,7 +9,6 @@
 import XCTest
 import Foundation
 
-//import PureJsonSerializer
 @testable import Genome
 
 class BasicTypeTexts: XCTestCase {
@@ -164,3 +163,42 @@ class BasicTypeTexts: XCTestCase {
     }
 }
 
+class NodeIndexable: XCTestCase {
+    func testInt() {
+        let array: Node = ["one",
+                           "two",
+                           "three"]
+        XCTAssert(array[1] == "two")
+    }
+
+    func testString() {
+        let object: Node = ["a" : 1]
+        XCTAssert(object["a"] == 1)
+    }
+
+    func testStringSequenceObject() {
+        let ob: Node = ["key" : ["path" : "found me!"]]
+        XCTAssert(ob["key", "path"] == "found me!")
+    }
+
+    func testStringSequenceArray() {
+        let obArray: Node = [["a" : 0],
+                             ["a" : 1],
+                             ["a" : 2],
+                             ["a" : 3]]
+        let collection = obArray["a"]
+        XCTAssert(collection == [0,1,2,3])
+    }
+
+    func testIntSequence() {
+        let inner: Node = ["...",
+                           "found me!"]
+        let outer: Node = [inner]
+        XCTAssert(outer[0, 1] == "found me!")
+    }
+
+    func testMixed() {
+        let mixed: Node = ["one" : ["a", "b", "c"]]
+        XCTAssert(mixed["one", 1] == "b")
+    }
+}

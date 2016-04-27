@@ -365,38 +365,6 @@ extension Node {
     }
 }
 
-extension Node {
-    public subscript(index: Int) -> Node? {
-        get {
-            guard let array = arrayValue where index < array.count else { return nil }
-            return array[index]
-        }
-        set {
-            guard let array = arrayValue where index < array.count else { return }
-            var mutable = array
-            if let new = newValue {
-                mutable[index] = new
-            } else {
-                mutable.remove(at: index)
-            }
-            self = .array(mutable)
-        }
-    }
-    
-    public subscript(key: String) -> Node? {
-        get {
-            guard let dict = objectValue else { return nil }
-            return dict[key]
-        }
-        set {
-            guard let object = objectValue else { fatalError("Unable to set string subscript on non-object type!") }
-            var mutableObject = object
-            mutableObject[key] = newValue
-            self = Node(mutableObject)
-        }
-    }
-}
-
 extension Node: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {

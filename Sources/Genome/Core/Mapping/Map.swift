@@ -31,9 +31,10 @@ public final class Map {
     public private(set) var node: Node
     
     // MARK: Private
-    
+
+    // TODO: Rename
     /// The last key accessed -- Used to reverse Node Operations
-    internal private(set) var lastKey: Key = .path("")
+    internal private(set) var lastKey: [NodeIndexable] = []
     
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: Node? {
@@ -92,31 +93,38 @@ extension Map {
 
      :returns: returns an instance of self that can be passed to the mappable operator
      */
-    public subscript(key: Key) -> Map {
-        lastKey = key
-        switch key {
-        case let .standard(k):
-            result = node[k]
-        case let .path(path):
-            result = node.get(forKeyPath: path)
-        }
+    public subscript(keys: NodeIndexable...) -> Map {
+        return self[keys]
+    }
+
+    /**
+     Basic subscripting
+
+     :param: keyPath the keypath to use when getting the value from the backing node
+
+     :returns: returns an instance of self that can be passed to the mappable operator
+     */
+    public subscript(keys: [NodeIndexable]) -> Map {
+        lastKey = keys
+        result = node[keys]
         return self
+    }
+
+    public subscript(path path: String) -> Map {
+        let components = path
+            .components(separatedBy: ".")
+            .map { $0 as NodeIndexable }
+        return self[components]
     }
 }
 
 // MARK: Setting
 
 extension Map {
-    internal func setToLastKey(_ node: Node?) throws {
+    internal func setToLastKey(_ newValue: Node?) throws {
         try type.assert(equals: .toNode)
-        guard let node = node else { return }
-
-        switch lastKey {
-        case let .standard(key):
-            self.node[key] = node
-        case let .path(keyPath):
-            self.node.set(val: node, forKeyPath: keyPath)
-        }
+        guard let newValue = newValue else { return }
+        node[lastKey] = newValue
     }
 
     internal func setToLastKey<T : NodeConvertible>(_ any: T?) throws {

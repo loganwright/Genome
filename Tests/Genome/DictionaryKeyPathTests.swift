@@ -20,11 +20,18 @@ class DictionaryKeyPathTests: XCTestCase {
         
         var node = Node(TestDictionary)
 
-        let value: String! = node.get(forKeyPath: "one.two")?.stringValue
+        let value: String! = node["one", "two"]?.stringValue
         XCTAssert(value == "Found me!")
-        node.set(val: "Hello!", forKeyPath: "path.to.new.value")
-        let setVal: String! = node.get(forKeyPath: "path.to.new.value")?.stringValue
+        node["path", "to", "new", "value"] = "Hello!"
+        let setVal: String! = node["path", "to", "new", "value"]?.stringValue//node.get(forKeyPath: "path.to.new.value")?.stringValue
         XCTAssert(setVal == "Hello!")
+
+// TODO: Make warning for these!
+//        let value: String! = node.get(forKeyPath: "one.two")?.stringValue
+//        XCTAssert(value == "Found me!")
+//        node.set(val: "Hello!", forKeyPath: "path.to.new.value")
+//        let setVal: String! = node.get(forKeyPath: "path.to.new.value")?.stringValue
+//        XCTAssert(setVal == "Hello!")
     }
     
 }
