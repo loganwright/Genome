@@ -357,7 +357,7 @@ extension Node {
             
             // If our string has value, and the object doesn't,
             // didn't have an object string
-            if !s.isEmpty && mutable.isEmpty { return nil }
+            if mutable.isEmpty { return nil }
             return mutable
         } else {
             return nil
@@ -403,7 +403,6 @@ extension Node: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Node: Equatable {}
 
-// TODO: Decide if equality should be fuzzy or strict, or possibly a separate toggle
 public func ==(lhs: Node, rhs: Node) -> Bool {
     switch typeEnforcementLevel {
     case .strict:
@@ -516,15 +515,13 @@ extension Node: DictionaryLiteralConvertible {
     }
 }
 
-// MARK: HELPERS
+// MARK: Utility
 
-
-// TODO: Break Out
 extension Bool {
     /**
      This function seeks to replicate the expected behavior of `var boolValue: Bool` on `NSString`.  Any variant of `yes`, `y`, `true`, `t`, or any numerical value greater than 0 will be considered `true`
      */
-    public init(_ string: String) {
+    private init(_ string: String) {
         let cleaned = string
             .lowercased()
             .characters
@@ -550,7 +547,7 @@ extension String {
      
      - returns: String dictionary of parsed data
      */
-    internal func keyValuePairs() -> [String: String] {
+    private func keyValuePairs() -> [String: String] {
         var data: [String: String] = [:]
         
         for pair in self.split(separator: "&") {
@@ -569,7 +566,9 @@ extension String {
 // FROM: Zewo - String
 
 extension String {
-    public func split(separator: Character, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [String] {
+    private func split(separator: Character,
+                      maxSplits: Int = .max,
+                      omittingEmptySubsequences: Bool = true) -> [String] {
         return characters
             .split(separator: separator,
                    maxSplits: maxSplits,
