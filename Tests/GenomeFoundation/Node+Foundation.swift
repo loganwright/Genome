@@ -8,8 +8,7 @@
 
 import XCTest
 import Foundation
-
-@testable import Genome
+@testable import GenomeFoundation
 
 class NodeFoundationTests: XCTestCase {
     func testFoundationBool() throws {

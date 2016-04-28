@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Fuji Goro. All rights reserved.
 //
 
+import Genome
 import Foundation
 
 extension Node {

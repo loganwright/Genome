@@ -111,7 +111,7 @@ extension Map {
 
     public subscript(path path: String) -> Map {
         let components = path
-            .components(separatedBy: ".")
+            .keyPathComponents()
             .map { $0 as NodeIndexable }
         return self[components]
     }

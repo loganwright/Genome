@@ -8,6 +8,28 @@ let package = Package(
     exclude: [
         "Sources/Genome/CoreData",
         "Sources/Genome/Json"
+    ],
+    targets: [
+        Target(
+            name: "Genome",
+            dependencies: [
+            ]
+        ),
+        Target(
+            name: "GenomeFoundation",
+            dependencies: [
+                .Target(name: "Genome")
+            ]
+        ),
+        // Target(
+        //     name: "Performance",
+        //     dependencies: [
+        //         .Target(name: "Vapor")
+        //     ]
+        // ),
+        // Target(
+        //     name: "Generator"
+        // )
     ]
 )
 

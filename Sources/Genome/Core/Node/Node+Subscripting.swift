@@ -70,11 +70,11 @@ extension Node {
 extension Node {
     public subscript(path path: String) -> Node? {
         get {
-            let comps = path.components(separatedBy: ".")
+            let comps = path.characters.split(separator: ".").map(String.init)
             return self[comps]
         }
         set {
-            let comps = path.components(separatedBy: ".")
+            let comps = path.keyPathComponents()
             self[comps] = newValue
         }
     }
@@ -124,10 +124,13 @@ extension Node {
      - parameter indexes: indexes to check
      */
     private func warnKeypathChangeIfNecessary(indexes: [String]) {
-        guard indexes.count == 1, let first = indexes.first where first.contains(".") else {
-            return
-        }
-        let components = first.components(separatedBy: ".").joined(separator: ", ")
+        guard
+            indexes.count == 1,
+            let first = indexes.first
+            where first.characters.contains(".")
+            else { return }
+
+        let components = first.keyPathComponents().joined(separator: ", ")
         let suggestion = "node[\(components)]"
         print("***[WARNING]***\n")
         print("\tKeypath access has changed")
@@ -142,4 +145,12 @@ extension Node {
         print("\n***************")
     }
     #endif
+}
+
+extension String {
+    internal func keyPathComponents() -> [String] {
+        return characters
+            .split(separator: ".")
+            .map(String.init)
+    }
 }

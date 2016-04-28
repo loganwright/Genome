@@ -7,6 +7,7 @@
 //
 //  MIT
 
+@_exported import Genome
 import Foundation
 
 extension MappableObject {
