@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+import Foundation
 @testable import Genome
 
 // MARK: Side Load Tests 
