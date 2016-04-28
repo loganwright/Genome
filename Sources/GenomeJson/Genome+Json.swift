@@ -6,7 +6,7 @@
 //  Copyright © 2016 lowriDevs. All rights reserved.
 //
 
-import PureJson
+@_exported import PureJson
 @_exported import Genome
 
 // MARK: BackingData

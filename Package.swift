@@ -28,9 +28,13 @@ let package = Package(
                 //  .Package(url: "../Swift-PureJsonSerializer", majorVersion: 2)
              ]
          ),
-        // Target(
-        //     name: "Generator"
-        // )
+          Target(
+              name: "GenomeCoreData",
+              dependencies: [
+                 .Target(name: "GenomeFoundation"),
+                 .Target(name: "Genome")
+              ]
+          ),
     ]
 )
 

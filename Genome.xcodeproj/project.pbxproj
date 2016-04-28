@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		800482AF1CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
-		800482B01CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
-		800482B11CD198EC00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
-		800482B21CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
-		800482B31CD198EC00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
-		800482B41CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
-		800482B51CD198EC00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
+		800482B91CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
+		800482BA1CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
+		800482BB1CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
+		800482BC1CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
+		800482BD1CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
+		800482BE1CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
+		800482BF1CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
+		800482C01CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
+		800482C11CD19A6E00F6A4EE /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
+		800482C21CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
 		_LinkFileRef_Genome /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
 		_LinkFileRef_GenomeFoundation /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_PureJson /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
@@ -37,6 +40,7 @@
 		__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */; };
+		__src_cc_ref_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */; };
 		__src_cc_ref_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift */; };
 		"__src_cc_ref_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */; };
 		"__src_cc_ref_Sources/GenomeJson/Genome+Json.swift" /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/GenomeJson/Genome+Json.swift" /* Genome+Json.swift */; };
@@ -53,26 +57,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		800482B61CD198EC00F6A4EE /* PBXContainerItemProxy */ = {
+		800482C31CD19A6E00F6A4EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "______Target_PureJson";
 			remoteInfo = PureJson;
 		};
-		800482B71CD198EC00F6A4EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "______Target_Genome";
-			remoteInfo = Genome;
-		};
-		800482B81CD198EC00F6A4EE /* PBXContainerItemProxy */ = {
+		800482C41CD19A6E00F6A4EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "______Target_GenomeFoundation";
 			remoteInfo = GenomeFoundation;
+		};
+		800482C51CD19A6E00F6A4EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Genome";
+			remoteInfo = Genome;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -98,6 +102,7 @@
 		__PBXFileRef_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/CollectionInitializers.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Errors.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Logging.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Foundation.swift"; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/GenomeJson/Genome+Json.swift" /* Genome+Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Genome+Json.swift"; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Tests/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Foundation.swift"; sourceTree = "<group>"; };
 		"_____Product_Genome" /* libGenome.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenome.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeCoreData" /* GenomeCoreData.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = GenomeCoreData.dylib; path = libGenomeCoreData.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenomeFoundation.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = GenomeFoundationTestSuite.xctest; path = GenomeFoundation.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_GenomeJson" /* GenomeJson.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = GenomeJson.dylib; path = libGenomeJson.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,11 +134,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		"___LinkPhase_GenomeCoreData" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				800482B91CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */,
+				_LinkFileRef_GenomeFoundation /* libGenomeFoundation.dylib in Frameworks */,
+				800482BA1CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		"___LinkPhase_GenomeFoundation" /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				800482AF1CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */,
+				800482BB1CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */,
 				_LinkFileRef_Genome /* libGenome.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,9 +157,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				800482B41CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */,
-				_LinkFileRef_GenomeFoundation /* libGenomeFoundation.dylib in Frameworks */,
-				800482B51CD198EC00F6A4EE /* libGenome.dylib in Frameworks */,
+				800482C01CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */,
+				800482C11CD19A6E00F6A4EE /* libGenomeFoundation.dylib in Frameworks */,
+				800482C21CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,8 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				800482B01CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */,
-				800482B11CD198EC00F6A4EE /* libGenome.dylib in Frameworks */,
+				800482BC1CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */,
+				800482BD1CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +176,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				800482B21CD198EC00F6A4EE /* libPureJson.dylib in Frameworks */,
-				800482B31CD198EC00F6A4EE /* libGenome.dylib in Frameworks */,
+				800482BE1CD19A6E00F6A4EE /* libPureJson.dylib in Frameworks */,
+				800482BF1CD19A6E00F6A4EE /* libGenome.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +225,7 @@
 				TestProducts_ /* Tests */,
 				"_____Product_PureJson" /* libPureJson.dylib */,
 				"_____Product_Genome" /* libGenome.dylib */,
+				"_____Product_GenomeCoreData" /* GenomeCoreData.dylib */,
 				"_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */,
 				"_____Product_GenomeJson" /* GenomeJson.dylib */,
 			);
@@ -219,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				"_______Group_Genome" /* Genome */,
+				"_______Group_GenomeCoreData" /* GenomeCoreData */,
 				"_______Group_GenomeFoundation" /* GenomeFoundation */,
 				"_______Group_GenomeJson" /* GenomeJson */,
 			);
@@ -246,6 +264,15 @@
 			);
 			name = Genome;
 			path = Sources/Genome;
+			sourceTree = "<group>";
+		};
+		"_______Group_GenomeCoreData" /* GenomeCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */,
+			);
+			name = GenomeCoreData;
+			path = Sources/GenomeCoreData;
 			sourceTree = "<group>";
 		};
 		"_______Group_GenomeFoundation" /* GenomeFoundation */ = {
@@ -333,6 +360,25 @@
 			name = Genome;
 			productName = Genome;
 			productReference = "_____Product_Genome" /* libGenome.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_GenomeCoreData" /* GenomeCoreData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_GenomeCoreData" /* Build configuration list for PBXNativeTarget "GenomeCoreData" */;
+			buildPhases = (
+				CompilePhase_GenomeCoreData /* Sources */,
+				"___LinkPhase_GenomeCoreData" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PureJson /* PBXTargetDependency */,
+				__Dependency_GenomeFoundation /* PBXTargetDependency */,
+				__Dependency_Genome /* PBXTargetDependency */,
+			);
+			name = GenomeCoreData;
+			productName = GenomeCoreData;
+			productReference = "_____Product_GenomeCoreData" /* GenomeCoreData.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		"______Target_GenomeFoundation" /* GenomeFoundation */ = {
@@ -447,6 +493,7 @@
 			targets = (
 				"______Target_PureJson" /* PureJson */,
 				"______Target_Genome" /* Genome */,
+				"______Target_GenomeCoreData" /* GenomeCoreData */,
 				"______Target_GenomeFoundation" /* GenomeFoundation */,
 				"______Target_GenomeJson" /* GenomeJson */,
 				"______Target_GenomeTestSuite" /* Genome.testsuite */,
@@ -475,6 +522,14 @@
 				__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_GenomeCoreData /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,17 +592,17 @@
 		__Dependency_Genome /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_Genome" /* Genome */;
-			targetProxy = 800482B71CD198EC00F6A4EE /* PBXContainerItemProxy */;
+			targetProxy = 800482C51CD19A6E00F6A4EE /* PBXContainerItemProxy */;
 		};
 		__Dependency_GenomeFoundation /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_GenomeFoundation" /* GenomeFoundation */;
-			targetProxy = 800482B81CD198EC00F6A4EE /* PBXContainerItemProxy */;
+			targetProxy = 800482C41CD19A6E00F6A4EE /* PBXContainerItemProxy */;
 		};
 		__Dependency_PureJson /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_PureJson" /* PureJson */;
-			targetProxy = 800482B61CD198EC00F6A4EE /* PBXContainerItemProxy */;
+			targetProxy = 800482C31CD19A6E00F6A4EE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -564,6 +619,22 @@
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_MODULE_NAME = Genome;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeCoreData /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = GenomeCoreData;
 				PRODUCT_NAME = "lib$(TARGET_NAME)";
 			};
 			name = Release;
@@ -658,6 +729,23 @@
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_MODULE_NAME = Genome;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_GenomeCoreData" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = GenomeCoreData;
 				PRODUCT_NAME = "lib$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -775,6 +863,15 @@
 			buildConfigurations = (
 				"___DebugConf_Genome" /* Debug */,
 				_ReleaseConf_Genome /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_GenomeCoreData" /* Build configuration list for PBXNativeTarget "GenomeCoreData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_GenomeCoreData" /* Debug */,
+				_ReleaseConf_GenomeCoreData /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -42,6 +42,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "______Target_GenomeCoreData"
+               BuildableName = "libGenomeCoreData.dylib"
+               BlueprintName = "GenomeCoreData"
+               ReferencedContainer = "container:Genome.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_GenomeFoundation"
                BuildableName = "libGenomeFoundation.dylib"
                BlueprintName = "GenomeFoundation"

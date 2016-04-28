@@ -1,9 +1,12 @@
-import CoreData
+#if xcode
 
+import CoreData
+@_exported import Genome
+    
 extension NSManagedObjectContext : Context {}
 
-public class ManagedObject: NSManagedObject, MappableBase {
-    
+public class ManagedObject: NSManagedObject, Genome.MappableBase {
+
     public enum Error: ErrorProtocol {
         case ExpectedManagedObjectContext
         case UnableToCreateObject
@@ -21,29 +24,35 @@ public class ManagedObject: NSManagedObject, MappableBase {
     
     // MARK: Sequence
     
-    public func sequence(map: Map) throws {}
+    public func sequence(_ map: Map) throws {}
 }
 
 extension MappableBase where Self: ManagedObject {
-    public init(node: Node, context: Context) throws {
-        let map = Map(node: node, context: context)
+    public init(with node: Node, in context: Context) throws {
+        let map = Map(with: node, in: context)
+        self = try make(type: Self.self, with: map)
+    }
+
+    public init(with convertible: NodeConvertible, in context: NSManagedObjectContext) throws {
+        let node = try convertible.toNode()
+        let map = Map(with: node, in: context)
         self = try make(type: Self.self, with: map)
     }
 }
 
 private func make<T: ManagedObject>(type: T.Type, with map: Map) throws -> T {
     guard let context = map.context as? NSManagedObjectContext else {
-        throw log(T.Error.ExpectedManagedObjectContext)
+        throw T.Error.ExpectedManagedObjectContext
     }
-    #if swift(>=3.0)
-        let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: context)
-    #else
-        let entity = NSEntityDescription.entityForName(T.entityName, inManagedObjectContext: context)
-    #endif
+
+    let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: context)
+
     guard let new = entity as? T else {
-        throw log(T.Error.UnableToCreateObject)
+        throw T.Error.UnableToCreateObject
     }
         
-    try new.sequence(map: map)
+    try new.sequence(map)
     return new
 }
+
+#endif
