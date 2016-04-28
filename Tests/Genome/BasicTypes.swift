@@ -7,11 +7,9 @@
 //
 
 import XCTest
-import Foundation
-
 @testable import Genome
 
-class BasicTypeTexts: XCTestCase {
+class BasicTypeTests: XCTestCase {
 
     let BasicTestNode: [String : Node] = [
         "int" : 1,
@@ -109,96 +107,5 @@ class BasicTypeTexts: XCTestCase {
         XCTAssert(doubles == [2.5])
         XCTAssert(bools == [true])
         XCTAssert(strings == ["hello"])
-    }
-
-    func testFoundationBool() throws {
-        let v = true
-        let n = Node(v as AnyObject)
-        XCTAssert(n.boolValue == v)
-    }
-
-    func testFoundationInt() throws {
-        let v = 235
-        let n = Node(v as AnyObject)
-        XCTAssert(n.intValue == v)
-    }
-
-    func testFoundationDouble() throws {
-        let v = 1.0
-        let n = Node(v as AnyObject)
-        XCTAssert(n.doubleValue == v)
-    }
-
-    func testFoundationString() throws {
-        let v = "hello foundation"
-        let n = Node(v as AnyObject)
-        XCTAssert(n.stringValue == v)
-    }
-
-    func testFoundationArray() throws {
-        let v = [1,2,3,4,5]
-        let n = Node(v as AnyObject)
-        let a = n.arrayValue ?? []
-        XCTAssert(a.flatMap { $0.intValue } == v)
-    }
-
-    func testFoundationObject() throws {
-        let v = [
-            "hello" : "world"
-        ]
-        let n = Node(v as AnyObject)
-        let o = n.objectValue ?? [:]
-        var mapped: [String : String] = [:]
-        o.forEach { key, val in
-            guard let str = val.stringValue else { return }
-            mapped[key] = str
-        }
-        XCTAssert(mapped == v)
-    }
-
-    func testFoundationNull() throws {
-        let v = NSNull()
-        let n = Node(v as AnyObject)
-        XCTAssert(n.isNull)
-    }
-}
-
-class NodeIndexable: XCTestCase {
-    func testInt() {
-        let array: Node = ["one",
-                           "two",
-                           "three"]
-        XCTAssert(array[1] == "two")
-    }
-
-    func testString() {
-        let object: Node = ["a" : 1]
-        XCTAssert(object["a"] == 1)
-    }
-
-    func testStringSequenceObject() {
-        let ob: Node = ["key" : ["path" : "found me!"]]
-        XCTAssert(ob["key", "path"] == "found me!")
-    }
-
-    func testStringSequenceArray() {
-        let obArray: Node = [["a" : 0],
-                             ["a" : 1],
-                             ["a" : 2],
-                             ["a" : 3]]
-        let collection = obArray["a"]
-        XCTAssert(collection == [0,1,2,3])
-    }
-
-    func testIntSequence() {
-        let inner: Node = ["...",
-                           "found me!"]
-        let outer: Node = [inner]
-        XCTAssert(outer[0, 1] == "found me!")
-    }
-
-    func testMixed() {
-        let mixed: Node = ["one" : ["a", "b", "c"]]
-        XCTAssert(mixed["one", 1] == "b")
     }
 }
