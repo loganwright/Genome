@@ -9,6 +9,7 @@
 import Genome
 import Foundation
 
+#if xcode
 extension Node {
     /**
      Attempt to initialize a node with a foundation object.
@@ -198,3 +199,4 @@ public extension Set where Element : NodeConvertible {
         self.init(array)
     }
 }
+#endif

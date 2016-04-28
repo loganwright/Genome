@@ -10,6 +10,7 @@
 @_exported import Genome
 import Foundation
 
+#if xcode
 extension MappableObject {
     public init(with node: AnyObject, in context: [String : AnyObject] = [:]) throws {
         try self.init(node: Node(node), in: context)
@@ -19,3 +20,4 @@ extension MappableObject {
         try self.init(node: Node(node), in: context)
     }
 }
+#endif
