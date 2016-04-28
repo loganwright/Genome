@@ -37,6 +37,3 @@ let package = Package(
           ),
     ]
 )
-
-let lib = Product(name: "Genome", type: .Library(.Dynamic), modules: "Genome")
-products.append(lib)
