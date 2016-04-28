@@ -9,228 +9,252 @@
 import XCTest
 import Genome
 
-class FromNodeOperatorTest: XCTestCase {
-    
-    struct Person: MappableObject, Hashable {
-        
-        let firstName: String
-        let lastName: String
-        
-        init() {
-            firstName = ""
-            lastName = ""
-        }
-        
-        init(firstName: String, lastName: String) {
-            self.firstName = firstName
-            self.lastName = lastName
-        }
-        
-        init(with map: Map) throws {
-            try firstName = map.extract("first_name")
-            try lastName = map.extract("last_name")
-        }
-        
-        mutating func sequence(_ map: Map) throws -> Void {
-            try firstName ~> map["first_name"]
-            try lastName ~> map["last_name"]
-        }
-        
-        var hashValue: Int {
-            return firstName.hashValue ^ lastName.hashValue
-        }
-        
+struct Person: MappableObject, Hashable {
+
+    let firstName: String
+    let lastName: String
+
+    init() {
+        firstName = ""
+        lastName = ""
     }
-    
-    let strings: Node = [
-        "one",
-        "two",
-        "tre"
+
+    init(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+
+    init(with map: Map) throws {
+        try firstName = map.extract("first_name")
+        try lastName = map.extract("last_name")
+    }
+
+    mutating func sequence(_ map: Map) throws -> Void {
+        try firstName ~> map["first_name"]
+        try lastName ~> map["last_name"]
+    }
+
+    var hashValue: Int {
+        return firstName.hashValue ^ lastName.hashValue
+    }
+
+}
+
+func ==(lhs: Person, rhs: Person) -> Bool {
+    return lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName
+}
+
+let strings: Node = [
+                        "one",
+                        "two",
+                        "tre"
+]
+
+let joeObject = Person(firstName: "Joe", lastName: "Fish")
+let joeNode: Node = [
+    "first_name" : "Joe",
+    "last_name" : "Fish"
+]
+
+let janeObject = Person(firstName: "Jane", lastName: "Bear")
+let janeNode: Node = [
+    "first_name" : "Jane",
+    "last_name" : "Bear"
+]
+
+let justinObject = Person(firstName: "Justin", lastName: "Badger")
+let justinNode: Node = [
+    "first_name" : "Justin",
+    "last_name" : "Badger"
+]
+
+let philObject = Person(firstName: "Phil", lastName:"Viper")
+let philNode: Node = [
+    "first_name" : "Phil",
+    "last_name" : "Viper"
+]
+
+let testNode: Node = [
+    "string" : "pass",
+    "int" : 272,
+    "strings" : ["one", "two", "three"],
+    "person" : joeNode,
+    "people" :  [joeNode, janeNode],
+    "duplicated_people" :  [joeNode, joeNode, janeNode],
+    "relationships" : [
+        "best_friend" : philNode,
+        "cousin" : justinNode
+    ],
+    "groups" : [
+        "boys" :  [joeNode, justinNode, philNode],
+        "girls" :  [janeNode]
+    ],
+    "ordered_groups" : [
+        [joeNode, justinNode, philNode],
+        [janeNode]
     ]
-    
-    let joeObject = Person(firstName: "Joe", lastName: "Fish")
-    let joeNode: Node = [
-        "first_name" : "Joe",
-        "last_name" : "Fish"
-    ]
-    
-    let janeObject = Person(firstName: "Jane", lastName: "Bear")
-    let janeNode: Node = [
-        "first_name" : "Jane",
-        "last_name" : "Bear"
-    ]
-    
-    let justinObject = Person(firstName: "Justin", lastName: "Badger")
-    let justinNode: Node = [
-        "first_name" : "Justin",
-        "last_name" : "Badger"
-    ]
-    
-    let philObject = Person(firstName: "Phil", lastName:"Viper")
-    let philNode: Node = [
-        "first_name" : "Phil",
-        "last_name" : "Viper"
-    ]
-    
-    lazy var node: [String : Node] = [
-        "string" : "pass",
-        "int" : 272,
-        "strings" : self.strings,
-        "person" : self.joeNode,
-        "people" : [self.joeNode, self.janeNode],
-        "duplicated_people" : [self.joeNode, self.joeNode, self.janeNode],
-        "relationships" : [
-            "best_friend" : self.philNode,
-            "cousin" : self.justinNode
-        ],
-        "groups" : [
-            "boys" : [self.joeNode, self.justinNode, self.philNode],
-            "girls" : [self.janeNode]
-        ],
-        "ordered_groups" : [
-            [self.joeNode, self.justinNode, self.philNode],
-            [self.janeNode]
-        ]
-    ]
-    
-    lazy var map: Map = Map(with: Node.object(self.node))
-    
-    func testBasicTypes() {
+]
+
+func makeTestMap() -> Map {
+    return Map(with: testNode)
+}
+
+class FromNodeOperatorTestBasic: XCTestCase {
+    let map = makeTestMap()
+
+    func testString() throws {
         var string = ""
-        try! string <~ map["string"]
+        try string <~ map["string"]
         XCTAssert(string == "pass")
-        
-        var optionalString: String?
-        try! optionalString <~ map["string"]
-        XCTAssert(optionalString! == "pass")
-        
-        var strings: [String] = []
-        try! strings <~ map["strings"]
-        XCTAssert(strings == self.strings.arrayValue!.flatMap { $0.stringValue })
-        
-        var optionalStrings: [String]?
-        try! optionalStrings <~ map["strings"]
-        XCTAssert(optionalStrings! == self.strings.arrayValue!.flatMap { $0.stringValue })
-        
-        var emptyInt: Int?
-        try! emptyInt <~ map["i_dont_exist"]
-        XCTAssert(emptyInt == nil)
-        
-        var emptyStrings: [String]?
-        try! emptyStrings <~ map["i_dont_exist"]
-        XCTAssert(emptyStrings == nil)
     }
-    
-    func testMappableObject() {
+
+    func testStringOptional() throws {
+        var string: String? = nil
+        try string <~ map["string"]
+        XCTAssert(string == "pass")
+    }
+
+    func testStringsArray() throws {
+        var strings: [String] = []
+        try strings <~ map["strings"]
+        XCTAssert(strings == ["one", "two", "three"])
+    }
+
+    func testStringsArrayOptional() throws {
+        var strings: [String]? = nil
+        try strings <~ map["strings"]
+        XCTAssert(strings! == ["one", "two", "three"])
+    }
+
+    func testInt() throws {
+        var int = 0
+        try int <~ map["int"]
+        XCTAssert(int == 272)
+    }
+
+    func testEmptyInt() throws {
+        var wontExist: Int? = 0
+        XCTAssertNotNil(wontExist)
+        try wontExist <~ map["i-dont-exist"]
+        XCTAssertNil(wontExist)
+    }
+
+    func testEmptyArray() throws {
+        var wontExist: [String]? = []
+        XCTAssertNotNil(wontExist)
+        try wontExist <~ map["i-dont-exist"]
+        XCTAssertNil(wontExist)
+    }
+
+}
+
+class FromNodeOperatorTestMapped: XCTestCase {
+    let map = makeTestMap()
+
+    func testMappableObject() throws {
         var person: Person = Person()
-        try! person <~ map["person"]
-        XCTAssert(person == self.joeObject)
+        try person <~ map["person"]
+        XCTAssert(person == joeObject)
         
         var optionalPerson: Person?
-        try! optionalPerson <~ map["person"]
-        XCTAssert(optionalPerson! == self.joeObject)
+        try optionalPerson <~ map["person"]
+        XCTAssert(optionalPerson! == joeObject)
         
         var emptyPerson: Person?
-        try! emptyPerson <~ map["i_dont_exist"]
+        try emptyPerson <~ map["i-dont-exist"]
         XCTAssert(emptyPerson == nil)
     }
     
-    func testMappableArray() {
+    func testMappableArray() throws {
         var people: [Person] = []
-        try! people <~ map["people"]
-        XCTAssert(people == [self.joeObject, self.janeObject])
+        try people <~ map["people"]
+        XCTAssert(people ==  [joeObject, janeObject])
         
         var optionalPeople: [Person]?
-        try! optionalPeople <~ map["people"]
-        XCTAssert(optionalPeople! == [self.joeObject, self.janeObject])
+        try optionalPeople <~ map["people"]
+        XCTAssert(optionalPeople! ==  [joeObject, janeObject])
         
         var emptyPersons: [Person]?
-        try! emptyPersons <~ map["i_dont_exist"]
+        try emptyPersons <~ map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     
-    func testMappableArrayOfArrays() {
+    func testMappableArrayOfArrays() throws {
         var orderedGroups: [[Person]] = []
-        try! orderedGroups <~ map["ordered_groups"]
-        XCTAssert(orderedGroups[0] == [self.joeObject, self.justinObject, self.philObject])
-        XCTAssert(orderedGroups[1] == [self.janeObject])
+        try orderedGroups <~ map["ordered_groups"]
+        XCTAssert(orderedGroups[0] ==  [joeObject, justinObject, philObject])
+        XCTAssert(orderedGroups[1] ==  [janeObject])
         
         var optionalOrderedGroups: [[Person]]?
-        try! optionalOrderedGroups <~ map["ordered_groups"]
-        XCTAssert(optionalOrderedGroups![0] == [self.joeObject, self.justinObject, self.philObject])
-        XCTAssert(optionalOrderedGroups![1] == [self.janeObject])
+        try optionalOrderedGroups <~ map["ordered_groups"]
+        XCTAssert(optionalOrderedGroups![0] ==  [joeObject, justinObject, philObject])
+        XCTAssert(optionalOrderedGroups![1] ==  [janeObject])
         
         var emptyOrderedGroups: [[Person]]?
-        try! emptyOrderedGroups <~ map["i_dont_exist"]
+        try emptyOrderedGroups <~ map["i_dont_exist"]
         XCTAssert(emptyOrderedGroups == nil)
     }
     
-    func testMappableDictionary() {
+    func testMappableDictionary() throws {
         let expectedRelationships = [
-            "best_friend": self.philObject,
-            "cousin": self.justinObject
+            "best_friend": philObject,
+            "cousin": justinObject
         ]
         
         var relationships: [String : Person] = [:]
-        try! relationships <~ map["relationships"]
+        try relationships <~ map["relationships"]
         XCTAssert(relationships == expectedRelationships)
         
         var optionalRelationships: [String : Person]?
-        try! optionalRelationships <~ map["relationships"]
+        try optionalRelationships <~ map["relationships"]
         XCTAssert(optionalRelationships! == expectedRelationships)
         
         var emptyDictionary: [String : Person]?
-        try! emptyDictionary <~ map["i_dont_exist"]
+        try emptyDictionary <~ map["i_dont_exist"]
         XCTAssert(emptyDictionary == nil)
     }
     
-    func testMappableDictionaryOfArrays() {
+    func testMappableDictionaryOfArrays() throws {
         var groups: [String : [Person]] = [:]
-        try! groups <~ map["groups"]
+        try groups <~ map["groups"]
         var optionalGroups: [String : [Person]]?
-        try! optionalGroups <~ map["groups"]
+        try optionalGroups <~ map["groups"]
         
         for groupsArray in [groups, optionalGroups!] {
             XCTAssert(groupsArray.count == 2)
             
             let boys = groupsArray["boys"]!
-            XCTAssert(boys == [self.joeObject, self.justinObject, self.philObject])
+            XCTAssert(boys ==  [joeObject, justinObject, philObject])
             
             let girls = groupsArray["girls"]!
-            XCTAssert(girls == [self.janeObject])
+            XCTAssert(girls ==  [janeObject])
         }
         
         var emptyDictionaryOfArrays: [String : [Person]]?
-        try! emptyDictionaryOfArrays <~ map["i_dont_exist"]
+        try emptyDictionaryOfArrays <~ map["i_dont_exist"]
         XCTAssert(emptyDictionaryOfArrays == nil)
     }
     
-    func testMappableSet() {
+    func testMappableSet() throws {
         var people: Set<Person> = Set<Person>()
-        try! people <~ map["duplicated_people"]
+        try people <~ map["duplicated_people"]
         var optionalPeople: Set<Person>?
-        try! optionalPeople <~ map["duplicated_people"]
+        try optionalPeople <~ map["duplicated_people"]
         
         for peopleSet in [people, optionalPeople!] {
             XCTAssert(peopleSet.count == 2)
-            XCTAssert(peopleSet.contains(self.joeObject))
-            XCTAssert(peopleSet.contains(self.janeObject))
+            XCTAssert(peopleSet.contains(joeObject))
+            XCTAssert(peopleSet.contains(janeObject))
         }
         
         var singleValueToSet: Set<Person> = Set<Person>()
-        try! singleValueToSet <~ map["person"]
+        try singleValueToSet <~ map["person"]
         XCTAssert(singleValueToSet.count == 1)
-        XCTAssert(singleValueToSet.contains(self.joeObject))
+        XCTAssert(singleValueToSet.contains(joeObject))
         
         var emptyPersons: [Person]?
-        try! emptyPersons <~ map["i_dont_exist"]
+        try emptyPersons <~ map["i_dont_exist"]
         XCTAssert(emptyPersons == nil)
     }
     
-}
-
-// MARK: Operators
-
-func ==(lhs: FromNodeOperatorTest.Person, rhs: FromNodeOperatorTest.Person) -> Bool {
-    return lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName
 }
