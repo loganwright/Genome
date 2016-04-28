@@ -7,8 +7,7 @@ let package = Package(
         .Package(url: "https://github.com/LoganWright/Swift-JsonSerializer", majorVersion: 2)
     ],
     exclude: [
-        "Sources/Genome/CoreData",
-        "Sources/Genome/Json"
+        "Sources/Genome/CoreData"
     ],
     targets: [
         Target(
