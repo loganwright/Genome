@@ -3,7 +3,8 @@ import PackageDescription
 let package = Package(
     name: "Genome",
     dependencies: [
-      // .Package(url: "https://github.com/gfx/Swift-PureJsonSerializer.git", majorVersion: 1)
+        // Using LoganWright until update core library
+        .Package(url: "https://github.com/LoganWright/Swift-JsonSerializer", majorVersion: 2)
     ],
     exclude: [
         "Sources/Genome/CoreData",
@@ -21,12 +22,13 @@ let package = Package(
                 .Target(name: "Genome")
             ]
         ),
-        // Target(
-        //     name: "Performance",
-        //     dependencies: [
-        //         .Target(name: "Vapor")
-        //     ]
-        // ),
+         Target(
+             name: "GenomeJson",
+             dependencies: [
+                .Target(name: "Genome")
+                //  .Package(url: "../Swift-PureJsonSerializer", majorVersion: 2)
+             ]
+         ),
         // Target(
         //     name: "Generator"
         // )
