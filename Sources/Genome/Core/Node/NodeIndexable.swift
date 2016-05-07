@@ -86,7 +86,11 @@ extension String: NodeIndexable {
             return object
         } else if let array = node.arrayValue {
             let value = array.flatMap(self.access)
-            return .array(value)
+            if value.count == array.count {
+                return .array(value)
+            } else {
+                return nil
+            }
         } else {
             return nil
         }

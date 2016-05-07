@@ -10,7 +10,6 @@
 
 // MARK: Subscripts
 
-
 extension Node {
     public subscript(indexes: NodeIndexable...) -> Node? {
         get {

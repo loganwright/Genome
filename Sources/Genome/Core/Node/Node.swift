@@ -165,12 +165,7 @@ extension Node {
     }
     
     public var doubleValue: Double? {
-        switch typeEnforcementLevel {
-        case .strict:
-            return strictDoubleValue
-        case .fuzzy:
-            return fuzzyDoubleValue
-        }
+        return numberValue
     }
     
     public var strictDoubleValue: Double? {
