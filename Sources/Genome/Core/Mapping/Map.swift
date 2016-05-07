@@ -168,7 +168,7 @@ extension Map {
 extension Map.OperationType {
     func assert(equals expected: Map.OperationType) throws {
         if self != expected {
-            throw Error.unexpectedOperation(got: self, expected: expected)
+            throw ErrorFactory.unexpectedOperation(got: self, expected: expected)
         }
     }
 }
