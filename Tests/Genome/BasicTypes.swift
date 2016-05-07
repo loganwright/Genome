@@ -10,6 +10,12 @@ import XCTest
 @testable import Genome
 
 class BasicTypeTests: XCTestCase {
+    static var allTests: [(String, BasicTypeTests -> () throws -> Void)] {
+        return [
+                   ("testBasic", testBasic),
+                   ("testBasicArrays", testBasicArrays)
+        ]
+    }
 
     let BasicTestNode: [String : Node] = [
         "int" : 1,
