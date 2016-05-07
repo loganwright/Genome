@@ -47,7 +47,6 @@
 		__src_cc_ref_Tests/Genome/BasicTypes.swift /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */; };
 		__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */; };
 		__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */; };
-		__src_cc_ref_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */; };
 		__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */; };
 		__src_cc_ref_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift */; };
 		__src_cc_ref_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */; };
@@ -110,7 +109,6 @@
 		__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromNodeOperatorTest.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenomeSwiftTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeIndexable.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableOperatorTest.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 				__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */,
 				__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */,
 				__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */,
-				__PBXFileRef_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift */,
 				__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */,
 				__PBXFileRef_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift */,
 				__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */,
@@ -575,7 +572,6 @@
 				__src_cc_ref_Tests/Genome/BasicTypes.swift /* BasicTypes.swift in Sources */,
 				__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift in Sources */,
 				__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift in Sources */,
-				__src_cc_ref_Tests/Genome/GenomeSwiftTests.swift /* GenomeSwiftTests.swift in Sources */,
 				__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift in Sources */,
 				__src_cc_ref_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift in Sources */,
 				__src_cc_ref_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift in Sources */,
