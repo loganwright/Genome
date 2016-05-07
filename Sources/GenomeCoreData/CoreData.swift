@@ -9,8 +9,8 @@ extension NSManagedObjectContext : Context {}
 public class ManagedObject: NSManagedObject, Genome.MappableBase {
 
     public enum Error: ErrorProtocol {
-        case ExpectedManagedObjectContext
-        case UnableToCreateObject
+        case expectedManagedObjectContext
+        case unableToCreateObject
     }
     
     // MARK: EntityName
@@ -43,13 +43,13 @@ extension MappableBase where Self: ManagedObject {
 
 private func make<T: ManagedObject>(type: T.Type, with map: Map) throws -> T {
     guard let context = map.context as? NSManagedObjectContext else {
-        throw T.Error.ExpectedManagedObjectContext
+        throw T.Error.expectedManagedObjectContext
     }
 
     let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: context)
 
     guard let new = entity as? T else {
-        throw T.Error.UnableToCreateObject
+        throw T.Error.unableToCreateObject
     }
         
     try new.sequence(map)
