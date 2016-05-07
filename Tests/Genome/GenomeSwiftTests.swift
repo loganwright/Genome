@@ -135,7 +135,7 @@ class GenomeSideLoadTests: XCTestCase {
 
     func testSideLoad() {
         let nodeArrayOfPeople = SideLoadTestNode["people"]!
-        let single: _Person! = try! _Person(node: nodeArrayOfPeople.arrayValue!.first!)
+        let single: _Person! = try! _Person(node: nodeArrayOfPeople.array!.first!)
         XCTAssert(single != nil)
 
         let foodsJs = SideLoadTestNode["foods"]!
@@ -185,11 +185,11 @@ class StandardOperatorTests: XCTestCase {
         let map = Map(with: StandardOperatorNode)
         var ints: [Int] = []
         try! ints <~> map["ints"]
-        XCTAssert(ints == Ints.arrayValue!.flatMap { $0.intValue })
+        XCTAssert(ints == Ints.array!.flatMap { $0.int })
         
         var intsOptional: [Int]?
         try! intsOptional <~> map["ints"]
-        XCTAssert(intsOptional! == Ints.arrayValue!.flatMap { $0.intValue })
+        XCTAssert(intsOptional! == Ints.array!.flatMap { $0.int })
     }
 
 }

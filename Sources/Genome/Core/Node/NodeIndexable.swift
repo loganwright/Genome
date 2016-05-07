@@ -51,7 +51,7 @@ extension Int: NodeIndexable {
      - see: NodeIndexable
      */
     public func access(in node: Node) -> Node? {
-        guard let array = node.arrayValue where self < array.count else { return nil }
+        guard let array = node.array where self < array.count else { return nil }
         return array[self]
     }
 
@@ -59,7 +59,7 @@ extension Int: NodeIndexable {
      - see: NodeIndexable
      */
     public func set(_ input: Node?, in parent: inout Node) {
-        guard let array = parent.arrayValue where self < array.count else { return }
+        guard let array = parent.array where self < array.count else { return }
         var mutable = array
         if let new = input {
             mutable[self] = new
@@ -84,7 +84,7 @@ extension String: NodeIndexable {
     public func access(in node: Node) -> Node? {
         if let object = node.objectValue?[self] {
             return object
-        } else if let array = node.arrayValue {
+        } else if let array = node.array {
             let value = array.flatMap(self.access)
             if value.count == array.count {
                 return .array(value)
@@ -104,7 +104,7 @@ extension String: NodeIndexable {
             var mutable = object
             mutable[self] = input
             parent = .object(mutable)
-        } else if let array = parent.arrayValue {
+        } else if let array = parent.array {
             let mapped: [Node] = array.map { val in
                 var mutable = val
                 self.set(input, in: &mutable)

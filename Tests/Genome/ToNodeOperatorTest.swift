@@ -168,9 +168,9 @@ class ToNodeOperatorTest: XCTestCase {
         let node = try! goodBusiness.toNode()
         
         // Basic type
-        let name = node["name"]!.stringValue!
+        let name = node["name"]!.string!
         XCTAssert(name == "Good Business")
-        let foundedYear = node["foundedYear"]!.intValue
+        let foundedYear = node["foundedYear"]!.int
         XCTAssert(foundedYear == 1987)
         
         // Basic type array

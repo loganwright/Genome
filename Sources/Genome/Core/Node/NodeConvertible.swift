@@ -84,7 +84,7 @@ extension String: NodeConvertible {
     }
     
     public init(with node: Node, in context: Context) throws {
-        guard let string = node.stringValue else {
+        guard let string = node.string else {
             throw ErrorFactory.unableToConvert(node, to: self.dynamicType)
         }
         self = string
@@ -99,7 +99,7 @@ extension Bool: NodeConvertible {
     }
     
     public init(with node: Node, in context: Context) throws {
-        guard let bool = node.boolValue else {
+        guard let bool = node.bool else {
             throw ErrorFactory.unableToConvert(node, to: self.dynamicType)
         }
         self = bool
@@ -121,7 +121,7 @@ extension UnsignedInteger {
     }
     
     public init(with node: Node, in context: Context) throws {
-        guard let int = node.uintValue else {
+        guard let int = node.uint else {
             throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
 
@@ -144,7 +144,7 @@ extension SignedInteger {
     }
     
     public init(with node: Node, in context: Context) throws {
-        guard let int = node.intValue else {
+        guard let int = node.int else {
             throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
 
@@ -177,7 +177,7 @@ extension NodeConvertibleFloatingPointType {
     }
     
     public init(with node: Node, in context: Context) throws {
-        guard let double = node.doubleValue else {
+        guard let double = node.double else {
             throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
         self.init(double)

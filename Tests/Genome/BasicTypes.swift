@@ -76,11 +76,11 @@ class BasicTypeTests: XCTestCase {
         XCTAssert(basic.string == "hello")
         
         let node = try basic.toNode()
-        let int = node["int"]!.intValue!
-        let float = node["float"]!.floatValue!
-        let double = node["double"]!.doubleValue!
-        let bool = node["bool"]!.boolValue!
-        let string = node["string"]!.stringValue!
+        let int = node["int"]!.int!
+        let float = node["float"]!.float!
+        let double = node["double"]!.double!
+        let bool = node["bool"]!.bool!
+        let string = node["string"]!.string!
         XCTAssert(int == 1)
         XCTAssert(float == 1.5)
         XCTAssert(double == 2.5)
@@ -97,11 +97,11 @@ class BasicTypeTests: XCTestCase {
         XCTAssert(basic.strings == ["hello"])
         
         let node = try basic.toNode()
-        let ints = node["ints"]!.arrayValue!.flatMap { $0.intValue }
-        let floats = node["floats"]!.arrayValue!.flatMap { $0.floatValue }
-        let doubles = node["doubles"]!.arrayValue!.flatMap { $0.doubleValue }
-        let bools = node["bools"]!.arrayValue!.flatMap { $0.boolValue }
-        let strings = node["strings"]!.arrayValue!.flatMap { $0.stringValue }
+        let ints = node["ints"]!.array!.flatMap { $0.int }
+        let floats = node["floats"]!.array!.flatMap { $0.float }
+        let doubles = node["doubles"]!.array!.flatMap { $0.double }
+        let bools = node["bools"]!.array!.flatMap { $0.bool }
+        let strings = node["strings"]!.array!.flatMap { $0.string }
         XCTAssert(ints == [1])
         XCTAssert(floats == [1.5])
         XCTAssert(doubles == [2.5])

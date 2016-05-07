@@ -169,9 +169,9 @@ extension Map {
 
 extension Node {
     private var arrayOfArrays: [[Node]] {
-        let array = arrayValue ?? [self]
+        let array = self.array ?? [self]
         // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
-        let possibleArrayOfArrays = array.flatMap { $0.arrayValue }
+        let possibleArrayOfArrays = array.flatMap { $0.array }
         let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
         let arrayOfArrays: [[Node]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
         return arrayOfArrays

@@ -33,7 +33,7 @@ class NodeFoundationTests: XCTestCase {
     func testFoundationString() throws {
         let v = "hello foundation"
         let n = Node(v as AnyObject)
-        XCTAssert(n.stringValue == v)
+        XCTAssert(n.string == v)
     }
 
     func testFoundationArray() throws {
@@ -51,7 +51,7 @@ class NodeFoundationTests: XCTestCase {
         let o = n.objectValue ?? [:]
         var mapped: [String : String] = [:]
         o.forEach { key, val in
-            guard let str = val.stringValue else { return }
+            guard let str = val.string else { return }
             mapped[key] = str
         }
         XCTAssert(mapped == v)

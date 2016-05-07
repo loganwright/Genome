@@ -89,7 +89,7 @@ extension Node {
     public var fuzzyIsNull: Bool {
         if strictIsNull {
             return true
-        } else if let s = stringValue {
+        } else if let s = self.string {
             return s == "null"
         } else {
             return false
@@ -98,19 +98,19 @@ extension Node {
 }
 
 extension Node {
-    public var boolValue: Bool? {
+    public var bool: Bool? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictBoolValue
+            return strictBool
         case .fuzzy:
-            return fuzzyBoolValue
+            return fuzzyBool
         }
     }
     
-    public var strictBoolValue: Bool? {
+    public var strictBool: Bool? {
         if case let .bool(bool) = self {
             return bool
-        } else if let integer = intValue where integer == 1 || integer == 0 {
+        } else if let integer = int where integer == 1 || integer == 0 {
             // When converting from foundation type `[String : AnyObject]`, something that I see as important,
             // it's not possible to distinguish between 'bool', 'double', and 'int'.
             // Because of this, if we have an integer that is 0 or 1, and a user is requesting a boolean val,
@@ -121,12 +121,12 @@ extension Node {
         }
     }
     
-    public var fuzzyBoolValue: Bool? {
-        if let strict = strictBoolValue {
+    public var fuzzyBool: Bool? {
+        if let strict = strictBool {
             return strict
-        } else if let n = strictNumberValue {
+        } else if let n = strictNumber {
             return n > 0
-        } else if let s = strictStringValue {
+        } else if let s = strictString {
             return Bool(s)
         } else {
             return nil
@@ -135,16 +135,16 @@ extension Node {
 }
 
 extension Node {
-    public var numberValue: Double? {
+    public var number: Double? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictNumberValue
+            return strictNumber
         case .fuzzy:
-            return fuzzyNumberValue
+            return fuzzyNumber
         }
     }
     
-    public var strictNumberValue: Double? {
+    public var strictNumber: Double? {
         guard case let .number(number) = self else {
             return nil
         }
@@ -152,73 +152,73 @@ extension Node {
         return number
     }
     
-    public var fuzzyNumberValue: Double? {
-        if let n = strictNumberValue {
+    public var fuzzyNumber: Double? {
+        if let n = strictNumber {
             return n
-        } else if let s = strictStringValue {
+        } else if let s = strictString {
             return Double(s)
-        } else if let b = strictBoolValue {
+        } else if let b = strictBool {
             return b ? 1 : 0
         } else {
             return nil
         }
     }
     
-    public var doubleValue: Double? {
-        return numberValue
+    public var double: Double? {
+        return self.number
     }
     
-    public var strictDoubleValue: Double? {
-        return strictNumberValue
+    public var strictDouble: Double? {
+        return strictNumber
     }
     
-    public var fuzzyDoubleValue: Double? {
-        return fuzzyNumberValue
+    public var fuzzyDouble: Double? {
+        return fuzzyNumber
     }
     
-    public var floatValue: Float? {
+    public var float: Float? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictFloatValue
+            return strictFloat
         case .fuzzy:
-            return fuzzyFloatValue
+            return fuzzyFloat
         }
     }
     
-    public var strictFloatValue: Float? {
-        return strictNumberValue.flatMap(Float.init)
+    public var strictFloat: Float? {
+        return strictNumber.flatMap(Float.init)
     }
     
-    public var fuzzyFloatValue: Float? {
-        return fuzzyNumberValue.flatMap(Float.init)
+    public var fuzzyFloat: Float? {
+        return fuzzyNumber.flatMap(Float.init)
     }
     
 }
 
 extension Node {
-    public var intValue: Int? {
+    public var int: Int? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictIntValue
+            return strictInt
         case .fuzzy:
-            return fuzzyIntValue
+            return fuzzyInt
         }
     }
     
-    public var strictIntValue: Int? {
-        guard let double = numberValue where double % 1 == 0 else {
+    public var strictInt: Int? {
+        guard let double = self.number where double % 1 == 0 else {
             return nil
         }
         
         return Int(double)
     }
     
-    public var fuzzyIntValue: Int? {
-        if let i = strictIntValue {
+    public var fuzzyInt: Int? {
+        if let i = strictInt {
             return i
-        } else if let s = strictStringValue {
+        } else if let s = strictString {
             return Int(s)
-        } else if let b = strictBoolValue {
+        } else if let b = strictBool {
             return b ? 1 : 0
         } else {
             return nil
@@ -227,28 +227,28 @@ extension Node {
 }
 
 extension Node {
-    public var uintValue: UInt? {
+    public var uint: UInt? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictUIntValue
+            return strictUInt
         case .fuzzy:
-            return fuzzyUIntValue
+            return fuzzyUInt
         }
     }
     
-    public var strictUIntValue: UInt? {
-        guard let intValue = strictIntValue where intValue >= 0 else { return nil }
+    public var strictUInt: UInt? {
+        guard let intValue = strictInt where intValue >= 0 else { return nil }
         return UInt(intValue)
     }
     
-    public var fuzzyUIntValue: UInt? {
-        if let ui = strictUIntValue {
+    public var fuzzyUInt: UInt? {
+        if let ui = strictUInt {
             return ui
-        } else if let i = strictIntValue {
+        } else if let i = strictInt {
             return i > 0 ? UInt(i) : 0
-        } else if let s = strictStringValue {
+        } else if let s = strictString {
             return UInt(s)
-        } else if let b = strictBoolValue {
+        } else if let b = strictBool {
             return b ? 1 : 0
         } else {
             return nil
@@ -257,16 +257,16 @@ extension Node {
 }
 
 extension Node {
-    public var stringValue: String? {
+    public var string: String? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictStringValue
+            return strictString
         case .fuzzy:
-            return fuzzyStringValue
+            return fuzzyString
         }
     }
     
-    public var strictStringValue: String? {
+    public var strictString: String? {
         guard case let .string(string) = self else {
             return nil
         }
@@ -274,14 +274,14 @@ extension Node {
         return string
     }
     
-    public var fuzzyStringValue: String? {
-        if let s = strictStringValue {
+    public var fuzzyString: String? {
+        if let s = strictString {
             return s
-        } else if let i = strictIntValue { // int first so if it's an int, we omit `1.0` in preference of `1`
+        } else if let i = strictInt { // int first so if it's an int, we omit `1.0` in preference of `1`
             return i.description
-        } else if let n = strictNumberValue {
+        } else if let n = strictNumber {
             return n.description
-        } else if let b = strictBoolValue {
+        } else if let b = strictBool {
             return b.description
         } else {
             return nil
@@ -290,24 +290,24 @@ extension Node {
 }
 
 extension Node {
-    public var arrayValue: [Node]? {
+    public var array: [Node]? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictArrayValue
+            return strictArray
         case .fuzzy:
-            return fuzzyArrayValue
+            return fuzzyArray
         }
     }
     
-    public var strictArrayValue: [Node]? {
+    public var strictArray: [Node]? {
         guard case let .array(array) = self else { return nil }
         return array
     }
     
-    public var fuzzyArrayValue: [Node]? {
-        if let a = strictArrayValue {
+    public var fuzzyArray: [Node]? {
+        if let a = strictArray {
             return a
-        } else if let s = strictStringValue {
+        } else if let s = strictString {
             return s.characters
                 .split { $0 == "," }
                 .map(String.init)
@@ -342,7 +342,7 @@ extension Node {
          */
         if let o = strictObjectValue {
             return o
-        } else if let s = strictStringValue {
+        } else if let s = strictString {
             if s.isEmpty { return [:] }
             
             var mutable: [String : Node] = [:]
@@ -434,16 +434,16 @@ private func fuzzyEquals(lhs: Node, _ rhs: Node) -> Bool {
     case .null:
         return rhs.isNull
     case .bool(let lhsValue):
-        guard let rhsValue = rhs.fuzzyBoolValue else { return false }
+        guard let rhsValue = rhs.fuzzyBool else { return false }
         return lhsValue == rhsValue
     case .string(let lhsValue):
-        guard let rhsValue = rhs.fuzzyStringValue else { return false }
+        guard let rhsValue = rhs.fuzzyString else { return false }
         return lhsValue == rhsValue
     case .number(let lhsValue):
-        guard let rhsValue = rhs.fuzzyNumberValue else { return false }
+        guard let rhsValue = rhs.fuzzyNumber else { return false }
         return lhsValue == rhsValue
     case .array(let lhsValue):
-        guard let rhsValue = rhs.fuzzyArrayValue else { return false }
+        guard let rhsValue = rhs.fuzzyArray else { return false }
         return lhsValue == rhsValue
     case .object(let lhsValue):
         guard let rhsValue = rhs.fuzzyObjectValue else { return false }

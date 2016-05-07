@@ -12,7 +12,7 @@
 public extension Array where Element : NodeConvertible {
     public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
         let node = try data.toNode()
-        let array = node.arrayValue ?? [node]
+        let array = node.array ?? [node]
         try self.init(with: array, in: context)
     }
     
@@ -25,7 +25,7 @@ public extension Array where Element : NodeConvertible {
 public extension Set where Element : NodeConvertible {
     public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
         let node = try data.toNode()
-        let array = node.arrayValue ?? [node]
+        let array = node.array ?? [node]
         try self.init(with: array, in: context)
     }
     
