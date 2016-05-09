@@ -48,7 +48,7 @@ extension Json: BackingData {
         case let .object(obj):
             var mutable: [String : Json] = [:]
             obj.forEach { key, val in
-                mutable[key] = Json(with: node, in: context)
+                mutable[key] = Json(with: val, in: context)
             }
             self = .ObjectValue(mutable)
         case .null:
