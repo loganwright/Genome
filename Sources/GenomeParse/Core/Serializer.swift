@@ -45,7 +45,7 @@ internal protocol SerializerSerializationDelegate {
      Notifies the delegate that the serializer has processed data and has serialized data to append to the output.
      - parameter data: The string data to append to the output.
      */
-    func serializerSerializedData(data: String)
+    func serializerSerialized(data: String)
     
     /**
      Notifies the delegate that the serializer has finished serializing.
@@ -56,7 +56,7 @@ internal protocol SerializerSerializationDelegate {
 /// An internal class to collect the data stream into a string.
 internal class SerializerConcatenate: SerializerSerializationDelegate {
     var output: String = ""
-    func serializerSerializedData(data: String) {
+    func serializerSerialized(data: String) {
         output.append(data)
     }
     func serializerFinished() {}

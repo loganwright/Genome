@@ -19,13 +19,13 @@ public protocol DeserializationStreamDelegate {
      - parameter node: The node that was deserialized.
      - note: The deserializer for a specific file type determines how it will return nodes. Generally the deserializer will return completed top level nodes.
      */
-    func deserializerDidCompleteNode(node: Node)
+    func deserializerDidComplete(node: Node)
     
     /**
      The deserializer encountered an error while parsing the stream.
      - parameter error: The error that occured.
      */
-    func deserializerFailedWithError(error: ErrorProtocol)
+    func deserializerFailed(error: ErrorProtocol)
 }
 
 public class StreamDeserializer: NSObject, NSStreamDelegate {
@@ -182,7 +182,7 @@ public class StreamDeserializer: NSObject, NSStreamDelegate {
                         do {
                             try deserializer.parse(data: output.unicodeScalars)
                         } catch {
-                            delegate.deserializerFailedWithError(error: DeserializationError.Unknown)
+                            delegate.deserializerFailed(error: DeserializationError.Unknown)
                             // Close the stream
                             stream.close()
                             stream.remove(from: NSRunLoop.current(), forMode: NSDefaultRunLoopMode)
@@ -192,7 +192,7 @@ public class StreamDeserializer: NSObject, NSStreamDelegate {
             }
             break
         case NSStreamEvent.errorOccurred:
-            delegate.deserializerFailedWithError(error: stream.streamError!)
+            delegate.deserializerFailed(error: stream.streamError!)
             // Close the stream
             stream.close()
             stream.remove(from: NSRunLoop.current(), forMode: NSDefaultRunLoopMode)
@@ -200,9 +200,9 @@ public class StreamDeserializer: NSObject, NSStreamDelegate {
         case NSStreamEvent.endEncountered:
             do {
                 let node = try deserializer.finish()
-                delegate.deserializerDidCompleteNode(node: node)
+                delegate.deserializerDidComplete(node: node)
             } catch {
-                delegate.deserializerFailedWithError(error: DeserializationError.Unknown)
+                delegate.deserializerFailed(error: DeserializationError.Unknown)
                 // Close the stream
                 stream.close()
                 stream.remove(from: NSRunLoop.current(), forMode: NSDefaultRunLoopMode)

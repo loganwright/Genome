@@ -79,20 +79,20 @@ public class CSVSerializer: Serializer {
     override func parse() throws -> String? {
         // If the headers were preset, output them.
         if presetHeaders {
-            serializationDelegate.serializerSerializedData(data: header.joined(separator: ","))
-            serializationDelegate.serializerSerializedData(data: lineEndings.rawValue)
+            serializationDelegate.serializerSerialized(data: header.joined(separator: ","))
+            serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
         }
         // The only valid root node is an array.
         switch rootNode {
         case let .array(array):
-            try parseRootArray(array: array)
+            try parseRoot(array: array)
             return (serializationDelegate as? SerializerConcatenate)?.output
         default:
             throw SerializationError.UnsupportedNodeType(reason: "The root node is expected to be an array.")
         }
     }
     
-    private func parseRootArray(array: [Node]) throws {
+    private func parseRoot(array: [Node]) throws {
         // Check to see if the array is empty
         if array.count == 0 {
             throw SerializationError.EmptyInput
@@ -114,62 +114,62 @@ public class CSVSerializer: Serializer {
                 guard case let .object(object) = node else {
                     throw SerializationError.UnsupportedNodeType(reason: "The child nodes are expected to be objects.")
                 }
-                try parseObject(object: object)
+                try parse(object: object)
             } else {
                 switch node {
                 case .object:
                     throw SerializationError.UnsupportedNodeType(reason: "The child nodes are expected to be arrays.")
                 case let .array(array):
-                    try parseArray(array: array)
+                    try parse(array: array)
                     break
                 case .null:
                     break
                 case let .string(string):
-                    parseString(string: string)
+                    parse(string: string)
                     break
                 case let .number(number):
-                    parseNumber(number: number)
+                    parse(number: number)
                     break
                 case let .bool(boolean):
-                    parseBoolean(boolean: boolean)
+                    parse(boolean: boolean)
                     break
                 }
             }
             // Append a new line if necessary.
             i += 1
             if i != array.count {
-                serializationDelegate.serializerSerializedData(data: lineEndings.rawValue)
+                serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
             }
         }
         serializationDelegate.serializerFinished()
     }
     
-    private func parseArray(array: [Node]) throws {
+    private func parse(array: [Node]) throws {
         var i: Int = 0
         for node in array {
-            try parseValue(value: node)
+            try parse(value: node)
             // Append a delimeter if necessary
             i += 1
             if i != array.count {
-                serializationDelegate.serializerSerializedData(data: String(delimeter))
+                serializationDelegate.serializerSerialized(data: String(delimeter))
             }
         }
     }
     
-    private func parseObject(object: [String: Node]) throws {
+    private func parse(object: [String: Node]) throws {
         // Parse the keys in the header first.
         if !presetHeaders && header.count == 0 {
             var i: Int = 0
             for pair in object {
                 header.append(pair.0)
-                serializationDelegate.serializerSerializedData(data: pair.0)
+                serializationDelegate.serializerSerialized(data: pair.0)
                 
                 i += 1
                 if i != object.count {
-                    serializationDelegate.serializerSerializedData(data: String(delimeter))
+                    serializationDelegate.serializerSerialized(data: String(delimeter))
                 }
             }
-            serializationDelegate.serializerSerializedData(data: lineEndings.rawValue)
+            serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
         }
         
         // Parse all values.
@@ -177,27 +177,27 @@ public class CSVSerializer: Serializer {
         for key in header {
             i += 1
             // Append only if we haven't added the object again.
-            try parseValue(value: object[key])
+            try parse(value: object[key])
             
             if i != header.count {
-                serializationDelegate.serializerSerializedData(data: String(delimeter))
+                serializationDelegate.serializerSerialized(data: String(delimeter))
             }
         }
     }
     
-    private func parseValue(value: Node?) throws {
+    private func parse(value: Node?) throws {
         if let value = value {
             switch value {
             case .null:
                 break
             case let .string(string):
-                parseString(string: string)
+                parse(string: string)
                 break
             case let .number(number):
-                parseNumber(number: number)
+                parse(number: number)
                 break
             case let .bool(boolean):
-                parseBoolean(boolean: boolean)
+                parse(boolean: boolean)
                 break
             default:
                 throw SerializationError.UnsupportedNodeType(reason: "The child's values are not allowed to be arrays or objects.")
@@ -205,26 +205,26 @@ public class CSVSerializer: Serializer {
         }
     }
     
-    private func parseString(string: String) {
+    private func parse(string: String) {
         // Escape the quotes in the string if necessary.
         if string.contains("\"") {
             // Escape
-            serializationDelegate.serializerSerializedData(data: "\"\(string.replacingOccurrences(of: "\"", with: "\"\""))\"")
+            serializationDelegate.serializerSerialized(data: "\"\(string.replacingOccurrences(of: "\"", with: "\"\""))\"")
         } else {
-            serializationDelegate.serializerSerializedData(data: string)
+            serializationDelegate.serializerSerialized(data: string)
         }
     }
     
-    private func parseNumber(number: Double) {
+    private func parse(number: Double) {
         // Check to see if we have an integer
         if number == Double(Int(number)) {
-            serializationDelegate.serializerSerializedData(data: String(Int(number)))
+            serializationDelegate.serializerSerialized(data: String(Int(number)))
         } else {
-            serializationDelegate.serializerSerializedData(data: String(number))
+            serializationDelegate.serializerSerialized(data: String(number))
         }
     }
     
-    private func parseBoolean(boolean: Bool) {
-        serializationDelegate.serializerSerializedData(data: boolean ? CSVConstants.trueValue : CSVConstants.falseValue)
+    private func parse(boolean: Bool) {
+        serializationDelegate.serializerSerialized(data: boolean ? CSVConstants.trueValue : CSVConstants.falseValue)
     }
 }

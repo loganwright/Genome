@@ -18,7 +18,7 @@ public protocol SerializationStreamDelegate {
      The deserializer encountered an error while parsing the stream.
      - parameter error: The error that occured.
      */
-    func serializerFailedWithError(error: ErrorProtocol)
+    func serializerFailed(error: ErrorProtocol)
 }
 
 public class StreamSerializer: NSObject, NSStreamDelegate, SerializerSerializationDelegate {
@@ -78,7 +78,7 @@ public class StreamSerializer: NSObject, NSStreamDelegate, SerializerSerializati
         try serializer.parse()
     }
     
-    func serializerSerializedData(data: String) {
+    func serializerSerialized(data: String) {
         self.data.append(data.data(using: NSUTF8StringEncoding)!)
         if streamReady {
             stream(aStream: stream, handleEvent: NSStreamEvent.hasSpaceAvailable)
@@ -119,7 +119,7 @@ public class StreamSerializer: NSObject, NSStreamDelegate, SerializerSerializati
             }
             break
         case NSStreamEvent.errorOccurred:
-            delegate.serializerFailedWithError(error: stream.streamError!)
+            delegate.serializerFailed(error: stream.streamError!)
             // Close the stream
             stream.close()
             stream.remove(from: NSRunLoop.current(), forMode: NSDefaultRunLoopMode)

@@ -54,14 +54,14 @@ internal protocol DeserializerDeserializationDelegate {
      Notifies the delegate that the deserializer will be deserializing a node of the given type.
      - parameter node: An empty node representing the type of root node that will be processed.
      */
-    func deserializerStartingRootNodeOfType(node: Node)
+    func deserializerStartingRootNode(ofType type: Node)
     
     /**
      Notifies the delegate that the deserializer has deserialized a direct child of the root node from the given data.
      - parameter node: The node that was deserialized.
      - parameter key: The key of the node if the root node is of object type.
      */
-    func deserializerDeserializedNode(node: Node, key: String?)
+    func deserializerDeserialized(node: Node, key: String?)
     
     /**
      Notifies the delegate that the deserializer has finished deserializing the current root node.
@@ -73,11 +73,11 @@ internal protocol DeserializerDeserializationDelegate {
 internal class DeserializerConcatenate: DeserializerDeserializationDelegate {
     var output: Node?
     
-    func deserializerStartingRootNodeOfType(node: Node) {
-        output = node
+    func deserializerStartingRootNode(ofType type: Node) {
+        output = type
     }
     
-    func deserializerDeserializedNode(node: Node, key: String?) {
+    func deserializerDeserialized(node: Node, key: String?) {
         if let output = output {
             if let key = key {
                 guard case var .object(object) = output else {
