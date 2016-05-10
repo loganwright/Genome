@@ -82,17 +82,12 @@
         _____Product_PureJson = {
             isa = PBXFileReference;
             explicitFileType = 'compiled.mach-o.dylib';
-            path = 'PureJson.dylib';
+            path = 'libPureJson.dylib';
             sourceTree = BUILT_PRODUCTS_DIR;
         };
         CompilePhase_PureJson = {
             isa = PBXSourcesBuildPhase;
             files = ('__src_cc_ref_Packages/PureJson-2.0.0/Source/Json.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonParser.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonSerializer.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/ParseError.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/StringUtils.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_PureJson = {
-            isa = PBXFrameworksBuildPhase;
-            files = ();
             runOnlyForDeploymentPostprocessing = 0;
         };
         '__src_cc_ref_Packages/PureJson-2.0.0/Source/Json.swift' = {
@@ -115,9 +110,10 @@
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift';
         };
-        _LinkFileRef_PureJson = {
-            isa = PBXBuildFile;
-            fileRef = _____Product_PureJson;
+        ___LinkPhase_PureJson = {
+            isa = PBXFrameworksBuildPhase;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
         };
         _______Confs_PureJson = {
             isa = XCConfigurationList;
@@ -127,12 +123,12 @@
         };
         ___DebugConf_PureJson = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
             name = Debug;
         };
         _ReleaseConf_PureJson = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_PureJson = {
@@ -250,17 +246,12 @@
         _____Product_Genome = {
             isa = PBXFileReference;
             explicitFileType = 'compiled.mach-o.dylib';
-            path = 'Genome.dylib';
+            path = 'libGenome.dylib';
             sourceTree = BUILT_PRODUCTS_DIR;
         };
         CompilePhase_Genome = {
             isa = PBXSourcesBuildPhase;
             files = ('__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift', '__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift', '__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift', '__src_cc_ref_Sources/Genome/Core/Mapping/SettableExtract.swift', '__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift', '__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift', '__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift', '__src_cc_ref_Sources/Genome/Core/Node/Node+Subscripting.swift', '__src_cc_ref_Sources/Genome/Core/Node/Node.swift', '__src_cc_ref_Sources/Genome/Core/Node/NodeConvertible.swift', '__src_cc_ref_Sources/Genome/Core/Node/NodeIndexable.swift', '__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift', '__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift', '__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift', '__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_Genome = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_PureJson);
             runOnlyForDeploymentPostprocessing = 0;
         };
         '__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift' = {
@@ -323,9 +314,14 @@
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift';
         };
-        _LinkFileRef_Genome = {
+        ___LinkPhase_Genome = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_PureJson_via_Genome);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_PureJson_via_Genome = {
             isa = PBXBuildFile;
-            fileRef = _____Product_Genome;
+            fileRef = _____Product_PureJson;
         };
         _______Confs_Genome = {
             isa = XCConfigurationList;
@@ -335,12 +331,12 @@
         };
         ___DebugConf_Genome = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
             name = Debug;
         };
         _ReleaseConf_Genome = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_Genome = {
@@ -374,7 +370,7 @@
         _____Product_GenomeCoreData = {
             isa = PBXFileReference;
             explicitFileType = 'compiled.mach-o.dylib';
-            path = 'GenomeCoreData.dylib';
+            path = 'libGenomeCoreData.dylib';
             sourceTree = BUILT_PRODUCTS_DIR;
         };
         CompilePhase_GenomeCoreData = {
@@ -382,18 +378,26 @@
             files = ('__src_cc_ref_Sources/GenomeCoreData/CoreData.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
-        ___LinkPhase_GenomeCoreData = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_PureJson, _LinkFileRef_GenomeFoundation, _LinkFileRef_Genome);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
         '__src_cc_ref_Sources/GenomeCoreData/CoreData.swift' = {
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/GenomeCoreData/CoreData.swift';
         };
-        _LinkFileRef_GenomeCoreData = {
+        ___LinkPhase_GenomeCoreData = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_PureJson_via_GenomeCoreData, _LinkFileRef_GenomeFoundation_via_GenomeCoreData, _LinkFileRef_Genome_via_GenomeCoreData);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_PureJson_via_GenomeCoreData = {
             isa = PBXBuildFile;
-            fileRef = _____Product_GenomeCoreData;
+            fileRef = _____Product_PureJson;
+        };
+        _LinkFileRef_GenomeFoundation_via_GenomeCoreData = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_GenomeFoundation;
+        };
+        _LinkFileRef_Genome_via_GenomeCoreData = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_Genome;
         };
         _______Confs_GenomeCoreData = {
             isa = XCConfigurationList;
@@ -403,12 +407,12 @@
         };
         ___DebugConf_GenomeCoreData = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
             name = Debug;
         };
         _ReleaseConf_GenomeCoreData = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_GenomeCoreData = {
@@ -448,17 +452,12 @@
         _____Product_GenomeFoundation = {
             isa = PBXFileReference;
             explicitFileType = 'compiled.mach-o.dylib';
-            path = 'GenomeFoundation.dylib';
+            path = 'libGenomeFoundation.dylib';
             sourceTree = BUILT_PRODUCTS_DIR;
         };
         CompilePhase_GenomeFoundation = {
             isa = PBXSourcesBuildPhase;
             files = ('__src_cc_ref_Sources/GenomeFoundation/Foundation.swift', '__src_cc_ref_Sources/GenomeFoundation/Node+Foundation.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_GenomeFoundation = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_PureJson, _LinkFileRef_Genome);
             runOnlyForDeploymentPostprocessing = 0;
         };
         '__src_cc_ref_Sources/GenomeFoundation/Foundation.swift' = {
@@ -469,9 +468,18 @@
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift';
         };
-        _LinkFileRef_GenomeFoundation = {
+        ___LinkPhase_GenomeFoundation = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_PureJson_via_GenomeFoundation, _LinkFileRef_Genome_via_GenomeFoundation);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_PureJson_via_GenomeFoundation = {
             isa = PBXBuildFile;
-            fileRef = _____Product_GenomeFoundation;
+            fileRef = _____Product_PureJson;
+        };
+        _LinkFileRef_Genome_via_GenomeFoundation = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_Genome;
         };
         _______Confs_GenomeFoundation = {
             isa = XCConfigurationList;
@@ -481,12 +489,12 @@
         };
         ___DebugConf_GenomeFoundation = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
             name = Debug;
         };
         _ReleaseConf_GenomeFoundation = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_GenomeFoundation = {
@@ -520,7 +528,7 @@
         _____Product_GenomeJson = {
             isa = PBXFileReference;
             explicitFileType = 'compiled.mach-o.dylib';
-            path = 'GenomeJson.dylib';
+            path = 'libGenomeJson.dylib';
             sourceTree = BUILT_PRODUCTS_DIR;
         };
         CompilePhase_GenomeJson = {
@@ -528,18 +536,22 @@
             files = ('__src_cc_ref_Sources/GenomeJson/Genome+Json.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
-        ___LinkPhase_GenomeJson = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_PureJson, _LinkFileRef_Genome);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
         '__src_cc_ref_Sources/GenomeJson/Genome+Json.swift' = {
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/GenomeJson/Genome+Json.swift';
         };
-        _LinkFileRef_GenomeJson = {
+        ___LinkPhase_GenomeJson = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_PureJson_via_GenomeJson, _LinkFileRef_Genome_via_GenomeJson);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_PureJson_via_GenomeJson = {
             isa = PBXBuildFile;
-            fileRef = _____Product_GenomeJson;
+            fileRef = _____Product_PureJson;
+        };
+        _LinkFileRef_Genome_via_GenomeJson = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_Genome;
         };
         _______Confs_GenomeJson = {
             isa = XCConfigurationList;
@@ -549,12 +561,12 @@
         };
         ___DebugConf_GenomeJson = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
             name = Debug;
         };
         _ReleaseConf_GenomeJson = {
             isa = XCBuildConfiguration;
-            buildSettings = { ENABLE_TESTABILITY = YES; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_GenomeJson = {
@@ -638,11 +650,6 @@
             files = ('__src_cc_ref_Tests/Genome/BasicTypes.swift', '__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift', '__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift', '__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift', '__src_cc_ref_Tests/Genome/NodeIndexable.swift', '__src_cc_ref_Tests/Genome/SettableOperatorTest.swift', '__src_cc_ref_Tests/Genome/ToNodeOperatorTest.swift', '__src_cc_ref_Tests/Genome/TransformTests.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
-        ___LinkPhase_GenomeTestSuite = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_PureJson, _LinkFileRef_Genome);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
         '__src_cc_ref_Tests/Genome/BasicTypes.swift' = {
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Tests/Genome/BasicTypes.swift';
@@ -675,9 +682,18 @@
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Tests/Genome/TransformTests.swift';
         };
-        _LinkFileRef_GenomeTestSuite = {
+        ___LinkPhase_GenomeTestSuite = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_PureJson_via_GenomeTestSuite, _LinkFileRef_Genome_via_GenomeTestSuite);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_PureJson_via_GenomeTestSuite = {
             isa = PBXBuildFile;
-            fileRef = _____Product_GenomeTestSuite;
+            fileRef = _____Product_PureJson;
+        };
+        _LinkFileRef_Genome_via_GenomeTestSuite = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_Genome;
         };
         _______Confs_GenomeTestSuite = {
             isa = XCConfigurationList;
@@ -687,12 +703,12 @@
         };
         ___DebugConf_GenomeTestSuite = {
             isa = XCBuildConfiguration;
-            buildSettings = { EMBEDDED_CONTENT_CONTAINS_SWIFT = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; };
             name = Debug;
         };
         _ReleaseConf_GenomeTestSuite = {
             isa = XCBuildConfiguration;
-            buildSettings = { EMBEDDED_CONTENT_CONTAINS_SWIFT = YES; LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_GenomeTestSuite = {
@@ -734,18 +750,26 @@
             files = ('__src_cc_ref_Tests/GenomeFoundation/Node+Foundation.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
-        ___LinkPhase_GenomeFoundationTestSuite = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_PureJson, _LinkFileRef_GenomeFoundation, _LinkFileRef_Genome);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
         '__src_cc_ref_Tests/GenomeFoundation/Node+Foundation.swift' = {
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Tests/GenomeFoundation/Node+Foundation.swift';
         };
-        _LinkFileRef_GenomeFoundationTestSuite = {
+        ___LinkPhase_GenomeFoundationTestSuite = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_PureJson_via_GenomeFoundationTestSuite, _LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite, _LinkFileRef_Genome_via_GenomeFoundationTestSuite);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_PureJson_via_GenomeFoundationTestSuite = {
             isa = PBXBuildFile;
-            fileRef = _____Product_GenomeFoundationTestSuite;
+            fileRef = _____Product_PureJson;
+        };
+        _LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_GenomeFoundation;
+        };
+        _LinkFileRef_Genome_via_GenomeFoundationTestSuite = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_Genome;
         };
         _______Confs_GenomeFoundationTestSuite = {
             isa = XCConfigurationList;
@@ -755,12 +779,12 @@
         };
         ___DebugConf_GenomeFoundationTestSuite = {
             isa = XCBuildConfiguration;
-            buildSettings = { EMBEDDED_CONTENT_CONTAINS_SWIFT = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; };
             name = Debug;
         };
         _ReleaseConf_GenomeFoundationTestSuite = {
             isa = XCBuildConfiguration;
-            buildSettings = { EMBEDDED_CONTENT_CONTAINS_SWIFT = YES; LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; OTHER_SWIFT_FLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_GenomeFoundationTestSuite = {

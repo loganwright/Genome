@@ -14,22 +14,22 @@
 extension Json: BackingData {
     public func toNode() -> Node {
         switch self {
-        case let .StringValue(str):
+        case let .string(str):
             return .string(str)
-        case let .NumberValue(num):
+        case let .number(num):
             return .number(num)
-        case let .BooleanValue(bool):
+        case let .bool(bool):
             return .bool(bool)
-        case let .ArrayValue(arr):
+        case let .array(arr):
             let mapped = arr.map { $0.toNode() }
             return .array(mapped)
-        case let .ObjectValue(obj):
+        case let .object(obj):
             var mutable: [String : Node] = [:]
             obj.forEach { key, val in
                 mutable[key] = val.toNode()
             }
             return .object(mutable)
-        case .NullValue:
+        case .null:
             return .null
         }
     }
@@ -37,22 +37,22 @@ extension Json: BackingData {
     public init(with node: Node, in context: Context) {
         switch node {
         case let .string(str):
-            self = .StringValue(str)
+            self = .string(str)
         case let .number(num):
-            self = .NumberValue(num)
+            self = .number(num)
         case let .bool(bool):
-            self = .BooleanValue(bool)
+            self = .bool(bool)
         case let .array(arr):
             let mapped = arr.map { Json(with: $0, in: context) }
-            self = .ArrayValue(mapped)
+            self = .array(mapped)
         case let .object(obj):
             var mutable: [String : Json] = [:]
             obj.forEach { key, val in
                 mutable[key] = Json(with: val, in: context)
             }
-            self = .ObjectValue(mutable)
+            self = .object(mutable)
         case .null:
-            self = .NullValue
+            self = .null
         }
     }
 }
@@ -92,7 +92,7 @@ extension Dictionary where Key: CustomStringConvertible, Value: NodeConvertible 
         try self.forEach { key, value in
             mutable["\(key)"] = try value.toJson()
         }
-        return .ObjectValue(mutable)
+        return .object(mutable)
     }
 }
 
