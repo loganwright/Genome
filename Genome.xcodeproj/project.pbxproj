@@ -96,6 +96,8 @@
 		EA8993871CE2678B00F97EBC /* CSVSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVSerializer.swift; sourceTree = "<group>"; };
 		EA8993891CE2678B00F97EBC /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConstants.swift; sourceTree = "<group>"; };
 		EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
+		EA8993981CE26C5500F97EBC /* JSONConversionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConversionTest.swift; path = Tests/Genome/JSONConversionTest.swift; sourceTree = "<group>"; };
+		EA89939B1CE26C7400F97EBC /* Test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Test.json; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
@@ -134,9 +136,9 @@
 		"_____Product_Genome" /* libGenome.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenome.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_GenomeCoreData" /* libGenomeCoreData.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenomeCoreData.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenomeFoundation.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GenomeFoundationTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GenomeFoundationTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_GenomeJson" /* libGenomeJson.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGenomeJson.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GenomeTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeTestSuite" /* GenomeTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GenomeTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_PureJson" /* libPureJson.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libPureJson.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -252,6 +254,23 @@
 				EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		EA89939A1CE26C5A00F97EBC /* GenomeParseTestSuite */ = {
+			isa = PBXGroup;
+			children = (
+				EA89939C1CE26C7800F97EBC /* Samples */,
+				EA8993981CE26C5500F97EBC /* JSONConversionTest.swift */,
+			);
+			name = GenomeParseTestSuite;
+			sourceTree = "<group>";
+		};
+		EA89939C1CE26C7800F97EBC /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				EA89939B1CE26C7400F97EBC /* Test.json */,
+			);
+			name = Samples;
 			sourceTree = "<group>";
 		};
 		TestProducts_ /* Tests */ = {
@@ -400,6 +419,7 @@
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EA89939A1CE26C5A00F97EBC /* GenomeParseTestSuite */,
 				"_______Group_GenomeTestSuite" /* GenomeTestSuite */,
 				"_______Group_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */,
 			);
