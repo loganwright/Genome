@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_PureJson"
-               BuildableName = "PureJson.dylib"
+               BuildableName = "libPureJson.dylib"
                BlueprintName = "PureJson"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_Genome"
-               BuildableName = "Genome.dylib"
+               BuildableName = "libGenome.dylib"
                BlueprintName = "Genome"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_GenomeCoreData"
-               BuildableName = "GenomeCoreData.dylib"
+               BuildableName = "libGenomeCoreData.dylib"
                BlueprintName = "GenomeCoreData"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_GenomeFoundation"
-               BuildableName = "GenomeFoundation.dylib"
+               BuildableName = "libGenomeFoundation.dylib"
                BlueprintName = "GenomeFoundation"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
@@ -71,7 +71,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_GenomeJson"
-               BuildableName = "GenomeJson.dylib"
+               BuildableName = "libGenomeJson.dylib"
                BlueprintName = "GenomeJson"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
@@ -122,7 +122,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "______Target_PureJson"
-            BuildableName = "PureJson.dylib"
+            BuildableName = "libPureJson.dylib"
             BlueprintName = "PureJson"
             ReferencedContainer = "container:Genome.xcodeproj">
          </BuildableReference>
