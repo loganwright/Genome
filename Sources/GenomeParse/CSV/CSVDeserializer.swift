@@ -7,7 +7,7 @@
 //
 
 /**
- Deserializes a CSV file into an array of `Node` objectacoording to the specification: [RFC4180](https://tools.ietf.org/html/rfc4180) with the option of changing the delimeter.
+ Deserializes a CSV file into an array of `Node` objectacoording to the specification: [RFC4180](https://tools.ietf.org/html/rfc4180) with the options of changing the delimeter, and and parsing basic types.
  */
 public class CSVDeserializer: Deserializer {
     
@@ -109,7 +109,6 @@ public class CSVDeserializer: Deserializer {
         // Call super to append the data.
         try super.parse(data: data)
         // Restart the parser if necessary.
-        
         
     }
 }

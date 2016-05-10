@@ -2,7 +2,7 @@
 //  Deserializer.swift
 //  Genome
 //
-//  Created by McQuilkin, Brandon on 5/9/16.
+//  Created by McQuilkin, Brandon on 5/10/16.
 //
 //
 
@@ -45,67 +45,12 @@ public protocol DeserializationProgressDelegate {
 }
 
 //---------------------------------
-// MARK: Deserialization Delegate
-//---------------------------------
-
-/// The r=protocol that allows a delegate to process the output data stream.
-internal protocol DeserializerDeserializationDelegate {
-    /**
-     Notifies the delegate that the deserializer will be deserializing a node of the given type.
-     - parameter node: An empty node representing the type of root node that will be processed.
-     */
-    func deserializerStartingRootNode(ofType type: Node)
-    
-    /**
-     Notifies the delegate that the deserializer has deserialized a direct child of the root node from the given data.
-     - parameter node: The node that was deserialized.
-     - parameter key: The key of the node if the root node is of object type.
-     */
-    func deserializerDeserialized(node: Node, key: String?)
-    
-    /**
-     Notifies the delegate that the deserializer has finished deserializing the current root node.
-     */
-    func deserializerCompletedRootNode()
-}
-
-/// An internal class to collect the data stream into a string.
-internal class DeserializerConcatenate: DeserializerDeserializationDelegate {
-    var output: Node?
-    
-    func deserializerStartingRootNode(ofType type: Node) {
-        output = type
-    }
-    
-    func deserializerDeserialized(node: Node, key: String?) {
-        if let output = output {
-            if let key = key {
-                guard case var .object(object) = output else {
-                    return
-                }
-                object[key] = node
-                self.output = .object(object)
-            } else {
-                guard case var .array(array) = output else {
-                    return
-                }
-                array.append(node)
-                self.output = .array(array)
-            }
-        }
-    }
-    
-    func deserializerCompletedRootNode() {
-        // Do nothing.
-    }
-}
-
-//---------------------------------
 // MARK: Deserializer
 //---------------------------------
 
 /**
  Deserializes file data into a structure of `Node` objects.
+  - note: Deserializes that are subclasses of this class are expected to create the entire output object before returning it. Subclasses of this class are best suited to quickly deserializing "small" amounts of data quickly. They should be written to value speed over memory consumption.
  */
 public class Deserializer {
     
@@ -134,8 +79,8 @@ public class Deserializer {
     /// The current character number.
     internal var characterNumber: UInt = 0
     
-    /// The deserialization delegate.
-    internal var deserializationDelegate: DeserializerDeserializationDelegate = DeserializerConcatenate()
+    /// The root output node.
+    private var output: Node?
     
     //---------------------------------
     // MARK: Initalization
@@ -225,4 +170,3 @@ public class Deserializer {
     }
     
 }
-

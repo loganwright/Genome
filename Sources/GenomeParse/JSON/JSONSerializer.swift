@@ -62,7 +62,7 @@ public class JSONSerializer: Serializer {
                 throw SerializationError.UnsupportedNodeType(reason: "The root node is expected to be an array or object.")
             }
         }
-        return (serializationDelegate as? SerializerConcatenate)?.output
+        return output
     }
     
     private func parseValue(node: Node) {
@@ -108,86 +108,86 @@ public class JSONSerializer: Serializer {
     }
     
     private func parse(object: [String: Node]) {
-        serializationDelegate.serializerSerialized(data: String(FileConstants.leftCurlyBracket))
+        output.append(FileConstants.leftCurlyBracket)
         var i: Int = 0
         for (key, value) in object {
-            serializationDelegate.serializerSerialized(data: escape(string: key) + String(FileConstants.colon))
+            output.append(escape(string: key) + String(FileConstants.colon))
             parseValue(node: value)
             i += 1
             if i != object.count {
-                serializationDelegate.serializerSerialized(data: String(FileConstants.comma))
+                output.append(FileConstants.comma)
             }
         }
-        serializationDelegate.serializerSerialized(data: String(FileConstants.rightCurlyBracket))
+        output.append(FileConstants.rightCurlyBracket)
     }
     
     private func parse(object: [String: Node], indentLevel: Int) {
-        serializationDelegate.serializerSerialized(data: String(FileConstants.leftCurlyBracket) + lineEndings.rawValue)
+        output.append(String(FileConstants.leftCurlyBracket) + lineEndings.rawValue)
         let indent = indentString(level: indentLevel)
         var i: Int = 0
         for (key, value) in object {
-            serializationDelegate.serializerSerialized(data: indent + escape(string: key) + String(FileConstants.colon) + " ")
+            output.append(indent + escape(string: key) + String(FileConstants.colon) + " ")
             parse(node: value, indentLevel: indentLevel + 1)
             i += 1
             if i != object.count {
-                serializationDelegate.serializerSerialized(data: String(FileConstants.comma))
+                output.append(FileConstants.comma)
             }
-            serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
+            output.append(lineEndings.rawValue)
         }
-        serializationDelegate.serializerSerialized(data: indentString(level: indentLevel - 1) + String(FileConstants.rightCurlyBracket))
+        output.append(indentString(level: indentLevel - 1) + String(FileConstants.rightCurlyBracket))
     }
     
     private func parse(array: [Node]) {
-        serializationDelegate.serializerSerialized(data: String(FileConstants.leftSquareBracket))
+        output.append(FileConstants.leftSquareBracket)
         var i: Int = 0
         for value in array {
             parseValue(node: value)
             i += 1
             if i != array.count {
-                serializationDelegate.serializerSerialized(data: String(FileConstants.comma))
+                output.append(FileConstants.comma)
             }
         }
-        serializationDelegate.serializerSerialized(data: String(FileConstants.rightSquareBracket))
+        output.append(FileConstants.rightSquareBracket)
     }
     
     private func parse(array: [Node], indentLevel: Int) {
-        serializationDelegate.serializerSerialized(data: String(FileConstants.leftSquareBracket) + lineEndings.rawValue)
+        output.append(String(FileConstants.leftSquareBracket) + lineEndings.rawValue)
         let indent = indentString(level: indentLevel)
         var i: Int = 0
         for value in array {
-            serializationDelegate.serializerSerialized(data: indent)
+            output.append(indent)
             parse(node: value, indentLevel: indentLevel + 1)
             i += 1
             if i != array.count {
-                serializationDelegate.serializerSerialized(data: String(FileConstants.comma))
+                output.append(FileConstants.comma)
             }
-            serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
+            output.append(lineEndings.rawValue)
         }
-        serializationDelegate.serializerSerialized(data: indentString(level: indentLevel - 1) + String(FileConstants.rightSquareBracket))
+        output.append(indentString(level: indentLevel - 1) + String(FileConstants.rightSquareBracket))
     }
     
     private func serialize(number: Double) {
         if number == Double(Int(number)) {
-            serializationDelegate.serializerSerialized(data: Int(number).description)
+            output.append(String(Int(number)))
         } else {
-            serializationDelegate.serializerSerialized(data: number.description)
+            output.append(String(number))
         }
     }
     
     private func serialize(string: String) {
-        serializationDelegate.serializerSerialized(data: "\"" + escape(string: string) + "\"")
+        output.append("\"" + escape(string: string) + "\"")
     }
     
     private func serialize(boolean: Bool) {
         if boolean {
-            serializationDelegate.serializerSerialized(data: JSONConstants.trueValue)
+            output.append(JSONConstants.trueValue)
         } else {
-            serializationDelegate.serializerSerialized(data: JSONConstants.falseValue)
+            output.append(JSONConstants.falseValue)
         }
     }
     
     private func serializeNull() {
-        serializationDelegate.serializerSerialized(data: JSONConstants.nullValue)
+        output.append(JSONConstants.nullValue)
     }
     
     private func escape(string: String) -> String {

@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA894FCA1CE10833006A6E8A /* StreamSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FC91CE10833006A6E8A /* StreamSerializer.swift */; };
-		EA894FCD1CE109E9006A6E8A /* CSVConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FCC1CE109E9006A6E8A /* CSVConstants.swift */; };
-		EA894FCF1CE10A0F006A6E8A /* CSVSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FCE1CE10A0F006A6E8A /* CSVSerializer.swift */; };
-		EA894FD11CE10BEF006A6E8A /* CSVDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FD01CE10BEF006A6E8A /* CSVDeserializer.swift */; };
-		EA894FD41CE1143F006A6E8A /* JSONConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FD31CE1143F006A6E8A /* JSONConstants.swift */; };
-		EA894FD61CE11458006A6E8A /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FD51CE11458006A6E8A /* JSONSerializer.swift */; };
-		EA89A1681CE0F8FF00A8A219 /* StreamDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89A1671CE0F8FF00A8A219 /* StreamDeserializer.swift */; };
+		EA8993711CE25D9200F97EBC /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89936F1CE25D8F00F97EBC /* Serializer.swift */; };
+		EA8993741CE25F9400F97EBC /* Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993721CE25EB200F97EBC /* Deserializer.swift */; };
+		EA8993771CE2630700F97EBC /* CSVSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FCE1CE10A0F006A6E8A /* CSVSerializer.swift */; };
+		EA8993781CE2630A00F97EBC /* CSVDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FD01CE10BEF006A6E8A /* CSVDeserializer.swift */; };
+		EA8993791CE2630C00F97EBC /* CSVConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FCC1CE109E9006A6E8A /* CSVConstants.swift */; };
+		EA89937A1CE2650200F97EBC /* JSONConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FD31CE1143F006A6E8A /* JSONConstants.swift */; };
+		EA89937B1CE2650200F97EBC /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA894FD51CE11458006A6E8A /* JSONSerializer.swift */; };
 		EAFF3A381CE0F545008F08B1 /* PureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* PureJson.dylib */; };
 		EAFF3A391CE0F545008F08B1 /* Genome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.dylib */; };
 		EAFF3A3A1CE0F545008F08B1 /* PureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* PureJson.dylib */; };
@@ -25,8 +25,6 @@
 		EAFF3A401CE0F545008F08B1 /* GenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* GenomeFoundation.dylib */; };
 		EAFF3A411CE0F545008F08B1 /* Genome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.dylib */; };
 		EAFF3A481CE0F6C3008F08B1 /* FileConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF3A471CE0F6B6008F08B1 /* FileConstants.swift */; };
-		EAFF3A4A1CE0F6FA008F08B1 /* Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF3A491CE0F6FA008F08B1 /* Deserializer.swift */; };
-		EAFF3A4C1CE0F833008F08B1 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF3A4B1CE0F833008F08B1 /* Serializer.swift */; };
 		_LinkFileRef_Genome /* Genome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.dylib */; };
 		_LinkFileRef_GenomeFoundation /* GenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* GenomeFoundation.dylib */; };
 		_LinkFileRef_PureJson /* PureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* PureJson.dylib */; };
@@ -90,16 +88,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA894FC91CE10833006A6E8A /* StreamSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamSerializer.swift; path = Sources/GenomeParse/Core/StreamSerializer.swift; sourceTree = "<group>"; };
 		EA894FCC1CE109E9006A6E8A /* CSVConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVConstants.swift; path = Sources/GenomeParse/CSV/CSVConstants.swift; sourceTree = "<group>"; };
 		EA894FCE1CE10A0F006A6E8A /* CSVSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVSerializer.swift; path = Sources/GenomeParse/CSV/CSVSerializer.swift; sourceTree = "<group>"; };
 		EA894FD01CE10BEF006A6E8A /* CSVDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVDeserializer.swift; path = Sources/GenomeParse/CSV/CSVDeserializer.swift; sourceTree = "<group>"; };
 		EA894FD31CE1143F006A6E8A /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConstants.swift; path = Sources/GenomeParse/JSON/JSONConstants.swift; sourceTree = "<group>"; };
 		EA894FD51CE11458006A6E8A /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSerializer.swift; path = Sources/GenomeParse/JSON/JSONSerializer.swift; sourceTree = "<group>"; };
-		EA89A1671CE0F8FF00A8A219 /* StreamDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamDeserializer.swift; path = Sources/GenomeParse/Core/StreamDeserializer.swift; sourceTree = "<group>"; };
+		EA89936F1CE25D8F00F97EBC /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializer.swift; path = Sources/GenomeParse/Core/Serializer.swift; sourceTree = "<group>"; };
+		EA8993721CE25EB200F97EBC /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deserializer.swift; path = Sources/GenomeParse/Core/Deserializer.swift; sourceTree = "<group>"; };
 		EAFF3A471CE0F6B6008F08B1 /* FileConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileConstants.swift; path = Sources/GenomeParse/Core/FileConstants.swift; sourceTree = "<group>"; };
-		EAFF3A491CE0F6FA008F08B1 /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deserializer.swift; path = Sources/GenomeParse/Core/Deserializer.swift; sourceTree = "<group>"; };
-		EAFF3A4B1CE0F833008F08B1 /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializer.swift; path = Sources/GenomeParse/Core/Serializer.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
@@ -242,21 +238,19 @@
 			children = (
 				EA894FD21CE11427006A6E8A /* JSON */,
 				EA894FCB1CE109D3006A6E8A /* CSV */,
-				EAFF3A461CE0F667008F08B1 /* ParseCore */,
+				EAFF3A461CE0F667008F08B1 /* Core */,
 			);
 			name = GenomeParse;
 			sourceTree = "<group>";
 		};
-		EAFF3A461CE0F667008F08B1 /* ParseCore */ = {
+		EAFF3A461CE0F667008F08B1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				EAFF3A471CE0F6B6008F08B1 /* FileConstants.swift */,
-				EAFF3A491CE0F6FA008F08B1 /* Deserializer.swift */,
-				EAFF3A4B1CE0F833008F08B1 /* Serializer.swift */,
-				EA89A1671CE0F8FF00A8A219 /* StreamDeserializer.swift */,
-				EA894FC91CE10833006A6E8A /* StreamSerializer.swift */,
+				EA89936F1CE25D8F00F97EBC /* Serializer.swift */,
+				EA8993721CE25EB200F97EBC /* Deserializer.swift */,
 			);
-			name = ParseCore;
+			name = Core;
 			sourceTree = "<group>";
 		};
 		TestProducts_ /* Tests */ = {
@@ -577,30 +571,28 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift in Sources */,
-				EAFF3A4C1CE0F833008F08B1 /* Serializer.swift in Sources */,
-				EA894FCF1CE10A0F006A6E8A /* CSVSerializer.swift in Sources */,
+				EA8993711CE25D9200F97EBC /* Serializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/SettableExtract.swift /* Core/Mapping/SettableExtract.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */,
-				EA89A1681CE0F8FF00A8A219 /* StreamDeserializer.swift in Sources */,
 				"__src_cc_ref_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift in Sources */,
+				EA89937A1CE2650200F97EBC /* JSONConstants.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */,
-				EAFF3A4A1CE0F6FA008F08B1 /* Deserializer.swift in Sources */,
-				EA894FD41CE1143F006A6E8A /* JSONConstants.swift in Sources */,
-				EA894FCD1CE109E9006A6E8A /* CSVConstants.swift in Sources */,
-				EA894FD61CE11458006A6E8A /* JSONSerializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift in Sources */,
+				EA8993791CE2630C00F97EBC /* CSVConstants.swift in Sources */,
 				EAFF3A481CE0F6C3008F08B1 /* FileConstants.swift in Sources */,
-				EA894FCA1CE10833006A6E8A /* StreamSerializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */,
+				EA89937B1CE2650200F97EBC /* JSONSerializer.swift in Sources */,
+				EA8993771CE2630700F97EBC /* CSVSerializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
+				EA8993741CE25F9400F97EBC /* Deserializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */,
-				EA894FD11CE10BEF006A6E8A /* CSVDeserializer.swift in Sources */,
+				EA8993781CE2630A00F97EBC /* CSVDeserializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

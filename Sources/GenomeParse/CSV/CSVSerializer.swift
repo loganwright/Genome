@@ -6,6 +6,8 @@
 //
 //
 
+import Foundation
+
 /**
  Serializes a `Node` array value into a CSV file acoording to the specification: [RFC4180](https://tools.ietf.org/html/rfc4180) with the option of changing the delimeter.
  */
@@ -77,21 +79,21 @@ public class CSVSerializer: Serializer {
     //---------------------------------
     
     override func parse() throws -> String? {
-        // If the headers were preset, output them.
-        if presetHeaders {
-            serializationDelegate.serializerSerialized(data: header.joined(separator: ","))
-            serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
-        }
         // The only valid root node is an array.
         switch rootNode {
         case let .array(array):
             try parseRoot(array: array)
-            return (serializationDelegate as? SerializerConcatenate)?.output
+            return output
         default:
             throw SerializationError.UnsupportedNodeType(reason: "The root node is expected to be an array.")
         }
     }
     
+    /**
+    Parses the root node that will become CSV data.
+    - parameter array: The root node that will be parsed into CSV data.
+    - throws: A `SerializationError` if one occurs.
+    */
     private func parseRoot(array: [Node]) throws {
         // Check to see if the array is empty
         if array.count == 0 {
@@ -118,7 +120,7 @@ public class CSVSerializer: Serializer {
             } else {
                 switch node {
                 case .object:
-                    throw SerializationError.UnsupportedNodeType(reason: "The child nodes are expected to be arrays.")
+                    throw SerializationError.UnsupportedNodeType(reason: "The child nodes are expected to non-objects.")
                 case let .array(array):
                     try parse(array: array)
                     break
@@ -138,11 +140,11 @@ public class CSVSerializer: Serializer {
             // Append a new line if necessary.
             i += 1
             if i != array.count {
-                serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
+                output.append(lineEndings.rawValue)
             }
         }
-        serializationDelegate.serializerFinished()
     }
+    
     
     private func parse(array: [Node]) throws {
         var i: Int = 0
@@ -151,7 +153,7 @@ public class CSVSerializer: Serializer {
             // Append a delimeter if necessary
             i += 1
             if i != array.count {
-                serializationDelegate.serializerSerialized(data: String(delimeter))
+                output.append(delimeter)
             }
         }
     }
@@ -162,14 +164,14 @@ public class CSVSerializer: Serializer {
             var i: Int = 0
             for pair in object {
                 header.append(pair.0)
-                serializationDelegate.serializerSerialized(data: pair.0)
+                output.append(pair.0)
                 
                 i += 1
                 if i != object.count {
-                    serializationDelegate.serializerSerialized(data: String(delimeter))
+                    output.append(delimeter)
                 }
             }
-            serializationDelegate.serializerSerialized(data: lineEndings.rawValue)
+            output.append(lineEndings.rawValue)
         }
         
         // Parse all values.
@@ -180,7 +182,7 @@ public class CSVSerializer: Serializer {
             try parse(value: object[key])
             
             if i != header.count {
-                serializationDelegate.serializerSerialized(data: String(delimeter))
+                output.append(delimeter)
             }
         }
     }
@@ -207,24 +209,25 @@ public class CSVSerializer: Serializer {
     
     private func parse(string: String) {
         // Escape the quotes in the string if necessary.
+        
         if string.contains("\"") {
             // Escape
-            serializationDelegate.serializerSerialized(data: "\"\(string.replacingOccurrences(of: "\"", with: "\"\""))\"")
+            output.append("\"\(string.replacingOccurrences(of: "\"", with: "\"\""))\"")
         } else {
-            serializationDelegate.serializerSerialized(data: string)
+            output.append(string)
         }
     }
     
     private func parse(number: Double) {
         // Check to see if we have an integer
         if number == Double(Int(number)) {
-            serializationDelegate.serializerSerialized(data: String(Int(number)))
+            output.append(String(Int(number)))
         } else {
-            serializationDelegate.serializerSerialized(data: String(number))
+            output.append(String(number))
         }
     }
     
     private func parse(boolean: Bool) {
-        serializationDelegate.serializerSerialized(data: boolean ? CSVConstants.trueValue : CSVConstants.falseValue)
+        output.append(boolean ? CSVConstants.trueValue : CSVConstants.falseValue)
     }
 }

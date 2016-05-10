@@ -2,7 +2,7 @@
 //  Serializer.swift
 //  Genome
 //
-//  Created by McQuilkin, Brandon on 5/9/16.
+//  Created by McQuilkin, Brandon on 5/10/16.
 //
 //
 
@@ -27,7 +27,7 @@ public enum SerializationError: ErrorProtocol {
 //---------------------------------
 
 /// The protocol that informs the delegate how much data has been processed.
-public protocol SerializerProgressDelegate {
+public protocol SerializationProgressDelegate {
     /**
      Notifies the delegate that the serializer has processed data.
      - parameter totalBytesProcessed: The total number of bytes that has been processed.
@@ -36,38 +36,12 @@ public protocol SerializerProgressDelegate {
 }
 
 //---------------------------------
-// MARK: Serialzation Delegate
-//---------------------------------
-
-/// The r=protocol that allows a delegate to process the output data stream.
-internal protocol SerializerSerializationDelegate {
-    /**
-     Notifies the delegate that the serializer has processed data and has serialized data to append to the output.
-     - parameter data: The string data to append to the output.
-     */
-    func serializerSerialized(data: String)
-    
-    /**
-     Notifies the delegate that the serializer has finished serializing.
-     */
-    func serializerFinished()
-}
-
-/// An internal class to collect the data stream into a string.
-internal class SerializerConcatenate: SerializerSerializationDelegate {
-    var output: String = ""
-    func serializerSerialized(data: String) {
-        output.append(data)
-    }
-    func serializerFinished() {}
-}
-
-//---------------------------------
 // MARK: Serializer
 //---------------------------------
 
 /**
  Serializes `Nodes` into file data.
+ - note: Serializers that are subclasses of this class are expected to create the entire output string before returning it. Subclasses of this class are best suited to quickly serializing "small" amounts of data quickly. They should be written to value speed over memory consumption. 
  */
 public class Serializer {
     
@@ -76,7 +50,7 @@ public class Serializer {
     //---------------------------------
     
     /// The delegate that will get notified of the progress that the deserialzer is making.
-    public var progressDelegate: DeserializationProgressDelegate?
+    public var progressDelegate: SerializationProgressDelegate?
     
     /// The data being processed.
     internal var rootNode: Node
@@ -84,8 +58,8 @@ public class Serializer {
     /// The line endings to use.
     public var lineEndings: LineEndings = .Unix
     
-    /// The output delegate.
-    internal var serializationDelegate: SerializerSerializationDelegate = SerializerConcatenate()
+    /// The string that stores the output.
+    internal var output: String = ""
     
     //---------------------------------
     // MARK: Initalization
@@ -112,5 +86,4 @@ public class Serializer {
     func parse() throws -> String? {
         fatalError("This method must be overriden by subclasses.")
     }
-    
 }

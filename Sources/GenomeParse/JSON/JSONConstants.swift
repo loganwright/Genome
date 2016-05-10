@@ -25,9 +25,8 @@ internal struct JSONConstants {
                                                                   "\"": "\\\"",
                                                                   
                                                                   "\u{2028}": "\\u2028", // LINE SEPARATOR
-        "\u{2029}": "\\u2029", // PARAGRAPH SEPARATOR
+                                                                  "\u{2029}": "\\u2029", // PARAGRAPH SEPARATOR
         
-        // XXX: countElements("\r\n") is 1 in Swift 1.0
-        "\r\n": "\\r\\n",
+                                                                  "\r\n": "\\r\\n" // XXX: countElements("\r\n") is 1 in Swift 1.0
         ]
 }
