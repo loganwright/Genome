@@ -159,7 +159,7 @@ extension Map {
 extension Map {
     private func expectNodeDictionary<T>(targeting: T.Type) throws -> [String : Node] {
         let result = try expectResult(targeting: T.self)
-        if let j = result.objectValue {
+        if let j = result.object {
             return j
         } else {
             throw ErrorFactory.unableToConvert(result, to: T.self)
