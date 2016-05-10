@@ -319,28 +319,28 @@ extension Node {
 }
 
 extension Node {
-    public var objectValue: [String : Node]? {
+    public var object: [String : Node]? {
         switch typeEnforcementLevel {
         case .strict:
-            return strictObjectValue
+            return strictObject
         case .fuzzy:
-            return fuzzyObjectValue
+            return fuzzyObject
         }
 
     }
     
-    public var strictObjectValue: [String : Node]? {
+    public var strictObject: [String : Node]? {
         guard case let .object(object) = self else { return nil }
         return object
     }
     
-    public var fuzzyObjectValue: [String : Node]? {
+    public var fuzzyObject: [String : Node]? {
         /*
          I'm not sure that string should map to object this way, but the goal 
          of fuzzy mapping is to try and fulfill the intent of the caller.
          in this case, if a string properly maps to a dictionary, we should return it.
          */
-        if let o = strictObjectValue {
+        if let o = strictObject {
             return o
         } else if let s = strictString {
             if s.isEmpty { return [:] }
@@ -446,7 +446,7 @@ private func fuzzyEquals(lhs: Node, _ rhs: Node) -> Bool {
         guard let rhsValue = rhs.fuzzyArray else { return false }
         return lhsValue == rhsValue
     case .object(let lhsValue):
-        guard let rhsValue = rhs.fuzzyObjectValue else { return false }
+        guard let rhsValue = rhs.fuzzyObject else { return false }
         return lhsValue == rhsValue
     }
 }

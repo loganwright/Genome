@@ -56,7 +56,7 @@ extension NodeConvertible {
 extension MappableObject {
     public init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
         let node = try data.toNode()
-        guard let _ = node.objectValue else {
+        guard let _ = node.object else {
             throw ErrorFactory.unableToConvert(node, to: Self.self)
         }
         try self.init(with: node, in: context)

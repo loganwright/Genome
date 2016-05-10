@@ -82,7 +82,7 @@ extension String: NodeIndexable {
      - see: NodeIndexable
      */
     public func access(in node: Node) -> Node? {
-        if let object = node.objectValue?[self] {
+        if let object = node.object?[self] {
             return object
         } else if let array = node.array {
             let value = array.flatMap(self.access)
@@ -100,7 +100,7 @@ extension String: NodeIndexable {
      - see: NodeIndexable
      */
     public func set(_ input: Node?, in parent: inout Node) {
-        if let object = parent.objectValue {
+        if let object = parent.object {
             var mutable = object
             mutable[self] = input
             parent = .object(mutable)
