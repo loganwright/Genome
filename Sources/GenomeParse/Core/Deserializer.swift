@@ -31,20 +31,6 @@ public enum DeserializationError: ErrorProtocol {
 }
 
 //---------------------------------
-// MARK: Deserialzation Progress
-//---------------------------------
-
-/// The protocol that informs the delegate how much data has been processed.
-public protocol DeserializationProgressDelegate {
-    /**
-     Notifies the delegate that the deserializer has processed data.
-     - parameter totalBytesProcessed: The total number of bytes that has been processed.
-     - parameter totalBytesExpectedToRead: The total number of bytes that are expected to be read.
-     */
-    func deserializerDidProcessData(totalBytesProcessed: Int64, totalBytesExpectedToRead: Int64)
-}
-
-//---------------------------------
 // MARK: Deserializer
 //---------------------------------
 
@@ -57,9 +43,6 @@ public class Deserializer {
     //---------------------------------
     // MARK: Properties
     //---------------------------------
-    
-    /// The delegate that will get notified of the progress that the deserialzer is making.
-    public var progressDelegate: DeserializationProgressDelegate?
     
     /// The data being processed.
     internal var data: String.UnicodeScalarView

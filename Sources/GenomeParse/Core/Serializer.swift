@@ -23,19 +23,6 @@ public enum SerializationError: ErrorProtocol {
 }
 
 //---------------------------------
-// MARK: Serialzation Progress
-//---------------------------------
-
-/// The protocol that informs the delegate how much data has been processed.
-public protocol SerializationProgressDelegate {
-    /**
-     Notifies the delegate that the serializer has processed data.
-     - parameter totalBytesProcessed: The total number of bytes that has been processed.
-     */
-    func serializerDidProcessData(totalBytesProcessed: Int64)
-}
-
-//---------------------------------
 // MARK: Serializer
 //---------------------------------
 
@@ -48,9 +35,6 @@ public class Serializer {
     //---------------------------------
     // MARK: Properties
     //---------------------------------
-    
-    /// The delegate that will get notified of the progress that the deserialzer is making.
-    public var progressDelegate: SerializationProgressDelegate?
     
     /// The data being processed.
     internal var rootNode: Node
