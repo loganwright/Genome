@@ -171,28 +171,27 @@ class ToNodeOperatorTest: XCTestCase {
     
     func testMapping() {
         let node = try! goodBusiness.toNode()
-        
         // Basic type
         let name = node["name"]!.string!
-        XCTAssert(name == "Good Business")
+        XCTAssert(name == "Good Business", "name is \(name) expected: Good Business")
         let foundedYear = node["foundedYear"]!.int
-        XCTAssert(foundedYear == 1987)
+        XCTAssert(foundedYear == 1987, "foundedYear is \(foundedYear) expected: 1987")
         
         // Basic type array
         let locations = node["locations"]!
-        XCTAssert(locations == self.locations)
+        XCTAssert(locations == self.locations, "locations is \(locations) expected: \(self.locations)")
         let locationsOptional = node["locationsOptional"]
-        XCTAssert(locationsOptional == self.locations)
+        XCTAssert(locationsOptional == self.locations, "locationsOptional is \(locationsOptional) expected: \(self.locations)")
         
         // Mappable
         let owner = node["owner"]!
-        XCTAssert(owner == self.owner)
+        XCTAssert(owner == self.owner, "owner is \(owner) expected: \(self.owner)")
         let ownerOptional = node["ownerOptional"]
-        XCTAssert(ownerOptional == self.owner)
+        XCTAssert(ownerOptional == self.owner, "ownerOptional is \(ownerOptional) expected: \(self.owner)")
         
         // Mappable array
         let employees = node["employees"]!
-        XCTAssert(employees == self.employees)
+        XCTAssert(employees == self.employees, "employees is \(employees) expected: \(self.employees)")
         let employeesOptional = node["employeesOptional"]
         XCTAssert(employeesOptional == self.employees)
         
