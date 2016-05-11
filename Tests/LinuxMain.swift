@@ -5,9 +5,10 @@ import XCTest
 @testable import GenomeTestSuite
 
 XCTMain([
-    testCase(BasicTypes.allTests),
+    testCase(BasicTypeTests.allTests),
     testCase(DictionaryKeyPathTests.allTests),
-    testCase(FromNodeOperatorTest.allTests),
+    testCase(FromNodeOperatorTestBasic.allTests),
+    testCase(FromNodeOperatorTestMapped.allTests),
     testCase(NodeDataTypeTest.allTests),
     testCase(NodeIndexable.allTests),
     testCase(SettableOperatorTest.allTests),
