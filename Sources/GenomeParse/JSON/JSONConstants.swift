@@ -7,16 +7,25 @@
 //
 
 internal struct JSONConstants {
-    internal static let trueValue: String = "true"
-    internal static let falseValue: String = "false"
-    internal static let nullValue: String = "null"
     
+    /// The value for the boolean true.
+    internal static let trueValue: String = "true"
+    /// The value for the boolean false.
+    internal static let falseValue: String = "false"
+    /// The value for null.
+    internal static let nullValue: String = "null"
+    /// The informal exponent lowercase identifier.
+    internal static let exponentLowercaseScalar: UnicodeScalar = "e"
+    /// The indormal uppercase identifier.
+    internal static let exponentUppercaseScalar: UnicodeScalar = "E"
+    
+    /// Assists in the unescaping of strings.
     internal static let unescapeMapping: [UnicodeScalar: UnicodeScalar] = [
                                                                               "t": "\t",
                                                                               "r": "\r",
                                                                               "n": "\n",
                                                                               ]
-    
+    /// Assists in the escaping of strings.
     internal static let escapeMapping: [Character : String] = [
                                                                   "\r": "\\r",
                                                                   "\n": "\\n",

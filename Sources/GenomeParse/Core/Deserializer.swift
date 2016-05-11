@@ -98,25 +98,7 @@ public class Deserializer {
      - throws: Throws a `DeserializationError` if the data is unable to be deserialized.
      */
     public func parse() throws -> Node {
-        try parse(data: data)
-        return try finish()
-    }
-    
-    /**
-     Deserializes the data given into a data node if possible. This will continue to accept data to append to the node until `finish()` is called.
-     - note: This is used by the stream deserializers.
-     - throws: Throws a `DeserializationError` if the data is unable to be deserialized.
-     */
-    internal func parse(data: String.UnicodeScalarView) throws {
-        // Trim the current data.
-        if index > 0 {
-            self.data = self.data.dropFirst(index)
-        }
-        // Append the new data
-        self.data.append(contentsOf: data)
-        // Reset the generator
-        generator = self.data.makeIterator()
-        try nextScalar()
+        fatalError("This method must be overriden by subclasses.")
     }
     
     /**
@@ -141,15 +123,6 @@ public class Deserializer {
             // We reached the end of the file.
             throw DeserializationError.EndOfFile
         }
-    }
-    
-    /**
-     Finish deserializing the data. This method signals the deserializer that no more data will be appended. If more data is expected, an error will be thrown.
-     - throws: Throws a `DeserializationError` if the deserializer is expecting more data.
-     - returns: A node representing the deserialized data.
-     */
-    internal func finish() throws -> Node {
-        fatalError("This method must be overriden by subclasses.")
     }
     
 }

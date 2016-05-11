@@ -15,6 +15,7 @@
 		EA8993901CE2678B00F97EBC /* CSVSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993871CE2678B00F97EBC /* CSVSerializer.swift */; };
 		EA8993911CE2678B00F97EBC /* JSONConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993891CE2678B00F97EBC /* JSONConstants.swift */; };
 		EA8993921CE2678B00F97EBC /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */; };
+		EAB9085D1CE37368008C1260 /* JSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_Genome_via_GenomeCoreData /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
@@ -98,6 +99,7 @@
 		EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
 		EA8993981CE26C5500F97EBC /* JSONConversionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConversionTest.swift; path = Tests/Genome/JSONConversionTest.swift; sourceTree = "<group>"; };
 		EA89939B1CE26C7400F97EBC /* Test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Test.json; sourceTree = "<group>"; };
+		EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
@@ -230,8 +232,8 @@
 		EA8993801CE2678B00F97EBC /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				EA8993811CE2678B00F97EBC /* Deserializer.swift */,
 				EA8993821CE2678B00F97EBC /* FileConstants.swift */,
+				EA8993811CE2678B00F97EBC /* Deserializer.swift */,
 				EA8993831CE2678B00F97EBC /* Serializer.swift */,
 			);
 			path = Core;
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				EA8993891CE2678B00F97EBC /* JSONConstants.swift */,
+				EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */,
 				EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */,
 			);
 			path = JSON;
@@ -613,6 +616,7 @@
 				__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */,
+				EAB9085D1CE37368008C1260 /* JSONDeserializer.swift in Sources */,
 				EA89938F1CE2678B00F97EBC /* CSVDeserializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

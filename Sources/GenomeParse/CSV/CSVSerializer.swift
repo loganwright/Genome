@@ -21,6 +21,12 @@ public class CSVSerializer: Serializer {
     /// - default: Comma (`,`)
     public var delimeter: UnicodeScalar = FileConstants.comma
     
+    /// Whether or not to include null values as the string null. If true, the output will be "null", if false the field will be output as empty.
+    public var outputNull: Bool = false
+    
+    /// Whether or not to output the constants "true", "false", and "null" as capitalized strings.
+    public var capitalizeConstants: Bool = false
+    
     /// Whether or not the headers were preset.
     /// - default: `false`
     /// - note: If preset, and the root node is an array of objects, the headers will be generated from the keys of the first node. Otherwise only the specified headers will be used.
@@ -90,10 +96,10 @@ public class CSVSerializer: Serializer {
     }
     
     /**
-    Parses the root node that will become CSV data.
-    - parameter array: The root node that will be parsed into CSV data.
-    - throws: A `SerializationError` if one occurs.
-    */
+     Parses the root node that will become CSV data.
+     - parameter array: The root node that will be parsed into CSV data.
+     - throws: A `SerializationError` if one occurs.
+     */
     private func parseRoot(array: [Node]) throws {
         // Check to see if the array is empty
         if array.count == 0 {
@@ -125,6 +131,7 @@ public class CSVSerializer: Serializer {
                     try parse(array: array)
                     break
                 case .null:
+                    parseNull()
                     break
                 case let .string(string):
                     parse(string: string)
@@ -145,7 +152,28 @@ public class CSVSerializer: Serializer {
         }
     }
     
+    /// Determines the type of node and parses it accordingly.
+    private func parse(value: Node?) throws {
+        if let value = value {
+            switch value {
+            case .null:
+                break
+            case let .string(string):
+                parse(string: string)
+                break
+            case let .number(number):
+                parse(number: number)
+                break
+            case let .bool(boolean):
+                parse(boolean: boolean)
+                break
+            default:
+                throw SerializationError.UnsupportedNodeType(reason: "The child's values are not allowed to be arrays or objects.")
+            }
+        }
+    }
     
+    /// Parses an array.
     private func parse(array: [Node]) throws {
         var i: Int = 0
         for node in array {
@@ -158,6 +186,7 @@ public class CSVSerializer: Serializer {
         }
     }
     
+    /// Parses an object.
     private func parse(object: [String: Node]) throws {
         // Parse the keys in the header first.
         if !presetHeaders && header.count == 0 {
@@ -187,26 +216,7 @@ public class CSVSerializer: Serializer {
         }
     }
     
-    private func parse(value: Node?) throws {
-        if let value = value {
-            switch value {
-            case .null:
-                break
-            case let .string(string):
-                parse(string: string)
-                break
-            case let .number(number):
-                parse(number: number)
-                break
-            case let .bool(boolean):
-                parse(boolean: boolean)
-                break
-            default:
-                throw SerializationError.UnsupportedNodeType(reason: "The child's values are not allowed to be arrays or objects.")
-            }
-        }
-    }
-    
+    /// Parses a string.
     private func parse(string: String) {
         // Escape the quotes in the string if necessary.
         
@@ -218,6 +228,7 @@ public class CSVSerializer: Serializer {
         }
     }
     
+    /// Parses a number.
     private func parse(number: Double) {
         // Check to see if we have an integer
         if number == Double(Int(number)) {
@@ -227,7 +238,23 @@ public class CSVSerializer: Serializer {
         }
     }
     
+    /// Parses a boolean.
     private func parse(boolean: Bool) {
-        output.append(boolean ? CSVConstants.trueValue : CSVConstants.falseValue)
+        if !capitalizeConstants {
+            output.append(boolean ? CSVConstants.trueValue : CSVConstants.falseValue)
+        } else {
+            output.append(boolean ? CSVConstants.trueValue.uppercased() : CSVConstants.falseValue.uppercased())
+        }
+    }
+    
+    /// Parses null.
+    private func parseNull() {
+        if outputNull {
+            if !capitalizeConstants {
+                output.append(CSVConstants.nullValue)
+            } else {
+                output.append(CSVConstants.nullValue.uppercased())
+            }
+        }
     }
 }
