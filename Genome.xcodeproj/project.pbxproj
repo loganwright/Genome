@@ -34,35 +34,35 @@
         _______Group_PureJson = {
             isa = PBXGroup;
             name = PureJson;
-            path = 'Packages/PureJson-2.0.0/Source';
+            path = 'Packages/PureJson-2.1.0/Source';
             sourceTree = '<group>';
-            children = ('__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift', '__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonParser.swift', '__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonSerializer.swift', '__PBXFileRef_Packages/PureJson-2.0.0/Source/ParseError.swift', '__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift');
+            children = ('__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift', '__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonParser.swift', '__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonSerializer.swift', '__PBXFileRef_Packages/PureJson-2.1.0/Source/ParseError.swift', '__PBXFileRef_Packages/PureJson-2.1.0/Source/StringUtils.swift');
         };
-        '__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift' = {
+        '__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             name = 'Json.swift';
             sourceTree = '<group>';
         };
-        '__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonParser.swift' = {
+        '__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonParser.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             name = 'JsonParser.swift';
             sourceTree = '<group>';
         };
-        '__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonSerializer.swift' = {
+        '__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonSerializer.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             name = 'JsonSerializer.swift';
             sourceTree = '<group>';
         };
-        '__PBXFileRef_Packages/PureJson-2.0.0/Source/ParseError.swift' = {
+        '__PBXFileRef_Packages/PureJson-2.1.0/Source/ParseError.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             name = 'ParseError.swift';
             sourceTree = '<group>';
         };
-        '__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift' = {
+        '__PBXFileRef_Packages/PureJson-2.1.0/Source/StringUtils.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             name = 'StringUtils.swift';
@@ -87,28 +87,28 @@
         };
         CompilePhase_PureJson = {
             isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Packages/PureJson-2.0.0/Source/Json.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonParser.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonSerializer.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/ParseError.swift', '__src_cc_ref_Packages/PureJson-2.0.0/Source/StringUtils.swift');
+            files = ('__src_cc_ref_Packages/PureJson-2.1.0/Source/Json.swift', '__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonParser.swift', '__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonSerializer.swift', '__src_cc_ref_Packages/PureJson-2.1.0/Source/ParseError.swift', '__src_cc_ref_Packages/PureJson-2.1.0/Source/StringUtils.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
-        '__src_cc_ref_Packages/PureJson-2.0.0/Source/Json.swift' = {
+        '__src_cc_ref_Packages/PureJson-2.1.0/Source/Json.swift' = {
             isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift';
+            fileRef = '__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift';
         };
-        '__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonParser.swift' = {
+        '__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonParser.swift' = {
             isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonParser.swift';
+            fileRef = '__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonParser.swift';
         };
-        '__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonSerializer.swift' = {
+        '__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonSerializer.swift' = {
             isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonSerializer.swift';
+            fileRef = '__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonSerializer.swift';
         };
-        '__src_cc_ref_Packages/PureJson-2.0.0/Source/ParseError.swift' = {
+        '__src_cc_ref_Packages/PureJson-2.1.0/Source/ParseError.swift' = {
             isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/PureJson-2.0.0/Source/ParseError.swift';
+            fileRef = '__PBXFileRef_Packages/PureJson-2.1.0/Source/ParseError.swift';
         };
-        '__src_cc_ref_Packages/PureJson-2.0.0/Source/StringUtils.swift' = {
+        '__src_cc_ref_Packages/PureJson-2.1.0/Source/StringUtils.swift' = {
             isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift';
+            fileRef = '__PBXFileRef_Packages/PureJson-2.1.0/Source/StringUtils.swift';
         };
         ___LinkPhase_PureJson = {
             isa = PBXFrameworksBuildPhase;

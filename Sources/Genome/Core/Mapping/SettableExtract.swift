@@ -15,14 +15,14 @@ extension Map {
     
     public func extract<T, InputType: NodeConvertible>(
         _ keyType: NodeIndexable...,
-        transformer: InputType throws -> T)
+        transformer: (InputType) throws -> T)
         throws -> T {
             return try <~self[keyType].transformFromNode(with: transformer)
     }
 
     public func extract<T, InputType: NodeConvertible>(
         _ keyType: NodeIndexable...,
-        transformer: InputType? throws -> T)
+        transformer: (InputType?) throws -> T)
         throws -> T {
             return try <~self[keyType].transformFromNode(with: transformer)
     }
