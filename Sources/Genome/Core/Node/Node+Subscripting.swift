@@ -33,7 +33,7 @@ extension Node {
             keys.remove(at: 0)
 
             if keys.isEmpty {
-                first.set(newValue, in: &self)
+                first.set(newValue, to: &self)
             } else {
                 var next = self[first] ?? first.makeIndexableNode()
                 next[keys] = newValue
