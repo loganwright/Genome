@@ -11,12 +11,18 @@ import XCTest
 @testable import Genome
 
 class TransformTest: XCTestCase {
+    static var allTests: [(String, (TransformTest) -> () throws -> Void)] {
+        return [
+                   ("testTransform", testTransform)
+        ]
+    }
+
     
     let testNode: Node = [
         "hello" : "world"
     ]
     
-    func test() {
+    func testTransform() {
         let map = Map(with: testNode)
         var settableString: String? = nil
         try! settableString <~ map["hello"]

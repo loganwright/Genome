@@ -11,7 +11,12 @@ import XCTest
 @testable import Genome
 
 class ToNodeOperatorTest: XCTestCase {
-    
+    static var allTests: [(String, (ToNodeOperatorTest) -> () throws -> Void)] {
+        return [
+                   ("testMapping", testMapping)
+        ]
+    }
+
     struct Employee: BasicMappable, Hashable {
         
         var name: String = ""
@@ -164,7 +169,7 @@ class ToNodeOperatorTest: XCTestCase {
     
     lazy var goodBusiness: Business = try! Business(node: self.businessNode)
     
-    func test() {
+    func testMapping() {
         let node = try! goodBusiness.toNode()
         
         // Basic type

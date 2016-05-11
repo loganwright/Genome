@@ -100,6 +100,18 @@ func makeTestMap() -> Map {
 }
 
 class FromNodeOperatorTestBasic: XCTestCase {
+    static var allTests: [(String, (FromNodeOperatorTestBasic) -> () throws -> Void)] {
+        return [
+                   ("testString", testString),
+                   ("testStringOptional", testStringOptional),
+                   ("testStringsArray", testStringsArray),
+                   ("testStringsArrayOptional", testStringsArrayOptional),
+                   ("testInt", testInt),
+                   ("testEmptyInt", testEmptyInt),
+                   ("testEmptyArray", testEmptyArray),
+        ]
+    }
+
     let map = makeTestMap()
 
     func testString() throws {
@@ -149,6 +161,17 @@ class FromNodeOperatorTestBasic: XCTestCase {
 }
 
 class FromNodeOperatorTestMapped: XCTestCase {
+    static var allTests: [(String, (FromNodeOperatorTestMapped) -> () throws -> Void)] {
+        return [
+                   ("testMappableObject", testMappableObject),
+                   ("testMappableArray", testMappableArray),
+                   ("testMappableArrayOfArrays", testMappableArrayOfArrays),
+                   ("testMappableDictionary", testMappableDictionary),
+                   ("testMappableDictionaryOfArrays", testMappableDictionaryOfArrays),
+                   ("testMappableSet", testMappableSet),
+        ]
+    }
+
     let map = makeTestMap()
 
     func testMappableObject() throws {

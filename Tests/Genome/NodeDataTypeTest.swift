@@ -11,6 +11,12 @@ import XCTest
 @testable import Genome
 
 class NodeDataTypeTest: XCTestCase {
+    static var allTests: [(String, (NodeDataTypeTest) -> () throws -> Void)] {
+        return [
+                   ("testIntegers", testIntegers),
+                   ("testUnsignedIntegers", testUnsignedIntegers),
+        ]
+    }
     
     // 127 is Int8 max, unless you want to change the way this test is setup,
     // the value must be somewhere between 0 and 127
