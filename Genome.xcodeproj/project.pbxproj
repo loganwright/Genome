@@ -98,15 +98,15 @@
 
 /* Begin PBXFileReference section */
 		EA5877D31CE4D3F200EC603A /* libGenomeSerialization.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libGenomeSerialization.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA8993811CE2678B00F97EBC /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deserializer.swift; path = ../../GenomeSerialization/Core/Deserializer.swift; sourceTree = "<group>"; };
-		EA8993821CE2678B00F97EBC /* FileConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileConstants.swift; path = ../../GenomeSerialization/Core/FileConstants.swift; sourceTree = "<group>"; };
-		EA8993831CE2678B00F97EBC /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializer.swift; path = ../../GenomeSerialization/Core/Serializer.swift; sourceTree = "<group>"; };
-		EA8993851CE2678B00F97EBC /* CSVConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVConstants.swift; path = ../../GenomeSerialization/CSV/CSVConstants.swift; sourceTree = "<group>"; };
-		EA8993861CE2678B00F97EBC /* CSVDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVDeserializer.swift; path = ../../GenomeSerialization/CSV/CSVDeserializer.swift; sourceTree = "<group>"; };
-		EA8993871CE2678B00F97EBC /* CSVSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVSerializer.swift; path = ../../GenomeSerialization/CSV/CSVSerializer.swift; sourceTree = "<group>"; };
-		EA8993891CE2678B00F97EBC /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConstants.swift; path = ../../GenomeSerialization/JSON/JSONConstants.swift; sourceTree = "<group>"; };
-		EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSerializer.swift; path = ../../GenomeSerialization/JSON/JSONSerializer.swift; sourceTree = "<group>"; };
-		EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDeserializer.swift; path = ../../GenomeSerialization/JSON/JSONDeserializer.swift; sourceTree = "<group>"; };
+		EA8993811CE2678B00F97EBC /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deserializer.swift; path = Sources/GenomeSerialization/Core/Deserializer.swift; sourceTree = "<group>"; };
+		EA8993821CE2678B00F97EBC /* FileConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileConstants.swift; path = Sources/GenomeSerialization/Core/FileConstants.swift; sourceTree = "<group>"; };
+		EA8993831CE2678B00F97EBC /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializer.swift; path = Sources/GenomeSerialization/Core/Serializer.swift; sourceTree = "<group>"; };
+		EA8993851CE2678B00F97EBC /* CSVConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVConstants.swift; path = Sources/GenomeSerialization/CSV/CSVConstants.swift; sourceTree = "<group>"; };
+		EA8993861CE2678B00F97EBC /* CSVDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVDeserializer.swift; path = Sources/GenomeSerialization/CSV/CSVDeserializer.swift; sourceTree = "<group>"; };
+		EA8993871CE2678B00F97EBC /* CSVSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVSerializer.swift; path = Sources/GenomeSerialization/CSV/CSVSerializer.swift; sourceTree = "<group>"; };
+		EA8993891CE2678B00F97EBC /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConstants.swift; path = Sources/GenomeSerialization/JSON/JSONConstants.swift; sourceTree = "<group>"; };
+		EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSerializer.swift; path = Sources/GenomeSerialization/JSON/JSONSerializer.swift; sourceTree = "<group>"; };
+		EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDeserializer.swift; path = Sources/GenomeSerialization/JSON/JSONDeserializer.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift" /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
@@ -1015,6 +1015,7 @@
 				EA5877DB1CE4D3F200EC603A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		"___RootConfs_" /* Build configuration list for PBXProject "Genome" */ = {
 			isa = XCConfigurationList;
