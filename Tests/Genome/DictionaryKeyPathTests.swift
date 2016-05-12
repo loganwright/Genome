@@ -10,8 +10,13 @@ import XCTest
 import Genome
 
 class DictionaryKeyPathTests: XCTestCase {
+    static var allTests: [(String, (DictionaryKeyPathTests) -> () throws -> Void)] {
+        return [
+                   ("testPaths", testPaths)
+        ]
+    }
     
-    func testExample() {
+    func testPaths() {
         let TestDictionary: Node = [
             "one" : [
                 "two" : "Found me!"

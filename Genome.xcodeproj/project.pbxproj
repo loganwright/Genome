@@ -29,11 +29,11 @@
 		_LinkFileRef_PureJson_via_GenomeFoundationTestSuite /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
 		_LinkFileRef_PureJson_via_GenomeJson /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
 		_LinkFileRef_PureJson_via_GenomeTestSuite /* libPureJson.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PureJson" /* libPureJson.dylib */; };
-		"__src_cc_ref_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift */; };
-		"__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonParser.swift" /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonParser.swift" /* JsonParser.swift */; };
-		"__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonSerializer.swift" /* JsonSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonSerializer.swift" /* JsonSerializer.swift */; };
-		"__src_cc_ref_Packages/PureJson-2.0.0/Source/ParseError.swift" /* ParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.0.0/Source/ParseError.swift" /* ParseError.swift */; };
-		"__src_cc_ref_Packages/PureJson-2.0.0/Source/StringUtils.swift" /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift" /* StringUtils.swift */; };
+		"__src_cc_ref_Packages/PureJson-2.1.0/Source/Json.swift" /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift" /* Json.swift */; };
+		"__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonParser.swift" /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonParser.swift" /* JsonParser.swift */; };
+		"__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonSerializer.swift" /* JsonSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonSerializer.swift" /* JsonSerializer.swift */; };
+		"__src_cc_ref_Packages/PureJson-2.1.0/Source/ParseError.swift" /* ParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.1.0/Source/ParseError.swift" /* ParseError.swift */; };
+		"__src_cc_ref_Packages/PureJson-2.1.0/Source/StringUtils.swift" /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PureJson-2.1.0/Source/StringUtils.swift" /* StringUtils.swift */; };
 		__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */; };
 		__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */; };
@@ -65,21 +65,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA89937C1CE2675500F97EBC /* PBXContainerItemProxy */ = {
+		805212E21CE3F53100D40686 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "______Target_PureJson";
 			remoteInfo = PureJson;
 		};
-		EA89937D1CE2675500F97EBC /* PBXContainerItemProxy */ = {
+		805212E31CE3F53100D40686 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "______Target_GenomeFoundation";
 			remoteInfo = GenomeFoundation;
 		};
-		EA89937E1CE2675500F97EBC /* PBXContainerItemProxy */ = {
+		805212E41CE3F53100D40686 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
@@ -102,11 +102,11 @@
 		EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonParser.swift" /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonSerializer.swift" /* JsonSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonSerializer.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/PureJson-2.0.0/Source/ParseError.swift" /* ParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift" /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift" /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonParser.swift" /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonSerializer.swift" /* JsonSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonSerializer.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PureJson-2.1.0/Source/ParseError.swift" /* ParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PureJson-2.1.0/Source/StringUtils.swift" /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/BackingDataType/BackingDataType.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Map.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/MappableObject.swift; sourceTree = "<group>"; };
@@ -409,14 +409,14 @@
 		"_______Group_PureJson" /* PureJson */ = {
 			isa = PBXGroup;
 			children = (
-				"__PBXFileRef_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift */,
-				"__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonParser.swift" /* JsonParser.swift */,
-				"__PBXFileRef_Packages/PureJson-2.0.0/Source/JsonSerializer.swift" /* JsonSerializer.swift */,
-				"__PBXFileRef_Packages/PureJson-2.0.0/Source/ParseError.swift" /* ParseError.swift */,
-				"__PBXFileRef_Packages/PureJson-2.0.0/Source/StringUtils.swift" /* StringUtils.swift */,
+				"__PBXFileRef_Packages/PureJson-2.1.0/Source/Json.swift" /* Json.swift */,
+				"__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonParser.swift" /* JsonParser.swift */,
+				"__PBXFileRef_Packages/PureJson-2.1.0/Source/JsonSerializer.swift" /* JsonSerializer.swift */,
+				"__PBXFileRef_Packages/PureJson-2.1.0/Source/ParseError.swift" /* ParseError.swift */,
+				"__PBXFileRef_Packages/PureJson-2.1.0/Source/StringUtils.swift" /* StringUtils.swift */,
 			);
 			name = PureJson;
-			path = "Packages/PureJson-2.0.0/Source";
+			path = "Packages/PureJson-2.1.0/Source";
 			sourceTree = "<group>";
 		};
 		"_______Tests_" /* Tests */ = {
@@ -673,11 +673,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				"__src_cc_ref_Packages/PureJson-2.0.0/Source/Json.swift" /* Json.swift in Sources */,
-				"__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonParser.swift" /* JsonParser.swift in Sources */,
-				"__src_cc_ref_Packages/PureJson-2.0.0/Source/JsonSerializer.swift" /* JsonSerializer.swift in Sources */,
-				"__src_cc_ref_Packages/PureJson-2.0.0/Source/ParseError.swift" /* ParseError.swift in Sources */,
-				"__src_cc_ref_Packages/PureJson-2.0.0/Source/StringUtils.swift" /* StringUtils.swift in Sources */,
+				"__src_cc_ref_Packages/PureJson-2.1.0/Source/Json.swift" /* Json.swift in Sources */,
+				"__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonParser.swift" /* JsonParser.swift in Sources */,
+				"__src_cc_ref_Packages/PureJson-2.1.0/Source/JsonSerializer.swift" /* JsonSerializer.swift in Sources */,
+				"__src_cc_ref_Packages/PureJson-2.1.0/Source/ParseError.swift" /* ParseError.swift in Sources */,
+				"__src_cc_ref_Packages/PureJson-2.1.0/Source/StringUtils.swift" /* StringUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,17 +687,17 @@
 		__Dependency_Genome /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_Genome" /* Genome */;
-			targetProxy = EA89937E1CE2675500F97EBC /* PBXContainerItemProxy */;
+			targetProxy = 805212E41CE3F53100D40686 /* PBXContainerItemProxy */;
 		};
 		__Dependency_GenomeFoundation /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_GenomeFoundation" /* GenomeFoundation */;
-			targetProxy = EA89937D1CE2675500F97EBC /* PBXContainerItemProxy */;
+			targetProxy = 805212E31CE3F53100D40686 /* PBXContainerItemProxy */;
 		};
 		__Dependency_PureJson /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "______Target_PureJson" /* PureJson */;
-			targetProxy = EA89937C1CE2675500F97EBC /* PBXContainerItemProxy */;
+			targetProxy = 805212E21CE3F53100D40686 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

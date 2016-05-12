@@ -3,8 +3,8 @@ import PackageDescription
 let package = Package(
     name: "Genome",
     dependencies: [
-        // Using LoganWright until update core library
-        .Package(url: "https://github.com/LoganWright/Swift-JsonSerializer", majorVersion: 2)
+        // using qutheory until update core library
+        .Package(url: "https://github.com/qutheory/pure-json", majorVersion: 2, minor: 1)
     ],
     exclude: [
         "Sources/Genome/CoreData"

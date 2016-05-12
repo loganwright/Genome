@@ -128,7 +128,7 @@ public prefix func <~ <NodeInputType: NodeConvertible, T>(transformer: FromNodeT
 
  - returns: the underlying value if possible
  */
-private func execute<T>(with map: Map, body: @autoclosure Void throws -> T) throws -> T {
+private func execute<T>(with map: Map, body: @autoclosure (Void) throws -> T) throws -> T {
     do {
         return try body()
     } catch let e as Error {

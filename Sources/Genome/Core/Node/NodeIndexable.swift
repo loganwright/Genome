@@ -25,7 +25,7 @@ public protocol NodeIndexable {
      - parameter input:  value to set in parent, or `nil` if should remove
      - parameter parent: node to set input in
      */
-    func set(_ input: Node?, in parent: inout Node)
+    func set(_ input: Node?, to parent: inout Node)
 
     /**
      When using a path, and setting, it's possible that a value doesn't yet exist.
@@ -58,7 +58,7 @@ extension Int: NodeIndexable {
     /**
      - see: NodeIndexable
      */
-    public func set(_ input: Node?, in parent: inout Node) {
+    public func set(_ input: Node?, to parent: inout Node) {
         guard let array = parent.array where self < array.count else { return }
         var mutable = array
         if let new = input {
@@ -99,7 +99,7 @@ extension String: NodeIndexable {
     /**
      - see: NodeIndexable
      */
-    public func set(_ input: Node?, in parent: inout Node) {
+    public func set(_ input: Node?, to parent: inout Node) {
         if let object = parent.object {
             var mutable = object
             mutable[self] = input
@@ -107,7 +107,7 @@ extension String: NodeIndexable {
         } else if let array = parent.array {
             let mapped: [Node] = array.map { val in
                 var mutable = val
-                self.set(input, in: &mutable)
+                self.set(input, to: &mutable)
                 return mutable
             }
             parent = .array(mapped)
