@@ -17,6 +17,8 @@
 		EA5877E51CE4D42300EC603A /* JSONConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993891CE2678B00F97EBC /* JSONConstants.swift */; };
 		EA5877E61CE4D42300EC603A /* JSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */; };
 		EA5877E71CE4D42300EC603A /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */; };
+		EA5877F11CE4E95E00EC603A /* CSVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5877F01CE4E95E00EC603A /* CSVExtensions.swift */; };
+		EA5877F31CE4E97A00EC603A /* JSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5877F21CE4E97A00EC603A /* JSONExtensions.swift */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_Genome_via_GenomeCoreData /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
@@ -98,6 +100,8 @@
 
 /* Begin PBXFileReference section */
 		EA5877D31CE4D3F200EC603A /* libGenomeSerialization.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libGenomeSerialization.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5877F01CE4E95E00EC603A /* CSVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVExtensions.swift; path = Sources/GenomeSerialization/CSV/CSVExtensions.swift; sourceTree = SOURCE_ROOT; };
+		EA5877F21CE4E97A00EC603A /* JSONExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONExtensions.swift; path = Sources/GenomeSerialization/JSON/JSONExtensions.swift; sourceTree = SOURCE_ROOT; };
 		EA8993811CE2678B00F97EBC /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deserializer.swift; path = Sources/GenomeSerialization/Core/Deserializer.swift; sourceTree = "<group>"; };
 		EA8993821CE2678B00F97EBC /* FileConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileConstants.swift; path = Sources/GenomeSerialization/Core/FileConstants.swift; sourceTree = "<group>"; };
 		EA8993831CE2678B00F97EBC /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializer.swift; path = Sources/GenomeSerialization/Core/Serializer.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				EA8993851CE2678B00F97EBC /* CSVConstants.swift */,
 				EA8993861CE2678B00F97EBC /* CSVDeserializer.swift */,
 				EA8993871CE2678B00F97EBC /* CSVSerializer.swift */,
+				EA5877F01CE4E95E00EC603A /* CSVExtensions.swift */,
 			);
 			path = CSV;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				EA8993891CE2678B00F97EBC /* JSONConstants.swift */,
 				EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */,
 				EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */,
+				EA5877F21CE4E97A00EC603A /* JSONExtensions.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -702,9 +708,11 @@
 				EA5877E11CE4D42300EC603A /* Serializer.swift in Sources */,
 				EA5877E21CE4D42300EC603A /* CSVConstants.swift in Sources */,
 				EA5877E31CE4D42300EC603A /* CSVDeserializer.swift in Sources */,
+				EA5877F31CE4E97A00EC603A /* JSONExtensions.swift in Sources */,
 				EA5877E41CE4D42300EC603A /* CSVSerializer.swift in Sources */,
 				EA5877E51CE4D42300EC603A /* JSONConstants.swift in Sources */,
 				EA5877E61CE4D42300EC603A /* JSONDeserializer.swift in Sources */,
+				EA5877F11CE4E95E00EC603A /* CSVExtensions.swift in Sources */,
 				EA5877E71CE4D42300EC603A /* JSONSerializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
