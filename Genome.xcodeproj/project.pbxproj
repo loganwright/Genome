@@ -19,6 +19,8 @@
 		EA5877E71CE4D42300EC603A /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */; };
 		EA5877F11CE4E95E00EC603A /* CSVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5877F01CE4E95E00EC603A /* CSVExtensions.swift */; };
 		EA5877F31CE4E97A00EC603A /* JSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5877F21CE4E97A00EC603A /* JSONExtensions.swift */; };
+		EADE2B2C1CE4F67800D1222B /* libGenomeSerialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5877D31CE4D3F200EC603A /* libGenomeSerialization.dylib */; };
+		EADE2B331CE4F6D700D1222B /* JSONTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADE2B321CE4F6D700D1222B /* JSONTest.swift */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_Genome_via_GenomeCoreData /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
@@ -76,6 +78,13 @@
 			remoteGlobalIDString = "______Target_Genome";
 			remoteInfo = Genome;
 		};
+		EADE2B2D1CE4F67800D1222B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5877D21CE4D3F200EC603A;
+			remoteInfo = GenomeSerialization;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +100,9 @@
 		EA8993891CE2678B00F97EBC /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConstants.swift; path = Sources/GenomeSerialization/JSON/JSONConstants.swift; sourceTree = "<group>"; };
 		EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSerializer.swift; path = Sources/GenomeSerialization/JSON/JSONSerializer.swift; sourceTree = "<group>"; };
 		EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDeserializer.swift; path = Sources/GenomeSerialization/JSON/JSONDeserializer.swift; sourceTree = "<group>"; };
+		EADE2B271CE4F67800D1222B /* GenomeSerializationTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenomeSerializationTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADE2B321CE4F6D700D1222B /* JSONTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONTest.swift; path = Tests/GenomeSerializationTestSuite/JSONTest.swift; sourceTree = SOURCE_ROOT; };
+		EADE2B341CE4FB3C00D1222B /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/BackingDataType/BackingDataType.swift; sourceTree = "<group>"; };
@@ -133,6 +145,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5877DE1CE4D41400EC603A /* libGenome.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EADE2B241CE4F67800D1222B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EADE2B2C1CE4F67800D1222B /* libGenomeSerialization.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +243,14 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		EADE2B281CE4F67800D1222B /* GenomeSerializationTestSuite */ = {
+			isa = PBXGroup;
+			children = (
+				EADE2B321CE4F6D700D1222B /* JSONTest.swift */,
+			);
+			path = GenomeSerializationTestSuite;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +279,7 @@
 				"_____Product_GenomeCoreData" /* libGenomeCoreData.dylib */,
 				"_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */,
 				EA5877D31CE4D3F200EC603A /* libGenomeSerialization.dylib */,
+				EADE2B271CE4F67800D1222B /* GenomeSerializationTestSuite.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,7 +373,9 @@
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EADE2B341CE4FB3C00D1222B /* LinuxMain.swift */,
 				"_______Group_GenomeTestSuite" /* GenomeTestSuite */,
+				EADE2B281CE4F67800D1222B /* GenomeSerializationTestSuite */,
 				"_______Group_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */,
 			);
 			name = Tests;
@@ -369,6 +400,24 @@
 			productName = GenomeSerialization;
 			productReference = EA5877D31CE4D3F200EC603A /* libGenomeSerialization.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
+		};
+		EADE2B261CE4F67800D1222B /* GenomeSerializationTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EADE2B311CE4F67800D1222B /* Build configuration list for PBXNativeTarget "GenomeSerializationTestSuite" */;
+			buildPhases = (
+				EADE2B231CE4F67800D1222B /* Sources */,
+				EADE2B241CE4F67800D1222B /* Frameworks */,
+				EADE2B251CE4F67800D1222B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EADE2B2E1CE4F67800D1222B /* PBXTargetDependency */,
+			);
+			name = GenomeSerializationTestSuite;
+			productName = GenomeSerializationTestSuite;
+			productReference = EADE2B271CE4F67800D1222B /* GenomeSerializationTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		"______Target_Genome" /* Genome */ = {
 			isa = PBXNativeTarget;
@@ -461,9 +510,13 @@
 		__RootObject_ /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 9999;
 				TargetAttributes = {
 					EA5877D21CE4D3F200EC603A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					EADE2B261CE4F67800D1222B = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -486,9 +539,20 @@
 				EA5877D21CE4D3F200EC603A /* GenomeSerialization */,
 				"______Target_GenomeTestSuite" /* GenomeTestSuite */,
 				"______Target_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */,
+				EADE2B261CE4F67800D1222B /* GenomeSerializationTestSuite */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EADE2B251CE4F67800D1222B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CompilePhase_Genome /* Sources */ = {
@@ -571,6 +635,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EADE2B231CE4F67800D1222B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EADE2B331CE4F6D700D1222B /* JSONTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -578,6 +650,11 @@
 			isa = PBXTargetDependency;
 			target = "______Target_Genome" /* Genome */;
 			targetProxy = EA5877DC1CE4D40E00EC603A /* PBXContainerItemProxy */;
+		};
+		EADE2B2E1CE4F67800D1222B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA5877D21CE4D3F200EC603A /* GenomeSerialization */;
+			targetProxy = EADE2B2D1CE4F67800D1222B /* PBXContainerItemProxy */;
 		};
 		__Dependency_Genome /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -676,6 +753,98 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EADE2B2F1CE4F67800D1222B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = GenomeSerializationTestSuite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Genome.GenomeSerializationTestSuite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EADE2B301CE4F67800D1222B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = GenomeSerializationTestSuite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Genome.GenomeSerializationTestSuite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -823,6 +992,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
+		};
+		EADE2B311CE4F67800D1222B /* Build configuration list for PBXNativeTarget "GenomeSerializationTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EADE2B2F1CE4F67800D1222B /* Debug */,
+				EADE2B301CE4F67800D1222B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		"___RootConfs_" /* Build configuration list for PBXProject "Genome" */ = {
 			isa = XCConfigurationList;
