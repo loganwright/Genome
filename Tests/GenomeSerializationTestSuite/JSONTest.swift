@@ -12,7 +12,7 @@ import Foundation
 
 class JSONTest: XCTestCase {
     
-    static var allTests: [(String, (BasicTypeTests) -> () throws -> Void)] {
+    static var allTests: [(String, (JSONTest) -> () throws -> Void)] {
         return [
                    ("testBasic", testBasic),
                    ("testBasicArrays", testBasicArrays)
@@ -29,7 +29,7 @@ class JSONTest: XCTestCase {
                                              "string" : "hello"
     ]
     
-    let basicArraysString: String = "{\"int\" : [1],\n\"float\" : [1.5],\n\"double\" : [2.5],\n\"bool\" : [true],\n\"string\" : [\"hello\"]}"
+    let BasicArraysTestString: String = "{\"int\" : [1],\n\"float\" : [1.5],\n\"double\" : [2.5],\n\"bool\" : [true],\n\"string\" : [\"hello\"]}"
     
     let BasicArraysTestNode: [String : Node] = [
                                                    "ints" : [1],
@@ -43,6 +43,7 @@ class JSONTest: XCTestCase {
         let basic = try JSONDeserializer(data: BasicTestString).parse()
         guard case let Node.object(dictionary) = basic else {
             XCTFail("The expected output type is an object node.")
+            return
         }
         XCTAssert(dictionary["int"]!.int! == 1)
         XCTAssert(dictionary["float"]!.float! == 1.5)
@@ -50,8 +51,8 @@ class JSONTest: XCTestCase {
         XCTAssert(dictionary["bool"]!.bool! == true)
         XCTAssert(dictionary["string"]!.string! == "hello")
         
-        let jsonString = try JSONSerializer(node: BasicTestNode)
-        let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding), options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
+        let jsonString = try JSONSerializer(node: .object(BasicTestNode)).parse()
+        let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
         let int = jsonObject["int"] as! Int
         let float = jsonObject["float"] as! Float
         let double = jsonObject["double"] as! Double
@@ -65,30 +66,29 @@ class JSONTest: XCTestCase {
     }
     
     func testBasicArrays() throws {
-        let basic = try JSONDeserializer(data: BasicTestString).parse()
+        let basic = try JSONDeserializer(data: BasicArraysTestString).parse()
         guard case let Node.object(dictionary) = basic else {
             XCTFail("The expected output type is an object node.")
+            return
         }
-        XCTAssert(dictionary["int"]!.array.flatMap { $0.int! } == [1])
-        XCTAssert(dictionary["float"]!.array.flatMap { $0.float! }  == [1.5])
-        XCTAssert(dictionary["double"]!.array.flatMap { $0.double! } == [2.5])
-        XCTAssert(dictionary["bool"]!.array.flatMap { $0.bool! } == [true])
-        XCTAssert(dictionary["string"]!.array.flatMap { $0.string! } == ["hello"])
+        XCTAssert(dictionary["int"]!.array!.flatMap { $0.int! } == [1])
+        XCTAssert(dictionary["float"]!.array!.flatMap { $0.float! }  == [1.5])
+        XCTAssert(dictionary["double"]!.array!.flatMap { $0.double! } == [2.5])
+        XCTAssert(dictionary["bool"]!.array!.flatMap { $0.bool! } == [true])
+        XCTAssert(dictionary["string"]!.array!.flatMap { $0.string! } == ["hello"])
         
-        let jsonString = try JSONSerializer(node: BasicArraysTestNode)
-        let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding), options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
-        let ints = jsonObject["ints"] as [Int]
-        let floats = jsonObject["floats"] as [Float]
-        let doubles = jsonObject["doubles"] as [Double]
-        let bools = jsonObject["bools"] as [Bool]
-        let strings = jsonObject["strings"] as [String]
+        let jsonString = try JSONSerializer(node: .object(BasicArraysTestNode)).parse()
+        let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
+        let ints = jsonObject["ints"] as! [Int]
+        let floats = jsonObject["floats"] as! [Float]
+        let doubles = jsonObject["doubles"] as! [Double]
+        let bools = jsonObject["bools"] as! [Bool]
+        let strings = jsonObject["strings"] as! [String]
         XCTAssert(ints == [1])
         XCTAssert(floats == [1.5])
         XCTAssert(doubles == [2.5])
         XCTAssert(bools == [true])
         XCTAssert(strings == ["hello"])
     }
-    
-    
     
 }

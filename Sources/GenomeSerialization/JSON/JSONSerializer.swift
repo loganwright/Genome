@@ -44,7 +44,7 @@ public class JSONSerializer: Serializer {
     // MARK: Parsing
     //---------------------------------
     
-    override func parse() throws -> String? {
+    override func parse() throws -> String {
         // Run the serialzers coresponding to the `prettyPrint` setting.
         if !prettyPrint {
             switch rootNode {

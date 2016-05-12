@@ -85,7 +85,7 @@ public class CSVSerializer: Serializer {
     // MARK: Parsing
     //---------------------------------
     
-    override func parse() throws -> String? {
+    override func parse() throws -> String {
         // The only valid root node is an array.
         switch rootNode {
         case let .array(array):

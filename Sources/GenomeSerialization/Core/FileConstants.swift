@@ -41,6 +41,10 @@ internal struct FileConstants {
     internal static let colon = UnicodeScalar(0x003A)
     /// The comma: ,
     internal static let comma = UnicodeScalar(0x002C)
+    /// The semicolon: ;
+    internal static let semicolon = UnicodeScalar(0x003B)
+    /// The octothorpe: #
+    internal static let octothorpe = UnicodeScalar(0x0023)
     
     //---------------------------------
     // MARK: Whitespace

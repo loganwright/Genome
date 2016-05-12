@@ -69,7 +69,7 @@ public class Serializer {
      - returns: Data representing the node the serializer was initialized with.
      - throws: Throws a `SerializationError` if a node is unable to be serialized.
      */
-    func parse() throws -> String? {
+    func parse() throws -> String {
         fatalError("This method must be overriden by subclasses.")
     }
 }
