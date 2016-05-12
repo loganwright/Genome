@@ -35,5 +35,11 @@ let package = Package(
                  .Target(name: "Genome")
               ]
           ),
+          Target(
+            name: "GenomeSerialization",
+            dependencies: [
+                 .Target(name: "Genome")
+              ]
+            )
     ]
 )
