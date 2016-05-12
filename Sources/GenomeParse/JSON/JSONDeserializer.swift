@@ -6,6 +6,8 @@
 //
 //
 
+@_exported import Genome
+
 public class JSONDeserializer: Deserializer {
     
     //---------------------------------

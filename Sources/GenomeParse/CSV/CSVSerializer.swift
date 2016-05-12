@@ -6,6 +6,7 @@
 //
 //
 
+@_exported import Genome
 import Foundation
 
 /**

@@ -6,6 +6,8 @@
 //
 //
 
+@_exported import Genome
+
 /**
  Deserializes CSV data into a `Node` representation.
  

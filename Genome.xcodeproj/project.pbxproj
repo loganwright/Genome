@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA89938B1CE2678B00F97EBC /* Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993811CE2678B00F97EBC /* Deserializer.swift */; };
-		EA89938C1CE2678B00F97EBC /* FileConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993821CE2678B00F97EBC /* FileConstants.swift */; };
-		EA89938D1CE2678B00F97EBC /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993831CE2678B00F97EBC /* Serializer.swift */; };
-		EA89938E1CE2678B00F97EBC /* CSVConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993851CE2678B00F97EBC /* CSVConstants.swift */; };
-		EA89938F1CE2678B00F97EBC /* CSVDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993861CE2678B00F97EBC /* CSVDeserializer.swift */; };
-		EA8993901CE2678B00F97EBC /* CSVSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993871CE2678B00F97EBC /* CSVSerializer.swift */; };
-		EA8993911CE2678B00F97EBC /* JSONConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8993891CE2678B00F97EBC /* JSONConstants.swift */; };
-		EA8993921CE2678B00F97EBC /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */; };
-		EAB9085D1CE37368008C1260 /* JSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_Genome_via_GenomeCoreData /* libGenome.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* libGenome.dylib */; };
@@ -97,8 +88,6 @@
 		EA8993871CE2678B00F97EBC /* CSVSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVSerializer.swift; sourceTree = "<group>"; };
 		EA8993891CE2678B00F97EBC /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConstants.swift; sourceTree = "<group>"; };
 		EA89938A1CE2678B00F97EBC /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
-		EA8993981CE26C5500F97EBC /* JSONConversionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConversionTest.swift; path = Tests/Genome/JSONConversionTest.swift; sourceTree = "<group>"; };
-		EA89939B1CE26C7400F97EBC /* Test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Test.json; sourceTree = "<group>"; };
 		EAB9085C1CE37368008C1260 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -259,23 +248,6 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		EA89939A1CE26C5A00F97EBC /* GenomeParseTestSuite */ = {
-			isa = PBXGroup;
-			children = (
-				EA89939C1CE26C7800F97EBC /* Samples */,
-				EA8993981CE26C5500F97EBC /* JSONConversionTest.swift */,
-			);
-			name = GenomeParseTestSuite;
-			sourceTree = "<group>";
-		};
-		EA89939C1CE26C7800F97EBC /* Samples */ = {
-			isa = PBXGroup;
-			children = (
-				EA89939B1CE26C7400F97EBC /* Test.json */,
-			);
-			name = Samples;
-			sourceTree = "<group>";
-		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,7 +394,6 @@
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EA89939A1CE26C5A00F97EBC /* GenomeParseTestSuite */,
 				"_______Group_GenomeTestSuite" /* GenomeTestSuite */,
 				"_______Group_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */,
 			);
@@ -594,8 +565,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				EA89938B1CE2678B00F97EBC /* Deserializer.swift in Sources */,
-				EA89938D1CE2678B00F97EBC /* Serializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */,
@@ -603,21 +572,14 @@
 				__src_cc_ref_Sources/Genome/Core/Mapping/SettableOperator.swift /* Core/Mapping/SettableOperator.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */,
-				EA8993911CE2678B00F97EBC /* JSONConstants.swift in Sources */,
 				"__src_cc_ref_Sources/Genome/Core/Node/Node+Subscripting.swift" /* Core/Node/Node+Subscripting.swift in Sources */,
-				EA89938E1CE2678B00F97EBC /* CSVConstants.swift in Sources */,
-				EA89938C1CE2678B00F97EBC /* FileConstants.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeConvertible.swift /* Core/Node/NodeConvertible.swift in Sources */,
-				EA8993901CE2678B00F97EBC /* CSVSerializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeIndexable.swift /* Core/Node/NodeIndexable.swift in Sources */,
-				EA8993921CE2678B00F97EBC /* JSONSerializer.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Node/NodeRepresentation.swift /* Core/Node/NodeRepresentation.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/CollectionInitializers.swift /* Core/Utility/CollectionInitializers.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
 				__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */,
-				EAB9085D1CE37368008C1260 /* JSONDeserializer.swift in Sources */,
-				EA89938F1CE2678B00F97EBC /* CSVDeserializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

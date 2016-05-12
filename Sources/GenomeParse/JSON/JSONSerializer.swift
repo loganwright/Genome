@@ -6,6 +6,8 @@
 //
 //
 
+@_exported import Genome
+
 /**
  Serializes a `Node` into a JSON file acoording to the specification: [RFC7159](https://tools.ietf.org/html/rfc7159) with the option of changing the delimeter.
  */

@@ -6,6 +6,8 @@
 //
 //
 
+@_exported import Genome
+
 //---------------------------------
 // MARK: Deserialization Errors
 //---------------------------------
