@@ -64,9 +64,6 @@ public class Deserializer {
     /// The current character number.
     internal var characterNumber: UInt = 0
     
-    /// The root output node.
-    private var output: Node?
-    
     //---------------------------------
     // MARK: Initalization
     //---------------------------------

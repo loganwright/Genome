@@ -14,7 +14,7 @@ public class JSONDeserializer: Deserializer {
     // MARK: Properties
     //---------------------------------
     
-    /// Protects against line feed hacks.
+    /// Protects against line feeds messing up the line number.
     private var crlfHack: Bool = false
     
     //---------------------------------
