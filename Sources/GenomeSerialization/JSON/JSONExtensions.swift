@@ -11,11 +11,11 @@
 extension MappableBase {
     
     public func toJSON() throws -> String? {
-        return try JSONSerializer(node: try toNode()).parse()
+        return try JSONSerializer().parse(node: try toNode())
     }
     
     public func fromJSON(string: String) throws -> Self {
-        return try Self.init(node: try JSONDeserializer(data: string).parse())
+        return try Self.init(node: try JSONDeserializer().parse(data: string))
     }
     
 }
@@ -23,11 +23,11 @@ extension MappableBase {
 extension NodeConvertible {
     
     public func toJSON() throws -> String? {
-        return try JSONSerializer(node: try toNode()).parse()
+        return try JSONSerializer().parse(node: try toNode())
     }
     
     public func fromJSON(string: String) throws -> Self {
-        return try Self.init(with: try JSONDeserializer(data: string).parse())
+        return try Self.init(with: try JSONDeserializer().parse(data: string))
     }
     
 }

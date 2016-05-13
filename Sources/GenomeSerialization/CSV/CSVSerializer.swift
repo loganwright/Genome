@@ -40,9 +40,8 @@ public class CSVSerializer: Serializer {
     // MARK: Initalization
     //---------------------------------
     
-    override init(node: Node) {
+    override init() {
         presetHeaders = false
-        super.init(node: node)
     }
     
     /**
@@ -50,21 +49,19 @@ public class CSVSerializer: Serializer {
      - parameter node: The root node to serialize.
      - parameter delimeter: The delimeter to use to separate values.
      */
-    init(node: Node, delimeter: UnicodeScalar) {
+    init(delimeter: UnicodeScalar) {
         presetHeaders = false
         self.delimeter = delimeter
-        super.init(node: node)
     }
     
     /**
      Initalize the serializer with a node, a delimeter.
-     - parameter node: The root node to serialize.
+     - parameter node: The root nodedata: string to serialize.
      - parameter header: The header keys to use when parsing objects.
      */
-    init(node: Node, header: [String]) {
+    init(header: [String]) {
         presetHeaders = true
         self.header = header
-        super.init(node: node)
     }
     
     /**
@@ -74,20 +71,19 @@ public class CSVSerializer: Serializer {
      - parameter header: The header keys to use when parsing objects.
      - note: Only values listed in the provided header will be included.
      */
-    init(node: Node, delimeter: UnicodeScalar, header: [String]) {
+    init(delimeter: UnicodeScalar, header: [String]) {
         self.delimeter = delimeter
         self.header = header
         presetHeaders = true
-        super.init(node: node)
     }
     
     //---------------------------------
     // MARK: Parsing
     //---------------------------------
     
-    override func parse() throws -> String {
+    override func parse(node: Node) throws -> String {
         // The only valid root node is an array.
-        switch rootNode {
+        switch node as Node {
         case let .array(array):
             try parseRoot(array: array)
             return output

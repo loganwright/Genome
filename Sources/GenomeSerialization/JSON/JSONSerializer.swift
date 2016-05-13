@@ -24,30 +24,24 @@ public class JSONSerializer: Serializer {
     // MARK: Initalization
     //---------------------------------
     
-    public override init(node: Node) {
-        prettyPrint = false
-        super.init(node: node)
-    }
-    
     /**
      Initalizes a deserializer with the given node.
      - parameter node: The node to parse into data.
      - parameter prettyPrint: Whether or not to insert whitespace to make the output easier to read.
      - returns: A new deserializer object that will parse the given node.
      */
-    public init(node: Node, prettyPrint: Bool) {
+    public init(prettyPrint: Bool = false) {
         self.prettyPrint = prettyPrint
-        super.init(node: node)
     }
     
     //---------------------------------
     // MARK: Parsing
     //---------------------------------
     
-    override func parse() throws -> String {
+    override func parse(node: Node) throws -> String {
         // Run the serialzers coresponding to the `prettyPrint` setting.
         if !prettyPrint {
-            switch rootNode {
+            switch node {
             case let .array(array):
                 parse(array: array)
             case let .object(object):
@@ -56,7 +50,7 @@ public class JSONSerializer: Serializer {
                 throw SerializationError.UnsupportedNodeType(reason: "The root node is expected to be an array or object.")
             }
         } else {
-            switch rootNode {
+            switch node {
             case let .array(array):
                 parse(array: array, indentLevel: 0)
             case let .object(object):

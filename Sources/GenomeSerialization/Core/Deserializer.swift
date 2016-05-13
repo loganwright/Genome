@@ -47,10 +47,10 @@ public class Deserializer {
     //---------------------------------
     
     /// The data being processed.
-    internal var data: String.UnicodeScalarView
+    internal var data: String.UnicodeScalarView!
     
     /// A generator that iterates of the data to be deserialized.
-    internal var generator: String.UnicodeScalarView.Generator
+    internal var generator: String.UnicodeScalarView.Generator!
     
     // The current scalar.
     internal private(set) var scalar: UnicodeScalar!
@@ -71,25 +71,6 @@ public class Deserializer {
     // MARK: Initalization
     //---------------------------------
     
-    /**
-     Initalizes a deserializer with the given data.
-     - parameter data: The data to parse into a node.
-     - returns: A new deserializer object that will parse the given data.
-     */
-    public convenience init(data: String) {
-        self.init(data: data.unicodeScalars)
-    }
-    
-    /**
-     Initalizes a deserializer with the given data.
-     - parameter data: The data to parse into a node.
-     - returns: A new deserializer object that will parse the given data.
-     */
-    public required init(data: String.UnicodeScalarView) {
-        self.data = data
-        self.generator = data.makeIterator()
-    }
-    
     //---------------------------------
     // MARK: Parsing
     //---------------------------------
@@ -99,8 +80,19 @@ public class Deserializer {
      - returns: A node representing the data the deserializer was initialized with.
      - throws: Throws a `DeserializationError` if the data is unable to be deserialized.
      */
-    public func parse() throws -> Node {
-        fatalError("This method must be overriden by subclasses.")
+    public func parse(data: String) throws -> Node {
+        return try parse(data: data.unicodeScalars)
+    }
+    
+    /**
+     Deserializes the data given into a data node if possible.
+     - returns: A node representing the data the deserializer was initialized with.
+     - throws: Throws a `DeserializationError` if the data is unable to be deserialized.
+     */
+    public func parse(data: String.UnicodeScalarView) throws -> Node {
+        self.data = data
+        self.generator = data.makeIterator()
+        return .null
     }
     
     /**

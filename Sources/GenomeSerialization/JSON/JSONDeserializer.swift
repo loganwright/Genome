@@ -18,18 +18,11 @@ public class JSONDeserializer: Deserializer {
     private var crlfHack: Bool = false
     
     //---------------------------------
-    // MARK: Initalization
-    //---------------------------------
-    
-    public required init(data: String.UnicodeScalarView) {
-        super.init(data: data)
-    }
-    
-    //---------------------------------
     // MARK: Parsing
     //---------------------------------
     
-    public override func parse() throws -> Node {
+    public override func parse(data: String.UnicodeScalarView) throws -> Node {
+        try super.parse(data: data)
         do {
             do {
                 /// Load the first scalar.

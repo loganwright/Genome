@@ -38,27 +38,11 @@ public class Serializer {
     // MARK: Properties
     //---------------------------------
     
-    /// The data being processed.
-    internal var rootNode: Node
-    
     /// The line endings to use.
     public var lineEndings: LineEndings = .Unix
     
     /// The string that stores the output.
     internal var output: String = ""
-    
-    //---------------------------------
-    // MARK: Initalization
-    //---------------------------------
-    
-    /**
-     Initalizes a deserializer with the given node.
-     - parameter node: The node to parse into data.
-     - returns: A new deserializer object that will parse the given node.
-     */
-    public init(node: Node) {
-        rootNode = node
-    }
     
     //---------------------------------
     // MARK: Parsing
@@ -69,7 +53,7 @@ public class Serializer {
      - returns: Data representing the node the serializer was initialized with.
      - throws: Throws a `SerializationError` if a node is unable to be serialized.
      */
-    func parse() throws -> String {
-        fatalError("This method must be overriden by subclasses.")
+    func parse(node: Node) throws -> String {
+        fatalError("This function must be overridden by subclasses.")
     }
 }

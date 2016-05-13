@@ -40,7 +40,7 @@ class JSONTest: XCTestCase {
     ]
     
     func testBasic() throws {
-        let basic = try JSONDeserializer(data: BasicTestString).parse()
+        let basic = try JSONDeserializer().parse(data: BasicTestString)
         guard case let Node.object(dictionary) = basic else {
             XCTFail("The expected output type is an object node.")
             return
@@ -51,7 +51,7 @@ class JSONTest: XCTestCase {
         XCTAssert(dictionary["bool"]!.bool! == true)
         XCTAssert(dictionary["string"]!.string! == "hello")
         
-        let jsonString = try JSONSerializer(node: .object(BasicTestNode)).parse()
+        let jsonString = try JSONSerializer().parse(node: .object(BasicTestNode))
         let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
         let int = jsonObject["int"] as! Int
         let float = jsonObject["float"] as! Float
@@ -66,7 +66,7 @@ class JSONTest: XCTestCase {
     }
     
     func testBasicArrays() throws {
-        let basic = try JSONDeserializer(data: BasicArraysTestString).parse()
+        let basic = try JSONDeserializer().parse(data: BasicArraysTestString)
         guard case let Node.object(dictionary) = basic else {
             XCTFail("The expected output type is an object node.")
             return
@@ -77,7 +77,7 @@ class JSONTest: XCTestCase {
         XCTAssert(dictionary["bool"]!.array!.flatMap { $0.bool! } == [true])
         XCTAssert(dictionary["string"]!.array!.flatMap { $0.string! } == ["hello"])
         
-        let jsonString = try JSONSerializer(node: .object(BasicArraysTestNode)).parse()
+        let jsonString = try JSONSerializer().parse(node: .object(BasicArraysTestNode))
         let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
         let ints = jsonObject["ints"] as! [Int]
         let floats = jsonObject["floats"] as! [Float]

@@ -86,6 +86,8 @@ internal struct FileConstants {
     internal static let positiveScalar = "+".unicodeScalars.first!
     /// The decimal/period: .
     internal static let decimalScalar = ".".unicodeScalars.first!
+    /// The equals sign.
+    internal static let equalScalar = "=".unicodeScalars.first!
     
     /// Digits 0-9
     internal static let digitScalars = [

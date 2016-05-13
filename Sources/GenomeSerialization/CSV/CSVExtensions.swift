@@ -11,11 +11,11 @@
 extension MappableBase {
     
     public func toCSV() throws -> String? {
-        return try CSVSerializer(node: try toNode()).parse()
+        return try CSVSerializer().parse(node: try toNode())
     }
     
     public func fromCSV(string: String) throws -> Self {
-        return try Self.init(node: try CSVDeserializer(data: string).parse())
+        return try Self.init(node: try CSVDeserializer().parse(data: string))
     }
     
 }
@@ -23,11 +23,11 @@ extension MappableBase {
 extension NodeConvertible {
     
     public func toCSV() throws -> String? {
-        return try CSVSerializer(node: try toNode()).parse()
+        return try CSVSerializer().parse(node: try toNode())
     }
     
     public func fromCSV(string: String) throws -> Self {
-        return try Self.init(with: try CSVDeserializer(data: string).parse())
+        return try Self.init(with: try CSVDeserializer().parse(data: string))
     }
     
 }

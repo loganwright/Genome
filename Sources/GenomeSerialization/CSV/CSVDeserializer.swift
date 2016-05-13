@@ -40,9 +40,8 @@ public class CSVDeserializer: Deserializer {
     // MARK: Initalization
     //---------------------------------
     
-    public required init(data: String.UnicodeScalarView) {
+    public override init() {
         containsHeader = true
-        super.init(data: data)
     }
     
     /**
@@ -52,20 +51,8 @@ public class CSVDeserializer: Deserializer {
      - returns: A new deserializer object that will parse the given data.
      - note: If the first row is a header, the CSV will be parsed as an array of objects. If it is not, the CSV file will be parsed as an array of arrays.
      */
-    init(data: String.UnicodeScalarView, isFirstRowHeaders hasHeaders: Bool) {
+    init(isFirstRowHeaders hasHeaders: Bool) {
         containsHeader = hasHeaders
-        super.init(data: data)
-    }
-    
-    /**
-     Initalizes a deserializer with the given data.
-     - parameter data: The data to parse into a node.
-     - parameter isFirstRowHeaders: Whether or not the first row of the CSV file is a header row.
-     - returns: A new deserializer object that will parse the given data.
-     - note: If the first row is a header, the CSV will be parsed as an array of objects. If it is not, the CSV file will be parsed as an array of arrays.
-     */
-    convenience init(data: String, isFirstRowHeaders hasHeaders: Bool) {
-        self.init(data: data.unicodeScalars, isFirstRowHeaders: hasHeaders)
     }
     
     /**
@@ -75,28 +62,17 @@ public class CSVDeserializer: Deserializer {
      - returns: A new deserializer object that will parse the given data.
      - note: The CSV will be parsed as an array of objects.
      */
-    init(data: String.UnicodeScalarView, headers: [String]) {
+    init(headers: [String]) {
         containsHeader = true
         self.headers = headers
-        super.init(data: data)
-    }
-    
-    /**
-     Initalizes a deserializer with the given data.
-     - parameter data: The data to parse into a node.
-     - parameter headers: The headers to retreive from the CSV file. Additional columns will not be loaded.
-     - returns: A new deserializer object that will parse the given data.
-     - note: The CSV will be parsed as an array of objects.
-     */
-    convenience init(data: String, headers: [String]) {
-        self.init(data: data.unicodeScalars, headers: headers)
     }
     
     //---------------------------------
     // MARK: Parsing
     //---------------------------------
     
-    public override func parse() throws -> Node {
+    public override func parse(data: String.UnicodeScalarView) throws -> Node {
+        try super.parse(data: data)
         do {
             // Load the first scalar.
             try nextScalar()
