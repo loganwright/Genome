@@ -69,6 +69,8 @@ internal struct FileConstants {
     
     /// The quotation mark: "
     internal static let quotationMark = UnicodeScalar(0x0022)
+    /// The apostrophe mark: '
+    internal static let apostropheMark = UnicodeScalar(0x0027)
     /// The reverse solidus: \
     internal static let reverseSolidus = UnicodeScalar(0x005C)
     /// The solidus: /

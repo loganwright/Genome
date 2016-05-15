@@ -390,7 +390,7 @@
             name = GenomeSerialization;
             path = 'Sources/GenomeSerialization';
             sourceTree = '<group>';
-            children = ('__PBXFileRef_Sources/GenomeSerialization/Core/Deserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/Core/FileConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/Core/Serializer.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVDeserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVExtensions.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVSerializer.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONDeserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONExtensions.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONSerializer.swift');
+            children = ('__PBXFileRef_Sources/GenomeSerialization/Core/Deserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/Core/FileConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/Core/Serializer.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVDeserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVExtensions.swift', '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVSerializer.swift', '__PBXFileRef_Sources/GenomeSerialization/INI/INIConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/INI/INIDeserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/INI/INIExtensions.swift', '__PBXFileRef_Sources/GenomeSerialization/INI/INISerializer.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONConstants.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONDeserializer.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONExtensions.swift', '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONSerializer.swift');
         };
         '__PBXFileRef_Sources/GenomeSerialization/Core/Deserializer.swift' = {
             isa = PBXFileReference;
@@ -432,6 +432,30 @@
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             name = 'CSV/CSVSerializer.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/GenomeSerialization/INI/INIConstants.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            name = 'INI/INIConstants.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/GenomeSerialization/INI/INIDeserializer.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            name = 'INI/INIDeserializer.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/GenomeSerialization/INI/INIExtensions.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            name = 'INI/INIExtensions.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/GenomeSerialization/INI/INISerializer.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            name = 'INI/INISerializer.swift';
             sourceTree = '<group>';
         };
         '__PBXFileRef_Sources/GenomeSerialization/JSON/JSONConstants.swift' = {
@@ -477,7 +501,7 @@
         };
         CompilePhase_GenomeSerialization = {
             isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Sources/GenomeSerialization/Core/Deserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/Core/FileConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/Core/Serializer.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVDeserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVExtensions.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVSerializer.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONDeserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONExtensions.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONSerializer.swift');
+            files = ('__src_cc_ref_Sources/GenomeSerialization/Core/Deserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/Core/FileConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/Core/Serializer.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVDeserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVExtensions.swift', '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVSerializer.swift', '__src_cc_ref_Sources/GenomeSerialization/INI/INIConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/INI/INIDeserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/INI/INIExtensions.swift', '__src_cc_ref_Sources/GenomeSerialization/INI/INISerializer.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONConstants.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONDeserializer.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONExtensions.swift', '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONSerializer.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
         '__src_cc_ref_Sources/GenomeSerialization/Core/Deserializer.swift' = {
@@ -507,6 +531,22 @@
         '__src_cc_ref_Sources/GenomeSerialization/CSV/CSVSerializer.swift' = {
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/GenomeSerialization/CSV/CSVSerializer.swift';
+        };
+        '__src_cc_ref_Sources/GenomeSerialization/INI/INIConstants.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/GenomeSerialization/INI/INIConstants.swift';
+        };
+        '__src_cc_ref_Sources/GenomeSerialization/INI/INIDeserializer.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/GenomeSerialization/INI/INIDeserializer.swift';
+        };
+        '__src_cc_ref_Sources/GenomeSerialization/INI/INIExtensions.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/GenomeSerialization/INI/INIExtensions.swift';
+        };
+        '__src_cc_ref_Sources/GenomeSerialization/INI/INISerializer.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/GenomeSerialization/INI/INISerializer.swift';
         };
         '__src_cc_ref_Sources/GenomeSerialization/JSON/JSONConstants.swift' = {
             isa = PBXBuildFile;
