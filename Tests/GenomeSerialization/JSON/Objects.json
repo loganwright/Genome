@@ -1,0 +1,33 @@
+{
+	"string": "I am a string",
+	"integer": 123,
+	"double": 123.456,
+	"exponent": 123456e-3,
+	"bool": true,
+	"null": null,
+	"array": [
+		"I",
+		"am",
+		"an",
+		"array"
+	],
+	"object": {
+		"string": "I am a string",
+		"integer": 123,
+		"double": 123.456,
+		"exponent": 123456e-3,
+		"bool": true,
+		"null": null,
+		"array": [
+			"I",
+			"am",
+			"an",
+			"array"
+		],
+	"object": {
+			"a":"a",
+			"b":"b",
+			"c":"c"
+		}
+	}
+}

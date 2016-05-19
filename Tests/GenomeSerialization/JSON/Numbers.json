@@ -1,0 +1,7 @@
+{
+	"integer":123,
+	"float":123.456,
+	"double":3875234856348.3957345283045,
+	"positiveExponent":123456e3,
+	"negativeExponent":123456e-3
+}
