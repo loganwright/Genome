@@ -14,81 +14,163 @@ class JSONTest: XCTestCase {
     
     static var allTests: [(String, (JSONTest) -> () throws -> Void)] {
         return [
-                   ("testBasic", testBasic),
-                   ("testBasicArrays", testBasicArrays)
+                   ("testSimpleArray", testSimpleArray),
+                   ("testSimpleObject", testSimpleObject),
+                   ("testConstants", testConstants),
+                   ("testStrings", testStrings),
+                   ("testNumbers", testNumbers),
+                   ("testObjects", testObjects),
         ]
     }
     
-    let BasicTestString: String = "{\"int\" : 1,\n\"float\" : 1.5,\n\"double\" : 2.5,\n\"bool\" : true,\n\"string\" : \"hello\"}"
-
-    let BasicTestNode: [String : Node] = [
-                                             "int" : 1,
-                                             "float" : 1.5,
-                                             "double" : 2.5,
-                                             "bool" : true,
-                                             "string" : "hello"
-    ]
-    
-    let BasicArraysTestString: String = "{\"int\" : [1],\n\"float\" : [1.5],\n\"double\" : [2.5],\n\"bool\" : [true],\n\"string\" : [\"hello\"]}"
-    
-    let BasicArraysTestNode: [String : Node] = [
-                                                   "ints" : [1],
-                                                   "floats" : [1.5],
-                                                   "doubles" : [2.5],
-                                                   "bools" : [true],
-                                                   "strings" : ["hello"]
-    ]
-    
-    func testBasic() throws {
-        let basic = try JSONDeserializer().parse(data: BasicTestString)
-        guard case let Node.object(dictionary) = basic else {
-            XCTFail("The expected output type is an object node.")
-            return
-        }
-        XCTAssert(dictionary["int"]!.int! == 1)
-        XCTAssert(dictionary["float"]!.float! == 1.5)
-        XCTAssert(dictionary["double"]!.double! == 2.5)
-        XCTAssert(dictionary["bool"]!.bool! == true)
-        XCTAssert(dictionary["string"]!.string! == "hello")
+    func testConstants() throws {
+        // Load the JSON data
+        let dataPath = NSBundle.main().pathForResource("Constants", ofType: "json")!
+        let dataString = try String(contentsOfFile: dataPath, encoding: NSUTF8StringEncoding)
         
-        let jsonString = try JSONSerializer().parse(node: .object(BasicTestNode))
-        let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
-        let int = jsonObject["int"] as! Int
-        let float = jsonObject["float"] as! Float
-        let double = jsonObject["double"] as! Double
-        let bool = jsonObject["bool"] as! Bool
-        let string = jsonObject["string"] as! String
-        XCTAssert(int == 1)
-        XCTAssert(float == 1.5)
-        XCTAssert(double == 2.5)
-        XCTAssert(bool == true)
-        XCTAssert(string == "hello")
+        // This is what we expect.
+        let nodeRepresentation: Node = [
+                                           "true": true,
+                                           "false": false,
+                                           "null": .null
+        ]
+        
+        let deserializedData = try JSONDeserializer().parse(data: dataString)
+        XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+        
+        let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
+        let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
+        XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
     }
     
-    func testBasicArrays() throws {
-        let basic = try JSONDeserializer().parse(data: BasicArraysTestString)
-        guard case let Node.object(dictionary) = basic else {
-            XCTFail("The expected output type is an object node.")
-            return
-        }
-        XCTAssert(dictionary["int"]!.array!.flatMap { $0.int! } == [1])
-        XCTAssert(dictionary["float"]!.array!.flatMap { $0.float! }  == [1.5])
-        XCTAssert(dictionary["double"]!.array!.flatMap { $0.double! } == [2.5])
-        XCTAssert(dictionary["bool"]!.array!.flatMap { $0.bool! } == [true])
-        XCTAssert(dictionary["string"]!.array!.flatMap { $0.string! } == ["hello"])
+    func testNumbers() throws {
+        // Load the JSON data
+        let dataPath = NSBundle.main().pathForResource("Numbers", ofType: "json")!
+        let dataString = try String(contentsOfFile: dataPath, encoding: NSUTF8StringEncoding)
         
-        let jsonString = try JSONSerializer().parse(node: .object(BasicArraysTestNode))
-        let jsonObject = try NSJSONSerialization.jsonObject(with: jsonString.data(using: NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0)) as! [String: AnyObject]
-        let ints = jsonObject["ints"] as! [Int]
-        let floats = jsonObject["floats"] as! [Float]
-        let doubles = jsonObject["doubles"] as! [Double]
-        let bools = jsonObject["bools"] as! [Bool]
-        let strings = jsonObject["strings"] as! [String]
-        XCTAssert(ints == [1])
-        XCTAssert(floats == [1.5])
-        XCTAssert(doubles == [2.5])
-        XCTAssert(bools == [true])
-        XCTAssert(strings == ["hello"])
+        // This is what we expect.
+        let nodeRepresentation: Node = [
+                                           "integer": 123,
+                                           "float": 123.456,
+                                           "double": 3875234856348.3957345283045,
+                                           "positiveExponent": 123456e3,
+                                           "negativeExponent": 123456e-3
+        ]
+        
+        let deserializedData = try JSONDeserializer().parse(data: dataString)
+        XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+        
+        let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
+        let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
+        XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
     }
     
+    func testObjects() throws {
+        // Load the JSON data
+        let dataPath = NSBundle.main().pathForResource("Objects", ofType: "json")!
+        let dataString = try String(contentsOfFile: dataPath, encoding: NSUTF8StringEncoding)
+        
+        // This is what we expect.
+        let nodeRepresentation: Node = [
+                                           "string": "I am a string",
+                                           "integer": 123,
+                                           "double": 123.456,
+                                           "exponent": 123456e-3,
+                                           "bool": true,
+                                           "null": .null,
+                                           "array": [
+                                                        "I",
+                                                        "am",
+                                                        "an",
+                                                        "array"
+            ],
+                                           "object": [
+                                                         "string": "I am a string",
+                                                         "integer": 123,
+                                                         "double": 123.456,
+                                                         "exponent": 123456e-3,
+                                                         "bool": true,
+                                                         "null": .null,
+                                                         "array": [
+                                                                      "I",
+                                                                      "am",
+                                                                      "an",
+                                                                      "array"
+                                            ],
+                                                         "object": [
+                                                                       "a":"a",
+                                                                       "b":"b",
+                                                                       "c":"c"
+                                            ]
+            ]
+        ]
+        
+        let deserializedData = try JSONDeserializer().parse(data: dataString)
+        XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+        
+        let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
+        let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
+        XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+    }
+    
+    func testSimpleArray() throws {
+        // Load the JSON data
+        let dataPath = NSBundle.main().pathForResource("SimpleArray", ofType: "json")!
+        let dataString = try String(contentsOfFile: dataPath, encoding: NSUTF8StringEncoding)
+        
+        // This is what we expect.
+        let nodeRepresentation: Node = [
+                                           "a",
+                                           "b",
+                                           "c"
+        ]
+        
+        let deserializedData = try JSONDeserializer().parse(data: dataString)
+        XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+        
+        let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
+        let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
+        XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+    }
+    
+    func testSimpleObject() throws {
+        // Load the JSON data
+        let dataPath = NSBundle.main().pathForResource("SimpleObject", ofType: "json")!
+        let dataString = try String(contentsOfFile: dataPath, encoding: NSUTF8StringEncoding)
+        
+        // This is what we expect.
+        let nodeRepresentation: Node = [
+                                           "a": "b",
+                                           "c": "d",
+                                           "e": "f"
+        ]
+        
+        let deserializedData = try JSONDeserializer().parse(data: dataString)
+        XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+        
+        let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
+        let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
+        XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+    }
+    
+    func testStrings() throws {
+        // Load the JSON data
+        let dataPath = NSBundle.main().pathForResource("SimpleObject", ofType: "json")!
+        let dataString = try String(contentsOfFile: dataPath, encoding: NSUTF8StringEncoding)
+        
+        // This is what we expect.
+        let nodeRepresentation: Node = [
+                                           "simple":"hello world",
+                                           "escapedNewline":"There is a newline\nin the middle of this sentence.",
+                                           "escapedTab":"There is a tab\t in the middle of this sentence.",
+                                           "unicode":"\u{00f8C}"
+        ]
+        
+        let deserializedData = try JSONDeserializer().parse(data: dataString)
+        XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+        
+        let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
+        let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
+        XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+    }
 }
