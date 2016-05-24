@@ -53,7 +53,9 @@ public class JSONDeserializer: Deserializer {
     
     /// Determines the type of node and parses it accordingly.
     private func parseValue() throws -> Node {
-        try skipToNextToken()
+        if scalar == FileConstants.tabCharacter || scalar == FileConstants.lineFeed || scalar == FileConstants.carriageReturn || scalar == FileConstants.space {
+            try skipToNextToken()
+        }
         
         switch scalar {
         case FileConstants.leftCurlyBracket:
@@ -186,6 +188,7 @@ public class JSONDeserializer: Deserializer {
                 break outerLoop
             case FileConstants.comma:
                 try nextScalar()
+            
             default:
                 throw DeserializationError.UnexpectedCharacter(lineNumber: lineNumber, characterNumber: characterNumber)
             }

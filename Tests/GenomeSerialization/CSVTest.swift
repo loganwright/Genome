@@ -1,8 +1,8 @@
 //
-//  JSONTest.swift
+//  CSVTest.swift
 //  Genome
 //
-//  Created by McQuilkin, Brandon on 5/12/16.
+//  Created by McQuilkin, Brandon on 5/23/16.
 //
 //
 
@@ -10,9 +10,9 @@ import XCTest
 import Foundation
 @testable import GenomeSerialization
 
-class JSONTest: XCTestCase {
+class CSVTest: XCTestCase {
     
-    static var allTests: [(String, (JSONTest) -> () throws -> Void)] {
+    static var allTests: [(String, (CSVTest) -> () throws -> Void)] {
         return [
                    ("testSimpleArray", testSimpleArray),
                    ("testSimpleObject", testSimpleObject),
@@ -255,3 +255,4 @@ class JSONTest: XCTestCase {
         }
     }
 }
+

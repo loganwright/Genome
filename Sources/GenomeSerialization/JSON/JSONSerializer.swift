@@ -114,7 +114,7 @@ public class JSONSerializer: Serializer {
         var i: Int = 0
         for (key, value) in object {
             // Append the key, then the value.
-            output.append(escape(string: key) + String(FileConstants.colon))
+            output.append("\"" + escape(string: key) + "\"" + String(FileConstants.colon))
             parseValue(node: value)
             // Add a comma if necessary.
             i += 1
@@ -136,7 +136,7 @@ public class JSONSerializer: Serializer {
         var i: Int = 0
         for (key, value) in object {
             // Append the key and value.
-            output.append(indent + escape(string: key) + String(FileConstants.colon) + " ")
+            output.append(indent + "\"" + escape(string: key) + "\"" + String(FileConstants.colon) + " ")
             parse(node: value, indentLevel: indentLevel + 1)
             // Add a comma if necessary.
             i += 1

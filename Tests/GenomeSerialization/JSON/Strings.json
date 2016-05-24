@@ -2,5 +2,5 @@
 	"simple":"hello world",
 	"escapedNewline":"There is a newline\nin the middle of this sentence.",
 	"escapedTab":"There is a tab\t in the middle of this sentence.",
-	"unicode":"\u00f8C"
+	"unicode":"\u0264"
 }

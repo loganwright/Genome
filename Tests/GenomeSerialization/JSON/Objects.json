@@ -2,7 +2,6 @@
 	"string": "I am a string",
 	"integer": 123,
 	"double": 123.456,
-	"exponent": 123456e-3,
 	"bool": true,
 	"null": null,
 	"array": [
@@ -15,7 +14,6 @@
 		"string": "I am a string",
 		"integer": 123,
 		"double": 123.456,
-		"exponent": 123456e-3,
 		"bool": true,
 		"null": null,
 		"array": [
