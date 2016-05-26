@@ -29,7 +29,7 @@ public class CSVDeserializer: Deserializer {
     /// Whether or not to output the constants "true", "false", and "null" as capitalized strings.
     public var capitalizeConstants: Bool = false
     
-    /// Whether or not the headers were preset.
+    /// Whether or not the csv file's first row is a header row.
     /// - default: `true`
     private let containsHeader: Bool
     
@@ -62,8 +62,8 @@ public class CSVDeserializer: Deserializer {
      - returns: A new deserializer object that will parse the given data.
      - note: The CSV will be parsed as an array of objects.
      */
-    init(headers: [String]) {
-        containsHeader = true
+    init(headers: [String], containsHeader: Bool) {
+        self.containsHeader = containsHeader
         self.headers = headers
     }
     
@@ -77,8 +77,20 @@ public class CSVDeserializer: Deserializer {
             // Load the first scalar.
             try nextScalar()
             // Parse the headers if there are any.
-            if containsHeader {
+            if containsHeader && headers.count == 0 {
+                // Parse the header.
                 try parseHeader()
+            } else if containsHeader && headers.count != 0 {
+                // Skip the header.
+                outerLoop: repeat {
+                    switch scalar {
+                    case FileConstants.carriageReturn, FileConstants.lineFeed:
+                        try nextScalar()
+                        break outerLoop
+                    default:
+                        try nextScalar()
+                    }
+                } while true
             }
         } catch DeserializationError.EndOfFile {
             throw DeserializationError.EmptyInput
@@ -128,7 +140,7 @@ public class CSVDeserializer: Deserializer {
             default:
                 do {
                     // Append the row
-                    if containsHeader {
+                    if headers.count != 0 {
                         array.append(try parseObject())
                     } else {
                         array.append(try parseArray())
@@ -264,7 +276,18 @@ public class CSVDeserializer: Deserializer {
                 case FileConstants.quotationMark:
                     // Is this quotation mark escaped, or did we reach the end?
                     if escaping {
-                        try nextScalar()
+                        do {
+                            // Get the next scalar.
+                            try nextScalar()
+                        } catch DeserializationError.EndOfFile {
+                            // If there is not another scalar, and we are escaping, it is the closing quote.
+                            if escaping && scalar == FileConstants.quotationMark {
+                                escaping = false
+                                throw DeserializationError.EndOfFile
+                            }
+                        }
+                        
+                        // Otherwise, is this an escaped quote, or the end of a field?
                         if scalar == FileConstants.quotationMark {
                             strBuilder.append(FileConstants.quotationMark)
                             try nextScalar()

@@ -15,7 +15,12 @@
 		EA32A3141CF1216F00F0D510 /* Strings.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA32A30E1CF1216500F0D510 /* Strings.json */; };
 		EA32A3161CF1230B00F0D510 /* XCText+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA32A3151CF1230B00F0D510 /* XCText+Load.swift */; };
 		EA34BCEA1CF370140023095D /* CSVTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA34BCE91CF370140023095D /* CSVTest.swift */; };
+		EA7AB6E31CF46DA40059B213 /* SingleColumn.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA34BCEC1CF370A90023095D /* SingleColumn.csv */; };
+		EA7AB6E41CF46DA40059B213 /* Arrays.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA7AB6DF1CF46C5A0059B213 /* Arrays.csv */; };
+		EA7AB6E51CF46DA40059B213 /* Objects.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA7AB6E11CF46CA70059B213 /* Objects.csv */; };
+		EA7AB6E61CF46DA40059B213 /* ObjectsNoHeader.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA7AB6E21CF46D930059B213 /* ObjectsNoHeader.csv */; };
 		EAC7B95C1CE7FD4200B815EC /* XMLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7B95B1CE7FD4200B815EC /* XMLConstants.swift */; };
+		EADBDB461CF7AA0700943DD6 /* INITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADBDB451CF7AA0700943DD6 /* INITest.swift */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeSerialization_via_GenomeSerializationTestSuite /* libGenomeSerialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeSerialization" /* libGenomeSerialization.dylib */; };
@@ -110,6 +115,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				EA7AB6E31CF46DA40059B213 /* SingleColumn.csv in CopyFiles */,
+				EA7AB6E41CF46DA40059B213 /* Arrays.csv in CopyFiles */,
+				EA7AB6E51CF46DA40059B213 /* Objects.csv in CopyFiles */,
+				EA7AB6E61CF46DA40059B213 /* ObjectsNoHeader.csv in CopyFiles */,
 				EA32A30F1CF1216F00F0D510 /* Constants.json in CopyFiles */,
 				EA32A3101CF1216F00F0D510 /* Numbers.json in CopyFiles */,
 				EA32A3111CF1216F00F0D510 /* Objects.json in CopyFiles */,
@@ -130,8 +139,12 @@
 		EA32A30E1CF1216500F0D510 /* Strings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Strings.json; path = JSON/Strings.json; sourceTree = "<group>"; };
 		EA32A3151CF1230B00F0D510 /* XCText+Load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCText+Load.swift"; sourceTree = "<group>"; };
 		EA34BCE91CF370140023095D /* CSVTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVTest.swift; sourceTree = "<group>"; };
-		EA34BCEC1CF370A90023095D /* SingleColumn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SingleColumn; path = CSV/SingleColumn; sourceTree = "<group>"; };
+		EA34BCEC1CF370A90023095D /* SingleColumn.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SingleColumn.csv; path = CSV/SingleColumn.csv; sourceTree = "<group>"; };
+		EA7AB6DF1CF46C5A0059B213 /* Arrays.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Arrays.csv; path = CSV/Arrays.csv; sourceTree = "<group>"; };
+		EA7AB6E11CF46CA70059B213 /* Objects.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Objects.csv; path = CSV/Objects.csv; sourceTree = "<group>"; };
+		EA7AB6E21CF46D930059B213 /* ObjectsNoHeader.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ObjectsNoHeader.csv; path = CSV/ObjectsNoHeader.csv; sourceTree = "<group>"; };
 		EAC7B95B1CE7FD4200B815EC /* XMLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMLConstants.swift; path = XML/XMLConstants.swift; sourceTree = "<group>"; };
+		EADBDB451CF7AA0700943DD6 /* INITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INITest.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/BackingDataType/BackingDataType.swift; sourceTree = "<group>"; };
@@ -264,7 +277,10 @@
 		EA34BCEB1CF3704B0023095D /* CSV */ = {
 			isa = PBXGroup;
 			children = (
-				EA34BCEC1CF370A90023095D /* SingleColumn */,
+				EA34BCEC1CF370A90023095D /* SingleColumn.csv */,
+				EA7AB6DF1CF46C5A0059B213 /* Arrays.csv */,
+				EA7AB6E11CF46CA70059B213 /* Objects.csv */,
+				EA7AB6E21CF46D930059B213 /* ObjectsNoHeader.csv */,
 			);
 			name = CSV;
 			sourceTree = "<group>";
@@ -402,6 +418,7 @@
 				EA34BCEB1CF3704B0023095D /* CSV */,
 				EA32A3081CF1215400F0D510 /* JSON */,
 				__PBXFileRef_Tests/GenomeSerialization/JSONTest.swift /* JSONTest.swift */,
+				EADBDB451CF7AA0700943DD6 /* INITest.swift */,
 				EA34BCE91CF370140023095D /* CSVTest.swift */,
 				EA32A3151CF1230B00F0D510 /* XCText+Load.swift */,
 			);
@@ -665,6 +682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				EADBDB461CF7AA0700943DD6 /* INITest.swift in Sources */,
 				EA34BCEA1CF370140023095D /* CSVTest.swift in Sources */,
 				__src_cc_ref_Tests/GenomeSerialization/JSONTest.swift /* JSONTest.swift in Sources */,
 				EA32A3161CF1230B00F0D510 /* XCText+Load.swift in Sources */,

@@ -14,244 +14,125 @@ class CSVTest: XCTestCase {
     
     static var allTests: [(String, (CSVTest) -> () throws -> Void)] {
         return [
-                   ("testSimpleArray", testSimpleArray),
-                   ("testSimpleObject", testSimpleObject),
-                   ("testConstants", testConstants),
-                   ("testStrings", testStrings),
-                   ("testNumbers", testNumbers),
+                   ("singleColumn", testSingleColumn),
+                   ("testArrays", testArrays),
                    ("testObjects", testObjects),
+                   ("testObjectsNoHeaders", testObjectsNoHeaders),
         ]
     }
     
-    func testConstants() throws {
-        // Load the JSON data
-        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "Constants", type: "json")
+    func testSingleColumn() throws {
+        // Load the CSV data
+        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "SingleColumn", type: "csv")
         
         // This is what we expect.
-        let nodeRepresentation: Node = [
-                                           "true": true,
-                                           "false": false,
-                                           "null": .null
-        ]
+        let nodeRepresentation: Node = [["a"], ["b"], ["c"], ["d"], ["e"], ["f"], ["g"]]
         
         do {
-            let deserializedData = try JSONDeserializer().parse(data: dataString)
-            XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+            let deserializedData = try CSVDeserializer(isFirstRowHeaders: false).parse(data: dataString)
+            XCTAssert(nodeRepresentation == deserializedData, "The CSV data was deserialized incorrectly.")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize JSON data: \(error)")
+            XCTFail("Failed to deserialize CSV data: \(error)")
         }
         
         do {
-            let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
-            let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
-            XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+            let serializedData = try CSVSerializer().parse(node: nodeRepresentation)
+            let reDeserializedData = try CSVDeserializer(isFirstRowHeaders: false).parse(data: serializedData)
+            XCTAssert(nodeRepresentation == reDeserializedData, "The CSV data was serialized incorrectly.")
         } catch let error as SerializationError {
-            XCTFail("Failed to serialize JSON data: \(error)")
+            XCTFail("Failed to serialize CSV data: \(error)")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize generated JSON data: \(error)")
+            XCTFail("Failed to deserialize generated CSV data: \(error)")
         }
     }
     
-    func testNumbers() throws {
-        // Load the JSON data
-        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "Numbers", type: "json")
+    func testArrays() throws {
+        // Load the CSV data
+        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "Arrays", type: "csv")
         
         // This is what we expect.
         let nodeRepresentation: Node = [
-                                           "integer": 123,
-                                           "float": 123.456,
-                                           "positiveExponent": 123456e3,
-                                           "negativeExponent": 123.45599999999999 // Need to be more percise with deimals in the future.
+                                           ["a","b","c","d","e","f","g"],
+                                           ["h","i","j","k","l","m","n"],
+                                           ["o","p","q","r","s","t","u"],
+                                           ["v","w","x","y","z"]
         ]
         
         do {
-            let deserializedData = try JSONDeserializer().parse(data: dataString)
-            XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+            let deserializedData = try CSVDeserializer(isFirstRowHeaders: false).parse(data: dataString)
+            XCTAssert(nodeRepresentation == deserializedData, "The CSV data was deserialized incorrectly.")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize JSON data: \(error)")
+            XCTFail("Failed to deserialize CSV data: \(error)")
         }
         
         do {
-            let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
-            let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
-            
-            // The items are broken out into separate cases due to rounding errors.
-            guard case let .object(dict) = reDeserializedData else {
-                XCTFail("Failed to deserialize JSON data")
-                return
-            }
-            
-            guard case let .number(integer) = dict["integer"]! else {
-                XCTFail("Failed to deserialize JSON data")
-                return
-            }
-            XCTAssert(integer == 123)
-            
-            guard case let .number(floatNumber) = dict["float"]! else {
-                XCTFail("Failed to deserialize JSON data")
-                return
-            }
-            XCTAssert(floatNumber == 123.456)
-            
-            guard case let .number(positiveExponent) = dict["positiveExponent"]! else {
-                XCTFail("Failed to deserialize JSON data")
-                return
-            }
-            XCTAssert(positiveExponent == 123456e3)
-            
-            guard case let .number(negativeExponent) = dict["negativeExponent"]! else {
-                XCTFail("Failed to deserialize JSON data")
-                return
-            }
-            XCTAssert(negativeExponent == 123.456)
-            
+            let serializedData = try CSVSerializer().parse(node: nodeRepresentation)
+            let reDeserializedData = try CSVDeserializer(isFirstRowHeaders: false).parse(data: serializedData)
+            XCTAssert(nodeRepresentation == reDeserializedData, "The CSV data was serialized incorrectly.")
         } catch let error as SerializationError {
-            XCTFail("Failed to serialize JSON data: \(error)")
+            XCTFail("Failed to serialize CSV data: \(error)")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize generated JSON data: \(error)")
+            XCTFail("Failed to deserialize generated CSV data: \(error)")
         }
     }
     
     func testObjects() throws {
-        // Load the JSON data
-        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "Objects", type: "json")
+        // Load the CSV data
+        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "Objects", type: "csv")
         
         // This is what we expect.
         let nodeRepresentation: Node = [
-                                           "string": "I am a string",
-                                           "integer": 123,
-                                           "double": 123.456,
-                                           "bool": true,
-                                           "null": .null,
-                                           "array": [
-                                                        "I",
-                                                        "am",
-                                                        "an",
-                                                        "array"
-            ],
-                                           "object": [
-                                                         "string": "I am a string",
-                                                         "integer": 123,
-                                                         "double": 123.456,
-                                                         "bool": true,
-                                                         "null": .null,
-                                                         "array": [
-                                                                      "I",
-                                                                      "am",
-                                                                      "an",
-                                                                      "array"
-                                            ],
-                                                         "object": [
-                                                                       "a":"a",
-                                                                       "b":"b",
-                                                                       "c":"c"
-                                            ]
-            ]
+                                           ["string": "I am a string", "number": 2, "null": .null, "boolean": false],
+                                           ["string": "I am a string", "number": 1.23, "null": .null, "boolean": true],
+                                           ["string": "\"I am a string\"", "number": 123e3, "null": .null, "boolean": false],
+                                           ["string": "I am a \"string\"", "number": 3, "null": .null, "boolean": true]
         ]
         
         do {
-            let deserializedData = try JSONDeserializer().parse(data: dataString)
-            XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+            let deserializedData = try CSVDeserializer(isFirstRowHeaders: true).parse(data: dataString)
+            XCTAssert(nodeRepresentation == deserializedData, "The CSV data was deserialized incorrectly.")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize JSON data: \(error)")
+            XCTFail("Failed to deserialize CSV data: \(error)")
         }
         
         do {
-            let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
-            let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
-            XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+            let serializedData = try CSVSerializer().parse(node: nodeRepresentation)
+            let reDeserializedData = try CSVDeserializer(isFirstRowHeaders: true).parse(data: serializedData)
+            XCTAssert(nodeRepresentation == reDeserializedData, "The CSV data was serialized incorrectly.")
         } catch let error as SerializationError {
-            XCTFail("Failed to serialize JSON data: \(error)")
+            XCTFail("Failed to serialize CSV data: \(error)")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize generated JSON data: \(error)")
+            XCTFail("Failed to deserialize generated CSV data: \(error)")
         }
     }
     
-    func testSimpleArray() throws {
-        // Load the JSON data
-        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "SimpleArray", type: "json")
+    func testObjectsNoHeaders() throws {
+        // Load the CSV data
+        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "ObjectsNoHeader", type: "csv")
         
         // This is what we expect.
         let nodeRepresentation: Node = [
-                                           "a",
-                                           "b",
-                                           "c"
+                                           ["string": "I am a string", "number": 2, "null": .null, "boolean": false],
+                                           ["string": "I am a string", "number": 1.23, "null": .null, "boolean": true],
+                                           ["string": "\"I am a string\"", "number": 123e3, "null": .null, "boolean": false],
+                                           ["string": "I am a \"string\"", "number": 3, "null": .null, "boolean": true]
         ]
         
         do {
-            let deserializedData = try JSONDeserializer().parse(data: dataString)
-            XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
+            let deserializedData = try CSVDeserializer(headers: ["string", "number", "null", "boolean"], containsHeader: false).parse(data: dataString)
+            XCTAssert(nodeRepresentation == deserializedData, "The CSV data was deserialized incorrectly.")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize JSON data: \(error)")
+            XCTFail("Failed to deserialize CSV data: \(error)")
         }
         
         do {
-            let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
-            let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
-            XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
+            let serializedData = try CSVSerializer().parse(node: nodeRepresentation)
+            let reDeserializedData = try CSVDeserializer().parse(data: serializedData)
+            XCTAssert(nodeRepresentation == reDeserializedData, "The CSV data was serialized incorrectly.")
         } catch let error as SerializationError {
-            XCTFail("Failed to serialize JSON data: \(error)")
+            XCTFail("Failed to serialize CSV data: \(error)")
         } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize generated JSON data: \(error)")
-        }
-    }
-    
-    func testSimpleObject() throws {
-        // Load the JSON data
-        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "SimpleObject", type: "json")
-        
-        // This is what we expect.
-        let nodeRepresentation: Node = [
-                                           "a": "b",
-                                           "c": "d",
-                                           "e": "f"
-        ]
-        
-        do {
-            let deserializedData = try JSONDeserializer().parse(data: dataString)
-            XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
-        } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize JSON data: \(error)")
-        }
-        
-        do {
-            let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
-            let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
-            XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
-        } catch let error as SerializationError {
-            XCTFail("Failed to serialize JSON data: \(error)")
-        } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize generated JSON data: \(error)")
-        }
-    }
-    
-    func testStrings() throws {
-        // Load the JSON data
-        let dataString = loadResource(fromBundle: NSBundle(for: self.dynamicType), resource: "Strings", type: "json")
-        
-        // This is what we expect.
-        let nodeRepresentation: Node = [
-                                           "simple":"hello world",
-                                           "escapedNewline":"There is a newline\nin the middle of this sentence.",
-                                           "escapedTab":"There is a tab\t in the middle of this sentence.",
-                                           "unicode":"\u{0264}"
-        ]
-        
-        do {
-            let deserializedData = try JSONDeserializer().parse(data: dataString)
-            XCTAssert(nodeRepresentation == deserializedData, "The JSON data was deserialized incorrectly.")
-        } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize JSON data: \(error)")
-        }
-        
-        do {
-            let serializedData = try JSONSerializer().parse(node: nodeRepresentation)
-            let reDeserializedData = try JSONDeserializer().parse(data: serializedData)
-            XCTAssert(nodeRepresentation == reDeserializedData, "The JSON data was serialized incorrectly.")
-        } catch let error as SerializationError {
-            XCTFail("Failed to serialize JSON data: \(error)")
-        } catch let error as DeserializationError {
-            XCTFail("Failed to deserialize generated JSON data: \(error)")
+            XCTFail("Failed to deserialize generated CSV data: \(error)")
         }
     }
 }
