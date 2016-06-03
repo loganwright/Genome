@@ -1,0 +1,4 @@
+I am a string,2,,false
+"I am a string",1.23,null,true
+"""I am a string""",123e3,,false
+"I am a ""string""",3,null,true

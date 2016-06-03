@@ -15,29 +15,28 @@ Pod::Spec.new do |spec|
   spec.default_subspec = "Default"
 
   spec.subspec "Core" do |cs|
-    cs.source_files = 'Sources/Genome/Core/**/*.{swift}'
+    cs.source_files = 'Sources/Genome/**/*.{swift}'
   end
 
   spec.subspec "Foundation" do |fs|
-    fs.source_files = 'Sources/Genome/Foundation/**/*.{swift}'
+    fs.source_files = 'Sources/GenomeFoundation/**/*.{swift}'
     fs.dependency 'Genome/Core'
   end
 
-  spec.subspec "PureJson" do |js|
-    js.source_files = 'Sources/Genome/Json/**/*.{swift}'
-    js.dependency 'Genome/Core'
-    js.dependency 'PureJsonSerializer'
+  spec.subspec "Serialization" do |ss|
+    ss.source_files = 'Sources/GenomeSerialization/**/*.{swift}'
+    ss.dependency 'Genome/Core'
   end
 
   spec.subspec "Default" do |ds|
-    ds.dependency 'Genome/PureJson'
+    ds.dependency 'Genome/Serialization'
     ds.dependency 'Genome/Foundation'
   end
 
   spec.subspec "CoreData" do |cd|
-    ds.source_files = 'Sources/Genome/CoreData/**/*.{swift}'
-    ds.dependency 'Genome/Core'
-    ds.dependency 'Genome/Foundation'
-    ds.frameworks = 'CoreData'
+    cd.source_files = 'Sources/Genome/CoreData/**/*.{swift}'
+    cd.dependency 'Genome/Core'
+    cd.dependency 'Genome/Foundation'
+    cd.frameworks = 'CoreData'
   end
 end

@@ -5,15 +5,6 @@
       <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
         <BuildableReference
           BuildableIdentifier = "primary"
-          BlueprintIdentifier = "______Target_PureJson"
-          BuildableName = "libPureJson.dylib"
-          BlueprintName = "PureJson"
-          ReferencedContainer = "container:Genome.xcodeproj">
-        </BuildableReference>
-      </BuildActionEntry>
-      <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
-        <BuildableReference
-          BuildableIdentifier = "primary"
           BlueprintIdentifier = "______Target_Genome"
           BuildableName = "libGenome.dylib"
           BlueprintName = "Genome"
@@ -41,9 +32,9 @@
       <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
         <BuildableReference
           BuildableIdentifier = "primary"
-          BlueprintIdentifier = "______Target_GenomeJson"
-          BuildableName = "libGenomeJson.dylib"
-          BlueprintName = "GenomeJson"
+          BlueprintIdentifier = "______Target_GenomeSerialization"
+          BuildableName = "libGenomeSerialization.dylib"
+          BlueprintName = "GenomeSerialization"
           ReferencedContainer = "container:Genome.xcodeproj">
         </BuildableReference>
       </BuildActionEntry>
@@ -72,6 +63,16 @@
         BlueprintIdentifier = "______Target_GenomeFoundationTestSuite"
         BuildableName = "GenomeFoundationTestSuite.xctest"
         BlueprintName = "GenomeFoundationTestSuite"
+        ReferencedContainer = "container:Genome.xcodeproj">
+      </BuildableReference>
+    </TestableReference>
+    <TestableReference
+      skipped = "NO">
+      <BuildableReference
+        BuildableIdentifier = "primary"
+        BlueprintIdentifier = "______Target_GenomeSerializationTestSuite"
+        BuildableName = "GenomeSerializationTestSuite.xctest"
+        BlueprintName = "GenomeSerializationTestSuite"
         ReferencedContainer = "container:Genome.xcodeproj">
       </BuildableReference>
     </TestableReference>

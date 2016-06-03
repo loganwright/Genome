@@ -25,7 +25,7 @@ public protocol NodeIndexable {
      - parameter input:  value to set in parent, or `nil` if should remove
      - parameter parent: node to set input in
      */
-    func set(_ input: Node?, to parent: inout Node)
+    func set(_ input: Node?, to parent:  inout Node)
 
     /**
      When using a path, and setting, it's possible that a value doesn't yet exist.

@@ -1,0 +1,6 @@
+{
+	"integer":123,
+	"float":123.456,
+	"positiveExponent":123456e3,
+	"negativeExponent":123456e-3
+}

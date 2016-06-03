@@ -13,7 +13,8 @@ XCTMain([
     testCase(NodeIndexable.allTests),
     testCase(SettableOperatorTest.allTests),
     testCase(ToNodeOperatorTest.allTests),
-    testCase(TransformTest.allTests)
+    testCase(TransformTest.allTests),
+    testCase(JSONTest.allTests)
 ])
 
 #endif
