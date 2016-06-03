@@ -33,6 +33,9 @@ public class INISerializer: Serializer {
     /// - note: This is to support variations in the ini format that require escaping of certian characters. For example the octothorpe is sometimes treated as a comment identifier.
     public var escapeMapping: [Character : String] = [:]
     
+    /// Whether or not to read the constants "true", "false", and "null" as capitalized strings.
+    public var capitalizeConstants: Bool = true
+    
     //---------------------------------
     // MARK: Parsing
     //---------------------------------
@@ -55,7 +58,7 @@ public class INISerializer: Serializer {
             throw SerializationError.EmptyInput
         }
         
-        try parse(object: object, parentSection: "")
+        try parse(object: object, parentSection: nil)
     }
     
     private func parseKey(key: String) {
@@ -63,21 +66,33 @@ public class INISerializer: Serializer {
     }
     
     /// Parses objects.
-    private func parse(object: [String: Node], parentSection: String) throws {
+    private func parse(object: [String: Node], parentSection: String?) throws {
         
         // Add the section identifier if necessary.
-        if parentSection.characters.count != 0 {
+        if let parentSection = parentSection {
             // Open the section.
             output.append(FileConstants.leftSquareBracket)
             // Append the section name.
             output.append(parentSection)
             // Close the section
             output.append(FileConstants.rightSquareBracket)
+            output.append(lineEndings.rawValue)
         }
+        
+        // Objects need to be sorted as all non-object values need to be written first. Otherwise values will end up in sub-sections of the current object.
+        let sortedObject = object.sorted(isOrderedBefore: {
+            switch ($0.value, $1.value) {
+            case (_, .object):
+                return true
+            default:
+                return false
+                
+            }
+        })
         
         // Iterate over all keys and values.
         var i: Int = 0
-        for (key, value) in object {
+        for (key, value) in sortedObject {
             //Determine what kind of value we have
             switch value {
             case .null:
@@ -97,7 +112,11 @@ public class INISerializer: Serializer {
                 parse(string: string)
                 break
             case let .object(object):
-                try parse(object: object, parentSection: parentSection + String(sectionDelimiter) + key)
+                if let parentSection = parentSection {
+                    try parse(object: object, parentSection: parentSection + String(sectionDelimiter) + key)
+                } else {
+                    try parse(object: object, parentSection: key)
+                }
             case let .array(array):
                 parseKey(key: key)
                 try parse(array: array)
@@ -150,15 +169,27 @@ public class INISerializer: Serializer {
     
     /// Parses null.
     private func parseNull() {
-        output.append(INIConstants.nullValue)
+        if capitalizeConstants {
+            output.append(INIConstants.nullValue.uppercased())
+        } else {
+            output.append(INIConstants.nullValue)
+        }
     }
     
     /// Parses booleans.
     private func parse(boolean: Bool) {
-        if boolean {
-            output.append(INIConstants.trueValue)
+        if capitalizeConstants {
+            if boolean {
+                output.append(INIConstants.trueValue.uppercased())
+            } else {
+                output.append(INIConstants.falseValue.uppercased())
+            }
         } else {
-            output.append(INIConstants.falseValue)
+            if boolean {
+                output.append(INIConstants.trueValue)
+            } else {
+                output.append(INIConstants.falseValue)
+            }
         }
     }
     

@@ -19,8 +19,12 @@
 		EA7AB6E41CF46DA40059B213 /* Arrays.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA7AB6DF1CF46C5A0059B213 /* Arrays.csv */; };
 		EA7AB6E51CF46DA40059B213 /* Objects.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA7AB6E11CF46CA70059B213 /* Objects.csv */; };
 		EA7AB6E61CF46DA40059B213 /* ObjectsNoHeader.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA7AB6E21CF46D930059B213 /* ObjectsNoHeader.csv */; };
+		EA87FC571D01AB3A00580054 /* INITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADBDB451CF7AA0700943DD6 /* INITest.swift */; };
+		EA87FC581D01AB9D00580054 /* NoGroups.ini in CopyFiles */ = {isa = PBXBuildFile; fileRef = EADBDB481CF7AAE300943DD6 /* NoGroups.ini */; };
+		EA87FC591D01AB9D00580054 /* Strings.ini in CopyFiles */ = {isa = PBXBuildFile; fileRef = EADBDB4A1CF7AC3500943DD6 /* Strings.ini */; };
+		EA87FC5A1D01AB9D00580054 /* Numbers.ini in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA877BF11D01A55400663FA8 /* Numbers.ini */; };
+		EA87FC5B1D01AB9D00580054 /* Groups.ini in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA877BF21D01A5B300663FA8 /* Groups.ini */; };
 		EAC7B95C1CE7FD4200B815EC /* XMLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7B95B1CE7FD4200B815EC /* XMLConstants.swift */; };
-		EADBDB461CF7AA0700943DD6 /* INITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADBDB451CF7AA0700943DD6 /* INITest.swift */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* libGenomeFoundation.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* libGenomeFoundation.dylib */; };
 		_LinkFileRef_GenomeSerialization_via_GenomeSerializationTestSuite /* libGenomeSerialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeSerialization" /* libGenomeSerialization.dylib */; };
@@ -115,6 +119,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				EA87FC581D01AB9D00580054 /* NoGroups.ini in CopyFiles */,
+				EA87FC591D01AB9D00580054 /* Strings.ini in CopyFiles */,
+				EA87FC5A1D01AB9D00580054 /* Numbers.ini in CopyFiles */,
+				EA87FC5B1D01AB9D00580054 /* Groups.ini in CopyFiles */,
 				EA7AB6E31CF46DA40059B213 /* SingleColumn.csv in CopyFiles */,
 				EA7AB6E41CF46DA40059B213 /* Arrays.csv in CopyFiles */,
 				EA7AB6E51CF46DA40059B213 /* Objects.csv in CopyFiles */,
@@ -143,8 +151,12 @@
 		EA7AB6DF1CF46C5A0059B213 /* Arrays.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Arrays.csv; path = CSV/Arrays.csv; sourceTree = "<group>"; };
 		EA7AB6E11CF46CA70059B213 /* Objects.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Objects.csv; path = CSV/Objects.csv; sourceTree = "<group>"; };
 		EA7AB6E21CF46D930059B213 /* ObjectsNoHeader.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ObjectsNoHeader.csv; path = CSV/ObjectsNoHeader.csv; sourceTree = "<group>"; };
+		EA877BF11D01A55400663FA8 /* Numbers.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Numbers.ini; path = INI/Numbers.ini; sourceTree = "<group>"; };
+		EA877BF21D01A5B300663FA8 /* Groups.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Groups.ini; path = INI/Groups.ini; sourceTree = "<group>"; };
 		EAC7B95B1CE7FD4200B815EC /* XMLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMLConstants.swift; path = XML/XMLConstants.swift; sourceTree = "<group>"; };
 		EADBDB451CF7AA0700943DD6 /* INITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INITest.swift; sourceTree = "<group>"; };
+		EADBDB481CF7AAE300943DD6 /* NoGroups.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NoGroups.ini; path = INI/NoGroups.ini; sourceTree = "<group>"; };
+		EADBDB4A1CF7AC3500943DD6 /* Strings.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Strings.ini; path = INI/Strings.ini; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Genome/Core/BackingDataType/BackingDataType.swift /* Core/BackingDataType/BackingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/BackingDataType/BackingDataType.swift; sourceTree = "<group>"; };
@@ -285,6 +297,17 @@
 			name = CSV;
 			sourceTree = "<group>";
 		};
+		EADBDB471CF7AAC100943DD6 /* INI */ = {
+			isa = PBXGroup;
+			children = (
+				EADBDB481CF7AAE300943DD6 /* NoGroups.ini */,
+				EADBDB4A1CF7AC3500943DD6 /* Strings.ini */,
+				EA877BF11D01A55400663FA8 /* Numbers.ini */,
+				EA877BF21D01A5B300663FA8 /* Groups.ini */,
+			);
+			name = INI;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +438,7 @@
 		"_______Group_GenomeSerializationTestSuite" /* GenomeSerializationTestSuite */ = {
 			isa = PBXGroup;
 			children = (
+				EADBDB471CF7AAC100943DD6 /* INI */,
 				EA34BCEB1CF3704B0023095D /* CSV */,
 				EA32A3081CF1215400F0D510 /* JSON */,
 				__PBXFileRef_Tests/GenomeSerialization/JSONTest.swift /* JSONTest.swift */,
@@ -682,7 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				EADBDB461CF7AA0700943DD6 /* INITest.swift in Sources */,
+				EA87FC571D01AB3A00580054 /* INITest.swift in Sources */,
 				EA34BCEA1CF370140023095D /* CSVTest.swift in Sources */,
 				__src_cc_ref_Tests/GenomeSerialization/JSONTest.swift /* JSONTest.swift in Sources */,
 				EA32A3161CF1230B00F0D510 /* XCText+Load.swift in Sources */,

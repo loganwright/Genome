@@ -12,11 +12,11 @@
  Deserializes INI data into a `Node` representation.
  
  - note: This is a basic parser that assumes the following:
-    - Comments will always begin at the start of a line, and begin with a semicolon.
-    - Sections identifiers will start on a new line, and the only following characters after the close of a section identifier will be whitespace.
-    - There will be one key-value pair per line. Keys and values cannot be multiple lines. Keys cannot contain whitespace characters.
-    - Escaped characters will be allowed in keys. This can be easily changed if the oppisite should be enforced.
-    - Any values with whitespace characters must be encased in double or single quotes. Line feeds and carrage returns must be escaped.
+ - Comments will always begin at the start of a line, and begin with a semicolon.
+ - Sections identifiers will start on a new line, and the only following characters after the close of a section identifier will be whitespace.
+ - There will be one key-value pair per line. Keys and values cannot be multiple lines. Keys cannot contain whitespace characters.
+ - Escaped characters will be allowed in keys. This can be easily changed if the oppisite should be enforced.
+ - Any values with whitespace characters must be encased in double or single quotes. Line feeds and carrage returns must be escaped.
  */
 public class INIDeserializer: Deserializer {
     
@@ -39,8 +39,8 @@ public class INIDeserializer: Deserializer {
     /// Whether or not to attempt to parse the string values into other types.
     public var parseTypes: Bool = true
     
-    /// Whether or not to output the constants "true", "false", and "null" as capitalized strings.
-    public var capitalizeConstants: Bool = false
+    /// Whether or not to read the constants "true", "false", and "null" as capitalized strings.
+    public var capitalizeConstants: Bool = true
     
     /// Protects against line feeds messing up the line number.
     private var crlfHack: Bool = false
@@ -69,7 +69,7 @@ public class INIDeserializer: Deserializer {
                         throw DeserializationError.UnexpectedCharacter(lineNumber: lineNumber, characterNumber: characterNumber)
                     }
                 } catch DeserializationError.EndOfFile {
-                    return value
+                    return value.node
                 }
             } catch DeserializationError.EndOfFile {
                 throw DeserializationError.EmptyInput
@@ -79,15 +79,21 @@ public class INIDeserializer: Deserializer {
     
     // MARK: - Main Parse Loop
     
-    private func parseLine(forSection: Bool = false) throws -> Node {
+    private func parseLine(forSection: Bool = false) throws -> (node: Node, safeEndOfFile: Bool) {
         
         var section: [String: Node] = [:]
+        var safeEndOfFile: Bool = false
         
         outerLoop: repeat {
             
             // If the next character is whitespace, continue to the first token.
-            if scalar == FileConstants.tabCharacter && scalar == FileConstants.lineFeed && scalar == FileConstants.carriageReturn && scalar == FileConstants.space {
-                try skipToNextToken()
+            if scalar == FileConstants.tabCharacter || scalar == FileConstants.lineFeed || scalar == FileConstants.carriageReturn || scalar == FileConstants.space {
+                do {
+                    try skipToNextToken()
+                } catch DeserializationError.EndOfFile {
+                    safeEndOfFile = true
+                    break outerLoop
+                }
             }
             
             switch scalar {
@@ -105,12 +111,21 @@ public class INIDeserializer: Deserializer {
                     // Get the object associated with the key
                     let value = try parseLine(forSection: true)
                     // Set the object to its key path.
-                    try setValue(value: value, toObject: &section, keyPath: keyPath)
+                    try setValue(value: value.node, toObject: &section, keyPath: keyPath)
+                    if value.safeEndOfFile {
+                        safeEndOfFile = true
+                        break outerLoop
+                    }
                 }
                 break
             case FileConstants.semicolon:
                 // The beginning of a comment.
-                try parseComment()
+                do {
+                    try parseComment()
+                } catch DeserializationError.EndOfFile {
+                    safeEndOfFile = true
+                    break outerLoop
+                }
                 break
             default:
                 // The beginning of a Key-value pair.
@@ -118,13 +133,17 @@ public class INIDeserializer: Deserializer {
                 // Skip the delimiter
                 try nextScalar()
                 let value = try parseValue()
-                section[key] = value
+                section[key] = value.node
+                if value.safeEndOfFile {
+                    safeEndOfFile = true
+                    break outerLoop
+                }
                 break
             }
             
         } while true // We only manually break the loop.
         
-        return .object(section)
+        return (.object(section), safeEndOfFile)
     }
     
     /// Skips whitespace until the next non-whitespace token is found.
@@ -165,6 +184,7 @@ public class INIDeserializer: Deserializer {
         if keyPath.count == 1 {
             // Set the object to the dictionary.
             toObject[keyPath.first!] = value
+            return
         } else if keyPath.count > 0 {
             
             // Create a new object if necessary.
@@ -188,6 +208,8 @@ public class INIDeserializer: Deserializer {
             }
             
             try setValue(value: value, toObject: &dictionary, keyPath: Array(keyPath.dropFirst(1)))
+            toObject[keyPath.first!] = .object(dictionary)
+            return
         }
         
         // This should also never happen.
@@ -288,7 +310,7 @@ public class INIDeserializer: Deserializer {
                 break outerLoop
             default:
                 // Get the next character.
-               try nextScalar()
+                try nextScalar()
             }
         } while true // We only manually break the loop.
     }
@@ -351,119 +373,129 @@ public class INIDeserializer: Deserializer {
         return key
     }
     
-    private func parseValue() throws -> Node {
+    private func parseValue() throws -> (node: Node, safeEndOfFile: Bool) {
         // Whether or not the next character will be escaped.
         var escaping = false
         var singleQuoteContained = false
         var doubleQuoteContained = false
         var firstCharacterParsed = false
+        // End of file
+        var safeEndOfFile = false
         
         // Iterate over the value. Start with an empty string, append more strings if we have an array.
         var values: [String] = [""]
-        outerLoop: repeat {
-            switch scalar {
-            case FileConstants.reverseSolidus:
-                // Escape character
-                if escaping {
-                    // Escaping the escape char
-                    values[values.count - 1].append(FileConstants.reverseSolidus)
-                }
-                escaping = !escaping
-                try nextScalar()
-                break
-            case FileConstants.quotationMark, FileConstants.apostropheMark:
-                if escaping {
-                    // Append the quote
-                    values[values.count - 1].append(scalar)
-                    escaping = false
-                } else if !firstCharacterParsed {
-                    // We are quote contained
-                    if scalar == FileConstants.quotationMark {
-                        doubleQuoteContained = true
-                    } else {
-                        singleQuoteContained = true
+        do {
+            outerLoop: repeat {
+                switch scalar {
+                case FileConstants.reverseSolidus:
+                    // Escape character
+                    if escaping {
+                        // Escaping the escape char
+                        values[values.count - 1].append(FileConstants.reverseSolidus)
                     }
-                } else {
-                    // Is it the end quote?
-                    if scalar == FileConstants.quotationMark && doubleQuoteContained {
-                        singleQuoteContained = false
-                    } else if scalar == FileConstants.apostropheMark && singleQuoteContained {
-                        doubleQuoteContained = false
-                    } else {
+                    escaping = !escaping
+                    try nextScalar()
+                    break
+                case FileConstants.quotationMark, FileConstants.apostropheMark:
+                    if escaping {
+                        // Append the quote
                         values[values.count - 1].append(scalar)
-                    }
-                }
-                try nextScalar()
-                break
-            case FileConstants.carriageReturn, FileConstants.lineFeed:
-                // End of the value.
-                if !singleQuoteContained || !doubleQuoteContained {
-                    break outerLoop
-                }
-                // If we are quote contained, these values are not allowed.
-                throw DeserializationError.UnexpectedCharacter(lineNumber: lineNumber, characterNumber: characterNumber)
-            case FileConstants.space:
-                // Continue parsing the string.
-                if escaping {
-                    // Handle all the different escape characters
-                    if let s = INIConstants.unescapeMapping[scalar] {
-                        values[values.count - 1].append(s)
+                        escaping = false
+                    } else if !firstCharacterParsed {
+                        // We are quote contained
+                        if scalar == FileConstants.quotationMark {
+                            doubleQuoteContained = true
+                        } else {
+                            singleQuoteContained = true
+                        }
                     } else {
+                        // Is it the end quote?
+                        if scalar == FileConstants.quotationMark && doubleQuoteContained {
+                            singleQuoteContained = false
+                        } else if scalar == FileConstants.apostropheMark && singleQuoteContained {
+                            doubleQuoteContained = false
+                        } else {
+                            values[values.count - 1].append(scalar)
+                        }
+                    }
+                    try nextScalar()
+                    break
+                case FileConstants.carriageReturn, FileConstants.lineFeed:
+                    // End of the value.
+                    if !singleQuoteContained || !doubleQuoteContained {
+                        break outerLoop
+                    }
+                    // If we are quote contained, these values are not allowed.
+                    throw DeserializationError.UnexpectedCharacter(lineNumber: lineNumber, characterNumber: characterNumber)
+                case FileConstants.space:
+                    // Continue parsing the string.
+                    if escaping {
+                        // Handle all the different escape characters
+                        if let s = INIConstants.unescapeMapping[scalar] {
+                            values[values.count - 1].append(s)
+                        } else {
+                            values[values.count - 1].append(scalar)
+                        }
+                        escaping = false
+                    } else if singleQuoteContained || doubleQuoteContained {
+                        // Inside quotes, append the space.
+                        values[values.count - 1].append(scalar)
+                    } else {
+                        // Append a new array element.
+                        values.append("")
+                    }
+                    try nextScalar()
+                    break
+                default:
+                    // Continue parsing the key.
+                    if escaping {
+                        // Handle all the different escape characters
+                        if let s = INIConstants.unescapeMapping[scalar] {
+                            values[values.count - 1].append(s)
+                        } else {
+                            values[values.count - 1].append(scalar)
+                        }
+                        escaping = false
+                    } else {
+                        // Simple append
                         values[values.count - 1].append(scalar)
                     }
                     try nextScalar()
-                    escaping = false
-                } else if singleQuoteContained || doubleQuoteContained {
-                    // Inside quotes, append the space.
-                    values[values.count - 1].append(scalar)
-                } else {
-                    // Append a new array element.
-                    values.append("")
+                    break
                 }
-                break
-            default:
-                // Continue parsing the key.
-                if escaping {
-                    // Handle all the different escape characters
-                    if let s = INIConstants.unescapeMapping[scalar] {
-                        values[values.count - 1].append(s)
-                    } else {
-                        values[values.count - 1].append(scalar)
-                    }
-                    escaping = false
-                } else {
-                    // Simple append
-                    values[values.count - 1].append(scalar)
-                }
-                try nextScalar()
-                break
+                firstCharacterParsed = true
+            } while true // We only manually break out of the loop.
+        } catch DeserializationError.EndOfFile {
+            // This is ok if we are not escaping.
+            safeEndOfFile = true
+            if escaping {
+                throw DeserializationError.EndOfFile
             }
-            firstCharacterParsed = true
-        } while true // We only manually break out of the loop.
+        }
         
         if values.count == 1 {
             // Get the string.
             let string = values[0]
             // Is it empty
             if string.characters.count == 0 {
-                return .null
+                return (.null, safeEndOfFile)
             }
             
             // Parse the string if necessary.
             if parseTypes {
-                return convertValue(string: string)
+                return (convertValue(string: string), safeEndOfFile)
             } else {
-                return .string(string)
+                return (.string(string), safeEndOfFile)
             }
         } else {
-            return .array(values.map({
+            return (.array(values.map({
                 // Parse the string if necessary.
                 if parseTypes {
                     return convertValue(string: $0)
                 } else {
                     return .string($0)
                 }
-            }))
+            })), safeEndOfFile)
         }
     }
     
@@ -650,6 +682,6 @@ public class INIDeserializer: Deserializer {
             return .number(Double(number))
         }
     }
-
+    
 }
 

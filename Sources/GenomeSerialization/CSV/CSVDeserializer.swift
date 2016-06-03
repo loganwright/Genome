@@ -180,7 +180,7 @@ public class CSVDeserializer: Deserializer {
                     let value = try parseValue()
                     array.append(value.node)
                     
-                    if value.endOfFile == true {
+                    if value.safeEndOfFile == true {
                         break outerLoop
                     }
                     
@@ -224,7 +224,7 @@ public class CSVDeserializer: Deserializer {
                 do {
                     let value = try parseValue()
                     object[headers[i]] = value.node
-                    if value.endOfFile == true {
+                    if value.safeEndOfFile == true {
                         break outerLoop
                     }
                 } catch DeserializationError.EndOfFile {
@@ -237,11 +237,11 @@ public class CSVDeserializer: Deserializer {
     }
     
     /// Parses the columns.
-    private func parseValue(processingHeader: Bool = false) throws -> (node: Node, endOfFile: Bool) {
+    private func parseValue(processingHeader: Bool = false) throws -> (node: Node, safeEndOfFile: Bool) {
         // Whether or not we are in a set of quotes. If we are double quotes and newlines are part of the string.
         var escaping = false
         // End of file
-        var endOfFile = false
+        var safeEndOfFile = false
         // Check to see that the next token is a quotation mark.
         if scalar == FileConstants.quotationMark {
             // Skip opening quotation
@@ -305,16 +305,16 @@ public class CSVDeserializer: Deserializer {
             } while true // We only manually break the loop.
         } catch DeserializationError.EndOfFile {
             // This is ok if we are not escaping.
-            endOfFile = true
+            safeEndOfFile = true
             if escaping {
                 throw DeserializationError.EndOfFile
             }
         }
         
         if parseTypes && !processingHeader {
-            return (convertValue(string: strBuilder), endOfFile)
+            return (convertValue(string: strBuilder), safeEndOfFile)
         } else {
-            return (.string(strBuilder), endOfFile)
+            return (.string(strBuilder), safeEndOfFile)
         }
     }
     
