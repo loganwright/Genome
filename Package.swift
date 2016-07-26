@@ -2,13 +2,6 @@ import PackageDescription
 
 let package = Package(
     name: "Genome",
-    dependencies: [
-        // using qutheory until update core library
-        .Package(url: "https://github.com/qutheory/pure-json", majorVersion: 2, minor: 1)
-    ],
-    exclude: [
-        "Sources/Genome/CoreData"
-    ],
     targets: [
         Target(
             name: "Genome",
@@ -35,5 +28,11 @@ let package = Package(
                  .Target(name: "Genome")
               ]
           ),
+    ],
+    dependencies: [
+        .Package(url: "https://github.com/qutheory/json", majorVersion: 0, minor: 2)
+    ],
+    exclude: [
+        "Sources/Genome/CoreData"
     ]
 )
