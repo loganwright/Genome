@@ -57,33 +57,33 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T>? {
 
 // MARK: Non-Optional Casters
 
-public prefix func <~ <T: NodeConvertible>(map: Map) throws -> T {
+public prefix func <~ <T: NodeInitializable>(map: Map) throws -> T {
     let result = try map.expectResult(targeting: T.self)
     return try execute(with: map,
                        body: T.init(with: result, in: map.context))
 }
 
-public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [T] {
+public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [T] {
     let result = try map.expectResult(targeting: [T].self)
     return try execute(with: map,
                        body: [T].init(with: result, in: map.context))
 }
 
-public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T> {
+public prefix func <~ <T: NodeInitializable>(map: Map) throws -> Set<T> {
     let result = try map.expectResult(targeting: T.self)
     let mapped = try execute(with: map,
                              body: [T].init(with: result, in: map.context))
     return Set<T>(mapped)
 }
 
-public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [[T]] {
+public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [[T]] {
     let result = try map.expectResult(targeting: [[T]].self)
     let array = result.arrayOfArrays
     return try execute(with: map,
                        body: array.map { try [T].init(with: $0, in: map.context) })
 }
 
-public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T] {
+public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [String : T] {
     let nodeDictionary = try execute(with: map,
                                      body: map.expectNodeDictionary(targeting: [String : T].self))
     
@@ -95,7 +95,7 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : T] {
     return mapped
 }
 
-public prefix func <~ <T: NodeConvertible>(map: Map) throws -> [String : [T]] {
+public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [String : [T]] {
     let type = [String : [T]].self
     let nodeDictionaryOfArrays = try execute(with: map,
                                              body: map.expectNodeDictionary(targeting: type))

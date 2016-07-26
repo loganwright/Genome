@@ -1,6 +1,8 @@
 // MARK: Mappable Object
 
 extension MappableObject {
+
+    // TODO: Might not need
     public init<T: NodeRepresentable>(with data: T, in context: Context = EmptyNode) throws {
         let node = try data.makeNode()
         guard let _ = node.object else {
