@@ -81,7 +81,7 @@ class BasicTypeTests: XCTestCase {
         XCTAssert(basic.bool == true)
         XCTAssert(basic.string == "hello")
         
-        let node = try basic.toNode()
+        let node = try basic.makeNode()
         let int = node["int"]!.int!
         let float = node["float"]!.float!
         let double = node["double"]!.double!
@@ -102,7 +102,7 @@ class BasicTypeTests: XCTestCase {
         XCTAssert(basic.bools == [true])
         XCTAssert(basic.strings == ["hello"])
         
-        let node = try basic.toNode()
+        let node = try basic.makeNode()
         let ints = node["ints"]!.array!.flatMap { $0.int }
         let floats = node["floats"]!.array!.flatMap { $0.float }
         let doubles = node["doubles"]!.array!.flatMap { $0.double }

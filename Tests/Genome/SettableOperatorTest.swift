@@ -167,7 +167,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(node: _, targeting: _, path: let path) {
+        } catch Genome.Error.unableToConvert(node: _, targeting: _, path: let path) {
             XCTAssert(path.count == 1)
             XCTAssert(path.first as? String == "int")
         } catch {
@@ -180,7 +180,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : [Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(node: _, targeting: _, path: let path) {
+        } catch Genome.Error.unableToConvert(node: _, targeting: _, path: let path) {
             XCTAssert(path.count == 1)
             XCTAssert(path.first as? String == "int")
         } catch {
@@ -191,20 +191,20 @@ class SettableOperatorTest: XCTestCase {
     func testThatValueExistsButIsNotTheTypeExpectedNonOptional() {
         // Unexpected Type - Basic
         do {
-            let _: String = try <~map["int"]
+            let _: Bool = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(node: _, targeting: _, path: let path) {
-            XCTAssert(path.count == 1)
-            XCTAssert(path.first as? String == "int")
+        } catch let NodeError.unableToConvert(node: node, expected: expected) {
+            XCTAssert(node == 272)
+            XCTAssert(expected == "Bool")
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Unexpected Type - Mappable Object
         do {
             let _: Person = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
 
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -214,7 +214,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -224,7 +224,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]] = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -234,12 +234,13 @@ class SettableOperatorTest: XCTestCase {
         do {
             // Transformer expects string, but is passed an int
             let _: String = try <~map["int"]
-                .transformFromNode { (input: String) in
+                .transformFromNode { (input: Bool) in
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(_) {
-            
+        }  catch let NodeError.unableToConvert(node: node, expected: expected) {
+            XCTAssert(node == 272)
+            XCTAssert(expected == "Bool")
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
         }
@@ -247,21 +248,11 @@ class SettableOperatorTest: XCTestCase {
     
     // If a value exists, but is the wrong type, it should throw error
     func testThatValueExistsButIsNotTheTypeExpectedOptional() {
-        // Unexpected Value - Basic
-        do {
-            let _: String? = try map.extract("int")
-            XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(_) {
-
-        } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
-        }
-
         // Unexpected Value - Mappable Object
         do {
             let _: Person? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
 
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -270,7 +261,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -280,7 +271,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -290,7 +281,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : Person]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(_) {
+        } catch Genome.Error.unableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
@@ -300,26 +291,11 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : [Person]]? = try <~map["int"]
             XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(_) {
+        } catch Genome.Error.unableToConvert(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
         }
-
-        // Unexpected Input Type (nil) - Transformable
-        do {
-            // Transformer expects string, but is passed an int
-            let _: String? = try <~map["int"]
-                .transformFromNode { (input: String?) in
-                    return "Hello: \(input)"
-            }
-            XCTFail("Incorrect type should throw error")
-        } catch Error.unableToConvert(_) {
-            
-        } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
-        }
-        
     }
     
     // Expected Something, Got Nothing
@@ -328,7 +304,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: String = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -338,7 +314,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: Person = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -348,7 +324,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [Person] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -358,7 +334,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [[Person]] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -368,7 +344,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : Person] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -378,7 +354,7 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: [String : [Person]] = try <~map["asdf"]
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -392,7 +368,7 @@ class SettableOperatorTest: XCTestCase {
                     return "Hello: \(input)"
             }
             XCTFail("nil value should throw error")
-        } catch Error.foundNil(_) {
+        } catch Genome.Error.foundNil(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
@@ -404,7 +380,7 @@ class SettableOperatorTest: XCTestCase {
             let map = Map()
             let _: String = try <~map["a"]
             XCTFail("Inproper map type should throw error")
-        } catch Error.unexpectedOperation(_) {
+        } catch Genome.Error.unexpectedOperation(_) {
             
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(Error.unexpectedOperation)")

@@ -8,7 +8,7 @@ extension NSManagedObjectContext : Context {}
 
 public class ManagedObject: NSManagedObject, Genome.MappableBase {
 
-    public enum Error: ErrorProtocol {
+    public enum Error: Swift.Error {
         case expectedManagedObjectContext
         case unableToCreateObject
     }
@@ -35,7 +35,7 @@ extension MappableBase where Self: ManagedObject {
     }
 
     public init(with convertible: NodeConvertible, in context: NSManagedObjectContext) throws {
-        let node = try convertible.toNode()
+        let node = try convertible.makeNode()
         let map = Map(with: node, in: context)
         self = try make(type: Self.self, with: map)
     }

@@ -114,8 +114,8 @@ extension MappableBase {
 
      - returns: the foundation representation
      */
-    public func foundationJson() throws -> AnyObject {
-        return try toNode().anyValue
+    public func foundationJSON() throws -> AnyObject {
+        return try makeNode().anyValue
     }
 
     /**
@@ -126,7 +126,7 @@ extension MappableBase {
      - returns: the foundation representation as dictionary
      */
     public func foundationDictionary() throws -> [String : AnyObject]? {
-        return try foundationJson() as? [String : AnyObject]
+        return try foundationJSON() as? [String : AnyObject]
     }
 
     /**
@@ -137,7 +137,7 @@ extension MappableBase {
      - returns: an array of type AnyObject
      */
     public func foundationArray() throws -> [AnyObject]? {
-        return try foundationJson() as? [AnyObject]
+        return try foundationJSON() as? [AnyObject]
     }
 }
 

@@ -15,10 +15,10 @@ let package = Package(
             ]
         ),
          Target(
-             name: "GenomeJson",
+             name: "GenomeJSON",
              dependencies: [
                 .Target(name: "Genome")
-                //  .Package(url: "../Swift-PureJsonSerializer", majorVersion: 2)
+                //  .Package(url: "../Swift-PureJSONSerializer", majorVersion: 2)
              ]
          ),
           Target(

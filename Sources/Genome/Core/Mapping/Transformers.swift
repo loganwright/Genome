@@ -96,7 +96,7 @@ public final class ToNodeTransformer<Input, ConvertibleOutput: NodeConvertible>
     
     internal func transform(_ value: Input) throws -> Node {
         let transformed = try transformer(value)
-        return try transformed.toNode()
+        return try transformed.makeNode()
     }
 }
 

@@ -33,12 +33,12 @@ public final class Map {
     // MARK: Private
 
     /// The last key accessed -- Used to reverse Node Operations
-    internal private(set) var lastPath: [NodeIndexable] = []
+    internal private(set) var lastPath: [PathIndex] = []
     
     /// The last retrieved result.  Used in operators to set value
     internal private(set) var result: Node? {
         didSet {
-            if let unwrapped = result where unwrapped.isNull {
+            if let unwrapped = result, unwrapped.isNull {
                 result = nil
             }
         }
@@ -52,8 +52,8 @@ public final class Map {
      :param: node    the backing data that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public convenience init<T: BackingData>(with data: T, in context: Context = EmptyNode) throws {
-        self.init(with: try data.toNode(), in: context)
+    public convenience init<T: NodeRepresentable>(with data: T, in context: Context = EmptyNode) throws {
+        self.init(with: try data.makeNode(), in: context)
     }
     
     /**
@@ -92,7 +92,7 @@ extension Map {
 
      :returns: returns an instance of self that can be passed to the mappable operator
      */
-    public subscript(keys: NodeIndexable...) -> Map {
+    public subscript(keys: PathIndex...) -> Map {
         return self[keys]
     }
 
@@ -103,7 +103,7 @@ extension Map {
 
      :returns: returns an instance of self that can be passed to the mappable operator
      */
-    public subscript(keys: [NodeIndexable]) -> Map {
+    public subscript(keys: [PathIndex]) -> Map {
         lastPath = keys
         result = node[keys]
         return self
@@ -112,8 +112,16 @@ extension Map {
     public subscript(path path: String) -> Map {
         let components = path
             .keyPathComponents()
-            .map { $0 as NodeIndexable }
         return self[components]
+    }
+}
+
+
+extension String {
+    private func keyPathComponents() -> [PathIndex] {
+        return characters
+            .split(separator: ".")
+            .map { String($0) }
     }
 }
 
@@ -127,26 +135,26 @@ extension Map {
     }
 
     internal func setToLastPath<T : NodeConvertible>(_ any: T?) throws {
-        try setToLastPath(any?.toNode())
+        try setToLastPath(any?.makeNode())
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: [T]?) throws {
-        try setToLastPath(any?.toNode())
+        try setToLastPath(any?.makeNode())
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
-            return try innerArray.toNode()
+            return try innerArray.makeNode()
         }
-        try setToLastPath(node.toNode())
+        try setToLastPath(node.makeNode())
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: [String : T]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.toNode()
+            node[key] = try value.makeNode()
         }
         try setToLastPath(Node(node))
     }
@@ -155,13 +163,13 @@ extension Map {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.toNode()
+            node[key] = try value.makeNode()
         }
         try setToLastPath(Node(node))
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: Set<T>?) throws {
-        try setToLastPath(any?.toNode())
+        try setToLastPath(any?.makeNode())
     }
 }
 

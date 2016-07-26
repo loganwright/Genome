@@ -9,8 +9,8 @@
 import XCTest
 @testable import Genome
 
-class NodeIndexable: XCTestCase {
-    static var allTests: [(String, (NodeIndexable) -> () throws -> Void)] {
+class PathIndexable: XCTestCase {
+    static var allTests: [(String, (PathIndexable) -> () throws -> Void)] {
         return [
                    ("testInt", testInt),
                    ("testString", testString),

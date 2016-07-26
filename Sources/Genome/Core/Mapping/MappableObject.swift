@@ -15,23 +15,16 @@ public protocol MappableBase : NodeConvertible {
 
 extension MappableBase {
     /// Used to convert an object back into node
-    public func toNode() throws -> Node {
+    public func makeNode() throws -> Node {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
         return map.node
     }
     
-    public init<T: BackingData>(node data: T, in context: Context = EmptyNode) throws {
-        let node = try data.toNode()
+    public init<T: NodeRepresentable>(node data: T, in context: Context = EmptyNode) throws {
+        let node = try data.makeNode()
         self = try Self.init(with: node, in: context)
-    }
-}
-
-extension MappableBase {
-    public func toData<T: BackingData>(type: T.Type = T.self) throws -> T {
-        let node = try toNode()
-        return try node.toData()
     }
 }
 

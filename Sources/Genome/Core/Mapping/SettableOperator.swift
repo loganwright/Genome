@@ -159,7 +159,7 @@ extension Map {
 extension Map {
     private func expectNodeDictionary<T>(targeting: T.Type) throws -> [String : Node] {
         let result = try expectResult(targeting: T.self)
-        if let j = result.object {
+        if let j = result.nodeObject {
             return j
         } else {
             throw ErrorFactory.unableToConvert(result, to: T.self)
@@ -169,9 +169,9 @@ extension Map {
 
 extension Node {
     private var arrayOfArrays: [[Node]] {
-        let array = self.array ?? [self]
+        let array = self.nodeArray ?? [self]
         // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
-        let possibleArrayOfArrays = array.flatMap { $0.array }
+        let possibleArrayOfArrays = array.flatMap { $0.nodeArray }
         let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
         let arrayOfArrays: [[Node]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
         return arrayOfArrays

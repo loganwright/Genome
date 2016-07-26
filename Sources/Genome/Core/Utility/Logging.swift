@@ -7,13 +7,13 @@
 //  MIT
 //
 
-public var loggers: [(ErrorProtocol) -> Void] = [defaultLogger]
+public var loggers: [(Swift.Error) -> Void] = [defaultLogger]
 
-private func defaultLogger(error: ErrorProtocol) {
+private func defaultLogger(error: Swift.Error) {
     print("Genome.Error.\(error)")
 }
 
-extension ErrorProtocol {
+extension Swift.Error {
     func logged() -> Self {
         loggers.forEach {
             $0(self)

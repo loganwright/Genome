@@ -170,7 +170,7 @@ class ToNodeOperatorTest: XCTestCase {
     lazy var goodBusiness: Business = try! Business(node: self.businessNode)
     
     func testMapping() {
-        let node = try! goodBusiness.toNode()
+        let node = try! goodBusiness.makeNode()
         // Basic type
         let name = node["name"]!.string!
         XCTAssert(name == "Good Business", "name is \(name) expected: Good Business")
