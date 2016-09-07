@@ -29,12 +29,12 @@ public class ManagedObject: NSManagedObject, Genome.MappableBase {
 }
 
 extension MappableBase where Self: ManagedObject {
-    public init(with node: Node, in context: Context) throws {
+    public init(node: Node, in context: Context) throws {
         let map = Map(with: node, in: context)
         self = try make(type: Self.self, with: map)
     }
 
-    public init(with convertible: NodeConvertible, in context: NSManagedObjectContext) throws {
+    public init(node: NodeRepresentable, in context: NSManagedObjectContext) throws {
         let node = try convertible.makeNode()
         let map = Map(with: node, in: context)
         self = try make(type: Self.self, with: map)

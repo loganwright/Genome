@@ -30,7 +30,8 @@ let package = Package(
           ),
     ],
     dependencies: [
-        .Package(url: "https://github.com/qutheory/json", majorVersion: 0, minor: 2)
+        .Package(url: "https://github.com/vapor/node.git", majorVersion: 0),
+        .Package(url: "https://github.com/vapor/json.git", majorVersion: 0)
     ],
     exclude: [
         "Sources/Genome/CoreData"

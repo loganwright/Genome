@@ -74,7 +74,7 @@ class BasicTypeTests: XCTestCase {
     }
     
     func testBasic() throws {
-        let basic = try Basic(with: BasicTestNode)
+        let basic = try Basic(node: BasicTestNode)
         XCTAssert(basic.int == 1)
         XCTAssert(basic.float == 1.5)
         XCTAssert(basic.double == 2.5)
@@ -95,7 +95,7 @@ class BasicTypeTests: XCTestCase {
     }
     
     func testBasicArrays() throws {
-        let basic = try BasicArrays(with: .object(BasicArraysTestNode))
+        let basic = try BasicArrays(node: .object(BasicArraysTestNode))
         XCTAssert(basic.ints == [1])
         XCTAssert(basic.floats == [1.5])
         XCTAssert(basic.doubles == [2.5])

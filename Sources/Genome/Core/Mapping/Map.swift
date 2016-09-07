@@ -28,15 +28,15 @@ public final class Map {
     public let context: Context
 
     /// The backing Node being mapped
-    public private(set) var node: Node
+    public fileprivate(set) var node: Node
     
     // MARK: Private
 
     /// The last key accessed -- Used to reverse Node Operations
-    internal private(set) var lastPath: [PathIndex] = []
+    internal fileprivate(set) var lastPath: [PathIndex] = []
     
     /// The last retrieved result.  Used in operators to set value
-    internal private(set) var result: Node? {
+    internal fileprivate(set) var result: Node? {
         didSet {
             if let unwrapped = result, unwrapped.isNull {
                 result = nil
@@ -118,7 +118,7 @@ extension Map {
 
 
 extension String {
-    private func keyPathComponents() -> [PathIndex] {
+    fileprivate func keyPathComponents() -> [PathIndex] {
         return characters
             .split(separator: ".")
             .map { String($0) }

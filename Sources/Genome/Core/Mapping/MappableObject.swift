@@ -21,10 +21,10 @@ extension MappableBase {
         try mutable.sequence(map)
         return map.node
     }
-    
+
     public init<T: NodeRepresentable>(node data: T, in context: Context = EmptyNode) throws {
         let node = try data.makeNode()
-        self = try Self.init(with: node, in: context)
+        self = try Self.init(node: node, in: context)
     }
 }
 
@@ -39,7 +39,7 @@ extension MappableObject {
         // Empty
     }
 
-    public init(with node: Node, in context: Context = EmptyNode) throws {
+    public init(node: Node, in context: Context = EmptyNode) throws {
         let map = Map(with: node, in: context)
         try self.init(with: map)
     }

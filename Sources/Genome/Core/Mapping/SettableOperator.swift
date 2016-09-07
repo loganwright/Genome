@@ -60,19 +60,19 @@ public prefix func <~ <T: NodeConvertible>(map: Map) throws -> Set<T>? {
 public prefix func <~ <T: NodeInitializable>(map: Map) throws -> T {
     let result = try map.expectResult(targeting: T.self)
     return try execute(with: map,
-                       body: T.init(with: result, in: map.context))
+                       body: T.init(node: result, in: map.context))
 }
 
 public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [T] {
     let result = try map.expectResult(targeting: [T].self)
     return try execute(with: map,
-                       body: [T].init(with: result, in: map.context))
+                       body: [T].init(node: result, in: map.context))
 }
 
 public prefix func <~ <T: NodeInitializable>(map: Map) throws -> Set<T> {
     let result = try map.expectResult(targeting: T.self)
     let mapped = try execute(with: map,
-                             body: [T].init(with: result, in: map.context))
+                             body: [T].init(node: result, in: map.context))
     return Set<T>(mapped)
 }
 
@@ -80,7 +80,7 @@ public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [[T]] {
     let result = try map.expectResult(targeting: [[T]].self)
     let array = result.arrayOfArrays
     return try execute(with: map,
-                       body: array.map { try [T].init(with: $0, in: map.context) })
+                       body: array.map { try [T].init(node: $0, in: map.context) })
 }
 
 public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [String : T] {
@@ -90,7 +90,7 @@ public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [String : T] {
     var mapped: [String : T] = [:]
     for (key, value) in nodeDictionary {
         mapped[key] = try execute(with: map,
-                                  body: T.init(with: value, in: map.context))
+                                  body: T.init(node: value, in: map.context))
     }
     return mapped
 }
@@ -103,7 +103,7 @@ public prefix func <~ <T: NodeInitializable>(map: Map) throws -> [String : [T]] 
     var mapped: [String : [T]] = [:]
     for (key, value) in nodeDictionaryOfArrays {
         mapped[key] = try execute(with: map,
-                                  body: [T].init(with: value, in: map.context))
+                                  body: [T].init(node: value, in: map.context))
     }
     return mapped
 }
@@ -141,11 +141,11 @@ private func execute<T>(with map: Map, body: @autoclosure (Void) throws -> T) th
 // MARK: Enforcers
 
 extension Map {
-    private func expectFromNode() throws {
+    fileprivate func expectFromNode() throws {
         try type.assert(equals: .fromNode)
     }
 
-    private func expectResult<T>(targeting: T.Type) throws -> Node {
+    fileprivate func expectResult<T>(targeting: T.Type) throws -> Node {
         try expectFromNode()
         if let result = self.result {
             return result
@@ -157,7 +157,7 @@ extension Map {
 }
 
 extension Map {
-    private func expectNodeDictionary<T>(targeting: T.Type) throws -> [String : Node] {
+    fileprivate func expectNodeDictionary<T>(targeting: T.Type) throws -> [String : Node] {
         let result = try expectResult(targeting: T.self)
         if let j = result.nodeObject {
             return j
@@ -168,9 +168,8 @@ extension Map {
 }
 
 extension Node {
-    private var arrayOfArrays: [[Node]] {
+    internal var arrayOfArrays: [[Node]] {
         let array = self.nodeArray ?? [self]
-        // TODO: Better logic?  If we just have an array, and not an array of arrays, auto convert to array of arrays here.
         let possibleArrayOfArrays = array.flatMap { $0.nodeArray }
         let isAlreadyAnArrayOfArrays = possibleArrayOfArrays.count == array.count
         let arrayOfArrays: [[Node]] = isAlreadyAnArrayOfArrays ? possibleArrayOfArrays : [array]
