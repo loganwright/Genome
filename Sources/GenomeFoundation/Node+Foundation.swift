@@ -9,7 +9,7 @@
 import Genome
 import Foundation
 
-#if xcode
+#if Xcode
 extension Node {
     /**
      Attempt to initialize a node with a foundation object.
@@ -26,7 +26,7 @@ extension Node {
             //This represents double, integer, and boolean.
         case let number as Double:
             // When coming from ObjC AnyObject, this will represent all Integer types and boolean
-            self = .number(number)
+            self = .number(Node.Number(number))
         case let string as String:
             self = .string(string)
         case let object as [String : AnyObject]:
@@ -35,6 +35,10 @@ extension Node {
             self = .array(array.map(Node.init))
         case _ as NSNull:
             self = .null
+        case let bytes as NSData:
+            var raw = [UInt8](repeating: 0, count: bytes.length)
+            bytes.getBytes(&raw, length: bytes.length)
+            self = .bytes(raw)
         default:
             self = .null
         }
@@ -74,17 +78,21 @@ extension Node {
             ob.forEach { key, val in
                 mapped[key] = val.anyValue
             }
-            return mapped
+            return mapped as AnyObject
         case .array(let array):
-            return array.map { $0.anyValue }
+            return array.map { $0.anyValue } as AnyObject
         case .bool(let bool):
-            return bool
+            return bool as AnyObject
         case .number(let number):
-            return number
+            return number.double as AnyObject
         case .string(let string):
-            return string
+            return string as AnyObject
         case .null:
             return NSNull()
+        case .bytes(let bytes):
+            var bytes = bytes
+            let data = NSData(bytes: &bytes, length: bytes.count)
+            return data
         }
     }
 }
@@ -100,8 +108,8 @@ extension NodeConvertible {
 
      - throws: if conversion fails
      */
-    public init(with node: AnyObject, in context: Context = EmptyNode) throws {
-        try self.init(with: Node(node), in: context)
+    public init(node: AnyObject, in context: Context = EmptyNode) throws {
+        try self.init(node: Node(node), in: context)
     }
 }
 
@@ -152,9 +160,9 @@ public extension Array where Element : NodeConvertible {
 
      - throws: if mapping fails
      */
-    public init(with node: AnyObject, in context: Context = EmptyNode) throws {
+    public init(node: AnyObject, in context: Context = EmptyNode) throws {
         let array = node as? [AnyObject] ?? [node]
-        try self.init(with: array, in: context)
+        try self.init(node: array, in: context)
     }
 
     /**
@@ -165,8 +173,8 @@ public extension Array where Element : NodeConvertible {
 
      - throws: if mapping fails
      */
-    public init(with node: [AnyObject], in context: Context = EmptyNode) throws {
-        self = try node.map { try Element.init(with: $0, in: context) }
+    public init(node: [AnyObject], in context: Context = EmptyNode) throws {
+        self = try node.map { try Element.init(node: $0, in: context) }
     }
 }
 
@@ -181,9 +189,9 @@ public extension Set where Element : NodeConvertible {
 
      - throws: if mapping fails
      */
-    public init(with node: AnyObject, in context: Context = EmptyNode) throws {
+    public init(node: AnyObject, in context: Context = EmptyNode) throws {
         let array = node as? [AnyObject] ?? [node]
-        try self.init(with: array, in: context)
+        try self.init(node: array, in: context)
     }
 
     /**
@@ -194,8 +202,8 @@ public extension Set where Element : NodeConvertible {
 
      - throws: if mapping fails
      */
-    public init(with node: [AnyObject], in context: Context = EmptyNode) throws {
-        let array = try node.map { try Element.init(with: $0, in: context) }
+    public init(node: [AnyObject], in context: Context = EmptyNode) throws {
+        let array = try node.map { try Element(node: $0, in: context) }
         self.init(array)
     }
 }

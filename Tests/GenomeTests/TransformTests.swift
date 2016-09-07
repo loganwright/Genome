@@ -23,7 +23,7 @@ class TransformTest: XCTestCase {
     ]
     
     func testTransform() {
-        let map = Map(with: testNode)
+        let map = Map(node: testNode)
         var settableString: String? = nil
         try! settableString <~ map["hello"]
             .transformFromNode { self.stringToString(input: $0) }

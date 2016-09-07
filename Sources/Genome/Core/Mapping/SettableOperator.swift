@@ -9,7 +9,7 @@
 
 // MARK: Casting
 
-prefix operator <~ {}
+prefix operator <~
 
 // MARK: Settable Operators
 

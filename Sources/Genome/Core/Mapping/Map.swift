@@ -52,8 +52,8 @@ public final class Map {
      :param: node    the backing data that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public convenience init<T: NodeRepresentable>(with data: T, in context: Context = EmptyNode) throws {
-        self.init(with: try data.makeNode(), in: context)
+    public convenience init(node: NodeRepresentable, in context: Context = EmptyNode) throws {
+        self.init(node: try node.makeNode(), in: context)
     }
     
     /**
@@ -62,7 +62,7 @@ public final class Map {
      :param: node    the node that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public init(with node: Node, in context: Context = EmptyNode) {
+    public init(node: Node, in context: Context = EmptyNode) {
         self.type = .fromNode
         
         self.node = node
@@ -105,6 +105,18 @@ extension Map {
      */
     public subscript(keys: [PathIndex]) -> Map {
         lastPath = keys
+        result = node[keys]
+        return self
+    }
+
+    public subscript(keys: [String]) -> Map {
+        lastPath = keys.map { $0 as PathIndex }
+        result = node[keys]
+        return self
+    }
+
+    public subscript(keys: [Int]) -> Map {
+        lastPath = keys.map { $0 as PathIndex }
         result = node[keys]
         return self
     }

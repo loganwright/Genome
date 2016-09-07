@@ -1,4 +1,4 @@
-#if xcode
+#if Xcode
 
 import CoreData
 @_exported import Genome
@@ -30,13 +30,13 @@ public class ManagedObject: NSManagedObject, Genome.MappableBase {
 
 extension MappableBase where Self: ManagedObject {
     public init(node: Node, in context: Context) throws {
-        let map = Map(with: node, in: context)
+        let map = Map(node: node, in: context)
         self = try make(type: Self.self, with: map)
     }
 
     public init(node: NodeRepresentable, in context: NSManagedObjectContext) throws {
-        let node = try convertible.makeNode()
-        let map = Map(with: node, in: context)
+        let node = try node.makeNode()
+        let map = Map(node: node, in: context)
         self = try make(type: Self.self, with: map)
     }
 }

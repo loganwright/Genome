@@ -65,7 +65,7 @@ public func ~> <T : NodeConvertible>(reference: Set<T>!, map: Map) throws {
 
 // MARK: FromNode
 
-infix operator <~ {}
+infix operator <~
 
 public func <~ <T: NodeConvertible>(reference: inout T, map: Map) throws {
     switch map.type {
@@ -231,7 +231,7 @@ public func <~ <T: NodeConvertible>(reference: inout Set<T>?, map: Map) throws {
 
 // MARK: Two Way Operator
 
-infix operator <~> {}
+infix operator <~>
 
 public func <~> <T: NodeConvertible>(reference: inout T, map: Map) throws {
     switch map.type {

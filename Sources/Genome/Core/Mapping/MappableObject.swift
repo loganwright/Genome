@@ -22,8 +22,8 @@ extension MappableBase {
         return map.node
     }
 
-    public init<T: NodeRepresentable>(node data: T, in context: Context = EmptyNode) throws {
-        let node = try data.makeNode()
+    public init(node: NodeRepresentable, in context: Context = EmptyNode) throws {
+        let node = try node.makeNode()
         self = try Self.init(node: node, in: context)
     }
 }
@@ -31,17 +31,17 @@ extension MappableBase {
 // MARK: MappableObject
 
 public protocol MappableObject: MappableBase {
-    init(with map: Map) throws
+    init(map: Map) throws
 }
 
 extension MappableObject {
     public func sequence(_ map: Map) throws {
-        // Empty
+        // Empty -- make optional
     }
 
     public init(node: Node, in context: Context = EmptyNode) throws {
-        let map = Map(with: node, in: context)
-        try self.init(with: map)
+        let map = Map(node: node, in: context)
+        try self.init(map: map)
     }
 }
 
@@ -56,7 +56,7 @@ public protocol BasicMappable: MappableObject {
 }
 
 extension BasicMappable {
-    public init(with map: Map) throws {
+    public init(map: Map) throws {
         try self.init()
         try sequence(map)
     }
@@ -65,7 +65,7 @@ extension BasicMappable {
 // MARK: Inheritable Object
 
 public class Object: MappableObject {
-    required public init(with map: Map) throws {}
+    required public init(map: Map) throws {}
     
     public func sequence(_ map: Map) throws {}
 }
