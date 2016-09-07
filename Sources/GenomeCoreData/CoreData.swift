@@ -6,8 +6,7 @@ import CoreData
     
 extension NSManagedObjectContext : Context {}
 
-public class ManagedObject: NSManagedObject, Genome.MappableBase {
-
+open class ManagedObject: NSManagedObject, Genome.MappableBase {
     public enum Error: Swift.Error {
         case expectedManagedObjectContext
         case unableToCreateObject
@@ -15,7 +14,7 @@ public class ManagedObject: NSManagedObject, Genome.MappableBase {
     
     // MARK: EntityName
     
-    public class var entityName: String {
+    open class var entityName: String {
         return "\(self)"
             .characters
             .split { $0 == "." }
@@ -25,17 +24,11 @@ public class ManagedObject: NSManagedObject, Genome.MappableBase {
     
     // MARK: Sequence
     
-    public func sequence(_ map: Map) throws {}
+    open func sequence(_ map: Map) throws {}
 }
 
 extension MappableBase where Self: ManagedObject {
     public init(node: Node, in context: Context) throws {
-        let map = Map(node: node, in: context)
-        self = try make(type: Self.self, with: map)
-    }
-
-    public init(node: NodeRepresentable, in context: NSManagedObjectContext) throws {
-        let node = try node.makeNode()
         let map = Map(node: node, in: context)
         self = try make(type: Self.self, with: map)
     }

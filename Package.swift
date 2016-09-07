@@ -14,24 +14,16 @@ let package = Package(
                 .Target(name: "Genome")
             ]
         ),
-         Target(
-             name: "GenomeJSON",
-             dependencies: [
+        Target(
+            name: "GenomeCoreData",
+            dependencies: [
+                .Target(name: "GenomeFoundation"),
                 .Target(name: "Genome")
-                //  .Package(url: "../Swift-PureJSONSerializer", majorVersion: 2)
-             ]
-         ),
-          Target(
-              name: "GenomeCoreData",
-              dependencies: [
-                 .Target(name: "GenomeFoundation"),
-                 .Target(name: "Genome")
-              ]
-          ),
+            ]
+        ),
     ],
     dependencies: [
-        .Package(url: "https://github.com/vapor/node.git", 0),
-        .Package(url: "https://github.com/vapor/json.git", majorVersion: 0)
+        .Package(url: "https://github.com/vapor/node.git", Version(0,0,0))
     ],
     exclude: [
         "Sources/Genome/CoreData"

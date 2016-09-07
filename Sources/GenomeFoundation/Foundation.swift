@@ -10,7 +10,6 @@
 @_exported import Genome
 import Foundation
 
-// FIXME: Node from AnyObject and [String: AnyObject]
 #if Xcode
 extension MappableObject {
     public init(node: AnyObject, in context: [String : AnyObject] = [:]) throws {

@@ -10,7 +10,6 @@
 // MARK: Transformer Base
 
 public class Transformer<InputType, OutputType> {
-    
     internal let map: Map
     internal let transformer: (InputType?) throws -> OutputType
 
@@ -18,6 +17,7 @@ public class Transformer<InputType, OutputType> {
         self.map = map
         self.transformer = { input in
             guard let unwrapped = input else {
+                // TODO: Own Error?
                 throw NodeError.unableToConvert(node: nil, expected: "\(InputType.self)")
             }
             return try transformer(unwrapped)
