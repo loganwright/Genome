@@ -15,19 +15,19 @@ class NodeFoundationTests: XCTestCase {
     func testFoundationBool() throws {
         let v = true
         let n = Node(v as AnyObject)
-        XCTAssert(n.boolValue == v)
+        XCTAssert(n.bool == v)
     }
 
     func testFoundationInt() throws {
         let v = 235
         let n = Node(v as AnyObject)
-        XCTAssert(n.intValue == v)
+        XCTAssert(n.int == v)
     }
 
     func testFoundationDouble() throws {
         let v = 1.0
         let n = Node(v as AnyObject)
-        XCTAssert(n.doubleValue == v)
+        XCTAssert(n.double == v)
     }
 
     func testFoundationString() throws {
@@ -39,8 +39,8 @@ class NodeFoundationTests: XCTestCase {
     func testFoundationArray() throws {
         let v = [1,2,3,4,5]
         let n = Node(v as AnyObject)
-        let a = n.arrayValue ?? []
-        XCTAssert(a.flatMap { $0.intValue } == v)
+        let a = n.array ?? []
+        XCTAssert(a.flatMap { $0.int } == v)
     }
 
     func testFoundationObject() throws {
@@ -48,7 +48,7 @@ class NodeFoundationTests: XCTestCase {
             "hello" : "world"
         ]
         let n = Node(v as AnyObject)
-        let o = n.objectValue ?? [:]
+        let o = n.object ?? [:]
         var mapped: [String : String] = [:]
         o.forEach { key, val in
             guard let str = val.string else { return }
