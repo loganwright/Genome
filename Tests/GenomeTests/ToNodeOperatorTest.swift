@@ -229,7 +229,7 @@ class ToNodeOperatorTest: XCTestCase {
         
         // Mappable set
         // Temporarily commented out on linux because it's reordering array
-        #if xcode
+        #if Xcode
         let employeesSet = node["employeesSet"]!
         XCTAssert(employeesSet == self.employeesSet,
                   "employeesSet is \(employeesSet) expected: \(self.employeesSet)")

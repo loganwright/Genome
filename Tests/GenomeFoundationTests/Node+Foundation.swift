@@ -10,7 +10,7 @@ import XCTest
 import Foundation
 @testable import GenomeFoundation
 
-#if xcode
+#if Xcode
 class NodeFoundationTests: XCTestCase {
     func testFoundationBool() throws {
         let v = true
