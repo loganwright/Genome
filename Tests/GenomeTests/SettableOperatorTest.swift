@@ -51,8 +51,7 @@ class SettableOperatorTest: XCTestCase {
         let optionalStrings: [String]? = try map.extract("strings")
         XCTAssert(optionalStrings ?? [] == ["one", "two", "three"])
         
-        let stringInt: String = try <~map["int"]
-            .transformFromNode { (nodeValue: Int) in
+        let stringInt: String = try map.extract("int") { (nodeValue: Int) in
                 return "\(nodeValue)"
         }
         XCTAssert(stringInt == "272")
@@ -79,13 +78,13 @@ class SettableOperatorTest: XCTestCase {
         let people: [Person] = try map.extract("people")
         XCTAssert(people == [joeObject, janeObject])
         
-        let optionalPeople: [Person]? = try <~map["people"]
+        let optionalPeople: [Person]? = try map.extract("people")
         XCTAssert(optionalPeople! == [joeObject, janeObject])
         
         let singleValueToArray: [Person] = try map.extract("person")
         XCTAssert(singleValueToArray == [joeObject])
         
-        let emptyPersons: [Person]? = try <~map["i_dont_exist"]
+        let emptyPersons: [Person]? = try map.extract("i_dont_exist")
         XCTAssert(emptyPersons == nil)
     }
     
@@ -104,10 +103,10 @@ class SettableOperatorTest: XCTestCase {
         }
         
         let arrayValueToArrayOfArrays: [[Person]] = try map.extract("people")
-        XCTAssert(arrayValueToArrayOfArrays.count == 1)
-        XCTAssert(arrayValueToArrayOfArrays.first! == [joeObject, janeObject])
+        XCTAssert(arrayValueToArrayOfArrays.count == 2)
+        XCTAssert(arrayValueToArrayOfArrays.first! == [joeObject])
         
-        let emptyArrayOfArrays: [[Person]]? = try <~map["i_dont_exist"]
+        let emptyArrayOfArrays: [[Person]]? = try map.extract("i_dont_exist")
         XCTAssert(emptyArrayOfArrays == nil)
     }
     
@@ -123,7 +122,7 @@ class SettableOperatorTest: XCTestCase {
         let optionalRelationships: [String : Person]? = try map.extract("relationships")
         XCTAssert(optionalRelationships! == expectedRelationships)
         
-        let emptyDictionary: [String : Person]? = try <~map["i_dont_exist"]
+        let emptyDictionary: [String : Person]? = try map.extract("i_dont_exist")
         XCTAssert(emptyDictionary == nil)
     }
     
@@ -141,13 +140,13 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(girls == [janeObject])
         }
         
-        let emptyDictionaryOfArrays: [String : [Person]]? = try <~map["i_dont_exist"]
+        let emptyDictionaryOfArrays: [String : [Person]]? = try map.extract("i_dont_exist")
         XCTAssert(emptyDictionaryOfArrays == nil)
     }
     
     func testMappableSet() throws {
         let people: Set<Person> = try map.extract("duplicated_people")
-        let optionalPeople: Set<Person>? = try <~map["duplicated_people"]
+        let optionalPeople: Set<Person>? = try map.extract("duplicated_people")
         
         for peopleSet in [people, optionalPeople!] {
             XCTAssert(peopleSet.count == 2)
@@ -159,39 +158,35 @@ class SettableOperatorTest: XCTestCase {
         XCTAssert(singleValueToSet.count == 1)
         XCTAssert(singleValueToSet.contains(joeObject))
         
-        let emptyPersons: [Person]? = try <~map["i_dont_exist"]
+        let emptyPersons: [Person]? = try map.extract("i_dont_exist")
         XCTAssert(emptyPersons == nil)
     }
 
     func testDictionaryUnableToConvert() {
         do {
-            let _: [String : Person] = try <~map["int"]
+            let _: [String : Person] = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.unableToConvert(node: _, targeting: _, path: let path) {
-            XCTAssert(path.count == 1)
-            XCTAssert(path.first as? String == "int")
+        } catch NodeError.unableToConvert {
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
     }
 
     func testDictArrayUnableToConvert() {
         // Unexpected Type - Mappable Dictionary of Arrays
         do {
-            let _: [String : [Person]] = try <~map["int"]
+            let _: [String : [Person]] = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.unableToConvert(node: _, targeting: _, path: let path) {
-            XCTAssert(path.count == 1)
-            XCTAssert(path.first as? String == "int")
+        } catch NodeError.unableToConvert {
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
     }
 
     func testThatValueExistsButIsNotTheTypeExpectedNonOptional() {
         // Unexpected Type - Basic
         do {
-            let _: Bool = try <~map["int"]
+            let _: Bool = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch let NodeError.unableToConvert(node: node, expected: expected) {
             XCTAssert(node == 272)
@@ -202,39 +197,38 @@ class SettableOperatorTest: XCTestCase {
         
         // Unexpected Type - Mappable Object
         do {
-            let _: Person = try <~map["int"]
+            let _: Person = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
 
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Unexpected Type - Mappable Array
         do {
-            let _: [Person] = try <~map["int"]
+            let _: [Person] = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
 
         // Unexpected Type - Mappable Array of Arrays
         do {
-            let _: [[Person]] = try <~map["int"]
+            let _: [[Person]] = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Unexpected Type - Transformable
         do {
             // Transformer expects string, but is passed an int
-            let _: String = try <~map["int"]
-                .transformFromNode { (input: Bool) in
+            let _: String = try map.extract("int") { (input: Bool) in
                     return "Hello: \(input)"
             }
             XCTFail("Incorrect type should throw error")
@@ -242,7 +236,7 @@ class SettableOperatorTest: XCTestCase {
             XCTAssert(node == 272)
             XCTAssert(expected == "Bool")
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
     }
     
@@ -252,49 +246,49 @@ class SettableOperatorTest: XCTestCase {
         do {
             let _: Person? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
 
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         // Unexpected Value - Mappable Array
         do {
-            let _: [Person]? = try <~map["int"]
+            let _: [Person]? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Unexpected Value - Mappable Array of Arrays
         do {
-            let _: [[Person]]? = try <~map["int"]
+            let _: [[Person]]? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Unexpected Value - Mappable Dictionary
         do {
-            let _: [String : Person]? = try <~map["int"]
+            let _: [String : Person]? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.unableToConvert(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Unexpected Value - Mappable Dictionary of Arrays
         do {
-            let _: [String : [Person]]? = try <~map["int"]
+            let _: [String : [Person]]? = try map.extract("int")
             XCTFail("Incorrect type should throw error")
-        } catch Genome.Error.unableToConvert(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unableToConvert)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
     }
     
@@ -302,88 +296,87 @@ class SettableOperatorTest: XCTestCase {
     func testThatValueDoesNotExistNonOptional() {
         // Expected Non-Nil - Basic
         do {
-            let _: String = try <~map["asdf"]
+            let _: String = try map.extract("asdf")
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Expected Non-Nil - Mappable
         do {
-            let _: Person = try <~map["asdf"]
+            let _: Person = try map.extract("asdf")
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Expected Non-Nil - Mappable Array
         do {
-            let _: [Person] = try <~map["asdf"]
+            let _: [Person] = try map.extract("asdf")
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Expected Non-Nil - Mappable Array of Arrays
         do {
-            let _: [[Person]] = try <~map["asdf"]
+            let _: [[Person]] = try map.extract("asdf")
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Expected Non-Nil - Mappable Dictionary
         do {
-            let _: [String : Person] = try <~map["asdf"]
+            let _: [String : Person] = try map.extract("asdf")
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Expected Non-Nil - Mappable Dictionary of Arrays
         do {
-            let _: [String : [Person]] = try <~map["asdf"]
+            let _: [String : [Person]] = try map.extract("asdf")
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
         
         // Expected Non-Nil - Transformable
         do {
             // Transformer expects string, but is passed an int
-            let _: String = try <~map["asdf"]
-                .transformFromNode { (input: String) in
+            let _: String = try map.extract("asdf") { (input: String) in
                     return "Hello: \(input)"
             }
             XCTFail("nil value should throw error")
-        } catch Genome.Error.foundNil(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.foundNil)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
     }
-    
+
     func testMapType() {
         do {
             let map = Map()
-            let _: String = try <~map["a"]
+            let _: String = try map.extract("a")
             XCTFail("Inproper map type should throw error")
-        } catch Genome.Error.unexpectedOperation(_) {
+        } catch NodeError.unableToConvert {
             
         } catch {
-            XCTFail("Incorrect Error: \(error) Expected: \(Error.unexpectedOperation)")
+            XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
     }
     

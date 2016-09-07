@@ -60,7 +60,7 @@ class ToNodeOperatorTest: XCTestCase {
         var optionalNil: String?
         var optionalNotNil: String? = "not nil"
         
-        init(with map: Map) {
+        init(map: Map) {
             name = try! map.extract("name")
             foundedYear = try! map.extract("founded_in")
             

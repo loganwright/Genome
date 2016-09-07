@@ -24,9 +24,9 @@ struct Person: MappableObject, Hashable {
         self.lastName = lastName
     }
 
-    init(with map: Map) throws {
-        try firstName = map.extract("first_name")
-        try lastName = map.extract("last_name")
+    init(map: Map) throws {
+        firstName = try map.extract("first_name")
+        lastName = try map.extract("last_name")
     }
 
     mutating func sequence(_ map: Map) throws -> Void {
@@ -96,7 +96,7 @@ let testNode: Node = [
 ]
 
 func makeTestMap() -> Map {
-    return Map(with: testNode)
+    return Map(node: testNode)
 }
 
 class FromNodeOperatorTestBasic: XCTestCase {

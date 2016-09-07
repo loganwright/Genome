@@ -67,165 +67,165 @@ public func ~> <T : NodeConvertible>(reference: Set<T>!, map: Map) throws {
 
 infix operator <~
 
-public func <~ <T: NodeConvertible>(reference: inout T, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout T, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout T!, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout T!, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout T?, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout T?, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [T], map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [T], map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [T]!, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [T]!, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [T]?, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [T]?, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [[T]], map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [[T]], map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [[T]]!, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [[T]]!, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [[T]]?, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [[T]]?, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [String : T], map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [String : T], map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [String : T]!, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [String : T]!, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [String : T]?, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [String : T]?, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [String : [T]], map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [String : [T]], map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [String : [T]]!, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [String : [T]]!, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout [String : [T]]?, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout [String : [T]]?, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout Set<T>, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout Set<T>, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout Set<T>!, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout Set<T>!, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 
-public func <~ <T: NodeConvertible>(reference: inout Set<T>?, map: Map) throws {
+public func <~ <T: NodeInitializable>(reference: inout Set<T>?, map: Map) throws {
     switch map.type {
     case .toNode:
         break
     case .fromNode:
-        reference = try <~map
+        reference = try map.extract(map.lastPath)
     }
 }
 

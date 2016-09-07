@@ -26,14 +26,15 @@ class BasicTypeTests: XCTestCase {
     ]
     
     struct Basic : BasicMappable, CustomStringConvertible {
-        var int = 0
-        var float: Float = 0
-        var double: Double = 0
-        var bool = false
-        var string = ""
+        private(set) var int = 0
+        private(set) var float: Float = 0
+        private(set) var double: Double = 0
+        private(set) var bool = false
+        private(set) var string = ""
         
         mutating func sequence(_ map: Map) throws -> Void {
-            try int <~> map["int"]
+            let path: [String] = ["int"]
+            try int <~> map[path]
             try float <~> map["float"]
             try double <~> map["double"]
             try bool <~> map["bool"]

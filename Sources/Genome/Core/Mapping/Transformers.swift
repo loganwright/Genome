@@ -18,8 +18,7 @@ public class Transformer<InputType, OutputType> {
         self.map = map
         self.transformer = { input in
             guard let unwrapped = input else {
-                throw ErrorFactory.foundNil(for: map.lastPath,
-                                            expected: InputType.self)
+                throw NodeError.unableToConvert(node: nil, expected: "\(InputType.self)")
             }
             return try transformer(unwrapped)
         }

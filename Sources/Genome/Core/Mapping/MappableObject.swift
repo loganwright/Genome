@@ -21,11 +21,6 @@ extension MappableBase {
         try mutable.sequence(map)
         return map.node
     }
-
-    public init(node: NodeRepresentable, in context: Context = EmptyNode) throws {
-        let node = try node.makeNode()
-        self = try Self.init(node: node, in: context)
-    }
 }
 
 // MARK: MappableObject
@@ -64,15 +59,14 @@ extension BasicMappable {
 
 // MARK: Inheritable Object
 
-public class Object: MappableObject {
-    required public init(map: Map) throws {}
-    
-    public func sequence(_ map: Map) throws {}
+open class Object: MappableObject {
+    public required init(map: Map) throws {}
+
+    open func sequence(_ map: Map) throws {}
 }
 
+open class BasicObject: BasicMappable {
+    public required init() throws {}
 
-public class BasicObject: BasicMappable {
-    required public init() throws {}
-    
-    public func sequence(_ map: Map) throws {}
+    open func sequence(_ map: Map) throws {}
 }

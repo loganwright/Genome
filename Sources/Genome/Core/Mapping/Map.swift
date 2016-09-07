@@ -8,7 +8,7 @@
 //
 
 /// This class is designed to serve as an adaptor between the raw node and the values.  In this way we can interject behavior that assists in mapping between the two.
-public final class Map {
+public final class Map: NodeBacked {
     
     /**
     The representative type of mapping operation
@@ -28,7 +28,7 @@ public final class Map {
     public let context: Context
 
     /// The backing Node being mapped
-    public fileprivate(set) var node: Node
+    public var node: Node
     
     // MARK: Private
 
@@ -67,6 +67,10 @@ public final class Map {
         
         self.node = node
         self.context = context
+    }
+
+    public convenience init(_ node: Node) {
+        self.init(node: node, in: EmptyNode)
     }
     
     /**
@@ -109,18 +113,6 @@ extension Map {
         return self
     }
 
-    public subscript(keys: [String]) -> Map {
-        lastPath = keys.map { $0 as PathIndex }
-        result = node[keys]
-        return self
-    }
-
-    public subscript(keys: [Int]) -> Map {
-        lastPath = keys.map { $0 as PathIndex }
-        result = node[keys]
-        return self
-    }
-
     public subscript(path path: String) -> Map {
         let components = path
             .keyPathComponents()
@@ -141,7 +133,6 @@ extension String {
 
 extension Map {
     internal func setToLastPath(_ newValue: Node?) throws {
-        try type.assert(equals: .toNode)
         guard let newValue = newValue else { return }
         node[lastPath] = newValue
     }
@@ -184,12 +175,3 @@ extension Map {
         try setToLastPath(any?.makeNode())
     }
 }
-
-extension Map.OperationType {
-    func assert(equals expected: Map.OperationType) throws {
-        if self != expected {
-            throw ErrorFactory.unexpectedOperation(got: self, expected: expected)
-        }
-    }
-}
-

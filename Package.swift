@@ -30,7 +30,7 @@ let package = Package(
           ),
     ],
     dependencies: [
-        .Package(url: "https://github.com/vapor/node.git", majorVersion: 0),
+        .Package(url: "https://github.com/vapor/node.git", 0),
         .Package(url: "https://github.com/vapor/json.git", majorVersion: 0)
     ],
     exclude: [
