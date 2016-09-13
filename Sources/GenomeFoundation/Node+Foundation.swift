@@ -36,7 +36,8 @@ extension Node {
             let raw = [UInt8](bytes)
             self = .bytes(raw)
         case let bytes as NSData:
-            let raw = [UInt8](bytes)
+            var raw = [UInt8](repeating: 0, count: bytes.length)
+            bytes.getBytes(&raw, length: bytes.length)
             self = .bytes(raw)
         default:
             self = .null
