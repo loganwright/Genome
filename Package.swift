@@ -23,7 +23,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .Package(url: "https://github.com/vapor/node.git", Version(0,0,0))
+        .Package(url: "https://github.com/vapor/node.git", majorVersion: 0, minor: 7)
     ],
     exclude: [
         "Sources/Genome/CoreData"

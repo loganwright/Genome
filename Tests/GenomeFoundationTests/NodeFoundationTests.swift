@@ -10,35 +10,34 @@ import XCTest
 import Foundation
 @testable import GenomeFoundation
 
-#if Xcode
 class NodeFoundationTests: XCTestCase {
     func testFoundationBool() throws {
         let v = true
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         XCTAssert(n.bool == v)
     }
 
     func testFoundationInt() throws {
         let v = 235
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         XCTAssert(n.int == v)
     }
 
     func testFoundationDouble() throws {
         let v = 1.0
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         XCTAssert(n.double == v)
     }
 
     func testFoundationString() throws {
         let v = "hello foundation"
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         XCTAssert(n.string == v)
     }
 
     func testFoundationArray() throws {
         let v = [1,2,3,4,5]
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         let a = n.array ?? []
         XCTAssert(a.flatMap { $0.int } == v)
     }
@@ -47,7 +46,7 @@ class NodeFoundationTests: XCTestCase {
         let v = [
             "hello" : "world"
         ]
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         let o = n.object ?? [:]
         var mapped: [String : String] = [:]
         o.forEach { key, val in
@@ -59,8 +58,7 @@ class NodeFoundationTests: XCTestCase {
 
     func testFoundationNull() throws {
         let v = NSNull()
-        let n = Node(v as AnyObject)
+        let n = Node(any: v)
         XCTAssert(n.isNull)
     }
 }
-#endif

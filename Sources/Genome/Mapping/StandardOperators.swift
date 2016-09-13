@@ -1,12 +1,3 @@
-//
-//  Genome
-//
-//  Created by Logan Wright
-//  Copyright © 2016 lowriDevs. All rights reserved.
-//
-//  MIT
-//
-
 // MARK: ToNode
 
 public func ~> <T : NodeConvertible>(reference: T!, map: Map) throws {

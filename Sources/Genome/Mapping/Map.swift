@@ -1,12 +1,3 @@
-//
-//  Genome
-//
-//  Created by Logan Wright
-//  Copyright © 2016 lowriDevs. All rights reserved.
-//
-//  MIT
-//
-
 /// This class is designed to serve as an adaptor between the raw node and the values.  In this way we can interject behavior that assists in mapping between the two.
 public final class Map: NodeBacked {
     
@@ -53,7 +44,8 @@ public final class Map: NodeBacked {
      :param: context the context that will be used in the mapping
      */
     public convenience init(node: NodeRepresentable, in context: Context = EmptyNode) throws {
-        self.init(node: try node.makeNode(), in: context)
+        let node = try node.makeNode(context: context)
+        self.init(node: node, in: context)
     }
     
     /**
@@ -114,18 +106,10 @@ extension Map {
     }
 
     public subscript(path path: String) -> Map {
-        let components = path
-            .keyPathComponents()
-        return self[components]
-    }
-}
-
-
-extension String {
-    fileprivate func keyPathComponents() -> [PathIndex] {
-        return characters
+        let components = path.characters
             .split(separator: ".")
             .map { String($0) }
+        return self[components]
     }
 }
 

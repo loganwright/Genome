@@ -1,15 +1,6 @@
-//
-//  Genome
-//
-//  Created by Logan Wright
-//  Copyright © 2016 lowriDevs. All rights reserved.
-//
-//  MIT
-//
-
 // MARK: Transformer Base
 
-public class Transformer<InputType, OutputType> {
+open class Transformer<InputType, OutputType> {
     internal let map: Map
     internal let transformer: (InputType?) throws -> OutputType
 

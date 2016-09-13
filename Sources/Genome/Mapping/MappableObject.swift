@@ -1,12 +1,3 @@
-//
-//  Genome
-//
-//  Created by Logan Wright
-//  Copyright © 2016 lowriDevs. All rights reserved.
-//
-//  MIT
-//
-
 // MARK: MappableBase
 
 public protocol MappableBase : NodeConvertible {
@@ -15,7 +6,7 @@ public protocol MappableBase : NodeConvertible {
 
 extension MappableBase {
     /// Used to convert an object back into node
-    public func makeNode() throws -> Node {
+    public func makeNode(context: Context = EmptyNode) throws -> Node {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
