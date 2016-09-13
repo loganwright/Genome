@@ -10,6 +10,7 @@ extension NSData: NodeRepresentable {
     }
 }
 
+#if Xcode
 extension NSData: NodeConvertible {}
 extension NodeInitializable where Self: NSData {
     public init(node: Node, in context: Context) throws {
@@ -18,6 +19,7 @@ extension NodeInitializable where Self: NSData {
         self.init(data: data)
     }
 }
+#endif
 
 extension Data: NodeRepresentable {
     public func makeNode(context: Context = EmptyNode) throws -> Node {
