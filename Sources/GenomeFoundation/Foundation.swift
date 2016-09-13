@@ -29,18 +29,17 @@ extension NSData: NodeRepresentable {
     }
 }
 
-// MARK: Hacky Magic
 
-public protocol DataInitable {
-    init(data: Data)
-}
-extension NSData: DataInitable {}
-extension DataInitable {
+#if Xcode
+/*
+Linux won't compile this.
+*/
+extension NSData: NodeConvertible {}
+extension NodeConvertible where Self: NSData {
     public init(node: Node, in context: Context) throws {
         let any = node.any
         let data = try JSONSerialization.data(withJSONObject: any, options: .init(rawValue: 0))
         self.init(data: data)
     }
 }
-
-extension NSData: NodeConvertible {}
+#endif
