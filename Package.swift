@@ -2,14 +2,30 @@ import PackageDescription
 
 let package = Package(
     name: "Genome",
+    targets: [
+        Target(
+            name: "Genome",
+            dependencies: [
+            ]
+        ),
+        Target(
+            name: "GenomeFoundation",
+            dependencies: [
+                .Target(name: "Genome")
+            ]
+        ),
+        Target(
+            name: "GenomeCoreData",
+            dependencies: [
+                .Target(name: "GenomeFoundation"),
+                .Target(name: "Genome")
+            ]
+        ),
+    ],
     dependencies: [
-      // .Package(url: "https://github.com/gfx/Swift-PureJsonSerializer.git", majorVersion: 1)
+        .Package(url: "https://github.com/vapor/node.git", majorVersion: 0, minor: 7)
     ],
     exclude: [
-        "Sources/Genome/CoreData",
-        "Sources/Genome/Json"
+        "Sources/Genome/CoreData"
     ]
 )
-
-let lib = Product(name: "Genome", type: .Library(.Dynamic), modules: "Genome")
-products.append(lib)
