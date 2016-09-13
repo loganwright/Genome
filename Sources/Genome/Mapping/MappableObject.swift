@@ -22,7 +22,7 @@ public protocol MappableObject: MappableBase {
 
 extension MappableObject {
     public func sequence(_ map: Map) throws {
-        // Empty -- make optional
+        // Empty -- here to make optional
     }
 
     public init(node: Node, in context: Context = EmptyNode) throws {
