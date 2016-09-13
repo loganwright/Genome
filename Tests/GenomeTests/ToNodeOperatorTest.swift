@@ -11,11 +11,9 @@ import XCTest
 @testable import Genome
 
 class ToNodeOperatorTest: XCTestCase {
-    static var allTests: [(String, (ToNodeOperatorTest) -> () throws -> Void)] {
-        return [
-                   ("testMapping", testMapping)
-        ]
-    }
+    static let allTests = [
+        ("testMapping", testMapping)
+    ]
 
     struct Employee: BasicMappable, Hashable {
         

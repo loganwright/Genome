@@ -20,6 +20,11 @@ class Person: BasicMappable {
 }
 
 class JSONTests: XCTestCase {
+    static let allTests = [
+        ("testFoundationPerson", testFoundationPerson),
+        ("testFoundationPersonArray", testFoundationPersonArray)
+    ]
+
     func testFoundationPerson() throws {
         let json: Any = [
             "name": "Foo Bar",

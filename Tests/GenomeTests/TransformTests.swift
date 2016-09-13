@@ -11,13 +11,10 @@ import XCTest
 @testable import Genome
 
 class TransformTest: XCTestCase {
-    static var allTests: [(String, (TransformTest) -> () throws -> Void)] {
-        return [
-                   ("testTransform", testTransform)
-        ]
-    }
+    static let allTests = [
+        ("testTransform", testTransform)
+    ]
 
-    
     let testNode: Node = [
         "hello" : "world"
     ]

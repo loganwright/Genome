@@ -11,6 +11,15 @@ import Foundation
 @testable import GenomeFoundation
 
 class NodeFoundationTests: XCTestCase {
+    static let allTests = [
+        ("testFoundationBool", testFoundationBool),
+        ("testFoundationInt", testFoundationInt),
+        ("testFoundationDouble", testFoundationDouble),
+        ("testFoundationString", testFoundationString),
+        ("testFoundationArray", testFoundationArray),
+        ("testFoundationObject", testFoundationObject),
+        ("testFoundationNull", testFoundationNull),
+    ]
     func testFoundationBool() throws {
         let v = true
         let n = Node(any: v)

@@ -11,25 +11,22 @@ import XCTest
 @testable import Genome
 
 class SettableOperatorTest: XCTestCase {
-    static var allTests: [(String, (SettableOperatorTest) -> () throws -> Void)] {
-        return [
-                   ("testBasicTypes", testBasicTypes),
-                   ("testMappableObject", testMappableObject),
-                   ("testMappableArray", testMappableArray),
-                   ("testMappableArrayOfArrays", testMappableArrayOfArrays),
-                   ("testMappableDictionary", testMappableDictionary),
-                   ("testMappableDictionaryOfArrays", testMappableDictionaryOfArrays),
+    static let allTests = [
+        ("testBasicTypes", testBasicTypes),
+        ("testMappableObject", testMappableObject),
+        ("testMappableArray", testMappableArray),
+        ("testMappableArrayOfArrays", testMappableArrayOfArrays),
+        ("testMappableDictionary", testMappableDictionary),
+        ("testMappableDictionaryOfArrays", testMappableDictionaryOfArrays),
 
-
-                   ("testMappableSet", testMappableSet),
-                   ("testDictionaryUnableToConvert", testDictionaryUnableToConvert),
-                   ("testDictArrayUnableToConvert", testDictArrayUnableToConvert),
-                   ("testThatValueExistsButIsNotTheTypeExpectedNonOptional", testThatValueExistsButIsNotTheTypeExpectedNonOptional),
-                   ("testThatValueExistsButIsNotTheTypeExpectedOptional", testThatValueExistsButIsNotTheTypeExpectedOptional),
-                   ("testThatValueDoesNotExistNonOptional", testThatValueDoesNotExistNonOptional),
-                   ("testMapType", testMapType),
-        ]
-    }
+        ("testMappableSet", testMappableSet),
+        ("testDictionaryUnableToConvert", testDictionaryUnableToConvert),
+        ("testDictArrayUnableToConvert", testDictArrayUnableToConvert),
+        ("testThatValueExistsButIsNotTheTypeExpectedNonOptional", testThatValueExistsButIsNotTheTypeExpectedNonOptional),
+        ("testThatValueExistsButIsNotTheTypeExpectedOptional", testThatValueExistsButIsNotTheTypeExpectedOptional),
+        ("testThatValueDoesNotExistNonOptional", testThatValueDoesNotExistNonOptional),
+        ("testMapType", testMapType),
+    ]
 
     var map = makeTestMap()
 
@@ -37,7 +34,7 @@ class SettableOperatorTest: XCTestCase {
         super.setUp()
         map = makeTestMap()
     }
-    
+
     func testBasicTypes() throws {
         let int: Int = try map.extract("int")
         XCTAssert(int == 272)
