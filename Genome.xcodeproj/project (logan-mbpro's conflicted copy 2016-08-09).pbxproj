@@ -1,0 +1,1231 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* GenomeFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* GenomeFoundation.framework */; };
+		_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* GenomeFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_GenomeFoundation" /* GenomeFoundation.framework */; };
+		_LinkFileRef_Genome_via_GenomeCoreData /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.framework */; };
+		_LinkFileRef_Genome_via_GenomeFoundation /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.framework */; };
+		_LinkFileRef_Genome_via_GenomeFoundationTestSuite /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.framework */; };
+		_LinkFileRef_Genome_via_GenomeJSON /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.framework */; };
+		_LinkFileRef_Genome_via_GenomeTestSuite /* Genome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Genome" /* Genome.framework */; };
+		_LinkFileRef_Node_via_Genome /* Node.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Node" /* Node.framework */; };
+		_LinkFileRef_Node_via_GenomeCoreData /* Node.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Node" /* Node.framework */; };
+		_LinkFileRef_Node_via_GenomeFoundation /* Node.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Node" /* Node.framework */; };
+		_LinkFileRef_Node_via_GenomeFoundationTestSuite /* Node.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Node" /* Node.framework */; };
+		_LinkFileRef_Node_via_GenomeJSON /* Node.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Node" /* Node.framework */; };
+		_LinkFileRef_Node_via_GenomeTestSuite /* Node.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Node" /* Node.framework */; };
+		_LinkFileRef_PathIndexable_via_Genome /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_PathIndexable_via_GenomeCoreData /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_PathIndexable_via_GenomeFoundation /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_PathIndexable_via_GenomeFoundationTestSuite /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_PathIndexable_via_GenomeJSON /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_PathIndexable_via_GenomeTestSuite /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_PathIndexable_via_Node /* PathIndexable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathIndexable" /* PathIndexable.framework */; };
+		_LinkFileRef_Polymorphic_via_Genome /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		_LinkFileRef_Polymorphic_via_GenomeCoreData /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		_LinkFileRef_Polymorphic_via_GenomeFoundation /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		_LinkFileRef_Polymorphic_via_GenomeFoundationTestSuite /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		_LinkFileRef_Polymorphic_via_GenomeJSON /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		_LinkFileRef_Polymorphic_via_GenomeTestSuite /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		_LinkFileRef_Polymorphic_via_Node /* Polymorphic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Polymorphic" /* Polymorphic.framework */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Bool+Convertible.swift" /* Convertible/Bool+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Bool+Convertible.swift" /* Convertible/Bool+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Context.swift" /* Convertible/Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Context.swift" /* Convertible/Context.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible+Init.swift" /* Convertible/Convertible+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible+Init.swift" /* Convertible/Convertible+Init.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible.swift" /* Convertible/Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible.swift" /* Convertible/Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/FloatingPoint+Convertible.swift" /* Convertible/FloatingPoint+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/FloatingPoint+Convertible.swift" /* Convertible/FloatingPoint+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Integer+Convertible.swift" /* Convertible/Integer+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Integer+Convertible.swift" /* Convertible/Integer+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Node+Convertible.swift" /* Convertible/Node+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Node+Convertible.swift" /* Convertible/Node+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Sequence+Convertible.swift" /* Convertible/Sequence+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Sequence+Convertible.swift" /* Convertible/Sequence+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/String+Convertible.swift" /* Convertible/String+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/String+Convertible.swift" /* Convertible/String+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/UnsignedInteger+Convertible.swift" /* Convertible/UnsignedInteger+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/UnsignedInteger+Convertible.swift" /* Convertible/UnsignedInteger+Convertible.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Accessors.swift" /* Core/Node+Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Accessors.swift" /* Core/Node+Accessors.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Equatable.swift" /* Core/Node+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Equatable.swift" /* Core/Node+Equatable.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Exports.swift" /* Core/Node+Exports.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Exports.swift" /* Core/Node+Exports.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Init.swift" /* Core/Node+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Init.swift" /* Core/Node+Init.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Literals.swift" /* Core/Node+Literals.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Literals.swift" /* Core/Node+Literals.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+PathIndexable.swift" /* Core/Node+PathIndexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+PathIndexable.swift" /* Core/Node+PathIndexable.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Polymorphic.swift" /* Core/Node+Polymorphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Polymorphic.swift" /* Core/Node+Polymorphic.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node.swift" /* Core/Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node.swift" /* Core/Node.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Extract/Node+Extract.swift" /* Extract/Node+Extract.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Extract/Node+Extract.swift" /* Extract/Node+Extract.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Number/Number.swift" /* Number/Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Number/Number.swift" /* Number/Number.swift */; };
+		"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Utilities/Errors.swift" /* Utilities/Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Utilities/Errors.swift" /* Utilities/Errors.swift */; };
+		"__src_cc_ref_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable+Subscripting.swift" /* PathIndexable+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable+Subscripting.swift" /* PathIndexable+Subscripting.swift */; };
+		"__src_cc_ref_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable.swift" /* PathIndexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable.swift" /* PathIndexable.swift */; };
+		"__src_cc_ref_Packages/Polymorphic-0.3.1/Sources/Polymorphic.swift" /* Polymorphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Polymorphic-0.3.1/Sources/Polymorphic.swift" /* Polymorphic.swift */; };
+		"__src_cc_ref_Packages/Polymorphic-0.3.1/Sources/String+Polymorphic.swift" /* String+Polymorphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Polymorphic-0.3.1/Sources/String+Polymorphic.swift" /* String+Polymorphic.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/SettableExtract.swift /* Core/Mapping/SettableExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/SettableExtract.swift /* Core/Mapping/SettableExtract.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */; };
+		__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */; };
+		__src_cc_ref_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */; };
+		__src_cc_ref_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift */; };
+		"__src_cc_ref_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */; };
+		"__src_cc_ref_Sources/GenomeJSON/Genome+Json.swift" /* Genome+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/GenomeJSON/Genome+Json.swift" /* Genome+Json.swift */; };
+		__src_cc_ref_Tests/Genome/BasicTypes.swift /* BasicTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */; };
+		__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */; };
+		__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */; };
+		__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */; };
+		__src_cc_ref_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift */; };
+		__src_cc_ref_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */; };
+		__src_cc_ref_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */; };
+		__src_cc_ref_Tests/Genome/TransformTests.swift /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */; };
+		"__src_cc_ref_Tests/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Tests/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		809777DA1D594FD2008921EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_PathIndexable";
+			remoteInfo = PathIndexable;
+		};
+		809777DB1D594FD2008921EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Polymorphic";
+			remoteInfo = Polymorphic;
+		};
+		809777DC1D594FD2008921EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Node";
+			remoteInfo = Node;
+		};
+		809777DD1D594FD2008921EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_GenomeFoundation";
+			remoteInfo = GenomeFoundation;
+		};
+		809777DE1D594FD2008921EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Genome";
+			remoteInfo = Genome;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		__PBXFileRef_GenomeCoreData_Info.plist /* Genome.xcodeproj/GenomeCoreData_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/GenomeCoreData_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_GenomeFoundationTestSuite_Info.plist /* Genome.xcodeproj/GenomeFoundationTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/GenomeFoundationTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_GenomeFoundation_Info.plist /* Genome.xcodeproj/GenomeFoundation_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/GenomeFoundation_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_GenomeJSON_Info.plist /* Genome.xcodeproj/GenomeJSON_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/GenomeJSON_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_GenomeTestSuite_Info.plist /* Genome.xcodeproj/GenomeTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/GenomeTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Genome_Info.plist /* Genome.xcodeproj/Genome_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/Genome_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Images /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		__PBXFileRef_Node_Info.plist /* Genome.xcodeproj/Node_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/Node_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Bool+Convertible.swift" /* Convertible/Bool+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/Bool+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Context.swift" /* Convertible/Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertible/Context.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible+Init.swift" /* Convertible/Convertible+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/Convertible+Init.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible.swift" /* Convertible/Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertible/Convertible.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/FloatingPoint+Convertible.swift" /* Convertible/FloatingPoint+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/FloatingPoint+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Integer+Convertible.swift" /* Convertible/Integer+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/Integer+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Node+Convertible.swift" /* Convertible/Node+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/Node+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Sequence+Convertible.swift" /* Convertible/Sequence+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/Sequence+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/String+Convertible.swift" /* Convertible/String+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/String+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/UnsignedInteger+Convertible.swift" /* Convertible/UnsignedInteger+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertible/UnsignedInteger+Convertible.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Accessors.swift" /* Core/Node+Accessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+Accessors.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Equatable.swift" /* Core/Node+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+Equatable.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Exports.swift" /* Core/Node+Exports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+Exports.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Init.swift" /* Core/Node+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+Init.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Literals.swift" /* Core/Node+Literals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+Literals.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+PathIndexable.swift" /* Core/Node+PathIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+PathIndexable.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Polymorphic.swift" /* Core/Node+Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Node+Polymorphic.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node.swift" /* Core/Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Extract/Node+Extract.swift" /* Extract/Node+Extract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extract/Node+Extract.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Number/Number.swift" /* Number/Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number/Number.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Utilities/Errors.swift" /* Utilities/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/Errors.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable+Subscripting.swift" /* PathIndexable+Subscripting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PathIndexable+Subscripting.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable.swift" /* PathIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathIndexable.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Polymorphic-0.3.1/Sources/Polymorphic.swift" /* Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymorphic.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Polymorphic-0.3.1/Sources/String+Polymorphic.swift" /* String+Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Polymorphic.swift"; sourceTree = "<group>"; };
+		__PBXFileRef_PathIndexable_Info.plist /* Genome.xcodeproj/PathIndexable_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/PathIndexable_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Polymorphic_Info.plist /* Genome.xcodeproj/Polymorphic_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genome.xcodeproj/Polymorphic_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Map.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/MappableObject.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/SettableExtract.swift /* Core/Mapping/SettableExtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/SettableExtract.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/StandardOperators.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Mapping/Transformers.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Node/Node.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Errors.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Utility/Logging.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Foundation.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Sources/GenomeJSON/Genome+Json.swift" /* Genome+Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Genome+Json.swift"; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTypes.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryKeyPathTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromNodeOperatorTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDataTypeTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeIndexable.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableOperatorTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNodeOperatorTest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Tests/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Foundation.swift"; sourceTree = "<group>"; };
+		"_____Product_Genome" /* Genome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Genome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeCoreData" /* <RelativePath:"GenomeCoreData.framework"> */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = "<RelativePath:\"GenomeCoreData.framework\">"; path = GenomeCoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeFoundation" /* GenomeFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GenomeFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeFoundationTestSuite" /* <RelativePath:"GenomeFoundationTestSuite.xctest"> */ = {isa = PBXFileReference; lastKnownFileType = file; name = "<RelativePath:\"GenomeFoundationTestSuite.xctest\">"; path = GenomeFoundationTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeJSON" /* <RelativePath:"GenomeJSON.framework"> */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = "<RelativePath:\"GenomeJSON.framework\">"; path = GenomeJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_GenomeTestSuite" /* <RelativePath:"GenomeTestSuite.xctest"> */ = {isa = PBXFileReference; lastKnownFileType = file; name = "<RelativePath:\"GenomeTestSuite.xctest\">"; path = GenomeTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_Node" /* Node.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Node.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_PathIndexable" /* PathIndexable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PathIndexable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_Polymorphic" /* Polymorphic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Polymorphic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_Genome" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_Genome /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_Genome /* Polymorphic.framework in Frameworks */,
+				_LinkFileRef_Node_via_Genome /* Node.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_GenomeCoreData" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_GenomeCoreData /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_GenomeCoreData /* Polymorphic.framework in Frameworks */,
+				_LinkFileRef_Node_via_GenomeCoreData /* Node.framework in Frameworks */,
+				_LinkFileRef_Genome_via_GenomeCoreData /* Genome.framework in Frameworks */,
+				_LinkFileRef_GenomeFoundation_via_GenomeCoreData /* GenomeFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_GenomeFoundation" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_GenomeFoundation /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_GenomeFoundation /* Polymorphic.framework in Frameworks */,
+				_LinkFileRef_Node_via_GenomeFoundation /* Node.framework in Frameworks */,
+				_LinkFileRef_Genome_via_GenomeFoundation /* Genome.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_GenomeFoundationTestSuite" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_GenomeFoundationTestSuite /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_GenomeFoundationTestSuite /* Polymorphic.framework in Frameworks */,
+				_LinkFileRef_Node_via_GenomeFoundationTestSuite /* Node.framework in Frameworks */,
+				_LinkFileRef_Genome_via_GenomeFoundationTestSuite /* Genome.framework in Frameworks */,
+				_LinkFileRef_GenomeFoundation_via_GenomeFoundationTestSuite /* GenomeFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_GenomeJSON" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_GenomeJSON /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_GenomeJSON /* Polymorphic.framework in Frameworks */,
+				_LinkFileRef_Node_via_GenomeJSON /* Node.framework in Frameworks */,
+				_LinkFileRef_Genome_via_GenomeJSON /* Genome.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_GenomeTestSuite" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_GenomeTestSuite /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_GenomeTestSuite /* Polymorphic.framework in Frameworks */,
+				_LinkFileRef_Node_via_GenomeTestSuite /* Node.framework in Frameworks */,
+				_LinkFileRef_Genome_via_GenomeTestSuite /* Genome.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_Node" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_PathIndexable_via_Node /* PathIndexable.framework in Frameworks */,
+				_LinkFileRef_Polymorphic_via_Node /* Polymorphic.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_PathIndexable" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_Polymorphic" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		Dependencies_ /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_Node" /* Node */,
+				"_______Group_Polymorphic" /* Polymorphic */,
+				"_______Group_PathIndexable" /* PathIndexable */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		TestProducts_ /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_GenomeTestSuite" /* <RelativePath:"GenomeTestSuite.xctest"> */,
+				"_____Product_GenomeFoundationTestSuite" /* <RelativePath:"GenomeFoundationTestSuite.xctest"> */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Configs_" /* Configs */,
+				"_____Sources_" /* Sources */,
+				__PBXFileRef_Images /* Images */,
+				Dependencies_ /* Dependencies */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				TestProducts_ /* Tests */,
+				"_____Product_PathIndexable" /* PathIndexable.framework */,
+				"_____Product_Polymorphic" /* Polymorphic.framework */,
+				"_____Product_Node" /* Node.framework */,
+				"_____Product_Genome" /* Genome.framework */,
+				"_____Product_GenomeCoreData" /* <RelativePath:"GenomeCoreData.framework"> */,
+				"_____Product_GenomeFoundation" /* GenomeFoundation.framework */,
+				"_____Product_GenomeJSON" /* <RelativePath:"GenomeJSON.framework"> */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Configs_" /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_Genome" /* Genome */,
+				"_______Group_GenomeCoreData" /* GenomeCoreData */,
+				"_______Group_GenomeFoundation" /* GenomeFoundation */,
+				"_______Group_GenomeJSON" /* GenomeJSON */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_Genome" /* Genome */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/SettableExtract.swift /* Core/Mapping/SettableExtract.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift */,
+				__PBXFileRef_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift */,
+				__PBXFileRef_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift */,
+				__PBXFileRef_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift */,
+				__PBXFileRef_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift */,
+				__PBXFileRef_Genome_Info.plist /* Genome.xcodeproj/Genome_Info.plist */,
+			);
+			name = Genome;
+			path = Sources/Genome;
+			sourceTree = "<group>";
+		};
+		"_______Group_GenomeCoreData" /* GenomeCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */,
+				__PBXFileRef_GenomeCoreData_Info.plist /* Genome.xcodeproj/GenomeCoreData_Info.plist */,
+			);
+			name = GenomeCoreData;
+			path = Sources/GenomeCoreData;
+			sourceTree = "<group>";
+		};
+		"_______Group_GenomeFoundation" /* GenomeFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift */,
+				"__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */,
+				__PBXFileRef_GenomeFoundation_Info.plist /* Genome.xcodeproj/GenomeFoundation_Info.plist */,
+			);
+			name = GenomeFoundation;
+			path = Sources/GenomeFoundation;
+			sourceTree = "<group>";
+		};
+		"_______Group_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Tests/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */,
+				__PBXFileRef_GenomeFoundationTestSuite_Info.plist /* Genome.xcodeproj/GenomeFoundationTestSuite_Info.plist */,
+			);
+			name = GenomeFoundationTestSuite;
+			path = Tests/GenomeFoundation;
+			sourceTree = "<group>";
+		};
+		"_______Group_GenomeJSON" /* GenomeJSON */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Sources/GenomeJSON/Genome+Json.swift" /* Genome+Json.swift */,
+				__PBXFileRef_GenomeJSON_Info.plist /* Genome.xcodeproj/GenomeJSON_Info.plist */,
+			);
+			name = GenomeJSON;
+			path = Sources/GenomeJSON;
+			sourceTree = "<group>";
+		};
+		"_______Group_GenomeTestSuite" /* GenomeTestSuite */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Tests/Genome/BasicTypes.swift /* BasicTypes.swift */,
+				__PBXFileRef_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */,
+				__PBXFileRef_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */,
+				__PBXFileRef_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift */,
+				__PBXFileRef_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift */,
+				__PBXFileRef_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift */,
+				__PBXFileRef_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift */,
+				__PBXFileRef_Tests/Genome/TransformTests.swift /* TransformTests.swift */,
+				__PBXFileRef_GenomeTestSuite_Info.plist /* Genome.xcodeproj/GenomeTestSuite_Info.plist */,
+			);
+			name = GenomeTestSuite;
+			path = Tests/Genome;
+			sourceTree = "<group>";
+		};
+		"_______Group_Node" /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Bool+Convertible.swift" /* Convertible/Bool+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Context.swift" /* Convertible/Context.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible+Init.swift" /* Convertible/Convertible+Init.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible.swift" /* Convertible/Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/FloatingPoint+Convertible.swift" /* Convertible/FloatingPoint+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Integer+Convertible.swift" /* Convertible/Integer+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Node+Convertible.swift" /* Convertible/Node+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/Sequence+Convertible.swift" /* Convertible/Sequence+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/String+Convertible.swift" /* Convertible/String+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Convertible/UnsignedInteger+Convertible.swift" /* Convertible/UnsignedInteger+Convertible.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Accessors.swift" /* Core/Node+Accessors.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Equatable.swift" /* Core/Node+Equatable.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Exports.swift" /* Core/Node+Exports.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Init.swift" /* Core/Node+Init.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Literals.swift" /* Core/Node+Literals.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+PathIndexable.swift" /* Core/Node+PathIndexable.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node+Polymorphic.swift" /* Core/Node+Polymorphic.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Core/Node.swift" /* Core/Node.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Extract/Node+Extract.swift" /* Extract/Node+Extract.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Number/Number.swift" /* Number/Number.swift */,
+				"__PBXFileRef_Packages/Node-0.0.0/Sources/Node/Utilities/Errors.swift" /* Utilities/Errors.swift */,
+				__PBXFileRef_Node_Info.plist /* Genome.xcodeproj/Node_Info.plist */,
+			);
+			name = Node;
+			path = "Packages/Node-0.0.0/Sources/Node";
+			sourceTree = "<group>";
+		};
+		"_______Group_PathIndexable" /* PathIndexable */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable+Subscripting.swift" /* PathIndexable+Subscripting.swift */,
+				"__PBXFileRef_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable.swift" /* PathIndexable.swift */,
+				__PBXFileRef_PathIndexable_Info.plist /* Genome.xcodeproj/PathIndexable_Info.plist */,
+			);
+			name = PathIndexable;
+			path = "Packages/PathIndexable-0.3.0/Sources/PathIndexable";
+			sourceTree = "<group>";
+		};
+		"_______Group_Polymorphic" /* Polymorphic */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/Polymorphic-0.3.1/Sources/Polymorphic.swift" /* Polymorphic.swift */,
+				"__PBXFileRef_Packages/Polymorphic-0.3.1/Sources/String+Polymorphic.swift" /* String+Polymorphic.swift */,
+				__PBXFileRef_Polymorphic_Info.plist /* Genome.xcodeproj/Polymorphic_Info.plist */,
+			);
+			name = Polymorphic;
+			path = "Packages/Polymorphic-0.3.1/Sources";
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_GenomeTestSuite" /* GenomeTestSuite */,
+				"_______Group_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_Genome" /* Genome */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Genome" /* Build configuration list for PBXNativeTarget "Genome" */;
+			buildPhases = (
+				CompilePhase_Genome /* Sources */,
+				"___LinkPhase_Genome" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+				__Dependency_Node /* PBXTargetDependency */,
+			);
+			name = Genome;
+			productName = Genome;
+			productReference = "_____Product_Genome" /* Genome.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_GenomeCoreData" /* GenomeCoreData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_GenomeCoreData" /* Build configuration list for PBXNativeTarget "GenomeCoreData" */;
+			buildPhases = (
+				CompilePhase_GenomeCoreData /* Sources */,
+				"___LinkPhase_GenomeCoreData" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+				__Dependency_Node /* PBXTargetDependency */,
+				__Dependency_GenomeFoundation /* PBXTargetDependency */,
+				__Dependency_Genome /* PBXTargetDependency */,
+			);
+			name = GenomeCoreData;
+			productName = GenomeCoreData;
+			productReference = "_____Product_GenomeCoreData" /* <RelativePath:"GenomeCoreData.framework"> */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_GenomeFoundation" /* GenomeFoundation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_GenomeFoundation" /* Build configuration list for PBXNativeTarget "GenomeFoundation" */;
+			buildPhases = (
+				CompilePhase_GenomeFoundation /* Sources */,
+				"___LinkPhase_GenomeFoundation" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+				__Dependency_Node /* PBXTargetDependency */,
+				__Dependency_Genome /* PBXTargetDependency */,
+			);
+			name = GenomeFoundation;
+			productName = GenomeFoundation;
+			productReference = "_____Product_GenomeFoundation" /* GenomeFoundation.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_GenomeFoundationTestSuite" /* Build configuration list for PBXNativeTarget "GenomeFoundationTestSuite" */;
+			buildPhases = (
+				CompilePhase_GenomeFoundationTestSuite /* Sources */,
+				"___LinkPhase_GenomeFoundationTestSuite" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+				__Dependency_Node /* PBXTargetDependency */,
+				__Dependency_GenomeFoundation /* PBXTargetDependency */,
+			);
+			name = GenomeFoundationTestSuite;
+			productName = GenomeFoundationTestSuite;
+			productReference = "_____Product_GenomeFoundationTestSuite" /* <RelativePath:"GenomeFoundationTestSuite.xctest"> */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"______Target_GenomeJSON" /* GenomeJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_GenomeJSON" /* Build configuration list for PBXNativeTarget "GenomeJSON" */;
+			buildPhases = (
+				CompilePhase_GenomeJSON /* Sources */,
+				"___LinkPhase_GenomeJSON" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+				__Dependency_Node /* PBXTargetDependency */,
+				__Dependency_Genome /* PBXTargetDependency */,
+			);
+			name = GenomeJSON;
+			productName = GenomeJSON;
+			productReference = "_____Product_GenomeJSON" /* <RelativePath:"GenomeJSON.framework"> */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_GenomeTestSuite" /* GenomeTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_GenomeTestSuite" /* Build configuration list for PBXNativeTarget "GenomeTestSuite" */;
+			buildPhases = (
+				CompilePhase_GenomeTestSuite /* Sources */,
+				"___LinkPhase_GenomeTestSuite" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+				__Dependency_Node /* PBXTargetDependency */,
+				__Dependency_Genome /* PBXTargetDependency */,
+			);
+			name = GenomeTestSuite;
+			productName = GenomeTestSuite;
+			productReference = "_____Product_GenomeTestSuite" /* <RelativePath:"GenomeTestSuite.xctest"> */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"______Target_Node" /* Node */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Node" /* Build configuration list for PBXNativeTarget "Node" */;
+			buildPhases = (
+				CompilePhase_Node /* Sources */,
+				"___LinkPhase_Node" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_PathIndexable /* PBXTargetDependency */,
+				__Dependency_Polymorphic /* PBXTargetDependency */,
+			);
+			name = Node;
+			productName = Node;
+			productReference = "_____Product_Node" /* Node.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_PathIndexable" /* PathIndexable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_PathIndexable" /* Build configuration list for PBXNativeTarget "PathIndexable" */;
+			buildPhases = (
+				CompilePhase_PathIndexable /* Sources */,
+				"___LinkPhase_PathIndexable" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathIndexable;
+			productName = PathIndexable;
+			productReference = "_____Product_PathIndexable" /* PathIndexable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_Polymorphic" /* Polymorphic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Polymorphic" /* Build configuration list for PBXNativeTarget "Polymorphic" */;
+			buildPhases = (
+				CompilePhase_Polymorphic /* Sources */,
+				"___LinkPhase_Polymorphic" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Polymorphic;
+			productName = Polymorphic;
+			productReference = "_____Product_Polymorphic" /* Polymorphic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "Genome" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_PathIndexable" /* PathIndexable */,
+				"______Target_Polymorphic" /* Polymorphic */,
+				"______Target_Node" /* Node */,
+				"______Target_Genome" /* Genome */,
+				"______Target_GenomeCoreData" /* GenomeCoreData */,
+				"______Target_GenomeFoundation" /* GenomeFoundation */,
+				"______Target_GenomeJSON" /* GenomeJSON */,
+				"______Target_GenomeTestSuite" /* GenomeTestSuite */,
+				"______Target_GenomeFoundationTestSuite" /* GenomeFoundationTestSuite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_Genome /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/Genome/Core/Mapping/Map.swift /* Core/Mapping/Map.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/MappableObject.swift /* Core/Mapping/MappableObject.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/SettableExtract.swift /* Core/Mapping/SettableExtract.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/StandardOperators.swift /* Core/Mapping/StandardOperators.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Mapping/Transformers.swift /* Core/Mapping/Transformers.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Node/Node.swift /* Core/Node/Node.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Utility/Errors.swift /* Core/Utility/Errors.swift in Sources */,
+				__src_cc_ref_Sources/Genome/Core/Utility/Logging.swift /* Core/Utility/Logging.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_GenomeCoreData /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_GenomeFoundation /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift in Sources */,
+				"__src_cc_ref_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_GenomeFoundationTestSuite /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Tests/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_GenomeJSON /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Sources/GenomeJSON/Genome+Json.swift" /* Genome+Json.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_GenomeTestSuite /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Tests/Genome/BasicTypes.swift /* BasicTypes.swift in Sources */,
+				__src_cc_ref_Tests/Genome/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift in Sources */,
+				__src_cc_ref_Tests/Genome/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/NodeDataTypeTest.swift /* NodeDataTypeTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/NodeIndexable.swift /* NodeIndexable.swift in Sources */,
+				__src_cc_ref_Tests/Genome/SettableOperatorTest.swift /* SettableOperatorTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/ToNodeOperatorTest.swift /* ToNodeOperatorTest.swift in Sources */,
+				__src_cc_ref_Tests/Genome/TransformTests.swift /* TransformTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_Node /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Bool+Convertible.swift" /* Convertible/Bool+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Context.swift" /* Convertible/Context.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible+Init.swift" /* Convertible/Convertible+Init.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Convertible.swift" /* Convertible/Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/FloatingPoint+Convertible.swift" /* Convertible/FloatingPoint+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Integer+Convertible.swift" /* Convertible/Integer+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Node+Convertible.swift" /* Convertible/Node+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/Sequence+Convertible.swift" /* Convertible/Sequence+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/String+Convertible.swift" /* Convertible/String+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Convertible/UnsignedInteger+Convertible.swift" /* Convertible/UnsignedInteger+Convertible.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Accessors.swift" /* Core/Node+Accessors.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Equatable.swift" /* Core/Node+Equatable.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Exports.swift" /* Core/Node+Exports.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Init.swift" /* Core/Node+Init.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Literals.swift" /* Core/Node+Literals.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+PathIndexable.swift" /* Core/Node+PathIndexable.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node+Polymorphic.swift" /* Core/Node+Polymorphic.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Core/Node.swift" /* Core/Node.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Extract/Node+Extract.swift" /* Extract/Node+Extract.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Number/Number.swift" /* Number/Number.swift in Sources */,
+				"__src_cc_ref_Packages/Node-0.0.0/Sources/Node/Utilities/Errors.swift" /* Utilities/Errors.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_PathIndexable /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable+Subscripting.swift" /* PathIndexable+Subscripting.swift in Sources */,
+				"__src_cc_ref_Packages/PathIndexable-0.3.0/Sources/PathIndexable/PathIndexable.swift" /* PathIndexable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_Polymorphic /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/Polymorphic-0.3.1/Sources/Polymorphic.swift" /* Polymorphic.swift in Sources */,
+				"__src_cc_ref_Packages/Polymorphic-0.3.1/Sources/String+Polymorphic.swift" /* String+Polymorphic.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_Genome /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_Genome" /* Genome */;
+			targetProxy = 809777DE1D594FD2008921EA /* PBXContainerItemProxy */;
+		};
+		__Dependency_GenomeFoundation /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_GenomeFoundation" /* GenomeFoundation */;
+			targetProxy = 809777DD1D594FD2008921EA /* PBXContainerItemProxy */;
+		};
+		__Dependency_Node /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_Node" /* Node */;
+			targetProxy = 809777DC1D594FD2008921EA /* PBXContainerItemProxy */;
+		};
+		__Dependency_PathIndexable /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_PathIndexable" /* PathIndexable */;
+			targetProxy = 809777DA1D594FD2008921EA /* PBXContainerItemProxy */;
+		};
+		__Dependency_Polymorphic /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_Polymorphic" /* Polymorphic */;
+			targetProxy = 809777DB1D594FD2008921EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_Genome /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/Genome_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Genome;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeCoreData /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeCoreData_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GenomeCoreData;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeFoundation /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeFoundation_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GenomeFoundation;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeFoundationTestSuite /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeFoundationTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeJSON /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeJSON_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GenomeJSON;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_GenomeTestSuite /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_Node /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/Node_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Node;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_PathIndexable /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/PathIndexable_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PathIndexable;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_Polymorphic /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/Polymorphic_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Polymorphic;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		"___DebugConf_Genome" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/Genome_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Genome;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_GenomeCoreData" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeCoreData_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GenomeCoreData;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_GenomeFoundation" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeFoundation_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GenomeFoundation;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_GenomeFoundationTestSuite" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeFoundationTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_GenomeJSON" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeJSON_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GenomeJSON;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_GenomeTestSuite" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/GenomeTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_Node" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/Node_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Node;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_PathIndexable" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/PathIndexable_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PathIndexable;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_Polymorphic" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Genome.xcodeproj/Polymorphic_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Polymorphic;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "Genome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Genome" /* Build configuration list for PBXNativeTarget "Genome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Genome" /* Debug */,
+				_ReleaseConf_Genome /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_GenomeCoreData" /* Build configuration list for PBXNativeTarget "GenomeCoreData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_GenomeCoreData" /* Debug */,
+				_ReleaseConf_GenomeCoreData /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_GenomeFoundation" /* Build configuration list for PBXNativeTarget "GenomeFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_GenomeFoundation" /* Debug */,
+				_ReleaseConf_GenomeFoundation /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_GenomeFoundationTestSuite" /* Build configuration list for PBXNativeTarget "GenomeFoundationTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_GenomeFoundationTestSuite" /* Debug */,
+				_ReleaseConf_GenomeFoundationTestSuite /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_GenomeJSON" /* Build configuration list for PBXNativeTarget "GenomeJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_GenomeJSON" /* Debug */,
+				_ReleaseConf_GenomeJSON /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_GenomeTestSuite" /* Build configuration list for PBXNativeTarget "GenomeTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_GenomeTestSuite" /* Debug */,
+				_ReleaseConf_GenomeTestSuite /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Node" /* Build configuration list for PBXNativeTarget "Node" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Node" /* Debug */,
+				_ReleaseConf_Node /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_PathIndexable" /* Build configuration list for PBXNativeTarget "PathIndexable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_PathIndexable" /* Debug */,
+				_ReleaseConf_PathIndexable /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Polymorphic" /* Build configuration list for PBXNativeTarget "Polymorphic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Polymorphic" /* Debug */,
+				_ReleaseConf_Polymorphic /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
+}

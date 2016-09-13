@@ -1,5 +1,6 @@
 # Swift Package Manager
 .build/
-# Leaving packages to make some cocoapods workarounds
+# Leaving packages to make some cocoapods workarounds :(
 # Packages/
-*.xcodeproj
+# Allowing Xcodeproj temporarily for carthage :(
+# *.xcodeproj
