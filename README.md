@@ -3,44 +3,27 @@
   <img src="/Images/GenomeBanner.png" width=800></img>
 </p>
 
-<h2 align="center">Failure-Driven Object Mapping in Swift</h2>
+Welcome to Genome 3.0. This library seeks to satisfy the following goals:
 
-
-<h4>Genome 3.0.0</h4>
-
-Genome has gone to 3.0.0, largely spearheaded by the efforts of @Marxon13. The biggest change to the library is that it is now data type agnostic. This means that Genome is no longer dependent on Json only. This means that supporting a new data type like xml, or <a href="https://github.com/Marxon13/Chromosome">csv</a> is easy. For those of you using Json, it should be the same Genome you've been using with a few syntax tweaks.
-
-Most of the syntax updates have been around clarity and conformance to Swift 3 api guidelines. The rest are related to the replacement of Json with an agnostic Node type.
-
-### Building Project
-
-Genome uses CocoaPods. You'll need to open Genome.xcworkspace and run `pod install`
-
-### Why
-
-With great libraries like <a href="https://github.com/thoughtbot/Argo">Argo</a> and <a href="https://github.com/Hearst-DD/ObjectMapper">ObjectMapper</a>, why do we need another? Ultimately, I wanted to build it, and I wanted something a little different.  
-
-The goal of this library is to satisfy the following constraints:
-
->\- Customizable Initialization
-
->\- Flexible Error Handling
+>\- Data Type Agnostic
 
 >\- Failure Driven
 
->\- Automatic Nested Mapping
+>\- Nested Mapping
 
->\- Simple To Use
+>\- Collection Mapping
+
+>\- Simple and Consistent
 
 >\- Two-Way Serialization
 
->\- Transformable Values
+>\- Transforms
 
 >\- Type Safety
 
 >\- Constants (`let`)
 
->\- Independent of Foundation Framework (Supports Linux)
+>\- Full Linux Support
 
 >\- Struct Friendly
 
@@ -48,31 +31,82 @@ The goal of this library is to satisfy the following constraints:
 
 >\- Core Data and Persistence Compatible
 
-### Playground / Examples
+## Node
 
-The <a href="/Genome.playground">playground</a> provided by this project can be used to test the library.  It also provides some examples on how to use the library.  
+Genome is built on top of [Node](https://github.com/vapor/node) as opposed to JSON directly. This makes it easy for Genome to work with any data type through little effort.
 
-### Failure Driven
+All mapping operations are built as sugar on top of Node's core.
 
-With the introduction of Swift 2.0, we were given an entirely new error handling system, and a new keyword `try`.  In mapping data to models, there are, unfortunately, many points of failure.  By being very explicit about the failability of these operations, we can be confident that our code will run as expected, and gain clarity into error messages earlier in the process.  This means that we're going to have to write the word `try` quite a bit in the name of safety.
+## Optimized For JSON
 
-### Initial Setup
+Works great w/ JSON out of the box by default:
 
-If you wish to install the library manually, you'll need to find the source files located in the playground's <a href="/Genome.playground/Sources">sources</a>  directory.
-
-It is highly recommended that you install Genome through <a href="https://www.cocoapods.org">CocoaPods.</a>  Here is a personal CocoaPods reference just in case it may be of use: <a href="https://gist.github.com/LoganWright/5aa9b3deb71e9de628ba">CocoaPods Setup Guide</a>
-
-```Ruby
-pod 'Genome', '~> 2.0.0'
+```swift
+let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    guard let data = data else { return }
+    do {
+        let model = try Model(node: data)
+        completion(model)
+    } catch {
+        completion(error)
+    }
+}
+task.resume()
 ```
 
-You can also install Genome using [Carthage](https://github.com/Carthage/Carthage). Just add the line below to your `Cartfile`:
+If your data is nested, you can use Node to take it further.
+
+```swift
+let json = try rawJSONData.makeNode()
+guard let items = json["root", "items"] else { return }
+let models = try [Item](node: items)
+```
+
+You'll notice above that we used initialized an array, this is all perfectly great w/ Genome.
+
+> If you're working on Linux with SwiftPM, it is highly recommended to use a type-safe JSON library like [this one](https://github.com/vapor/json).
+
+### To JSON
+
+We can create our JSON Data the same way:
+
+```swift
+let jsonData = try Data(node: item)
+api.post(jsonData) { response in ... }
+```
+
+### Building Project
+
+All future development of Cocoapods will be done on with SwiftPM. Cocoapods and Carthage support are intended to be maintained, but are not used in development. Here are some useful commands
+
+```bash
+# make xcode project
+swift package generate-xcodeproj
+# build project
+swift build
+# test project
+swift test
+```
+
+### SwiftPM
+
+To use SwiftPM, add this to your `Package.swift`
+
+```
+.Package(url: "https://github.com/LoganWright/Genome.git", majorVersion: 3)
+```
+
+### Cocoapods
+
+```Ruby
+pod 'Genome', '~> 3.0'
+```
+
+### Carthage
 
 ```
 github "LoganWright/Genome"
 ```
-
-And execute `carthage update` to download and compile the framework.
 
 ### Table Of Contents
 
@@ -101,37 +135,83 @@ Here's how we might create the model for this
 
 
 ```Swift
-enum PetType : String {
-    case Dog = "dog"
-    case Cat = "cat"
+enum PetType: String {
+    case dog
+    case cat
+    case unknown
 }
 
-struct Pet : MappableObject {
+struct Pet: MappableObject {
     let name: String
     let type: PetType
-    let nickname: String
+    let nickname: String?
 
     init(map: Map) throws {
         name = try map.extract("name")
         nickname = try map.extract("nickname")
-        type = try map["type"]
-            .fromNode { PetType(rawValue: $0)! }
+        type = try map.extract("type") { PetType(rawValue: $0) ?? .unknown }
     }
 
     func sequence(map: Map) throws {
         try name ~> map["name"]
-        try type ~> map["type"]
-            .transformToNode { $0.rawValue }
+        try type ~> map["type"].transformToNode { $0.rawValue }
         try nickname ~> map["nickname"]
     }
 }
 ```
 
-### `Map`
+Once that's done, we can build like so:
 
-This is the object that is used two encapsulate the `Node` as well as a more global context which can represent any object you may want your sub operations to have access to.
+```swift
+let pet = try Pet(node: json)
+```
 
-This has particular use in things like CoreData where a `NSManagedObjectContext` may be required.
+It will also work with collections:
+
+```swift
+let pets = try [Pet](node: jsonArray)
+```
+
+### NASA Photo
+
+Let's build a simple example that fetches NASA's photo of the day. Please note that this is a synchronous API, and it makes use of Data for brevity. It is advisable to use an asynchronous and proper HTTP Client like URLSession.
+
+```swift
+struct Photo: BasicMappable {
+    private(set) var title: String = ""
+    private(set) var mediaType: String = ""
+    private(set) var explanation: String = ""
+    private(set) var concepts: [String] = []
+
+    private(set) var imageUrl: NSURL!
+
+    mutating func sequence(_ map: Map) throws {
+        try title <~ map["title"]
+        try mediaType <~ map ["media_type"]
+        try explanation <~ map["explanation"]
+        try concepts <~ map["concepts"]
+        try imageUrl <~ map["url"]
+            .transformFromNode { NSURL(string: $0) }
+    }
+}
+
+struct NASA {
+    static let url = URL(string: "https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=DEMO_KEY")!
+
+    static func fetchPhoto() throws -> Photo {
+        let data = try Data(contentsOf: NASA.url)
+        return try Photo(node: data)
+    }
+}
+```
+
+Now we can call like this:
+
+```
+let photo = try NASA.fetchPhoto()
+```
+
+> WARNING: Please read first paragraph regarding synchronicity and api.
 
 ### `MappableObject`
 
@@ -144,7 +224,7 @@ It has two requirements
 This is the initializer you will use to map your object.  You may call this manually if you like, but if you use any of the built in convenience initializers, this will be called automatically.  Otherwise, if you need to initialize a `Map`, use:
 
 ```Swift
-let map = Map(dan: someNode, context: someContext)
+let map = Map(node: someNode, in: someContext)
 ```
 
 It has two main requirements
@@ -152,8 +232,6 @@ It has two main requirements
 #### `sequence(map: Map) throws`
 
 The `sequence` function is called in two main situations. It is marked `mutating` because it will modify values on `fromNode` operations.  If however, you're only using sequence for `toNode`, nothing will be mutated and one can remove the `mutating` keyword. (as in the above example)
-
-`Note, if you're only mapping to Node, nothing will be mutated.`
 
 ##### FromNode
 
@@ -167,7 +245,7 @@ It is marked `mutating` because it will modify values.
 
 ##### ToNode
 
-When accessing an objects `nodeRepresentation()`, the sequence operation will be called to collect the values into a `Node` package.
+When accessing an objects `makeNode()`, the sequence operation will be called to collect the values into a `Node` package.
 
 ### `~>`
 
@@ -237,29 +315,6 @@ class MyClass : Object {}
 
 > Note: If you're using `Realm`, or another library that has also used `Object`, don't forget that these are module namespaced in Swift.  If that's the case, you should declare your class: `class MyClass : Genome.Object {}`
 
-### `Custom`
-
-If you're using a custom class, you'll need to add some additional functions.  Here's what a basic base class might look like:
-
-```Swift
-class CustomBase : MappableBase {
-    required init() {}
-
-    static func newInstance(node: Node, context: Context) throws -> Self {
-        let map = Map(node: node, context: context)
-        let new = self.init()
-        try new.sequence(map)
-        return new
-    }
-
-    func sequence(map: Map) throws {}
-}
-```
-
-**Notice the `required` initializer above.  When returning `Self` at a class level, you will almost always need a required initializer.**
-
-If you need to extend an existing base class, and for particularly complex situations, see the CoreData example below as reference.
-
 ### `BasicMappable`
 
 In order to support flexible customization, Genome provides various mapping options for protocols.  Your object can conform to any of the following.  Although each of these initializers is marked with `throws`, it is not necessary for your initializer to `throw` if it is guaranteed to succeed.  In that case, you can omit the `throws` keyword safely.
@@ -277,28 +332,26 @@ This is the true root of the library.  Even `MappableBase` mentioned above inher
 
 ```Swift
 public protocol NodeConvertibleType {
-    static func newInstance(node: Node, context: Context) throws -> Self
-    func nodeRepresentation() throws -> Node
+    init(node: Node, in context: Context) throws
+    func makeNode(context: Context) throws -> Node
 }
 ```
 
-All Node basic types such as `Int`, `String`, etc. conform to this protocol which allows ultimate flexibility in defining the library.  It also paves the way to much fewer overloads going forward when collections of `NodeConvertibleType` can also conform to it.
-
-> This can be used as a supplement to `transform` types mentioned above.  If an object conforms to this protocol, it will be immediately useable within the library.
+All basic types such as `Int`, `String`, etc. conform to this protocol which allows ultimate flexibility in defining the library.  It also paves the way to much fewer overloads going forward when collections of `NodeConvertible` can also conform to it.
 
 ## Instantiation
 
 If you are using the standard instantiation scheme established in the library, you will likely initialize with this function.
 
 ```Swift
-public init(node: Node, context: Context = EmptyNode) throws
+public init(node: Node, in context: Context = EmptyNode) throws
 ```
 
 Now we can easily create an object safely:
 
 ```Swift
 do {
-    let rover = try Pet(node: node_rover)
+    let rover = try Pet(node: nodeRover)
     print(rover)
 } catch {
     print(error)
@@ -308,7 +361,7 @@ do {
 If all we care about is whether or not we were able to create an object, we can also do the following:
 
 ```Swift
-let rover = try? Pet(node: node_rover)
+let rover = try? Pet(node: nodeRover)
 print(rover) // Rover is type: `Pet?`
 ```
 
@@ -318,13 +371,7 @@ print(rover) // Rover is type: `Pet?`
 
 ### Foundation
 
-If you're using `Foundation`, you can also use the following initialization:
-
-```Swift
-public init(node: AnyObject, context: [String : AnyObject] = [:]) throws
-
-public init(node: [String : AnyObject], context: [String : AnyObject] = [:]) throws
-```
+If you're using `Foundation`, you can transform `Any`, `[String: Any]`, and `[Any]` types by making them into a Node first. `Node(any: yourTypeHere)`.
 
 ### CollectionTypes
 
@@ -334,179 +381,8 @@ You can instantiate collections directly w/o mapping as well:
 let people = try [People](node: someNode)
 ```
 
-### Class Level Instantiation
-
-See Core Data
-
-### `mappedInstance(node: Node)`
-
-This is the function that should be used to initialize new mapped objects for a given node.
-
-### Playground
-
-Feel free to check out and interact with the <a href="/GenomePlayground.playground">playground</a> provided in this repo!
-
-### Alamofire
-
-Here's a quick example of using Genome alongside <a href="https://github.com/Alamofire/Alamofire">Alamofire</a> (3.0)
-
-```Swift
-import Alamofire
-import Genome
-
-struct NasaPhoto : BasicMappable {
-    private(set) var title: String = ""
-    private(set) var mediaType: String = ""
-    private(set) var explanation: String = ""
-    private(set) var concepts: [String] = []
-
-    private(set) var imageUrl: NSURL!
-
-    mutating func sequence(map: Map) throws {
-        try title <~ map["title"]
-        try mediaType <~ map ["media_type"]
-        try explanation <~ map["explanation"]
-        try concepts <~ map["concepts"]
-        try imageUrl <~ map["url"]
-            .transformFromNode {
-                return NSURL(string: $0)
-            }
-    }
-}
-
-enum NasaResult<T> {
-    case Success(T)
-    case Failure(ErrorType)
-}
-
-struct Nasa {
-    static func fetchPictureOfTheDay(completion: NasaResult<NasaPhoto> -> Void) {
-        let url = "https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=DEMO_KEY"
-        Alamofire.request(.GET, url)
-            .responseJSON { response in
-                switch response.result {
-                case .Success(let value):
-                    do {
-                        let photo = try NasaPhoto(node: value)
-                        completion(.Success(photo))
-                    } catch {
-                        completion(.Failure(error))
-                    }
-                case .Failure(let error):
-                    completion(.Failure(error))
-                }
-        }
-    }
-}
-```
-
-Now, when we want to use our `NasaPhoto` object, we can use it knowing that it will be safe.
-
-```Swift
-Nasa.fetchPictureOfTheDay { [weak self] result in
-    switch result {
-    case .Success(let photo):
-        self?.navigationItem.title = photo.title
-        self?.descriptionLabel.text = photo.explanation
-        self?.imageView.sd_setImageWithURL(photo.imageUrl)
-    case .Failure(let error):
-        print("Error: \(error)")
-    }
-}
-```
-
 #### Core Data
 
-If you wish to use `CoreData`, you will want to add something similar to the following to your project:
-
-```Swift
-
-import CoreData
-
-extension NSManagedObjectContext : Context {}
-
-public class NSMappableManagedObject: NSManagedObject, MappableBase {
-    public class var entityName: String {
-        return "\(self)"
-    }
-
-    public func sequence(map: Map) throws {
-        fatalError("Sequence must be overwritten")
-    }
-
-    public class func newInstance(node: Node, context: Context) throws -> Self {
-        return try newInstance(node, context: context, type: self)
-    }
-
-    public class func newInstance<T: NSMappableManagedObject>(node: Node, context: Context, type: T.Type) throws -> T {
-        let context = context as! NSManagedObjectContext
-        let new = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! T
-        let map = Map(node: Node, context: context)
-        try new.sequence(map)
-        return new
-    }
-}
-```
-
-The generics above might seem a little strange, but they are an attempt to work within the extremely strict inheritance / `Self` system established by Swift without using a `required` initializer.  This type of format can be used for other persistence layers that have class level initializers or object creation factories.
-
-#### Custom Implementation
-
-Feel free to implement your own protocol by inheriting from `Mappable` and defining the initialization scheme.  Look at the implementations of the provided protocols for information on how to do this.
-
-### Logging
-
-All errors are passed through a logging system before being thrown.  This allows for helpful debugging and allows the potential to add remote logging to your project.
-
-#### Adding Loggers
-
-You can add any logger by conforming to `ErrorType -> Void`.  Here's a quick example of how we might implement this:
-
-```Swift
-func reportErrorToServer(error: ErrorType) {
-    // ... handle the error here
-}
-```
-
-Then, add it to the loggers:
-
-```Swift
-loggers.append(reportErrorToServer)
-```
-
-If you're using `Genome` through modules, it can be more clear to acknowledge the namespace:
-
-
-```Swift
-Genome.loggers.append(reportErrorToServer)
-```
-
-#### Turning Loggers Off
-
-Just set `loggers` to an empty array and the system will no longer print to the console.
-
-```Swift
-loggers = []
-
-// or namespaced
-
-Genome.loggers = []
-```
-
-# RELEASE information
-
-<h1 align="center">Genome 2.0.0</h1>
-
-With the 2.0.0 release, there are some breaking syntax adjustments that you should be aware of.  One of the major changes is the removal of the dreaded and confusing `<~?` operator.  By structuring differently, special cases for optionality are no longer necessary, and all direct set mappings can use `<~` or the newly added `extract` function.  This also positions the library to better adapt when containers of conforming objects can conform themselves. The goal here would be reducing the amount of overload functions necessary.
-
-#### Pure
-
-Removing Foundation dependencies for core functionality has always been a goal of this library, and it turns out that it snuck into the `1.0.0` version.  By casting `AnyObject` to and from value types such as `String`, `Int`, etc. we were dependent on the underlying `NSString`, `NSNumber`, `NSArray`, etc. class systems.  
-
-This means that going forward, we'll be using the new `Node` type.  The new `Node` type is an independent structure, and no longer a `typealias` of `[String : AnyObject]`.  Usage should be natural with comprehensive literal syntax: `let name: Node = "HumanName"`.  When converting from data or a string, use `let node = try Node.deserialize(nodeData)`.  
-
-There are periodic changes and maintenance throughout, so the README is definitely worth a skim to see some of what's new. Remember, if you're feeling nostalgic and you're not ready to update, you can roll back to a 1.0.0 compatible version by using `pod 'CocoaPods', '~> 1.0.0'`.
-
-If you're not using CocoaPods, check the <a href="https://github.com/LoganWright/Genome/releases">releases</a> section and find a `1.0.0` compatible version.
+If you wish to use `CoreData`, instead of subclassing `NSManagedObject`, subclass `NSMappableManagedObject`.
 
 Happy Mapping!
