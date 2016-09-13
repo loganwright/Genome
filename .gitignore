@@ -3,4 +3,3 @@
 # Leaving packages to make some cocoapods workarounds
 # Packages/
 *.xcodeproj
-/Packages
