@@ -23,22 +23,12 @@ Pod::Spec.new do |spec|
 
   spec.subspec "Core" do |ss|
     ss.source_files = 'Sources/Genome/Mapping/**/*.{swift}'
-    ss.dependency 'Genome/Node'
+    ss.dependency 'Genome/Packages'
   end
 
-  spec.subspec "Node" do |ss|
-    ss.source_files = 'Packages/Node-*/Sources/Node/**/*.{swift}'
-    ss.exclude_files = 'Packages/Node-*/Sources/Node/Core/Node+Exports.swift'
-    ss.dependency 'Genome/Polymorphic'
-    ss.dependency 'Genome/PathIndexable'
-  end
-
-  spec.subspec "Polymorphic" do |ss|
-    ss.source_files = 'Packages/Polymorphic-*/Sources/**/*.{swift}'
-  end
-
-  spec.subspec "PathIndexable" do |ss|
-    ss.source_files = 'Packages/PathIndexable-*/Sources/**/*.{swift}'
+  spec.subspec "Packages" do |ss|
+    ss.source_files = "Packages/**/*.{swift}"
+    ss.exclude_files = 'Packages/**/Node+Exports.swift'
   end
 
   spec.subspec "Foundation" do |ss|
