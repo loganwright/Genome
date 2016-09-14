@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'Genome'
-  spec.version      = '3.0.0'
+  spec.version      = '3.0.2'
   spec.license      = 'MIT'
   spec.homepage     = 'https://github.com/LoganWright/Genome'
   spec.authors      = { 'Logan Wright' => 'logan.william.wright@gmail.com' }
@@ -23,22 +23,12 @@ Pod::Spec.new do |spec|
 
   spec.subspec "Core" do |ss|
     ss.source_files = 'Sources/Genome/Mapping/**/*.{swift}'
-    ss.dependency 'Genome/Node'
+    ss.dependency 'Genome/Packages'
   end
 
-  spec.subspec "Node" do |ss|
-    ss.source_files = 'Packages/Node-*/Sources/Node/**/*.{swift}'
-    ss.exclude_files = 'Packages/Node-*/Sources/Node/Core/Node+Exports.swift'
-    ss.dependency 'Genome/Polymorphic'
-    ss.dependency 'Genome/PathIndexable'
-  end
-
-  spec.subspec "Polymorphic" do |ss|
-    ss.source_files = 'Packages/Polymorphic-*/Sources/**/*.{swift}'
-  end
-
-  spec.subspec "PathIndexable" do |ss|
-    ss.source_files = 'Packages/PathIndexable-*/Sources/**/*.{swift}'
+  spec.subspec "Packages" do |ss|
+    ss.source_files = "Packages/**/*.{swift}"
+    ss.exclude_files = 'Packages/**/Node+Exports.swift', 'Packages/**/Tests/**/*.{swift}', 'Packages/**/Package.swift'
   end
 
   spec.subspec "Foundation" do |ss|
@@ -49,6 +39,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec "CoreData" do |ss|
     ss.source_files = 'Sources/GenomeCoreData/**/*.{swift}'
+    ss.exclude_files = 'Sources/GenomeCoreData/GenomeCoreData+Exports.swift'
     ss.dependency 'Genome/Foundation'
     ss.dependency 'Genome/Core'
     ss.frameworks = 'CoreData'
