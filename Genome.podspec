@@ -39,6 +39,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec "CoreData" do |ss|
     ss.source_files = 'Sources/GenomeCoreData/**/*.{swift}'
+    ss.exclude_files = 'Sources/GenomeCoreData/GenomeCoreData+Exports.swift'
     ss.dependency 'Genome/Foundation'
     ss.dependency 'Genome/Core'
     ss.frameworks = 'CoreData'
