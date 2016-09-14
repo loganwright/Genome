@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec "Packages" do |ss|
     ss.source_files = "Packages/**/*.{swift}"
-    ss.exclude_files = 'Packages/**/Node+Exports.swift', 'Packages/**/Tests/**/*.{swift}'
+    ss.exclude_files = 'Packages/**/Node+Exports.swift', 'Packages/**/Tests/**/*.{swift}', 'Packages/**/Package.swift'
   end
 
   spec.subspec "Foundation" do |ss|
