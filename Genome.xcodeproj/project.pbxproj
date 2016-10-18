@@ -117,6 +117,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2BD2A1B1DB64B2A0045192C /* Genome_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Genome_Info.plist; path = ../../Genome.xcodeproj/Genome_Info.plist; sourceTree = "<group>"; };
+		D2BD2A1C1DB64B2A0045192C /* GenomeCoreData_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = GenomeCoreData_Info.plist; path = ../../Genome.xcodeproj/GenomeCoreData_Info.plist; sourceTree = "<group>"; };
+		D2BD2A1D1DB64B2A0045192C /* GenomeFoundation_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = GenomeFoundation_Info.plist; path = ../../Genome.xcodeproj/GenomeFoundation_Info.plist; sourceTree = "<group>"; };
+		D2BD2A1E1DB64B2A0045192C /* GenomeFoundationTests_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = GenomeFoundationTests_Info.plist; path = ../../Genome.xcodeproj/GenomeFoundationTests_Info.plist; sourceTree = "<group>"; };
+		D2BD2A1F1DB64B2A0045192C /* GenomeTests_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = GenomeTests_Info.plist; path = ../../Genome.xcodeproj/GenomeTests_Info.plist; sourceTree = "<group>"; };
+		D2BD2A201DB64B2A0045192C /* Node_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Node_Info.plist; path = ../../../../Genome.xcodeproj/Node_Info.plist; sourceTree = "<group>"; };
+		D2BD2A211DB64B2A0045192C /* PathIndexable_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = PathIndexable_Info.plist; path = ../../../../Genome.xcodeproj/PathIndexable_Info.plist; sourceTree = "<group>"; };
+		D2BD2A221DB64B2A0045192C /* Polymorphic_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Polymorphic_Info.plist; path = ../../../Genome.xcodeproj/Polymorphic_Info.plist; sourceTree = "<group>"; };
 		__PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Genome.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Images /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -326,6 +334,7 @@
 		"_______Group_Genome" /* Genome */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A1B1DB64B2A0045192C /* Genome_Info.plist */,
 				"__PBXFileRef_Sources/Genome/Genome+Exports.swift" /* Genome+Exports.swift */,
 				__PBXFileRef_Sources/Genome/Mapping/Map.swift /* Mapping/Map.swift */,
 				__PBXFileRef_Sources/Genome/Mapping/MappableObject.swift /* Mapping/MappableObject.swift */,
@@ -339,6 +348,7 @@
 		"_______Group_GenomeCoreData" /* GenomeCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A1C1DB64B2A0045192C /* GenomeCoreData_Info.plist */,
 				__PBXFileRef_Sources/GenomeCoreData/CoreData.swift /* CoreData.swift */,
 				"__PBXFileRef_Sources/GenomeCoreData/GenomeCoreData+Exports.swift" /* GenomeCoreData+Exports.swift */,
 			);
@@ -349,6 +359,7 @@
 		"_______Group_GenomeFoundation" /* GenomeFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A1D1DB64B2A0045192C /* GenomeFoundation_Info.plist */,
 				__PBXFileRef_Sources/GenomeFoundation/Foundation.swift /* Foundation.swift */,
 				"__PBXFileRef_Sources/GenomeFoundation/GenomeFoundation+Exports.swift" /* GenomeFoundation+Exports.swift */,
 				"__PBXFileRef_Sources/GenomeFoundation/Node+Foundation.swift" /* Node+Foundation.swift */,
@@ -360,6 +371,7 @@
 		"_______Group_GenomeFoundationTests" /* GenomeFoundationTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A1E1DB64B2A0045192C /* GenomeFoundationTests_Info.plist */,
 				__PBXFileRef_Tests/GenomeFoundationTests/JSONTests.swift /* JSONTests.swift */,
 				__PBXFileRef_Tests/GenomeFoundationTests/NodeFoundationTests.swift /* NodeFoundationTests.swift */,
 			);
@@ -370,6 +382,7 @@
 		"_______Group_GenomeTests" /* GenomeTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A1F1DB64B2A0045192C /* GenomeTests_Info.plist */,
 				__PBXFileRef_Tests/GenomeTests/BasicTypes.swift /* BasicTypes.swift */,
 				__PBXFileRef_Tests/GenomeTests/DictionaryKeyPathTests.swift /* DictionaryKeyPathTests.swift */,
 				__PBXFileRef_Tests/GenomeTests/FromNodeOperatorTest.swift /* FromNodeOperatorTest.swift */,
@@ -386,6 +399,7 @@
 		"_______Group_Node" /* Node */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A201DB64B2A0045192C /* Node_Info.plist */,
 				"__PBXFileRef_Packages/Node-0.7.1/Sources/Node/NodeBacked.swift" /* NodeBacked.swift */,
 				"__PBXFileRef_Packages/Node-0.7.1/Sources/Node/Convertible/Bool+Convertible.swift" /* Convertible/Bool+Convertible.swift */,
 				"__PBXFileRef_Packages/Node-0.7.1/Sources/Node/Convertible/Context.swift" /* Convertible/Context.swift */,
@@ -416,6 +430,7 @@
 		"_______Group_PathIndexable" /* PathIndexable */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A211DB64B2A0045192C /* PathIndexable_Info.plist */,
 				"__PBXFileRef_Packages/PathIndexable-0.4.1/Sources/PathIndexable/PathIndexable+Subscripting.swift" /* PathIndexable+Subscripting.swift */,
 				"__PBXFileRef_Packages/PathIndexable-0.4.1/Sources/PathIndexable/PathIndexable.swift" /* PathIndexable.swift */,
 			);
@@ -426,6 +441,7 @@
 		"_______Group_Polymorphic" /* Polymorphic */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD2A221DB64B2A0045192C /* Polymorphic_Info.plist */,
 				"__PBXFileRef_Packages/Polymorphic-0.4.0/Sources/Polymorphic.swift" /* Polymorphic.swift */,
 				"__PBXFileRef_Packages/Polymorphic-0.4.0/Sources/String+Polymorphic.swift" /* String+Polymorphic.swift */,
 			);
@@ -1017,6 +1033,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1029,6 +1047,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_Genome.xcodeproj/Configs/Project.xcconfig /* Genome.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
