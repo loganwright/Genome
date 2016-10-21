@@ -9,4 +9,4 @@ osx_image: xcode8
 script:
   # Committing packages to get files into pods/carthage. Need this to test
   - rm -rf Packages/
-  - eval "$(curl -sL swift.vapor.sh/ci)"
+  - eval "$(curl -sL https://swift.vapor.sh/ci)"
