@@ -5,31 +5,19 @@
 
 Welcome to Genome 3.0. This library seeks to satisfy the following goals:
 
->\- Data Type Agnostic
-
->\- Failure Driven
-
->\- Nested Mapping
-
->\- Collection Mapping
-
->\- Simple and Consistent
-
->\- Two-Way Serialization
-
->\- Transforms
-
->\- Type Safety
-
->\- Constants (`let`)
-
->\- Full Linux Support
-
->\- Struct Friendly
-
->\- Inheritance Friendly
-
->\- Core Data and Persistence Compatible
+- [x] Data Type Agnostic
+- [x] Failure Driven
+- [x] Nested Mapping
+- [x] Collection Mapping
+- [x] Simple and Consistent
+- [x] Two-Way Serialization
+- [x] Transforms
+- [x] Type Safety
+- [x] Constants (`let`)
+- [x] Full Linux Support
+- [x] Struct Friendly
+- [x] Inheritance Friendly
+- [x] Core Data and Persistence Compatible
 
 ## Node
 
