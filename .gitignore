@@ -1,3 +1,5 @@
+.DS_Store
+
 # Swift Package Manager
 .build/
 # Leaving packages to make some cocoapods workarounds :(
