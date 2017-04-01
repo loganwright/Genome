@@ -9,10 +9,10 @@ extension Data: NodeRepresentable {
     }
 }
 
-extension Data: NodeConvertible {
+extension Data: NodeInitializable {
     public init(node: Node, in context: Context) throws {
         let any = node.any
-        let data = try JSONSerialization.data(withJSONObject: any, options: .init(rawValue: 0))
+        let data = try JSONSerialization.data(withJSONObject: any, options: [])
         self = data
     }
 }
@@ -34,11 +34,11 @@ extension NSData: NodeRepresentable {
 /*
 Linux won't compile this.
 */
-extension NSData: NodeConvertible {}
-extension NodeConvertible where Self: NSData {
+extension NSData: NodeInitializable {}
+extension NodeInitializable where Self: NSData {
     public init(node: Node, in context: Context) throws {
         let any = node.any
-        let data = try JSONSerialization.data(withJSONObject: any, options: .init(rawValue: 0))
+        let data = try JSONSerialization.data(withJSONObject: any, options: [])
         self.init(data: data)
     }
 }
