@@ -1,0 +1,24 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "Node",
+      "reason": null,
+      "repositoryURL": "https://github.com/couchdeveloper/node.git",
+      "version": "1.0.1"
+    },
+    {
+      "package": "PathIndexable",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/path-indexable.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "Polymorphic",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/polymorphic.git",
+      "version": "1.0.1"
+    }
+  ],
+  "version": 1
+}
