@@ -2,49 +2,51 @@
 
 import CoreData
     
-extension NSManagedObjectContext : Context {}
+extension NSManagedObjectContext: Context {}
 
-open class ManagedObject: NSManagedObject, Genome.MappableBase {
-    public enum Error: Swift.Error {
-        case expectedManagedObjectContext
-        case unableToCreateObject
-    }
-    
-    // MARK: EntityName
-    
-    open class var entityName: String {
-        return "\(self)"
-            .characters
-            .split { $0 == "." }
-            .map(String.init)
-            .last ?? "\(self)"
-    }
-    
-    // MARK: Sequence
-    
-    open func sequence(_ map: Map) throws {}
+public enum Error: Swift.Error {
+    case expectedManagedObjectContext
+    case unableToCreateObject
 }
 
-extension MappableBase where Self: ManagedObject {
+public protocol MappableManagedObject: Genome.MappableBase {
+    static var entityName: String { get }
+    static func create<T: MappableManagedObject>(map: Map) throws -> T
+    mutating func sequence(_ map: Map) throws
+}
+
+extension MappableManagedObject where Self: NSManagedObject {
+
+    public static func create<T: MappableManagedObject>(map: Map) throws -> T {
+        guard let context = map.context as? NSManagedObjectContext else {
+            throw Error.expectedManagedObjectContext
+        }
+        let entityName = T.entityName
+        guard var entity = self.create(entityName: entityName, context: context) as? T else {
+            throw Error.unableToCreateObject
+        }
+        try entity.sequence(map)
+        return entity
+    }
+
+    private static func create(entityName: String, context: NSManagedObjectContext) -> NSManagedObject {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+        return entity
+    }
+
+}
+
+extension MappableBase where Self: MappableManagedObject {
     public init(node: Node, in context: Context) throws {
         let map = Map(node: node, in: context)
-        self = try make(type: Self.self, with: map)
+        let entity: Self = try Self.create(map: map)
+        self = entity
     }
-}
-
-private func make<T: ManagedObject>(type: T.Type, with map: Map) throws -> T {
-    guard let context = map.context as? NSManagedObjectContext else {
-        throw T.Error.expectedManagedObjectContext
-    }
-
-    let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: context)
-
-    guard let new = entity as? T else {
-        throw T.Error.unableToCreateObject
-    }
-        
-    try new.sequence(map)
-    return new
+//    public init(node: Node) throws {
+//        let map = Map(node: node, in: node.context)
+//        let entity: Self = try Self.create(map: map)
+//        self = entity
+//    }
 }
 
 #endif
