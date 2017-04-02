@@ -1,5 +1,10 @@
 .DS_Store
 
+
+# Project Specific
+genome_prebuild.log
+
+
 # Swift Package Manager
 .build/
 # Leaving packages to make some cocoapods workarounds :(

@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "9999"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "echo cd $PROJECT_DIR&#10;cd $PROJECT_DIR&#10;mkdir -p &quot;./.build&quot;&#10;exec &gt; $PROJECT_DIR/.build/prebuild.log 2&gt;&amp;1&#10;echo swift package fetch&#10;/usr/bin/xcrun --sdk macosx swift package fetch">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "OBJ_147"
+                     BuildableName = "Genome.framework"
+                     BlueprintName = "Genome"
+                     ReferencedContainer = "container:Genome.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
