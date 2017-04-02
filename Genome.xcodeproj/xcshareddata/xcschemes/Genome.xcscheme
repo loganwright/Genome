@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_79"
+               BlueprintIdentifier = "OBJ_82"
                BuildableName = "PathIndexable.framework"
                BlueprintName = "PathIndexable"
                ReferencedContainer = "container:Genome.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_87"
+               BlueprintIdentifier = "OBJ_90"
                BuildableName = "Polymorphic.framework"
                BlueprintName = "Polymorphic"
                ReferencedContainer = "container:Genome.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_95"
+               BlueprintIdentifier = "OBJ_98"
                BuildableName = "Node.framework"
                BlueprintName = "Node"
                ReferencedContainer = "container:Genome.xcodeproj">
@@ -56,7 +56,21 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_127"
+               BlueprintIdentifier = "OBJ_130"
+               BuildableName = "GenomeFoundation.framework"
+               BlueprintName = "GenomeFoundation"
+               ReferencedContainer = "container:Genome.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_147"
                BuildableName = "Genome.framework"
                BlueprintName = "Genome"
                ReferencedContainer = "container:Genome.xcodeproj">
@@ -70,23 +84,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_144"
+               BlueprintIdentifier = "OBJ_164"
                BuildableName = "GenomeCoreData.framework"
                BlueprintName = "GenomeCoreData"
-               ReferencedContainer = "container:Genome.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_162"
-               BuildableName = "GenomeFoundation.framework"
-               BlueprintName = "GenomeFoundation"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -102,9 +102,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_179"
-               BuildableName = "GenomeFoundationTests.xctest"
-               BlueprintName = "GenomeFoundationTests"
+               BlueprintIdentifier = "OBJ_182"
+               BuildableName = "GenomeTests.xctest"
+               BlueprintName = "GenomeTests"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -112,9 +112,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_197"
-               BuildableName = "GenomeTests.xctest"
-               BlueprintName = "GenomeTests"
+               BlueprintIdentifier = "OBJ_204"
+               BuildableName = "GenomeFoundationTests.xctest"
+               BlueprintName = "GenomeFoundationTests"
                ReferencedContainer = "container:Genome.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -135,7 +135,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_79"
+            BlueprintIdentifier = "OBJ_82"
             BuildableName = "PathIndexable.framework"
             BlueprintName = "PathIndexable"
             ReferencedContainer = "container:Genome.xcodeproj">
