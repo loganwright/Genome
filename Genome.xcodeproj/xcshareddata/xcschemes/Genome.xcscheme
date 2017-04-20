@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo cd $PROJECT_DIR&#10;cd $PROJECT_DIR&#10;mkdir -p &quot;./.build&quot;&#10;exec &gt; $PROJECT_DIR/.build/prebuild.log 2&gt;&amp;1&#10;echo swift package fetch&#10;/usr/bin/xcrun --sdk macosx swift package fetch">
+               scriptText = "echo cd &quot;${PROJECT_DIR}&quot;&#10;cd &quot;${PROJECT_DIR}&quot;&#10;mkdir -p &quot;./.build&quot;&#10;exec &gt; &quot;${PROJECT_DIR}/.build/prebuild.log&quot; 2&gt;&amp;1&#10;pwd&#10;/usr/bin/xcrun swift --version&#10;echo &quot;/usr/bin/xcrun --sdk macosx swift package fetch&quot;&#10;bash --login -c &quot;/usr/bin/xcrun --sdk macosx swift package fetch&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
