@@ -371,6 +371,6 @@ let people = try [People](node: someNode)
 
 #### Core Data
 
-If you wish to use `CoreData`, instead of subclassing `NSManagedObject`, subclass `NSMappableManagedObject`.
+If you wish to use `CoreData`, instead of subclassing `NSManagedObject`, subclass `ManagedObject`.
 
 Happy Mapping!

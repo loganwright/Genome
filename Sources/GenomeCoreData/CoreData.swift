@@ -1,4 +1,4 @@
-#if Xcode
+#if !os(Linux)
 
 import CoreData
     
