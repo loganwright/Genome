@@ -129,46 +129,46 @@ extension Map {
 // MARK: Setting
 
 extension Map {
-    internal func setToLastPath(_ newValue: Node?) throws {
+    internal func setToPath(_ newValue: Node?) throws {
         guard let (map, path) = superMap, let newValue = newValue else { return }
         map.node[path] = newValue
     }
 
-    internal func setToLastPath<T : NodeConvertible>(_ any: T?) throws {
-        try setToLastPath(any?.makeNode())
+    internal func setToPath<T : NodeConvertible>(_ any: T?) throws {
+        try setToPath(any?.makeNode())
     }
     
-    internal func setToLastPath<T : NodeConvertible>(_ any: [T]?) throws {
-        try setToLastPath(any?.makeNode())
+    internal func setToPath<T : NodeConvertible>(_ any: [T]?) throws {
+        try setToPath(any?.makeNode())
     }
     
-    internal func setToLastPath<T : NodeConvertible>(_ any: [[T]]?) throws {
+    internal func setToPath<T : NodeConvertible>(_ any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
             return try innerArray.makeNode()
         }
-        try setToLastPath(node.makeNode())
+        try setToPath(node.makeNode())
     }
     
-    internal func setToLastPath<T : NodeConvertible>(_ any: [String : T]?) throws {
+    internal func setToPath<T : NodeConvertible>(_ any: [String : T]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
             node[key] = try value.makeNode()
         }
-        try setToLastPath(Node(node))
+        try setToPath(Node(node))
     }
     
-    internal func setToLastPath<T : NodeConvertible>(_ any: [String : [T]]?) throws {
+    internal func setToPath<T : NodeConvertible>(_ any: [String : [T]]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
             node[key] = try value.makeNode()
         }
-        try setToLastPath(Node(node))
+        try setToPath(Node(node))
     }
     
-    internal func setToLastPath<T : NodeConvertible>(_ any: Set<T>?) throws {
-        try setToLastPath(any?.makeNode())
+    internal func setToPath<T : NodeConvertible>(_ any: Set<T>?) throws {
+        try setToPath(any?.makeNode())
     }
 }

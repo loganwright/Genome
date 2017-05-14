@@ -3,7 +3,7 @@
 public func ~> <T : NodeConvertible>(reference: T!, map: Map) throws {
     switch map.type {
     case .toNode:
-        try map.setToLastPath(reference)
+        try map.setToPath(reference)
     case .fromNode:
         break
     }
@@ -12,7 +12,7 @@ public func ~> <T : NodeConvertible>(reference: T!, map: Map) throws {
 public func ~> <T: NodeConvertible>(reference: [T]!, map: Map) throws {
     switch map.type {
     case .toNode:
-        try map.setToLastPath(reference)
+        try map.setToPath(reference)
     case .fromNode:
         break
     }
@@ -21,7 +21,7 @@ public func ~> <T: NodeConvertible>(reference: [T]!, map: Map) throws {
 public func ~> <T: NodeConvertible>(reference: [[T]]!, map: Map) throws {
     switch map.type {
     case .toNode:
-        try map.setToLastPath(reference)
+        try map.setToPath(reference)
     case .fromNode:
         break
     }
@@ -30,7 +30,7 @@ public func ~> <T: NodeConvertible>(reference: [[T]]!, map: Map) throws {
 public func ~> <T: NodeConvertible>(reference: [String : T]!, map: Map) throws {
     switch map.type {
     case .toNode:
-        try map.setToLastPath(reference)
+        try map.setToPath(reference)
     case .fromNode:
         break
     }
@@ -39,7 +39,7 @@ public func ~> <T: NodeConvertible>(reference: [String : T]!, map: Map) throws {
 public func ~> <T: NodeConvertible>(reference: [String : [T]]!, map: Map) throws {
     switch map.type {
     case .toNode:
-        try map.setToLastPath(reference)
+        try map.setToPath(reference)
     case .fromNode:
         break
     }
@@ -48,7 +48,7 @@ public func ~> <T: NodeConvertible>(reference: [String : [T]]!, map: Map) throws
 public func ~> <T : NodeConvertible>(reference: Set<T>!, map: Map) throws {
     switch map.type {
     case .toNode:
-        try map.setToLastPath(reference)
+        try map.setToPath(reference)
     case .fromNode:
         break
     }
