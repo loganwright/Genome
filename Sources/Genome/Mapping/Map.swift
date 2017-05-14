@@ -24,7 +24,9 @@ public final class Map: NodeBacked {
     // MARK: Private
 
     /// The last key accessed -- Used to reverse Node Operations
-    internal fileprivate(set) var lastPath: [PathIndex] = []
+    internal var lastPath: [PathIndex] {
+        return superMap?.path ?? []
+    }
     
     /// The last retrieved result.  Used in operators to set value
     internal fileprivate(set) var result: Node? {
@@ -81,11 +83,10 @@ public final class Map: NodeBacked {
         self.superMap = nil
     }
     
-    internal init(type: OperationType, context: Context, node: Node, lastPath: [PathIndex], result: Node?, superMap: Map, path: [PathIndex]) {
+    internal init(type: OperationType, context: Context, node: Node, result: Node?, superMap: Map, path: [PathIndex]) {
         self.type = type
         self.context = context
         self.node = node
-        self.lastPath = lastPath
         self.result = result
         self.superMap = (superMap, path)
     }
@@ -113,9 +114,8 @@ extension Map {
      :returns: returns an instance of self that can be passed to the mappable operator
      */
     public subscript(keys: [PathIndex]) -> Map {
-        lastPath = keys
         result = node[keys]
-        return Map(type: type, context: context, node: node, lastPath: keys, result: result, superMap: self, path: keys)
+        return Map(type: type, context: context, node: node, result: result, superMap: self, path: keys)
     }
 
     public subscript(path path: String) -> Map {
