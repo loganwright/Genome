@@ -170,74 +170,74 @@ class ToNodeOperatorTest: XCTestCase {
         let node = try goodBusiness.makeNode()
         // Basic type
         let name = try node["name"].unwrap().string.unwrap()
-        XCTAssert(name == "Good Business", "name is \(name) expected: Good Business")
+        XCTAssertEqual(name, "Good Business", "name is \(name) expected: Good Business")
         let foundedYear = node["foundedYear"]!.int
-        XCTAssert(foundedYear == 1987, "foundedYear is \(foundedYear) expected: 1987")
+        XCTAssertEqual(foundedYear, 1987, "foundedYear is \(foundedYear) expected: 1987")
         
         // Basic type array
         let locations = try node["locations"].unwrap()
-        XCTAssert(locations == self.locations, "locations is \(locations) expected: \(self.locations)")
+        XCTAssertEqual(locations, self.locations, "locations is \(locations) expected: \(self.locations)")
         let locationsOptional = node["locationsOptional"]
-        XCTAssert(locationsOptional == self.locations, "locationsOptional is \(locationsOptional) expected: \(self.locations)")
+        XCTAssertEqual(locationsOptional, self.locations, "locationsOptional is \(locationsOptional) expected: \(self.locations)")
         
         // Mappable
         let owner = try node["owner"].unwrap()
-        XCTAssert(owner == self.owner, "owner is \(owner) expected: \(self.owner)")
+        XCTAssertEqual(owner, self.owner, "owner is \(owner) expected: \(self.owner)")
         let ownerOptional = node["ownerOptional"]
-        XCTAssert(ownerOptional == self.owner, "ownerOptional is \(ownerOptional) expected: \(self.owner)")
+        XCTAssertEqual(ownerOptional, self.owner, "ownerOptional is \(ownerOptional) expected: \(self.owner)")
         
         // Mappable array
         let employees = try node["employees"].unwrap()
-        XCTAssert(employees == self.employees, "employees is \(employees) expected: \(self.employees)")
+        XCTAssertEqual(employees, self.employees, "employees is \(employees) expected: \(self.employees)")
         let employeesOptional = node["employeesOptional"]
-        XCTAssert(employeesOptional == self.employees, "employeesOptional is \(employees) expected: \(self.employees)")
+        XCTAssertEqual(employeesOptional, self.employees, "employeesOptional is \(employees) expected: \(self.employees)")
         
         // Mappable array of arrays
         let employeesArray = try node["employeesArray"].unwrap()
-        XCTAssert(employeesArray[0] == self.employeesArray[0], "employeesArray[0] is \(employeesArray[0]) expected: \(self.employeesArray[0])")
-        XCTAssert(employeesArray[1] == self.employeesArray[1], "employeesArray[1] is \(employeesArray[1]) expected: \(self.employeesArray[1])")
+        XCTAssertEqual(employeesArray[0], self.employeesArray[0], "employeesArray[0] is \(employeesArray[0]) expected: \(self.employeesArray[0])")
+        XCTAssertEqual(employeesArray[1], self.employeesArray[1], "employeesArray[1] is \(employeesArray[1]) expected: \(self.employeesArray[1])")
         let employeesOptionalArray = node["employeesOptionalArray"]
-        XCTAssert(employeesOptionalArray![0]! == self.employeesArray[0], "employeesOptionalArray[0] is \(employeesOptionalArray?[0]) expected: \(self.employeesArray[0])")
-        XCTAssert(employeesOptionalArray![1]! == self.employeesArray[1], "employeesOptionalArray[1] is \(employeesOptionalArray?[1]) expected: \(self.employeesArray[1])")
+        XCTAssertEqual(employeesOptionalArray![0]!, self.employeesArray[0], "employeesOptionalArray[0] is \(employeesOptionalArray?[0]) expected: \(self.employeesArray[0])")
+        XCTAssertEqual(employeesOptionalArray![1]!, self.employeesArray[1], "employeesOptionalArray[1] is \(employeesOptionalArray?[1]) expected: \(self.employeesArray[1])")
         
         // Mappable dictionary
         let employeesDictionary = try node["employeesDictionary"].unwrap()
-        XCTAssert(employeesDictionary["0"]! == self.employeesDictionary["0"]!,
+        XCTAssertEqual(employeesDictionary["0"]!, self.employeesDictionary["0"]!,
                   "employeesDictionary[\"0\"] is \(employeesDictionary["0"]!) expected: \(self.employeesDictionary["0"]!)")
-        XCTAssert(employeesDictionary["1"]! == self.employeesDictionary["1"]!,
+        XCTAssertEqual(employeesDictionary["1"]!, self.employeesDictionary["1"]!,
                   "employeesDictionary[\"1\"] is \(employeesDictionary["1"]!) expected: \(self.employeesDictionary[""]!)")
         let employeesOptionalDictionary = node["employeesOptionalDictionary"]
-        XCTAssert(employeesOptionalDictionary!["0"]! == self.employeesDictionary["0"]!,
+        XCTAssertEqual(employeesOptionalDictionary!["0"]!, self.employeesDictionary["0"]!,
                   "employeesOptionalDictionary[\"0\"] is \(employeesOptionalDictionary?["0"]!) expected: \(self.employeesDictionary["0"]!)")
-        XCTAssert(employeesOptionalDictionary!["1"]! == self.employeesDictionary["1"]!,
+        XCTAssertEqual(employeesOptionalDictionary!["1"]!, self.employeesDictionary["1"]!,
                   "employeesOptionalDictionary[\"1\"] is \(employeesOptionalDictionary?["1"]!) expected: \(self.employeesDictionary["1"]!)")
         
         // Mappable dictionary array
         let employeesDictionaryArray = try node["employeesDictionaryArray"].unwrap()
-        XCTAssert(employeesDictionaryArray["0"]! == self.employeesDictionaryArray["0"]!,
+        XCTAssertEqual(employeesDictionaryArray["0"]!, self.employeesDictionaryArray["0"]!,
                   "employeesDictionaryArray[\"0\"] is \(employeesDictionaryArray["0"]!) expected: \(self.employeesDictionaryArray["0"]!)")
-        XCTAssert(employeesDictionaryArray["1"]! == self.employeesDictionaryArray["1"]!,
+        XCTAssertEqual(employeesDictionaryArray["1"]!, self.employeesDictionaryArray["1"]!,
                   "employeesDictionaryArray[\"1\"] is \(employeesDictionaryArray["1"]!) expected: \(self.employeesDictionaryArray["1"]!)")
         let employeesOptionalDictionaryArray = node["employeesOptionalDictionaryArray"]
-        XCTAssert(employeesOptionalDictionaryArray!["0"]! == self.employeesDictionaryArray["0"]!,
+        XCTAssertEqual(employeesOptionalDictionaryArray!["0"]!, self.employeesDictionaryArray["0"]!,
                   "employeesOptionalDictionaryArray[\"0\"] is \(employeesOptionalDictionaryArray?["0"]!) expected: \(self.employeesDictionaryArray["0"]!)")
-        XCTAssert(employeesOptionalDictionaryArray!["1"]! == self.employeesDictionaryArray["1"]!,
+        XCTAssertEqual(employeesOptionalDictionaryArray!["1"]!, self.employeesDictionaryArray["1"]!,
                   "employeesOptionalDictionaryArray[\"1\"] is \(employeesOptionalDictionaryArray?["1"]!) expected: \(self.employeesDictionaryArray["1"]!)")
         
         // Mappable set
         // Temporarily commented out on linux because it's reordering array
         #if Xcode
         let employeesSet = try node["employeesSet"].unwrap()
-        XCTAssert(employeesSet == self.employeesSet,
+        XCTAssertEqual(employeesSet, self.employeesSet,
                   "employeesSet is \(employeesSet) expected: \(self.employeesSet)")
         let employeesOptionalSet = node["employeesOptionalSet"]
-        XCTAssert(employeesOptionalSet == self.employeesSet,
+        XCTAssertEqual(employeesOptionalSet, self.employeesSet,
                   "employeesOptionalSet is \(employeesOptionalSet) expected: \(self.employeesSet)")
         #endif
 
         // Nil
         let optionalNil = node["optionalNil"]
-        XCTAssertTrue(optionalNil == nil, "optionalNil is \(optionalNil) expected: nil")
+        XCTAssertNil(optionalNil)
         let optionalNotNil = node["optionalNotNil"]
         XCTAssertTrue(optionalNotNil != nil, "optionalNotNil is \(optionalNotNil) expected: \(node["optionalNotNil"])")
     }

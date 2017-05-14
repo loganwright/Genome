@@ -23,7 +23,7 @@ class PathIndexable: XCTestCase {
         let array: Node = ["one",
                            "two",
                            "three"]
-        XCTAssert(array[1] == "two")
+        XCTAssertEqual(array[1], "two")
     }
 
     func testString() {
@@ -33,7 +33,7 @@ class PathIndexable: XCTestCase {
 
     func testStringSequenceObject() {
         let ob: Node = ["key" : ["path" : "found me!"]]
-        XCTAssert(ob["key", "path"] == "found me!")
+        XCTAssertEqual(ob["key", "path"], "found me!")
     }
 
     func testStringSequenceArray() {
@@ -42,18 +42,18 @@ class PathIndexable: XCTestCase {
                              ["a" : 2],
                              ["a" : 3]]
         let collection = obArray["a"]
-        XCTAssert(collection == [0,1,2,3])
+        XCTAssertEqual(collection, [0,1,2,3])
     }
 
     func testIntSequence() {
         let inner: Node = ["...",
                            "found me!"]
         let outer: Node = [inner]
-        XCTAssert(outer[0, 1] == "found me!")
+        XCTAssertEqual(outer[0, 1], "found me!")
     }
 
     func testMixed() {
         let mixed: Node = ["one" : ["a", "b", "c"]]
-        XCTAssert(mixed["one", 1] == "b")
+        XCTAssertEqual(mixed["one", 1], "b")
     }
 }

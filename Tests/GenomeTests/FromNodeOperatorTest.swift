@@ -115,31 +115,31 @@ class FromNodeOperatorTestBasic: XCTestCase {
     func testString() throws {
         var string = ""
         try string <~ map["string"]
-        XCTAssert(string == "pass")
+        XCTAssertEqual(string, "pass")
     }
 
     func testStringOptional() throws {
         var string: String? = nil
         try string <~ map["string"]
-        XCTAssert(string == "pass")
+        XCTAssertEqual(string, "pass")
     }
 
     func testStringsArray() throws {
         var strings: [String] = []
         try strings <~ map["strings"]
-        XCTAssert(strings == ["one", "two", "three"])
+        XCTAssertEqual(strings, ["one", "two", "three"])
     }
 
     func testStringsArrayOptional() throws {
         var strings: [String]? = nil
         try strings <~ map["strings"]
-        XCTAssert(strings! == ["one", "two", "three"])
+        XCTAssertEqual(strings!, ["one", "two", "three"])
     }
 
     func testInt() throws {
         var int = 0
         try int <~ map["int"]
-        XCTAssert(int == 272)
+        XCTAssertEqual(int, 272)
     }
 
     func testEmptyInt() throws {
@@ -173,45 +173,45 @@ class FromNodeOperatorTestMapped: XCTestCase {
     func testMappableObject() throws {
         var person: Person = Person()
         try person <~ map["person"]
-        XCTAssert(person == joeObject)
+        XCTAssertEqual(person, joeObject)
         
         var optionalPerson: Person?
         try optionalPerson <~ map["person"]
-        XCTAssert(optionalPerson! == joeObject)
+        XCTAssertEqual(optionalPerson!, joeObject)
         
         var emptyPerson: Person?
         try emptyPerson <~ map["i-dont-exist"]
-        XCTAssert(emptyPerson == nil)
+        XCTAssertEqual(emptyPerson, nil)
     }
     
     func testMappableArray() throws {
         var people: [Person] = []
         try people <~ map["people"]
-        XCTAssert(people ==  [joeObject, janeObject])
+        XCTAssertEqual(people,  [joeObject, janeObject])
         
         var optionalPeople: [Person]?
         try optionalPeople <~ map["people"]
-        XCTAssert(optionalPeople! ==  [joeObject, janeObject])
+        XCTAssertEqual(optionalPeople!,  [joeObject, janeObject])
         
         var emptyPersons: [Person]?
         try emptyPersons <~ map["i_dont_exist"]
-        XCTAssert(emptyPersons == nil)
+        XCTAssertNil(emptyPersons)
     }
     
     func testMappableArrayOfArrays() throws {
         var orderedGroups: [[Person]] = []
         try orderedGroups <~ map["ordered_groups"]
-        XCTAssert(orderedGroups[0] ==  [joeObject, justinObject, philObject])
-        XCTAssert(orderedGroups[1] ==  [janeObject])
+        XCTAssertEqual(orderedGroups[0],  [joeObject, justinObject, philObject])
+        XCTAssertEqual(orderedGroups[1],  [janeObject])
         
         var optionalOrderedGroups: [[Person]]?
         try optionalOrderedGroups <~ map["ordered_groups"]
-        XCTAssert(optionalOrderedGroups![0] ==  [joeObject, justinObject, philObject])
-        XCTAssert(optionalOrderedGroups![1] ==  [janeObject])
+        XCTAssertEqual(optionalOrderedGroups![0],  [joeObject, justinObject, philObject])
+        XCTAssertEqual(optionalOrderedGroups![1],  [janeObject])
         
         var emptyOrderedGroups: [[Person]]?
         try emptyOrderedGroups <~ map["i_dont_exist"]
-        XCTAssert(emptyOrderedGroups == nil)
+        XCTAssertNil(emptyOrderedGroups)
     }
     
     func testMappableDictionary() throws {
@@ -222,15 +222,15 @@ class FromNodeOperatorTestMapped: XCTestCase {
         
         var relationships: [String : Person] = [:]
         try relationships <~ map["relationships"]
-        XCTAssert(relationships == expectedRelationships)
+        XCTAssertEqual(relationships, expectedRelationships)
         
         var optionalRelationships: [String : Person]?
         try optionalRelationships <~ map["relationships"]
-        XCTAssert(optionalRelationships! == expectedRelationships)
+        XCTAssertEqual(optionalRelationships!, expectedRelationships)
         
         var emptyDictionary: [String : Person]?
         try emptyDictionary <~ map["i_dont_exist"]
-        XCTAssert(emptyDictionary == nil)
+        XCTAssertNil(emptyDictionary)
     }
     
     func testMappableDictionaryOfArrays() throws {
@@ -240,18 +240,18 @@ class FromNodeOperatorTestMapped: XCTestCase {
         try optionalGroups <~ map["groups"]
         
         for groupsArray in [groups, try optionalGroups.unwrap()] {
-            XCTAssert(groupsArray.count == 2)
+            XCTAssertEqual(groupsArray.count, 2)
             
             let boys = try groupsArray["boys"].unwrap()
-            XCTAssert(boys ==  [joeObject, justinObject, philObject])
+            XCTAssertEqual(boys,  [joeObject, justinObject, philObject])
             
             let girls = try groupsArray["girls"].unwrap()
-            XCTAssert(girls ==  [janeObject])
+            XCTAssertEqual(girls,  [janeObject])
         }
         
         var emptyDictionaryOfArrays: [String : [Person]]?
         try emptyDictionaryOfArrays <~ map["i_dont_exist"]
-        XCTAssert(emptyDictionaryOfArrays == nil)
+        XCTAssertNil(emptyDictionaryOfArrays)
     }
     
     func testMappableSet() throws {
@@ -261,19 +261,19 @@ class FromNodeOperatorTestMapped: XCTestCase {
         try optionalPeople <~ map["duplicated_people"]
         
         for peopleSet in [people, try optionalPeople.unwrap()] {
-            XCTAssert(peopleSet.count == 2)
+            XCTAssertEqual(peopleSet.count, 2)
             XCTAssert(peopleSet.contains(joeObject))
             XCTAssert(peopleSet.contains(janeObject))
         }
         
         var singleValueToSet: Set<Person> = Set<Person>()
         try singleValueToSet <~ map["person"]
-        XCTAssert(singleValueToSet.count == 1)
+        XCTAssertEqual(singleValueToSet.count, 1)
         XCTAssert(singleValueToSet.contains(joeObject))
         
         var emptyPersons: [Person]?
         try emptyPersons <~ map["i_dont_exist"]
-        XCTAssert(emptyPersons == nil)
+        XCTAssertNil(emptyPersons)
     }
     
 }

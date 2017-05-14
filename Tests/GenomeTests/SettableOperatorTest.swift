@@ -37,52 +37,52 @@ class SettableOperatorTest: XCTestCase {
 
     func testBasicTypes() throws {
         let int: Int = try map.extract("int")
-        XCTAssert(int == 272)
+        XCTAssertEqual(int, 272)
         
         let optionalInt: Int? = try map.extract("int")
-        XCTAssert(optionalInt! == 272)
+        XCTAssertEqual(optionalInt!, 272)
         
         let strings: [String] = try map.extract("strings")
-        XCTAssert(strings == ["one", "two", "three"])
+        XCTAssertEqual(strings, ["one", "two", "three"])
         
         let optionalStrings: [String]? = try map.extract("strings")
-        XCTAssert(optionalStrings ?? [] == ["one", "two", "three"])
+        XCTAssertEqual(optionalStrings ?? [], ["one", "two", "three"])
         
         let stringInt: String = try map.extract("int") { (nodeValue: Int) in
                 return "\(nodeValue)"
         }
-        XCTAssert(stringInt == "272")
+        XCTAssertEqual(stringInt, "272")
         
         let emptyInt: Int? = try map.extract("i_dont_exist")
-        XCTAssert(emptyInt == nil)
+        XCTAssertNil(emptyInt)
         
         let emptyStrings: [String]? = try map.extract("i_dont_exist")
-        XCTAssert(emptyStrings == nil)
+        XCTAssertNil(emptyStrings)
     }
     
     func testMappableObject() throws {
         let person: Person = try map.extract("person")
-        XCTAssert(person == joeObject)
+        XCTAssertEqual(person, joeObject)
         
         let optionalPerson: Person? = try map.extract("person")
-        XCTAssert(optionalPerson == joeObject)
+        XCTAssertEqual(optionalPerson, joeObject)
         
         let emptyPerson: Person? = try map.extract("i_dont_exist")
-        XCTAssert(emptyPerson == nil)
+        XCTAssertNil(emptyPerson)
     }
     
     func testMappableArray() throws {
         let people: [Person] = try map.extract("people")
-        XCTAssert(people == [joeObject, janeObject])
+        XCTAssertEqual(people, [joeObject, janeObject])
         
         let optionalPeople: [Person]? = try map.extract("people")
-        XCTAssert(optionalPeople! == [joeObject, janeObject])
+        XCTAssertEqual(optionalPeople!, [joeObject, janeObject])
         
         let singleValueToArray: [Person] = try map.extract("person")
-        XCTAssert(singleValueToArray == [joeObject])
+        XCTAssertEqual(singleValueToArray, [joeObject])
         
         let emptyPersons: [Person]? = try map.extract("i_dont_exist")
-        XCTAssert(emptyPersons == nil)
+        XCTAssertNil(emptyPersons)
     }
     
     func testMappableArrayOfArrays() throws {
@@ -90,21 +90,21 @@ class SettableOperatorTest: XCTestCase {
         let optionalOrderedGroups: [[Person]]? = try map.extract("ordered_groups")
         
         for orderGroupsArray in [orderedGroups, try optionalOrderedGroups.unwrap()] {
-            XCTAssert(orderGroupsArray.count == 2)
+            XCTAssertEqual(orderGroupsArray.count, 2)
             
             let firstGroup = orderGroupsArray[0]
-            XCTAssert(firstGroup == [joeObject, justinObject, philObject])
+            XCTAssertEqual(firstGroup, [joeObject, justinObject, philObject])
             
             let secondGroup = orderGroupsArray[1]
-            XCTAssert(secondGroup == [janeObject])
+            XCTAssertEqual(secondGroup, [janeObject])
         }
         
         let arrayValueToArrayOfArrays: [[Person]] = try map.extract("people")
-        XCTAssert(arrayValueToArrayOfArrays.count == 2)
-        XCTAssert(arrayValueToArrayOfArrays.first! == [joeObject])
+        XCTAssertEqual(arrayValueToArrayOfArrays.count, 2)
+        XCTAssertEqual(arrayValueToArrayOfArrays.first!, [joeObject])
         
         let emptyArrayOfArrays: [[Person]]? = try map.extract("i_dont_exist")
-        XCTAssert(emptyArrayOfArrays == nil)
+        XCTAssertNil(emptyArrayOfArrays)
     }
     
     func testMappableDictionary() throws {
@@ -114,13 +114,13 @@ class SettableOperatorTest: XCTestCase {
         ]
         
         let relationships: [String : Person] = try map.extract("relationships")
-        XCTAssert(relationships == expectedRelationships)
+        XCTAssertEqual(relationships, expectedRelationships)
         
         let optionalRelationships: [String : Person]? = try map.extract("relationships")
-        XCTAssert(optionalRelationships! == expectedRelationships)
+        XCTAssertEqual(optionalRelationships!, expectedRelationships)
         
         let emptyDictionary: [String : Person]? = try map.extract("i_dont_exist")
-        XCTAssert(emptyDictionary == nil)
+        XCTAssertNil(emptyDictionary)
     }
     
     func testMappableDictionaryOfArrays() throws {
@@ -128,17 +128,17 @@ class SettableOperatorTest: XCTestCase {
         let optionalGroups: [String : [Person]]? = try map.extract("groups")
         
         for groupsArray in [groups, try optionalGroups.unwrap()] {
-            XCTAssert(groupsArray.count == 2)
+            XCTAssertEqual(groupsArray.count, 2)
             
             let boys = try groupsArray["boys"].unwrap()
-            XCTAssert(boys == [joeObject, justinObject, philObject])
+            XCTAssertEqual(boys, [joeObject, justinObject, philObject])
             
             let girls = try groupsArray["girls"].unwrap()
-            XCTAssert(girls == [janeObject])
+            XCTAssertEqual(girls, [janeObject])
         }
         
         let emptyDictionaryOfArrays: [String : [Person]]? = try map.extract("i_dont_exist")
-        XCTAssert(emptyDictionaryOfArrays == nil)
+        XCTAssertNil(emptyDictionaryOfArrays)
     }
     
     func testMappableSet() throws {
@@ -146,17 +146,17 @@ class SettableOperatorTest: XCTestCase {
         let optionalPeople: Set<Person>? = try map.extract("duplicated_people")
         
         for peopleSet in [people, try optionalPeople.unwrap()] {
-            XCTAssert(peopleSet.count == 2)
+            XCTAssertEqual(peopleSet.count, 2)
             XCTAssert(peopleSet.contains(joeObject))
             XCTAssert(peopleSet.contains(janeObject))
         }
         
         let singleValueToSet: Set<Person> = try map.extract("person")
-        XCTAssert(singleValueToSet.count == 1)
+        XCTAssertEqual(singleValueToSet.count, 1)
         XCTAssert(singleValueToSet.contains(joeObject))
         
         let emptyPersons: [Person]? = try map.extract("i_dont_exist")
-        XCTAssert(emptyPersons == nil)
+        XCTAssertNil(emptyPersons)
     }
 
     func testDictionaryUnableToConvert() {
@@ -186,8 +186,8 @@ class SettableOperatorTest: XCTestCase {
             let _: Bool = try map.extract("int")
             XCTFail("Incorrect type should throw error")
         } catch let NodeError.unableToConvert(node: node, expected: expected) {
-            XCTAssert(node == 272)
-            XCTAssert(expected == "Bool")
+            XCTAssertEqual(node, 272)
+            XCTAssertEqual(expected, "Bool")
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }
@@ -230,8 +230,8 @@ class SettableOperatorTest: XCTestCase {
             }
             XCTFail("Incorrect type should throw error")
         }  catch let NodeError.unableToConvert(node: node, expected: expected) {
-            XCTAssert(node == 272)
-            XCTAssert(expected == "Bool")
+            XCTAssertEqual(node, 272)
+            XCTAssertEqual(expected, "Bool")
         } catch {
             XCTFail("Incorrect Error: \(error) Expected: \(NodeError.unableToConvert)")
         }

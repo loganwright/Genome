@@ -24,11 +24,11 @@ class DictionaryKeyPathTests: XCTestCase {
         var node = TestDictionary
 
         let value = node["one", "two"]?.string
-        XCTAssert(value == "Found me!")
+        XCTAssertEqual(value, "Found me!")
 
         node["path", "to", "new", "value"] = "Hello!"
         let setVal = node["path", "to", "new", "value"]
-        XCTAssert(setVal == "Hello!")
+        XCTAssertEqual(setVal, "Hello!")
     }
     
 }
