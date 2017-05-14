@@ -34,6 +34,8 @@ public final class Map: NodeBacked {
             }
         }
     }
+    
+    internal let superMap: (map: Map, path: [PathIndex])?
 
     // MARK: Initialization
 
@@ -59,6 +61,7 @@ public final class Map: NodeBacked {
         
         self.node = node
         self.context = context
+        self.superMap = nil
     }
 
     public convenience init(_ node: Node) {
@@ -75,6 +78,16 @@ public final class Map: NodeBacked {
         
         self.node = [:]
         self.context = EmptyNode
+        self.superMap = nil
+    }
+    
+    internal init(type: OperationType, context: Context, node: Node, lastPath: [PathIndex], result: Node?, superMap: Map, path: [PathIndex]) {
+        self.type = type
+        self.context = context
+        self.node = node
+        self.lastPath = lastPath
+        self.result = result
+        self.superMap = (superMap, path)
     }
 }
 
@@ -102,7 +115,7 @@ extension Map {
     public subscript(keys: [PathIndex]) -> Map {
         lastPath = keys
         result = node[keys]
-        return self
+        return Map(type: type, context: context, node: node, lastPath: keys, result: result, superMap: self, path: keys)
     }
 
     public subscript(path path: String) -> Map {
@@ -117,8 +130,8 @@ extension Map {
 
 extension Map {
     internal func setToLastPath(_ newValue: Node?) throws {
-        guard let newValue = newValue else { return }
-        node[lastPath] = newValue
+        guard let (map, path) = superMap, let newValue = newValue else { return }
+        map.node[path] = newValue
     }
 
     internal func setToLastPath<T : NodeConvertible>(_ any: T?) throws {
