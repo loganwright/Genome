@@ -22,11 +22,6 @@ public final class Map: NodeBacked {
     public var node: Node
     
     // MARK: Private
-
-    /// The last key accessed -- Used to reverse Node Operations
-    internal var lastPath: [PathIndex] {
-        return superMap?.path ?? []
-    }
     
     /// The last retrieved result.  Used in operators to set value
     internal fileprivate(set) var result: Node? {
@@ -38,6 +33,11 @@ public final class Map: NodeBacked {
     }
     
     internal let superMap: (map: Map, path: [PathIndex])?
+    
+    /// The last key accessed -- Used to reverse Node Operations
+    internal var path: [PathIndex] {
+        return superMap?.path ?? []
+    }
 
     // MARK: Initialization
 
