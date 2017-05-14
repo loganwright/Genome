@@ -58,32 +58,32 @@ class ToNodeOperatorTest: XCTestCase {
         var optionalNil: String?
         var optionalNotNil: String? = "not nil"
         
-        init(map: Map) {
-            name = try! map.extract("name")
-            foundedYear = try! map.extract("founded_in")
+        init(map: Map) throws {
+            name = try map.extract("name")
+            foundedYear = try map.extract("founded_in")
             
-            locations = try! map.extract("locations")
-            locationsOptional = try! map.extract("locations")
+            locations = try map.extract("locations")
+            locationsOptional = try map.extract("locations")
             
-            let ownerrr: Employee = try! map.extract("owner")
+            let ownerrr: Employee = try map.extract("owner")
             print("Ownerer: \(ownerrr)")
-            owner = try! map.extract("owner")
-            ownerOptional = try! map.extract("owner")
+            owner = try map.extract("owner")
+            ownerOptional = try map.extract("owner")
             
-            employees = try! map.extract("employees")
-            employeesOptional = try! map.extract("employees")
+            employees = try map.extract("employees")
+            employeesOptional = try map.extract("employees")
             
-            employeesArray = try! map.extract("employeesArray")
-            employeesOptionalArray = try! map.extract("employeesArray")
+            employeesArray = try map.extract("employeesArray")
+            employeesOptionalArray = try map.extract("employeesArray")
             
-            employeesDictionary = try! map.extract("employeesDictionary")
-            employeesOptionalDictionary = try! map.extract("employeesDictionary")
+            employeesDictionary = try map.extract("employeesDictionary")
+            employeesOptionalDictionary = try map.extract("employeesDictionary")
             
-            employeesDictionaryArray = try! map.extract("employeesDictionaryArray")
-            employeesOptionalDictionaryArray = try! map.extract("employeesDictionaryArray")
+            employeesDictionaryArray = try map.extract("employeesDictionaryArray")
+            employeesOptionalDictionaryArray = try map.extract("employeesDictionaryArray")
             
-            employeesSet = try! map.extract("employees")
-            employeesOptionalSet = try! map.extract("employees")
+            employeesSet = try map.extract("employees")
+            employeesOptionalSet = try map.extract("employees")
         }
         
         func sequence(_ map: Map) throws -> Void {
@@ -165,10 +165,9 @@ class ToNodeOperatorTest: XCTestCase {
         "employeesSet" : self.employeesSet
     ]
     
-    lazy var goodBusiness: Business = try! Business(node: self.businessNode)
-    
-    func testMapping() {
-        let node = try! goodBusiness.makeNode()
+    func testMapping() throws {
+        let goodBusiness = try Business(node: businessNode)
+        let node = try goodBusiness.makeNode()
         // Basic type
         let name = node["name"]!.string!
         XCTAssert(name == "Good Business", "name is \(name) expected: Good Business")
