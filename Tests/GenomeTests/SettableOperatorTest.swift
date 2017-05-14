@@ -89,7 +89,7 @@ class SettableOperatorTest: XCTestCase {
         let orderedGroups: [[Person]] = try map.extract("ordered_groups")
         let optionalOrderedGroups: [[Person]]? = try map.extract("ordered_groups")
         
-        for orderGroupsArray in [orderedGroups, optionalOrderedGroups!] {
+        for orderGroupsArray in [orderedGroups, try optionalOrderedGroups.unwrap()] {
             XCTAssert(orderGroupsArray.count == 2)
             
             let firstGroup = orderGroupsArray[0]
@@ -127,13 +127,13 @@ class SettableOperatorTest: XCTestCase {
         let groups: [String : [Person]] = try map.extract("groups")
         let optionalGroups: [String : [Person]]? = try map.extract("groups")
         
-        for groupsArray in [groups, optionalGroups!] {
+        for groupsArray in [groups, try optionalGroups.unwrap()] {
             XCTAssert(groupsArray.count == 2)
             
-            let boys = groupsArray["boys"]!
+            let boys = try groupsArray["boys"].unwrap()
             XCTAssert(boys == [joeObject, justinObject, philObject])
             
-            let girls = groupsArray["girls"]!
+            let girls = try groupsArray["girls"].unwrap()
             XCTAssert(girls == [janeObject])
         }
         
@@ -145,7 +145,7 @@ class SettableOperatorTest: XCTestCase {
         let people: Set<Person> = try map.extract("duplicated_people")
         let optionalPeople: Set<Person>? = try map.extract("duplicated_people")
         
-        for peopleSet in [people, optionalPeople!] {
+        for peopleSet in [people, try optionalPeople.unwrap()] {
             XCTAssert(peopleSet.count == 2)
             XCTAssert(peopleSet.contains(joeObject))
             XCTAssert(peopleSet.contains(janeObject))

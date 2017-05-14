@@ -239,13 +239,13 @@ class FromNodeOperatorTestMapped: XCTestCase {
         var optionalGroups: [String : [Person]]?
         try optionalGroups <~ map["groups"]
         
-        for groupsArray in [groups, optionalGroups!] {
+        for groupsArray in [groups, try optionalGroups.unwrap()] {
             XCTAssert(groupsArray.count == 2)
             
-            let boys = groupsArray["boys"]!
+            let boys = try groupsArray["boys"].unwrap()
             XCTAssert(boys ==  [joeObject, justinObject, philObject])
             
-            let girls = groupsArray["girls"]!
+            let girls = try groupsArray["girls"].unwrap()
             XCTAssert(girls ==  [janeObject])
         }
         
@@ -260,7 +260,7 @@ class FromNodeOperatorTestMapped: XCTestCase {
         var optionalPeople: Set<Person>?
         try optionalPeople <~ map["duplicated_people"]
         
-        for peopleSet in [people, optionalPeople!] {
+        for peopleSet in [people, try optionalPeople.unwrap()] {
             XCTAssert(peopleSet.count == 2)
             XCTAssert(peopleSet.contains(joeObject))
             XCTAssert(peopleSet.contains(janeObject))

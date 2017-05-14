@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22EF6F9A1EC8A11600ABC402 /* Optional+unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF6F991EC8A11600ABC402 /* Optional+unwrap.swift */; };
 		OBJ_100 /* NodeBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* NodeBacked.swift */; };
 		OBJ_101 /* Bool+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Bool+Convertible.swift */; };
 		OBJ_102 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Context.swift */; };
@@ -243,6 +244,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22EF6F991EC8A11600ABC402 /* Optional+unwrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+unwrap.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* PathIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathIndexable.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymorphic.swift; sourceTree = "<group>"; };
 		OBJ_13 /* String+Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Polymorphic.swift"; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				OBJ_66 /* SettableOperatorTest.swift */,
 				OBJ_67 /* ToNodeOperatorTest.swift */,
 				OBJ_68 /* TransformTests.swift */,
+				22EF6F991EC8A11600ABC402 /* Optional+unwrap.swift */,
 			);
 			name = GenomeTests;
 			path = Tests/GenomeTests;
@@ -822,6 +825,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				22EF6F9A1EC8A11600ABC402 /* Optional+unwrap.swift in Sources */,
 				OBJ_202 /* BasicTypes.swift in Sources */,
 				OBJ_203 /* DictionaryKeyPathTests.swift in Sources */,
 				OBJ_204 /* FromNodeOperatorTest.swift in Sources */,
