@@ -22,8 +22,7 @@ class TransformTest: XCTestCase {
     func testTransform() throws {
         let map = Map(node: testNode)
         var settableString: String? = nil
-        try settableString <~ map["hello"]
-            .transformFromNode { self.stringToString(input: $0) }
+        try settableString <~ map["hello"].transformFromNode { self.stringToString(input: $0) }
         XCTAssertEqual(settableString, "modified: world")
         
         let nonOptionalString = ""
@@ -35,6 +34,6 @@ class TransformTest: XCTestCase {
     }
 
     func optStringToString(input: String?) -> String {
-        return "modified: \(input)"
+        return "modified: \(input as Any)"
     }
 }

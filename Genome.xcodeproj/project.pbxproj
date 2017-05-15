@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22EF6F9A1EC8A11600ABC402 /* Optional+unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF6F991EC8A11600ABC402 /* Optional+unwrap.swift */; };
+		22EF6F9C1EC8A6FD00ABC402 /* Overloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF6F9B1EC8A6FD00ABC402 /* Overloads.swift */; };
 		OBJ_100 /* NodeBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* NodeBacked.swift */; };
 		OBJ_101 /* Bool+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Bool+Convertible.swift */; };
 		OBJ_102 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Context.swift */; };
@@ -245,6 +246,7 @@
 
 /* Begin PBXFileReference section */
 		22EF6F991EC8A11600ABC402 /* Optional+unwrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+unwrap.swift"; sourceTree = "<group>"; };
+		22EF6F9B1EC8A6FD00ABC402 /* Overloads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Overloads.swift; sourceTree = "<group>"; };
 		OBJ_10 /* PathIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathIndexable.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymorphic.swift; sourceTree = "<group>"; };
 		OBJ_13 /* String+Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Polymorphic.swift"; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 				OBJ_67 /* ToNodeOperatorTest.swift */,
 				OBJ_68 /* TransformTests.swift */,
 				22EF6F991EC8A11600ABC402 /* Optional+unwrap.swift */,
+				22EF6F9B1EC8A6FD00ABC402 /* Overloads.swift */,
 			);
 			name = GenomeTests;
 			path = Tests/GenomeTests;
@@ -832,6 +835,7 @@
 				OBJ_205 /* NodeDataTypeTest.swift in Sources */,
 				OBJ_206 /* PathIndexable.swift in Sources */,
 				OBJ_207 /* SettableOperatorTest.swift in Sources */,
+				22EF6F9C1EC8A6FD00ABC402 /* Overloads.swift in Sources */,
 				OBJ_208 /* ToNodeOperatorTest.swift in Sources */,
 				OBJ_209 /* TransformTests.swift in Sources */,
 			);

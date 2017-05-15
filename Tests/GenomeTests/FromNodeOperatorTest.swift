@@ -133,7 +133,7 @@ class FromNodeOperatorTestBasic: XCTestCase {
     func testStringsArrayOptional() throws {
         var strings: [String]? = nil
         try strings <~ map["strings"]
-        XCTAssertEqual(strings!, ["one", "two", "three"])
+        XCTAssert(strings == ["one", "two", "three"])
     }
 
     func testInt() throws {
@@ -177,7 +177,7 @@ class FromNodeOperatorTestMapped: XCTestCase {
         
         var optionalPerson: Person?
         try optionalPerson <~ map["person"]
-        XCTAssertEqual(optionalPerson!, joeObject)
+        XCTAssertEqual(optionalPerson, joeObject)
         
         var emptyPerson: Person?
         try emptyPerson <~ map["i-dont-exist"]
@@ -191,7 +191,7 @@ class FromNodeOperatorTestMapped: XCTestCase {
         
         var optionalPeople: [Person]?
         try optionalPeople <~ map["people"]
-        XCTAssertEqual(optionalPeople!,  [joeObject, janeObject])
+        XCTAssert(optionalPeople == [joeObject, janeObject])
         
         var emptyPersons: [Person]?
         try emptyPersons <~ map["i_dont_exist"]
@@ -206,8 +206,8 @@ class FromNodeOperatorTestMapped: XCTestCase {
         
         var optionalOrderedGroups: [[Person]]?
         try optionalOrderedGroups <~ map["ordered_groups"]
-        XCTAssertEqual(optionalOrderedGroups![0],  [joeObject, justinObject, philObject])
-        XCTAssertEqual(optionalOrderedGroups![1],  [janeObject])
+        XCTAssert(optionalOrderedGroups?[0] == [joeObject, justinObject, philObject])
+        XCTAssert(optionalOrderedGroups?[1] == [janeObject])
         
         var emptyOrderedGroups: [[Person]]?
         try emptyOrderedGroups <~ map["i_dont_exist"]
@@ -226,7 +226,7 @@ class FromNodeOperatorTestMapped: XCTestCase {
         
         var optionalRelationships: [String : Person]?
         try optionalRelationships <~ map["relationships"]
-        XCTAssertEqual(optionalRelationships!, expectedRelationships)
+        XCTAssert(optionalRelationships == expectedRelationships)
         
         var emptyDictionary: [String : Person]?
         try emptyDictionary <~ map["i_dont_exist"]

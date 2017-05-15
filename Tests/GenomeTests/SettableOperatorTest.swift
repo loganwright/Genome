@@ -40,7 +40,7 @@ class SettableOperatorTest: XCTestCase {
         XCTAssertEqual(int, 272)
         
         let optionalInt: Int? = try map.extract("int")
-        XCTAssertEqual(optionalInt!, 272)
+        XCTAssertEqual(optionalInt, 272)
         
         let strings: [String] = try map.extract("strings")
         XCTAssertEqual(strings, ["one", "two", "three"])
@@ -76,7 +76,7 @@ class SettableOperatorTest: XCTestCase {
         XCTAssertEqual(people, [joeObject, janeObject])
         
         let optionalPeople: [Person]? = try map.extract("people")
-        XCTAssertEqual(optionalPeople!, [joeObject, janeObject])
+        XCTAssert(optionalPeople == [joeObject, janeObject])
         
         let singleValueToArray: [Person] = try map.extract("person")
         XCTAssertEqual(singleValueToArray, [joeObject])
@@ -101,7 +101,7 @@ class SettableOperatorTest: XCTestCase {
         
         let arrayValueToArrayOfArrays: [[Person]] = try map.extract("people")
         XCTAssertEqual(arrayValueToArrayOfArrays.count, 2)
-        XCTAssertEqual(arrayValueToArrayOfArrays.first!, [joeObject])
+        XCTAssert(arrayValueToArrayOfArrays.first == [joeObject])
         
         let emptyArrayOfArrays: [[Person]]? = try map.extract("i_dont_exist")
         XCTAssertNil(emptyArrayOfArrays)
@@ -117,7 +117,7 @@ class SettableOperatorTest: XCTestCase {
         XCTAssertEqual(relationships, expectedRelationships)
         
         let optionalRelationships: [String : Person]? = try map.extract("relationships")
-        XCTAssertEqual(optionalRelationships!, expectedRelationships)
+        XCTAssert(optionalRelationships == expectedRelationships)
         
         let emptyDictionary: [String : Person]? = try map.extract("i_dont_exist")
         XCTAssertNil(emptyDictionary)
