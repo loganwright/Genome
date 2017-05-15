@@ -6,13 +6,13 @@
 //
 //
 
+enum OptionalError: Swift.Error {
+    case missingValue
+}
+
 extension Optional {
-    enum Error: Swift.Error {
-        case missingValue
-    }
-    
     func unwrap() throws -> Wrapped {
-        guard let value = self else { throw Error.missingValue }
+        guard let value = self else { throw OptionalError.missingValue }
         return value
     }
 }
