@@ -24,12 +24,8 @@ public final class Map: NodeBacked {
     // MARK: Private
     
     /// The last retrieved result.  Used in operators to set value
-    internal fileprivate(set) var result: Node? {
-        didSet {
-            if let unwrapped = result, unwrapped.isNull {
-                result = nil
-            }
-        }
+    internal var result: Node? {
+        return node[path]
     }
     
     internal let superMap: (map: Map, path: [PathIndex])?
@@ -83,11 +79,10 @@ public final class Map: NodeBacked {
         self.superMap = nil
     }
     
-    internal init(type: OperationType, context: Context, node: Node, result: Node?, superMap: Map, path: [PathIndex]) {
+    internal init(type: OperationType, context: Context, node: Node, superMap: Map, path: [PathIndex]) {
         self.type = type
         self.context = context
         self.node = node
-        self.result = result
         self.superMap = (superMap, path)
     }
 }
@@ -114,8 +109,7 @@ extension Map {
      :returns: returns an instance of self that can be passed to the mappable operator
      */
     public subscript(keys: [PathIndex]) -> Map {
-        result = node[keys]
-        return Map(type: type, context: context, node: node, result: result, superMap: self, path: keys)
+        return Map(type: type, context: context, node: node, superMap: self, path: keys)
     }
 
     public subscript(path path: String) -> Map {
