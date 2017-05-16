@@ -23,9 +23,10 @@ public final class Map: NodeBacked {
     
     // MARK: Private
     
+    /// The parent map along with this map's relative path.
     internal let superMap: (map: Map, path: [PathIndex])?
     
-    /// The last key accessed -- Used to reverse Node Operations
+    /// The path relative to the parent.
     internal var path: [PathIndex] {
         return superMap?.path ?? []
     }
@@ -74,6 +75,9 @@ public final class Map: NodeBacked {
         self.superMap = nil
     }
     
+    /**
+     An initializer that takes a superMap and a relative path.
+     */
     internal init(type: OperationType, context: Context, node: Node, superMap: Map, path: [PathIndex]) {
         self.type = type
         self.context = context
@@ -106,7 +110,7 @@ extension Map {
     public subscript(keys: [PathIndex]) -> Map {
         return Map(type: type, context: context, node: node[keys] ?? .null, superMap: self, path: keys)
     }
-
+    
     public subscript(path path: String) -> Map {
         let components = path.characters
             .split(separator: ".")
