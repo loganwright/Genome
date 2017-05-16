@@ -176,7 +176,7 @@ public func <~ <T, NodeInputType: NodeConvertible>
 
     switch rhs.map.type {
     case .fromNode:
-        try lhs = rhs.transform(rhs.map.result)
+        try lhs = rhs.transform(rhs.map.node)
     case .toNode:
         break
     }

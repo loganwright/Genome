@@ -63,7 +63,7 @@ public func <~ <T: NodeInitializable>(reference: inout T, map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -72,7 +72,7 @@ public func <~ <T: NodeInitializable>(reference: inout T!, map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -81,7 +81,7 @@ public func <~ <T: NodeInitializable>(reference: inout T?, map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -90,7 +90,7 @@ public func <~ <T: NodeInitializable>(reference: inout [T], map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -99,7 +99,7 @@ public func <~ <T: NodeInitializable>(reference: inout [T]!, map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -108,7 +108,7 @@ public func <~ <T: NodeInitializable>(reference: inout [T]?, map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -117,7 +117,7 @@ public func <~ <T: NodeInitializable>(reference: inout [[T]], map: Map) throws {
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -126,7 +126,7 @@ public func <~ <T: NodeInitializable>(reference: inout [[T]]!, map: Map) throws 
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -135,7 +135,7 @@ public func <~ <T: NodeInitializable>(reference: inout [[T]]?, map: Map) throws 
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -144,7 +144,7 @@ public func <~ <T: NodeInitializable>(reference: inout [String : T], map: Map) t
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -153,7 +153,7 @@ public func <~ <T: NodeInitializable>(reference: inout [String : T]!, map: Map) 
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -162,7 +162,7 @@ public func <~ <T: NodeInitializable>(reference: inout [String : T]?, map: Map) 
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -171,7 +171,7 @@ public func <~ <T: NodeInitializable>(reference: inout [String : [T]], map: Map)
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -180,7 +180,7 @@ public func <~ <T: NodeInitializable>(reference: inout [String : [T]]!, map: Map
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -189,7 +189,7 @@ public func <~ <T: NodeInitializable>(reference: inout [String : [T]]?, map: Map
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -198,7 +198,7 @@ public func <~ <T: NodeInitializable>(reference: inout Set<T>, map: Map) throws 
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -207,7 +207,7 @@ public func <~ <T: NodeInitializable>(reference: inout Set<T>!, map: Map) throws
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 
@@ -216,7 +216,7 @@ public func <~ <T: NodeInitializable>(reference: inout Set<T>?, map: Map) throws
     case .toNode:
         break
     case .fromNode:
-        reference = try map.extract(map.path)
+        reference = try map.extract()
     }
 }
 

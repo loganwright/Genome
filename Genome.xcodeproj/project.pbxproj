@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22A8806F1ECA68A80006C871 /* SubMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8806E1ECA68A80006C871 /* SubMapTests.swift */; };
 		OBJ_100 /* NodeBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* NodeBacked.swift */; };
 		OBJ_101 /* Bool+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Bool+Convertible.swift */; };
 		OBJ_102 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Context.swift */; };
@@ -243,6 +244,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22A8806E1ECA68A80006C871 /* SubMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubMapTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* PathIndexable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathIndexable.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymorphic.swift; sourceTree = "<group>"; };
 		OBJ_13 /* String+Polymorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Polymorphic.swift"; sourceTree = "<group>"; };
@@ -495,7 +497,7 @@
 			path = Sources/GenomeCoreData;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -504,7 +506,6 @@
 				OBJ_69 /* Images */,
 				OBJ_70 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_52 /* GenomeFoundation */ = {
@@ -548,6 +549,7 @@
 				OBJ_66 /* SettableOperatorTest.swift */,
 				OBJ_67 /* ToNodeOperatorTest.swift */,
 				OBJ_68 /* TransformTests.swift */,
+				22A8806E1ECA68A80006C871 /* SubMapTests.swift */,
 			);
 			name = GenomeTests;
 			path = Tests/GenomeTests;
@@ -760,7 +762,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_70 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -829,6 +831,7 @@
 				OBJ_206 /* PathIndexable.swift in Sources */,
 				OBJ_207 /* SettableOperatorTest.swift in Sources */,
 				OBJ_208 /* ToNodeOperatorTest.swift in Sources */,
+				22A8806F1ECA68A80006C871 /* SubMapTests.swift in Sources */,
 				OBJ_209 /* TransformTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

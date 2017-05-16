@@ -12,6 +12,8 @@ extension Node {
         switch self {
         case let .object(ob):
             return ob
+        case .null:
+            return [:]
         default:
             return nil
         }

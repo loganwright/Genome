@@ -23,11 +23,6 @@ public final class Map: NodeBacked {
     
     // MARK: Private
     
-    /// The last retrieved result.  Used in operators to set value
-    internal var result: Node? {
-        return node[path]
-    }
-    
     internal let superMap: (map: Map, path: [PathIndex])?
     
     /// The last key accessed -- Used to reverse Node Operations
@@ -109,7 +104,7 @@ extension Map {
      :returns: returns an instance of self that can be passed to the mappable operator
      */
     public subscript(keys: [PathIndex]) -> Map {
-        return Map(type: type, context: context, node: node, superMap: self, path: keys)
+        return Map(type: type, context: context, node: node[keys] ?? .null, superMap: self, path: keys)
     }
 
     public subscript(path path: String) -> Map {
@@ -126,6 +121,7 @@ extension Map {
     internal func setToPath(_ newValue: Node?) throws {
         guard let (map, path) = superMap, let newValue = newValue else { return }
         map.node[path] = newValue
+        try map.setToPath(map.node)
     }
 
     internal func setToPath<T : NodeConvertible>(_ any: T?) throws {
