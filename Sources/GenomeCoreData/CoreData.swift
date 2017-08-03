@@ -26,11 +26,13 @@ open class ManagedObject: NSManagedObject, Genome.MappableBase {
 }
 
 extension MappableBase where Self: ManagedObject {
-    public init(node: Node, in context: Context) throws {
-        let map = Map(node: node, in: context)
+    public init(node: Node) throws {
+        let map = Map(node: node, in: node.context)
         self = try make(type: Self.self, with: map)
     }
 }
+
+    
 
 private func make<T: ManagedObject>(type: T.Type, with map: Map) throws -> T {
     guard let context = map.context as? NSManagedObjectContext else {

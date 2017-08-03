@@ -25,8 +25,8 @@ struct Person: MappableObject, Hashable {
     }
 
     init(map: Map) throws {
-        firstName = try map.extract("first_name")
-        lastName = try map.extract("last_name")
+        firstName = try map.get("first_name")
+        lastName = try map.get("last_name")
     }
 
     mutating func sequence(_ map: Map) throws -> Void {
