@@ -1,5 +1,29 @@
+public struct GenomeContext: Context {
+    public static let `default` = GenomeContext()
+}
+
+extension Map {
+    public static var defaultContext: Context? { return GenomeContext.default }
+}
+
+//static var defaultContext: Context? { get }
+//
+//var wrapped: StructuredData { get set }
+//var context: Context { get }
+//init(_ wrapped: StructuredData, in context: Context?)
+
 /// This class is designed to serve as an adaptor between the raw node and the values.  In this way we can interject behavior that assists in mapping between the two.
-public final class Map: NodeBacked {
+public final class Map: StructuredDataWrapper {
+
+    public var wrapped: StructuredData {
+        get {
+            return node.wrapped
+        }
+        set {
+            node = Node(wrapped, node.context)
+        }
+    }
+
     
     /**
     The representative type of mapping operation
@@ -24,7 +48,7 @@ public final class Map: NodeBacked {
     // MARK: Private
 
     /// The last key accessed -- Used to reverse Node Operations
-    internal fileprivate(set) var lastPath: [PathIndex] = []
+    internal fileprivate(set) var lastPath: [PathIndexer] = []
     
     /// The last retrieved result.  Used in operators to set value
     internal fileprivate(set) var result: Node? {
@@ -43,9 +67,23 @@ public final class Map: NodeBacked {
      :param: node    the backing data that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public convenience init(node: NodeRepresentable, in context: Context = EmptyNode) throws {
-        let node = try node.makeNode(context: context)
+    public convenience init(
+        node: NodeRepresentable,
+        in context: Context = GenomeContext.default
+    ) throws {
+        let node = try node.makeNode(in: context)
         self.init(node: node, in: context)
+    }
+
+    public convenience init(
+        _ wrapped: StructuredData,
+        in context: Context? = nil
+    ) {
+        let node = wrapped.makeNode(in: context)
+        self.init(
+            node: node,
+            in: context ?? GenomeContext.default
+        )
     }
     
     /**
@@ -54,15 +92,14 @@ public final class Map: NodeBacked {
      :param: node    the node that will be used in the mapping
      :param: context the context that will be used in the mapping
      */
-    public init(node: Node, in context: Context = EmptyNode) {
+    public init(
+        node: Node,
+        in context: Context = GenomeContext.default
+    ) {
         self.type = .fromNode
         
         self.node = node
         self.context = context
-    }
-
-    public convenience init(_ node: Node) {
-        self.init(node: node, in: EmptyNode)
     }
     
     /**
@@ -74,7 +111,7 @@ public final class Map: NodeBacked {
         self.type = .toNode
         
         self.node = [:]
-        self.context = EmptyNode
+        self.context = GenomeContext.default
     }
 }
 
@@ -88,7 +125,7 @@ extension Map {
 
      :returns: returns an instance of self that can be passed to the mappable operator
      */
-    public subscript(keys: PathIndex...) -> Map {
+    public subscript(keys: PathIndexer...) -> Map {
         return self[keys]
     }
 
@@ -99,7 +136,7 @@ extension Map {
 
      :returns: returns an instance of self that can be passed to the mappable operator
      */
-    public subscript(keys: [PathIndex]) -> Map {
+    public subscript(keys: [PathIndexer]) -> Map {
         lastPath = keys
         result = node[keys]
         return self
@@ -122,26 +159,26 @@ extension Map {
     }
 
     internal func setToLastPath<T : NodeConvertible>(_ any: T?) throws {
-        try setToLastPath(any?.makeNode())
+        try setToLastPath(any?.makeNode(in: GenomeContext.default))
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: [T]?) throws {
-        try setToLastPath(any?.makeNode())
+        try setToLastPath(any?.makeNode(in: GenomeContext.default))
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: [[T]]?) throws {
         guard let any = any else { return }
         let node: [Node] = try any.map { innerArray in
-            return try innerArray.makeNode()
+            return try innerArray.makeNode(in: GenomeContext.default)
         }
-        try setToLastPath(node.makeNode())
+        try setToLastPath(node.makeNode(in: GenomeContext.default))
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: [String : T]?) throws {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.makeNode()
+            node[key] = try value.makeNode(in: GenomeContext.default)
         }
         try setToLastPath(Node(node))
     }
@@ -150,12 +187,12 @@ extension Map {
         guard let any = any else { return }
         var node: [String : Node] = [:]
         try any.forEach { key, value in
-            node[key] = try value.makeNode()
+            node[key] = try value.makeNode(in: GenomeContext.default)
         }
         try setToLastPath(Node(node))
     }
     
     internal func setToLastPath<T : NodeConvertible>(_ any: Set<T>?) throws {
-        try setToLastPath(any?.makeNode())
+        try setToLastPath(any?.makeNode(in: GenomeContext.default))
     }
 }

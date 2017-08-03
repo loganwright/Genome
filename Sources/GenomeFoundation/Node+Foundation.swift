@@ -72,10 +72,21 @@ extension Node {
      intended for Foundation environments.
      */
     public var any: Any {
+        return self.wrapped.any
+    }
+}
+
+extension StructuredData {
+    /**
+     Create an any representation of the node,
+     intended for Foundation environments.
+     */
+    public var any: Any {
         switch self {
         case .object(let ob):
             var mapped: [String : Any] = [:]
-            ob.forEach { key, val in
+            ob.forEach { arg in
+                let (key, val) = arg
                 mapped[key] = val.any
             }
             return mapped
@@ -93,6 +104,8 @@ extension Node {
             var bytes = bytes
             let data = NSData(bytes: &bytes, length: bytes.count)
             return data
+        case .date(let date):
+            return date.timeIntervalSince1970
         }
     }
 }

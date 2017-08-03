@@ -9,7 +9,7 @@ open class Transformer<InputType, OutputType> {
         self.transformer = { input in
             guard let unwrapped = input else {
                 // TODO: Own Error?
-                throw NodeError.unableToConvert(node: nil, expected: "\(InputType.self)")
+                throw NodeError.unableToConvert(input: nil, expectation: "\(InputType.self)", path: [])
             }
             return try transformer(unwrapped)
         }
@@ -49,7 +49,7 @@ public final class FromNodeTransformer<ConvertibleInput: NodeConvertible, Transf
     
     internal func transform(_ node: Node?) throws -> TransformedOutput {
         if let node = node {
-            let input = try ConvertibleInput.init(node: node, in: node)
+            let input = try ConvertibleInput.init(node: node)
             return try transform(input)
         } else {
             return try transform(Optional<ConvertibleInput>.none)
@@ -86,7 +86,7 @@ public final class ToNodeTransformer<Input, ConvertibleOutput: NodeConvertible>
     
     internal func transform(_ value: Input) throws -> Node {
         let transformed = try transformer(value)
-        return try transformed.makeNode()
+        return try transformed.makeNode(in: GenomeContext.default)
     }
 }
 

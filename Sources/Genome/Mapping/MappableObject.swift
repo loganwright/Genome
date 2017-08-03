@@ -6,7 +6,7 @@ public protocol MappableBase : NodeConvertible {
 
 extension MappableBase {
     /// Used to convert an object back into node
-    public func makeNode(context: Context = EmptyNode) throws -> Node {
+    public func makeNode(in context: Context? = GenomeContext.default) throws -> Node {
         let map = Map()
         var mutable = self
         try mutable.sequence(map)
@@ -25,8 +25,8 @@ extension MappableObject {
         // Empty -- here to make optional
     }
 
-    public init(node: Node, in context: Context = EmptyNode) throws {
-        let map = Map(node: node, in: context)
+    public init(node: Node) throws {
+        let map = Map(node: node, in: node.context)
         try self.init(map: map)
     }
 }

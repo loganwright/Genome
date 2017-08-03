@@ -59,31 +59,31 @@ class ToNodeOperatorTest: XCTestCase {
         var optionalNotNil: String? = "not nil"
         
         init(map: Map) {
-            name = try! map.extract("name")
-            foundedYear = try! map.extract("founded_in")
+            name = try! map.get("name")
+            foundedYear = try! map.get("founded_in")
             
-            locations = try! map.extract("locations")
-            locationsOptional = try! map.extract("locations")
+            locations = try! map.get("locations")
+            locationsOptional = try! map.get("locations")
             
-            let ownerrr: Employee = try! map.extract("owner")
+            let ownerrr: Employee = try! map.get("owner")
             print("Ownerer: \(ownerrr)")
-            owner = try! map.extract("owner")
-            ownerOptional = try! map.extract("owner")
+            owner = try! map.get("owner")
+            ownerOptional = try! map.get("owner")
             
-            employees = try! map.extract("employees")
-            employeesOptional = try! map.extract("employees")
+            employees = try! map.get("employees")
+            employeesOptional = try! map.get("employees")
             
-            employeesArray = try! map.extract("employeesArray")
-            employeesOptionalArray = try! map.extract("employeesArray")
+            employeesArray = try! map.get("employeesArray")
+            employeesOptionalArray = try! map.get("employeesArray")
             
-            employeesDictionary = try! map.extract("employeesDictionary")
-            employeesOptionalDictionary = try! map.extract("employeesDictionary")
+            employeesDictionary = try! map.get("employeesDictionary")
+            employeesOptionalDictionary = try! map.get("employeesDictionary")
             
-            employeesDictionaryArray = try! map.extract("employeesDictionaryArray")
-            employeesOptionalDictionaryArray = try! map.extract("employeesDictionaryArray")
+            employeesDictionaryArray = try! map.get("employeesDictionaryArray")
+            employeesOptionalDictionaryArray = try! map.get("employeesDictionaryArray")
             
-            employeesSet = try! map.extract("employees")
-            employeesOptionalSet = try! map.extract("employees")
+            employeesSet = try! map.get("employees")
+            employeesOptionalSet = try! map.get("employees")
         }
         
         func sequence(_ map: Map) throws -> Void {
