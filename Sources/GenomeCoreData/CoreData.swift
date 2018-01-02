@@ -14,7 +14,6 @@ open class ManagedObject: NSManagedObject, Genome.MappableBase {
     
     open class var entityName: String {
         return "\(self)"
-            .characters
             .split { $0 == "." }
             .map(String.init)
             .last ?? "\(self)"
