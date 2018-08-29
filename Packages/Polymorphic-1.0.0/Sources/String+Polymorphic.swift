@@ -71,7 +71,7 @@ extension String: Polymorphic {
         multiple entries.
     */
     public var array: [Polymorphic]? {
-        return characters
+        return self
             .split(separator: ",")
             .map { String($0) }
             .map { $0.trimmedWhitespace() }
@@ -89,7 +89,7 @@ extension String: Polymorphic {
 
 extension String {
     func trimmedWhitespace() -> String {
-        var characters = self.characters
+        var characters = self
 
         while characters.first?.isWhitespace == true {
             characters.removeFirst()
